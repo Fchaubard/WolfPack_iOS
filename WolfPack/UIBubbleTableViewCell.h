@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  UIBubbleTableViewCell.h
 //
 //  Created by Alex Barinov
 //  Project home page: http://alexbarinov.github.com/UIBubbleTableView/
@@ -9,8 +9,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIBubbleTableViewDataSource.h"
+#import "NSBubbleData.h"
 
-@interface ViewController : UIViewController <UIBubbleTableViewDataSource>
+@interface UIBubbleTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) NSBubbleData *data;
+@property (nonatomic) BOOL showAvatar;
 
 @end

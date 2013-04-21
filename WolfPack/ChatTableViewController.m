@@ -1,53 +1,43 @@
 //
-//  ViewController.m
+//  ChatTableViewController.m
+//  WolfPack
 //
-//  Created by Alex Barinov
-//  Project home page: http://alexbarinov.github.com/UIBubbleTableView/
-//
-//  This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License.
-//  To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/
+//  Created by Francois Chaubard on 3/15/13.
+//  Copyright (c) 2013 Francois Chaubard. All rights reserved.
 //
 
-// 
-// Images used in this example by Petr Kratochvil released into public domain
-// http://www.publicdomainpictures.net/view-image.php?image=9806
-// http://www.publicdomainpictures.net/view-image.php?image=1358
-//
-
-#import "ViewController.h"
+#import "ChatTableViewController.h"
 #import "UIBubbleTableView.h"
-#import "UIBubbleTableViewDataSource.h"
 #import "NSBubbleData.h"
 
-@interface ViewController ()
-{
+
+@interface ChatTableViewController (){
     IBOutlet UIBubbleTableView *bubbleTable;
     IBOutlet UIView *textInputView;
     IBOutlet UITextField *textField;
-
+    
     NSMutableArray *bubbleData;
 }
 
 @end
 
-@implementation ViewController
-
-
+@implementation ChatTableViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
-   // [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    // [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     for (UIView* view in self.view.subviews) {
         //[view setTranslatesAutoresizingMaskIntoConstraints:NO];
     }
-   // [bubbleTable setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-40)];
-   // [textInputView setFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height-40, [[UIScreen mainScreen] bounds].size.width, 40) ];
-                                       
-    NSBubbleData *heyBubble = [NSBubbleData dataWithText:@"In the mood for tacos? (dont invite Sue..)" date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeSomeoneElse];
-
+    // [bubbleTable setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-40)];
+    // [textInputView setFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height-40, [[UIScreen mainScreen] bounds].size.width, 40) ];
     
-    NSBubbleData *replyBubble = [NSBubbleData dataWithText:@"Sure. Never liked her anyway. See you at Coho in 10." date:[NSDate dateWithTimeIntervalSinceNow:-5] type:BubbleTypeMine];
+    NSBubbleData *heyBubble = [NSBubbleData dataWithText:@"Hey, you want some taco's?" date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeSomeoneElse];
+    //heyBubble.avatar = [UIImage imageNamed:@"avatar1.png"];
+    
+    
+    NSBubbleData *replyBubble = [NSBubbleData dataWithText:@"Heck ya!" date:[NSDate dateWithTimeIntervalSinceNow:-5] type:BubbleTypeMine];
     replyBubble.avatar = nil;
     
     bubbleData = [[NSMutableArray alloc] initWithObjects:heyBubble, replyBubble, nil];
@@ -103,7 +93,7 @@
 {
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-
+    
     [UIView animateWithDuration:0.2f animations:^{
         
         CGRect frame = textInputView.frame;
@@ -138,7 +128,7 @@
 - (IBAction)sayPressed:(id)sender
 {
     bubbleTable.typingBubble = NSBubbleTypingTypeNobody;
-
+    
     NSBubbleData *sayBubble = [NSBubbleData dataWithText:textField.text date:[NSDate dateWithTimeIntervalSinceNow:0] type:BubbleTypeMine];
     [bubbleData addObject:sayBubble];
     [bubbleTable reloadData];
@@ -146,5 +136,7 @@
     textField.text = @"";
     [textField resignFirstResponder];
 }
+
+
 
 @end
