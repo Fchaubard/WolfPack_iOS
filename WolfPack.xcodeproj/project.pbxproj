@@ -34,6 +34,9 @@
 		AB461ED116E19AD5009FDC9A /* MyManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = AB461ED016E19AD5009FDC9A /* MyManagedObjectContext.m */; };
 		AB461EDD16E19B8A009FDC9A /* Friend+MKAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB461EDC16E19B8A009FDC9A /* Friend+MKAnnotation.m */; };
 		AB461EDF16E19C6D009FDC9A /* fficon.png in Resources */ = {isa = PBXBuildFile; fileRef = AB461EDE16E19C6D009FDC9A /* fficon.png */; };
+		AB4771071724826A003B1357 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4771051724826A003B1357 /* 01-refresh.png */; };
+		AB4771081724826A003B1357 /* 01-refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4771061724826A003B1357 /* 01-refresh@2x.png */; };
+		AB4771141724B59D003B1357 /* MyCLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4771131724B59D003B1357 /* MyCLLocationManager.m */; };
 		AB6CD1E316F39A2900C82052 /* MyConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1E216F39A2900C82052 /* MyConversation.m */; };
 		AB6CD1E716F39A7300C82052 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1E616F39A7300C82052 /* Conversation.m */; };
 		AB6CD1F916F39BEF00C82052 /* NSBubbleData.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1EF16F39BEF00C82052 /* NSBubbleData.m */; };
@@ -107,6 +110,10 @@
 		AB461EDB16E19B8A009FDC9A /* Friend+MKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Friend+MKAnnotation.h"; path = "../Friend+MKAnnotation.h"; sourceTree = "<group>"; };
 		AB461EDC16E19B8A009FDC9A /* Friend+MKAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Friend+MKAnnotation.m"; path = "../Friend+MKAnnotation.m"; sourceTree = "<group>"; };
 		AB461EDE16E19C6D009FDC9A /* fficon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fficon.png; sourceTree = "<group>"; };
+		AB4771051724826A003B1357 /* 01-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh.png"; sourceTree = "<group>"; };
+		AB4771061724826A003B1357 /* 01-refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh@2x.png"; sourceTree = "<group>"; };
+		AB4771121724B59D003B1357 /* MyCLLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCLLocationManager.h; sourceTree = "<group>"; };
+		AB4771131724B59D003B1357 /* MyCLLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCLLocationManager.m; sourceTree = "<group>"; };
 		AB6CD1E116F39A2900C82052 /* MyConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConversation.h; sourceTree = "<group>"; };
 		AB6CD1E216F39A2900C82052 /* MyConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyConversation.m; sourceTree = "<group>"; };
 		AB6CD1E516F39A7300C82052 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
@@ -153,8 +160,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB9F46A116ED8A0C00E5C2D6 /* QuartzCore.framework in Frameworks */,
 				ABA1B8E316E6A188006F3D7C /* CoreLocation.framework in Frameworks */,
+				AB9F46A116ED8A0C00E5C2D6 /* QuartzCore.framework in Frameworks */,
 				AB461EAD16E161DB009FDC9A /* MapKit.framework in Frameworks */,
 				AB461EAB16E161D3009FDC9A /* CoreData.framework in Frameworks */,
 				AB461E7716E15B47009FDC9A /* UIKit.framework in Frameworks */,
@@ -243,6 +250,8 @@
 				AB461E9C16E16000009FDC9A /* ContainerViewController.m */,
 				AB461EB616E1666E009FDC9A /* HungrySlider.h */,
 				AB461EB716E1666E009FDC9A /* HungrySlider.m */,
+				AB4771121724B59D003B1357 /* MyCLLocationManager.h */,
+				AB4771131724B59D003B1357 /* MyCLLocationManager.m */,
 				AB461ECF16E19AD4009FDC9A /* MyManagedObjectContext.h */,
 				AB461ED016E19AD5009FDC9A /* MyManagedObjectContext.m */,
 				AB6CD1E116F39A2900C82052 /* MyConversation.h */,
@@ -258,6 +267,8 @@
 		AB461EAF16E16213009FDC9A /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				AB4771051724826A003B1357 /* 01-refresh.png */,
+				AB4771061724826A003B1357 /* 01-refresh@2x.png */,
 				ABB3733A16F470F200CF7C36 /* hidden_wolf.png */,
 				ABB3733B16F470F200CF7C36 /* friend_wolf.png */,
 				ABB3733C16F470F200CF7C36 /* normal_wolf.png */,
@@ -400,6 +411,8 @@
 				ABB3733D16F470F200CF7C36 /* hidden_wolf.png in Resources */,
 				ABB3733E16F470F200CF7C36 /* friend_wolf.png in Resources */,
 				ABB3733F16F470F200CF7C36 /* normal_wolf.png in Resources */,
+				AB4771071724826A003B1357 /* 01-refresh.png in Resources */,
+				AB4771081724826A003B1357 /* 01-refresh@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +447,7 @@
 				AB6CD1FD16F39BEF00C82052 /* UIBubbleTypingTableViewCell.m in Sources */,
 				AB6CD21816F3A06C00C82052 /* ViewController.m in Sources */,
 				ABB3731B16F44D2F00CF7C36 /* ChatTableViewController.m in Sources */,
+				AB4771141724B59D003B1357 /* MyCLLocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

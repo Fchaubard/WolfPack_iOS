@@ -18,7 +18,7 @@ static double distance;
 
 +(NSArray *)returnPhonyFriendDictionary{
     
-    if (!dictionaries) {
+   /* if (!dictionaries) {
         // get current position
         distance = 0.1;
     }
@@ -29,7 +29,7 @@ static double distance;
         double incrementDistance = 0.01;
     
         distance+=incrementDistance;
-        varDistance = amplitude*sin(omega*distance);
+        varDistance = amplitude;
     
           
     
@@ -109,7 +109,61 @@ static double distance;
         dictionaries = [[NSArray alloc] initWithArray:temp];
         
    // }
-    return dictionaries;
+    */
+    
+     NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
+    NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmywolfpackjson.php?session=%@",sessionid];
+    NSURL *URL = [NSURL URLWithString:str];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    //request.HTTPMethod = @"POST";
+    
+    //NSString *params = @"access_token=asdf&action_name=get_apptracker_info";
+    
+    //NSData *data = [params dataUsingEncoding:NSUTF8StringEncoding];
+    //[request addValue:@"8bit" forHTTPHeaderField:@"Content-Transfer-Encoding"];
+    //[request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    //[request addValue:[NSString stringWithFormat:@"%i", [data length]] forHTTPHeaderField:@"Content-Length"];
+    //[request setHTTPBody:data];
+    NSError *error = [[NSError alloc] init];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    /*NSString * string = [[NSString alloc] initWithData:responseData encoding:
+                         NSASCIIStringEncoding];
+    
+    if (string.intValue == 1) {
+        NSLog(@"asdfa");
+    } else {
+        NSLog(@"asdfa");
+    }*/
+    NSArray *jsonArray;
+   // if ([NSJSONSerialization isValidJSONObject:responseData]) {
+    if ([responseData length]>1){
+        jsonArray = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
+        for (NSMutableDictionary *dict in jsonArray) {
+            NSLog(@"%@", [dict allKeys]);
+            NSLog(@"%@", [dict allValues]);
+            
+        }
+        return jsonArray;
+    }
+    else{
+        return nil;
+    }
+   
+   /* NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setValue:@1 forKey:@"eventID"];
+    [dict setValue:@1 forKey:@"hungry"];
+    [dict setValue:@(latitude.doubleValue-fixDistance   ) forKey:@"latitude"];
+    [dict setValue:@(longitude.doubleValue+varDistance     ) forKey:@"longitude"];
+    [dict setValue:@"Bob" forKey:@"name"];
+    [dict setValue:@"Wants Tacos!!" forKey:@"status"];
+    [dict setValue:@1 forKey:@"userID"];
+    [dict setValue:[NSDate date] forKey:@"lastUpdated"];
+    [dict setValue:@0 forKey:@"added"];
+    [dict setValue:@0 forKey:@"blocked"];
+    
+    [temp addObject:dict];*/
+    
 }
 
 

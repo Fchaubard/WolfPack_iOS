@@ -43,28 +43,31 @@
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
     
-    // Check what happened in the fetch
+    friend = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:context];
+        
+       // if([friendDictionary valueForKey:@"friendstatus"]==@1){
+            NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+            [f setNumberStyle:NSNumberFormatterNoStyle];
+            friend.eventID = [f numberFromString:[friendDictionary valueForKey:@"chatid"]];
+            friend.hungry = [f numberFromString:[friendDictionary valueForKey:@"adjective"]];
+            friend.latitude =[f numberFromString:[friendDictionary valueForKey:@"lat"]];
+            friend.longitude = [f numberFromString:[friendDictionary valueForKey:@"long"]];
+            friend.name = [NSString stringWithFormat:@"%@ %@",[friendDictionary valueForKey:@"fname"],[friendDictionary valueForKey:@"lname"]];
+            friend.status = [friendDictionary valueForKey:@"status"];
+            friend.userID = [f numberFromString:[friendDictionary valueForKey:@"phone"]];
+            //need to change this
+            friend.lastUpdated = [friendDictionary valueForKey:@"lastUpdated"];
+            
+            friend.added = [f numberFromString:[friendDictionary valueForKey:@"added"]];
+
     
-    if (!matches || ([matches count] > 1)) {  // nil means fetch failed; more than one impossible (unique!)
-        // handle error
-    } else if (![matches count]) { // none found, so let's create a Photo for that Flickr photo
-        friend = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:context];
-        
-        friend.eventID = [friendDictionary valueForKey:@"eventID"];
-        friend.hungry = [friendDictionary valueForKey:@"hungry"];
-        friend.latitude = [friendDictionary valueForKey:@"latitude"];
-        friend.longitude = [friendDictionary valueForKey:@"longitude"];
-        friend.name = [friendDictionary valueForKey:@"name"];
-        friend.status = [friendDictionary valueForKey:@"status"];
-        friend.userID = [friendDictionary valueForKey:@"userID"];
-        friend.lastUpdated = [friendDictionary valueForKey:@"lastUpdated"];
-        
-        friend.added = [friendDictionary valueForKey:@"added"];
-        
-        friend.blocked = [friendDictionary valueForKey:@"blocked"];
-        friend.title = friend.name;
-        friend.subtitle = friend.status;
-        
+            friend.blocked = [f numberFromString:[friendDictionary valueForKey:@"hidden"]];
+
+            friend.title = friend.name;
+            friend.subtitle = friend.status;
+    
+   
+       // }
         /*NSSet *tagSetStrings = [[NSSet alloc] initWithArray:[[friendDictionary valueForKey:@"tags"] componentsSeparatedByString: @" "]];
         
         NSMutableSet *tagSet = [[NSMutableSet alloc] init];
@@ -79,23 +82,7 @@
         
         photo.tagNames = tagSet;
          */
-        
-    } else { // found the Photo, just return it from the list of matches (which there will only be one of)
-        friend = [matches lastObject];
-        friend.eventID = [friendDictionary valueForKey:@"eventID"];
-        friend.hungry = [friendDictionary valueForKey:@"hungry"];
-        friend.latitude = [friendDictionary valueForKey:@"latitude"];
-        friend.longitude = [friendDictionary valueForKey:@"longitude"];
-        friend.name = [friendDictionary valueForKey:@"name"];
-        friend.status = [friendDictionary valueForKey:@"status"];
-        friend.userID = [friendDictionary valueForKey:@"userID"];
-        friend.lastUpdated = [friendDictionary valueForKey:@"lastUpdated"];
-        friend.added = [friendDictionary valueForKey:@"added"];
-        friend.blocked = [friendDictionary valueForKey:@"blocked"];
-        friend.title = friend.name;
-        friend.subtitle = friend.status;
-    }
-    
+      
     return friend;
 }
 

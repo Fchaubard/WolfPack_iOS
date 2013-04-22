@@ -141,7 +141,10 @@
     return cell;
 }
 
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return 0;//(interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
 
 - (void)didReceiveMemoryWarning
 {

@@ -11,8 +11,7 @@
 @interface WolfMapViewController : MapViewController
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-
-// requeries Core Data for the Photographers
+@property (strong, nonatomic) IBOutlet UIButton *refreshButton;
 
 - (void)reload;
 

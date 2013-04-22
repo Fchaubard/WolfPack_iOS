@@ -12,9 +12,8 @@
 #import "PhonyFriendDictionary.h"
 
 @interface WolfMapViewController ()
-@property (strong, nonatomic) IBOutlet UIView *statusInputView;
-@property (strong, nonatomic) IBOutlet UITextField *statusTextField;
 
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @end
 
 @implementation WolfMapViewController
@@ -26,7 +25,7 @@
 {
     _managedObjectContext = managedObjectContext;
     if (self.view.window) [self reload];
-    [self updateRegion];
+    [self updateRegion]; // always update region
   //  if (self.needUpdateRegion) [self updateRegion];
 }
 
@@ -88,7 +87,8 @@
     if (!self.managedObjectContext) [MyManagedObjectContext returnMyManagedObjectContext:^(UIManagedDocument *doc, BOOL created) {
         self.managedObjectContext = [doc managedObjectContext];
     }];
-   
+    
+    [self.activity setHidden:TRUE];
     [self reload];
 }
 
@@ -98,21 +98,37 @@
 
 - (IBAction)refresh
 {
+    [self.activity setHidden:FALSE];
+    [self.activity startAnimating];
     dispatch_queue_t fetchQ = dispatch_queue_create("Flickr Fetch", NULL);
     dispatch_async(fetchQ, ^{
+        
         NSArray *friends = [PhonyFriendDictionary returnPhonyFriendDictionary];
         // put the photos in Core Data
         [self.managedObjectContext performBlock:^{
+            //delete old friends from core data
+            NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Friend"];
+            NSArray *oldfriends = [self.managedObjectContext executeFetchRequest:request error:NULL];
+            for (Friend* friend in oldfriends) {
+                    [self.managedObjectContext deleteObject:friend];
+            }
+            //populate it with new ones
             for (NSDictionary *friend in friends) {
                 [Friend friendWithData:friend inManagedObjectContext:self.managedObjectContext];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self reload];
+                [self.activity stopAnimating];
+                [self.activity setHidden:TRUE];
             });
         }];
     });
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return 0;//(interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
 
 
 @end

@@ -9,6 +9,7 @@
 #import "ContainerViewController.h"
 #import "ViewController.h"
 #import "MyManagedObjectContext.h"
+#import "MyCLLocationManager.h"
 @interface ContainerViewController ()
 
 @property (strong, nonatomic) UITabBarController *containerTBC;
@@ -38,7 +39,13 @@
 - (void)viewDidLoad
 {    // talk to the server and get user info
     [super viewDidLoad];
- 
+    [MyCLLocationManager sharedSingleton];
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    // saving an NSInteger
+    [prefs setObject:[NSString stringWithFormat:@"15554543146"] forKey:@"sessionid"];
+    
     self.tapped.delegate = self;
     
 }
@@ -69,6 +76,7 @@
         [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
         [self.statusInputView setHidden:true];
         [self.mapViewController.mapView setHidden:true];
+        [self.mapViewController.refreshButton setHidden:true];
         [self hideTabBar:self.containerTBC];
         
         
@@ -82,6 +90,7 @@
         
         [self.statusInputView setHidden:true];
         [self.mapViewController.mapView setHidden:false];
+        [self.mapViewController.refreshButton setHidden:false];
         [self showTabBar:self.containerTBC];
         
         
@@ -90,12 +99,17 @@
 
 -(void)slideInStatus{
     [self.statusInputView setHidden:false];
+    
     self.statusInputView.frame = CGRectMake(self.statusInputView.frame.origin.x, self.statusInputView.frame.origin.y-50, self.statusInputView.frame.size.width, self.statusInputView.frame.size.height);
+    
+    
+    
     [UIView animateWithDuration:1.0 animations:^{
         
         self.statusInputView.frame = CGRectMake(self.statusInputView.frame.origin.x, self.statusInputView.frame.origin.y+50, self.statusInputView.frame.size.width, self.statusInputView.frame.size.height);
     } completion:^(BOOL finished) {
-       
+        [self.statusTextField selectAll:self];
+        //[UIMenuController sharedMenuController].menuVisible = NO;
     }
      ];
     
@@ -103,6 +117,7 @@
 
 -(void)slideOutStatus{
     
+  
     [UIView animateWithDuration:1.0 animations:^{
         
         self.statusInputView.frame = CGRectMake(self.statusInputView.frame.origin.x, self.statusInputView.frame.origin.y-50, self.statusInputView.frame.size.width, self.statusInputView.frame.size.height);
@@ -110,19 +125,22 @@
     } completion:^(BOOL finished) {
          self.statusInputView.frame = CGRectMake(self.statusInputView.frame.origin.x, self.statusInputView.frame.origin.y+50, self.statusInputView.frame.size.width, self.statusInputView.frame.size.height);
          [self.statusInputView setHidden:true];
+         [self.statusTextField resignFirstResponder];
     }
      ];
     
 }
 
 - (IBAction)userChangedStatus:(id)sender{
-    NSLog(@"asdfa");
+   
     [self slideOutStatus];
+    [self updateStatusWithStatus:[self.statusTextField text] andAdjective:@1];
     [self.view endEditing:YES];
+    
 }
 
 - (IBAction)userTappedToChangeStatus:(id)sender{
-    NSLog(@"asdasdafa");
+   
     if (self.statusInputView.hidden) {
         [self slideInStatus];
     }else{
@@ -130,6 +148,31 @@
     }
 }
 
+-(void)updateStatusWithStatus:(NSString *)status
+                 andAdjective:(NSNumber *)adjective{
+    
+   CLLocation *loc = [MyCLLocationManager sharedSingleton].locationManager.location;
+    
+    NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
+    NSString *strippedStatus = [status stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
+    NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/updatemystatusjson.php?session=%@&adjective=%d&lat=%f&long=%f&status=%@",sessionid,[adjective intValue],loc.coordinate.latitude,loc.coordinate.longitude,strippedStatus];
+    NSURL *URL = [NSURL URLWithString:str];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    NSError *error = [[NSError alloc] init];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSString * string = [[NSString alloc] initWithData:responseData encoding:
+     NSASCIIStringEncoding];
+     
+     if (string.intValue == 1) {
+     NSLog(@"asdfa");
+     } else {
+     NSLog(@"asdfa");
+     }
+    
+    return;
+    
+}
 
 - (IBAction)userChangedHungryStatus:(id)sender{
     
@@ -141,6 +184,8 @@
             // fade out the not hungry status
             [MyManagedObjectContext hungryTrue];
             [self fadeOutLabel];
+            [self slideInStatus];
+            [self updateStatusWithStatus:@"Hungry!" andAdjective:@1];
             [self.hungryLabel setText:@"Hungry"];
             [self.chatButton setEnabled:TRUE];
             [self.containerTBC setSelectedIndex:0];
@@ -148,6 +193,7 @@
             [self.hungryLabel setNeedsDisplay];
             [self fadeInLabel];
             [self.mapViewController.mapView setHidden:false];
+            [self.mapViewController.refreshButton setHidden:false];
             self.mapViewController.mapView.alpha = 0.0;
             
             [UIView animateWithDuration:1.0 animations:^{
@@ -160,6 +206,8 @@
             
             [MyManagedObjectContext hungryFalse];
             [self fadeOutLabel];
+            [self slideOutStatus];
+            [self updateStatusWithStatus:@"" andAdjective:@0];
             [self.hungryLabel setText:@"Not Hungry"];
             [self.chatButton setEnabled:FALSE];
             [self.chatButton setAlpha:0.5];
@@ -171,6 +219,7 @@
                 self.mapViewController.mapView.alpha = 0.0;
             }];
             [self.mapViewController.mapView setHidden:true];
+            [self.mapViewController.refreshButton setHidden:true];
             [self hideTabBar:self.containerTBC];
         }
         
@@ -248,7 +297,10 @@
         
     }
 }
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return false;//(interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
 
 
 - (void)didReceiveMemoryWarning

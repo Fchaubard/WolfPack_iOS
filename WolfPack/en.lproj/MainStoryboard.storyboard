@@ -72,7 +72,7 @@
                                     </slider>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Not Hungry" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5y-Yf-Y5z">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="86" type="user" id="i6h-sB-XRl"/>
+                                            <constraint firstAttribute="width" constant="119" id="SHn-f6-tgZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -95,31 +95,18 @@
                                             <segue destination="4yv-SG-zhk" kind="push" id="FzO-Pz-5O7"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0s-PV-seC">
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="kq1-H6-p4T" appends="YES" id="kOF-hT-7ku"/>
-                                        </connections>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" type="user" id="5VQ-4S-pwu"/>
                                     <constraint firstItem="8nh-Tu-bqJ" firstAttribute="top" secondItem="KoI-3O-1la" secondAttribute="top" constant="33" id="C10-Ze-cWF"/>
-                                    <constraint firstItem="3p2-MY-bTD" firstAttribute="leading" secondItem="d0s-PV-seC" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="GYd-zN-loF"/>
                                     <constraint firstItem="3p2-MY-bTD" firstAttribute="top" secondItem="v5y-Yf-Y5z" secondAttribute="top" type="user" id="MJO-ct-UjE"/>
                                     <constraint firstAttribute="trailing" secondItem="3p2-MY-bTD" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="R7A-Aj-DEQ"/>
-                                    <constraint firstItem="d0s-PV-seC" firstAttribute="leading" secondItem="8nh-Tu-bqJ" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="Uln-xf-3mm"/>
                                     <constraint firstAttribute="centerY" secondItem="3p2-MY-bTD" secondAttribute="centerY" type="user" id="Xs4-zY-itA"/>
-                                    <constraint firstItem="d0s-PV-seC" firstAttribute="top" secondItem="KoI-3O-1la" secondAttribute="top" type="default" id="YBc-Rj-i5P"/>
                                     <constraint firstItem="8nh-Tu-bqJ" firstAttribute="leading" secondItem="KoI-3O-1la" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="gHE-RB-lFr"/>
-                                    <constraint firstItem="3p2-MY-bTD" firstAttribute="leading" secondItem="d0s-PV-seC" secondAttribute="trailing" constant="8" type="user" id="gmp-Qr-bj5"/>
                                     <constraint firstItem="v5y-Yf-Y5z" firstAttribute="leading" secondItem="KoI-3O-1la" secondAttribute="leading" constant="24" id="hXt-pp-2Rz"/>
-                                    <constraint firstItem="d0s-PV-seC" firstAttribute="leading" secondItem="8nh-Tu-bqJ" secondAttribute="trailing" constant="8" type="user" id="kdh-RM-wnc"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" type="user" id="yhI-f2-mXT"/>
-                                    <constraint firstItem="d0s-PV-seC" firstAttribute="bottom" secondItem="KoI-3O-1la" secondAttribute="bottom" type="default" id="zaW-eJ-7kn"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -172,21 +159,45 @@
                                     <constraint firstAttribute="width" constant="325" id="byy-o0-xtz"/>
                                 </constraints>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyX-55-NVS">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="GWT-fH-QKr"/>
+                                    <constraint firstAttribute="width" constant="29" id="pRq-Cs-PUP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="01-refresh.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="refresh" destination="sOi-AY-ByT" eventType="touchUpInside" id="yhB-aH-jYy"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VQv-E8-hew"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VTb-0A-Znu" firstAttribute="bottom" secondItem="aMw-7d-64N" secondAttribute="bottom" type="default" id="44y-N5-466"/>
                             <constraint firstItem="VTb-0A-Znu" firstAttribute="top" secondItem="aMw-7d-64N" secondAttribute="top" type="default" id="5cm-Od-50C"/>
+                            <constraint firstItem="lyX-55-NVS" firstAttribute="top" secondItem="aMw-7d-64N" secondAttribute="top" constant="12" id="Ab1-Wb-EGn"/>
                             <constraint firstItem="gts-aH-53p" firstAttribute="leading" secondItem="aMw-7d-64N" secondAttribute="leading" type="default" id="Ihk-0h-mD5"/>
                             <constraint firstItem="gts-aH-53p" firstAttribute="top" secondItem="aMw-7d-64N" secondAttribute="top" type="default" id="LQE-nO-12s"/>
                             <constraint firstItem="VTb-0A-Znu" firstAttribute="leading" secondItem="aMw-7d-64N" secondAttribute="leading" type="default" id="NQp-bb-5lK"/>
+                            <constraint firstAttribute="trailing" secondItem="lyX-55-NVS" secondAttribute="trailing" constant="6" id="XP5-Py-ID8"/>
                             <constraint firstItem="gts-aH-53p" firstAttribute="bottom" secondItem="aMw-7d-64N" secondAttribute="bottom" type="default" id="Xtm-B2-zeK"/>
+                            <constraint firstItem="VQv-E8-hew" firstAttribute="centerY" secondItem="VTb-0A-Znu" secondAttribute="centerY" type="default" id="dpY-Ym-p72"/>
+                            <constraint firstItem="VQv-E8-hew" firstAttribute="centerX" secondItem="VTb-0A-Znu" secondAttribute="centerX" type="default" id="iv3-dM-cjf"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="g1a-x4-jDT"/>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="activity" destination="VQv-E8-hew" id="B4I-0A-CTq"/>
                         <outlet property="mapView" destination="gts-aH-53p" id="BKx-4A-o07"/>
+                        <outlet property="refreshButton" destination="lyX-55-NVS" id="gcz-Be-qfJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwZ-I2-8Ck" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -511,8 +522,81 @@
         </scene>
     </scenes>
     <resources>
+        <image name="01-refresh.png" width="24" height="26"/>
         <image name="wolfPackBackground.jpg" width="320" height="460"/>
     </resources>
+    <classes>
+        <class className="ChatTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChatTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bubbleTable" candidateClass="UIBubbleTableView"/>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="textInputView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="ContainerTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerTabBarController.h"/>
+        </class>
+        <class className="ContainerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="userChangedHungryStatus:"/>
+                <relationship kind="action" name="userChangedStatus:"/>
+                <relationship kind="action" name="userTappedToChangeStatus:"/>
+                <relationship kind="outlet" name="chatButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="hungryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="hungrySlider" candidateClass="HungrySlider"/>
+                <relationship kind="outlet" name="statusInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="statusTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tapped" candidateClass="UITapGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="CoreDataTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
+        </class>
+        <class className="HungrySlider" superclassName="UISlider">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HungrySlider.h"/>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UIBubbleTableView" superclassName="UITableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIBubbleTableView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bubbleDataSource"/>
+            </relationships>
+        </class>
+        <class className="UIBubbleTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIBubbleTableViewCell.h"/>
+        </class>
+        <class className="UIRefreshControl" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bubbleTable" candidateClass="UIBubbleTableView"/>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="textInputView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="WolfListCDTVC" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WolfListCDTVC.h"/>
+        </class>
+        <class className="WolfMapViewController" superclassName="MapViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WolfMapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="refreshButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

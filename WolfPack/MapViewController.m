@@ -46,10 +46,9 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
     
-
     NSNumber *latitude = [[NSNumber alloc] initWithDouble:userLocation.location.coordinate.latitude ];
     NSNumber *longitude = [[NSNumber alloc] initWithDouble:userLocation.location.coordinate.longitude ];
-    NSArray *array = @[latitude ,longitude ];
+    NSArray *array = @[latitude ,longitude];
     if (userLocation.location.horizontalAccuracy > 0) {
         [mapView setCenterCoordinate:CLLocationCoordinate2DMake(latitude.doubleValue, longitude.doubleValue)];
         
