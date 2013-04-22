@@ -44,7 +44,7 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
     // saving an NSInteger
-    [prefs setObject:[NSString stringWithFormat:@"15554543146"] forKey:@"sessionid"];
+    [prefs setObject:[NSString stringWithFormat:@"8456496272"] forKey:@"sessionid"];
     
     self.tapped.delegate = self;
     
@@ -104,11 +104,12 @@
     
     
     
-    [UIView animateWithDuration:1.0 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         
         self.statusInputView.frame = CGRectMake(self.statusInputView.frame.origin.x, self.statusInputView.frame.origin.y+50, self.statusInputView.frame.size.width, self.statusInputView.frame.size.height);
     } completion:^(BOOL finished) {
         [self.statusTextField selectAll:self];
+        
         //[UIMenuController sharedMenuController].menuVisible = NO;
     }
      ];
@@ -118,7 +119,7 @@
 -(void)slideOutStatus{
     
   
-    [UIView animateWithDuration:1.0 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         
         self.statusInputView.frame = CGRectMake(self.statusInputView.frame.origin.x, self.statusInputView.frame.origin.y-50, self.statusInputView.frame.size.width, self.statusInputView.frame.size.height);
         
@@ -150,26 +151,30 @@
 
 -(void)updateStatusWithStatus:(NSString *)status
                  andAdjective:(NSNumber *)adjective{
-    
-   CLLocation *loc = [MyCLLocationManager sharedSingleton].locationManager.location;
-    
-    NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
-    NSString *strippedStatus = [status stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
-    NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/updatemystatusjson.php?session=%@&adjective=%d&lat=%f&long=%f&status=%@",sessionid,[adjective intValue],loc.coordinate.latitude,loc.coordinate.longitude,strippedStatus];
-    NSURL *URL = [NSURL URLWithString:str];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    NSError *error = [[NSError alloc] init];
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    
-    NSString * string = [[NSString alloc] initWithData:responseData encoding:
-     NSASCIIStringEncoding];
-     
-     if (string.intValue == 1) {
-     NSLog(@"asdfa");
-     } else {
-     NSLog(@"asdfa");
-     }
-    
+    dispatch_queue_t fetchQ = dispatch_queue_create("Update Status", NULL);
+    dispatch_async(fetchQ, ^{
+        
+           
+       CLLocation *loc = [MyCLLocationManager sharedSingleton].locationManager.location;
+        
+        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
+        NSString *strippedStatus = [status stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
+        NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/updatemystatusjson.php?session=%@&adjective=%d&lat=%f&long=%f&status=%@",sessionid,[adjective intValue],loc.coordinate.latitude,loc.coordinate.longitude,strippedStatus];
+        NSURL *URL = [NSURL URLWithString:str];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+        NSError *error = [[NSError alloc] init];
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        
+        NSString * string = [[NSString alloc] initWithData:responseData encoding:
+         NSASCIIStringEncoding];
+         
+         if (string.intValue == 1) {
+         NSLog(@"asdfa");
+         } else {
+         NSLog(@"asdfa");
+         }
+        
+    });
     return;
     
 }

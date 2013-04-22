@@ -68,7 +68,7 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     static NSString *reuseId = @"MapViewController";
-    MKAnnotationView *view = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+    WolfAnnotationView *view = (WolfAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
     
     
     if (!view) {
@@ -78,8 +78,9 @@
             wolfView.radius = 100;
             wolfView.annotation = annotation;
             wolfView.friend = (Friend*)annotation;
-            view  = wolfView;
             [wolfView showSmallView];
+            view  = wolfView;
+            
         }else{
             // this is the current location annotation
             view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
@@ -103,7 +104,7 @@
          */
 
     }
-    
+    view.annotation = annotation;
     [(WolfAnnotationView*)view showSmallView];
     return view;
 }

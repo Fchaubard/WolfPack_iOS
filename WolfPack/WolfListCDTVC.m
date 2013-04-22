@@ -114,8 +114,14 @@
             
             // populate the database
             [self.managedObjectContext performBlock:^{
-                for (NSDictionary *friendDictionary in friends) {
-                    [Friend friendWithData:friendDictionary inManagedObjectContext:self.managedObjectContext];
+                NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Friend"];
+                NSArray *oldfriends = [self.managedObjectContext executeFetchRequest:request error:NULL];
+                for (Friend* friend in oldfriends) {
+                    [self.managedObjectContext deleteObject:friend];
+                }
+                //populate it with new ones
+                for (NSDictionary *friend in friends) {
+                    [Friend friendWithData:friend inManagedObjectContext:self.managedObjectContext];
                 }
             }];
             

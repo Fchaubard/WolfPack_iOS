@@ -118,18 +118,15 @@ UserTouchState touchState;
     
     self.status.hidden =true;
     self.name.hidden =false;
-    //self.name.text = [self.annotation title];
+    self.name.text = [self.annotation title];
     // place the name
     float width = 40;
    // self.name.text = @"John W.";
-    [self.name setFrame:CGRectMake(self.bounds.size.width/2 - width/2,40, width, 20)];
+    [self.name setFrame:CGRectMake(self.bounds.size.width/2 - 3*width/2,40, 3*width, 20)];
     [self.name setClipsToBounds:FALSE];
     self.name.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.8];
     self.name.opaque = FALSE;
     [self addSubview:self.name];
-   
-    
-   
     
     [self setNeedsDisplay];
 }
