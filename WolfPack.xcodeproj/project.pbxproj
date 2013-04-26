@@ -72,6 +72,19 @@
 		ABB42882172A06A200F338B5 /* ULTSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB4287A172A06A200F338B5 /* ULTSignUpViewController.m */; };
 		ABB42883172A06A200F338B5 /* ULTFriendsList.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB4287C172A06A200F338B5 /* ULTFriendsList.m */; };
 		ABB42884172A06A200F338B5 /* wolf2.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB4287D172A06A200F338B5 /* wolf2.png */; };
+		ABB4288E172A14D900F338B5 /* EditSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB4288B172A14D900F338B5 /* EditSettingsViewController.m */; };
+		ABB4288F172A14D900F338B5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB4288D172A14D900F338B5 /* SettingsViewController.m */; };
+		ABB4289F172A174D00F338B5 /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB42894172A174D00F338B5 /* 193-location-arrow.png */; };
+		ABB428A0172A174D00F338B5 /* 193-location-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB42895172A174D00F338B5 /* 193-location-arrow@2x.png */; };
+		ABB428A1172A174D00F338B5 /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB42896172A174D00F338B5 /* 117-todo.png */; };
+		ABB428A2172A174D00F338B5 /* 117-todo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB42897172A174D00F338B5 /* 117-todo@2x.png */; };
+		ABB428A3172A174D00F338B5 /* 83-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB42898172A174D00F338B5 /* 83-calendar.png */; };
+		ABB428A4172A174D00F338B5 /* 83-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB42899172A174D00F338B5 /* 83-calendar@2x.png */; };
+		ABB428A5172A174D00F338B5 /* 71-compass.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB4289A172A174D00F338B5 /* 71-compass.png */; };
+		ABB428A6172A174D00F338B5 /* 71-compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB4289B172A174D00F338B5 /* 71-compass@2x.png */; };
+		ABB428A7172A174D00F338B5 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB4289C172A174D00F338B5 /* 19-gear.png */; };
+		ABB428A8172A174D00F338B5 /* 19-gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB4289D172A174D00F338B5 /* 19-gear@2x.png */; };
+		ABB428A9172A174D00F338B5 /* 07-map-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB4289E172A174D00F338B5 /* 07-map-marker@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +186,21 @@
 		ABB4287B172A06A200F338B5 /* ULTFriendsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULTFriendsList.h; sourceTree = "<group>"; };
 		ABB4287C172A06A200F338B5 /* ULTFriendsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULTFriendsList.m; sourceTree = "<group>"; };
 		ABB4287D172A06A200F338B5 /* wolf2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolf2.png; sourceTree = "<group>"; };
+		ABB4288A172A14D900F338B5 /* EditSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSettingsViewController.h; sourceTree = "<group>"; };
+		ABB4288B172A14D900F338B5 /* EditSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSettingsViewController.m; sourceTree = "<group>"; };
+		ABB4288C172A14D900F338B5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		ABB4288D172A14D900F338B5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		ABB42894172A174D00F338B5 /* 193-location-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "193-location-arrow.png"; sourceTree = "<group>"; };
+		ABB42895172A174D00F338B5 /* 193-location-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "193-location-arrow@2x.png"; sourceTree = "<group>"; };
+		ABB42896172A174D00F338B5 /* 117-todo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "117-todo.png"; sourceTree = "<group>"; };
+		ABB42897172A174D00F338B5 /* 117-todo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "117-todo@2x.png"; sourceTree = "<group>"; };
+		ABB42898172A174D00F338B5 /* 83-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "83-calendar.png"; sourceTree = "<group>"; };
+		ABB42899172A174D00F338B5 /* 83-calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "83-calendar@2x.png"; sourceTree = "<group>"; };
+		ABB4289A172A174D00F338B5 /* 71-compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass.png"; sourceTree = "<group>"; };
+		ABB4289B172A174D00F338B5 /* 71-compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass@2x.png"; sourceTree = "<group>"; };
+		ABB4289C172A174D00F338B5 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
+		ABB4289D172A174D00F338B5 /* 19-gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear@2x.png"; sourceTree = "<group>"; };
+		ABB4289E172A174D00F338B5 /* 07-map-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				AB461E8E16E15B47009FDC9A /* MainStoryboard.storyboard */,
+				ABB42889172A14B000F338B5 /* Settings */,
 				ABB4286F172A065C00F338B5 /* Login */,
 				AB6CD1ED16F39BD700C82052 /* Chat */,
 				AB461EAE16E161FC009FDC9A /* Container */,
@@ -241,6 +270,17 @@
 		AB461E7D16E15B47009FDC9A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABB42894172A174D00F338B5 /* 193-location-arrow.png */,
+				ABB42895172A174D00F338B5 /* 193-location-arrow@2x.png */,
+				ABB42896172A174D00F338B5 /* 117-todo.png */,
+				ABB42897172A174D00F338B5 /* 117-todo@2x.png */,
+				ABB42898172A174D00F338B5 /* 83-calendar.png */,
+				ABB42899172A174D00F338B5 /* 83-calendar@2x.png */,
+				ABB4289A172A174D00F338B5 /* 71-compass.png */,
+				ABB4289B172A174D00F338B5 /* 71-compass@2x.png */,
+				ABB4289C172A174D00F338B5 /* 19-gear.png */,
+				ABB4289D172A174D00F338B5 /* 19-gear@2x.png */,
+				ABB4289E172A174D00F338B5 /* 07-map-marker@2x.png */,
 				AB461ECC16E1999F009FDC9A /* Model.xcdatamodeld */,
 				ABB428671729F61F00F338B5 /* Friend.h */,
 				ABB428681729F61F00F338B5 /* Friend.m */,
@@ -377,6 +417,17 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		ABB42889172A14B000F338B5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ABB4288A172A14D900F338B5 /* EditSettingsViewController.h */,
+				ABB4288B172A14D900F338B5 /* EditSettingsViewController.m */,
+				ABB4288C172A14D900F338B5 /* SettingsViewController.h */,
+				ABB4288D172A14D900F338B5 /* SettingsViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -455,6 +506,17 @@
 				AB4771071724826A003B1357 /* 01-refresh.png in Resources */,
 				AB4771081724826A003B1357 /* 01-refresh@2x.png in Resources */,
 				ABB42884172A06A200F338B5 /* wolf2.png in Resources */,
+				ABB4289F172A174D00F338B5 /* 193-location-arrow.png in Resources */,
+				ABB428A0172A174D00F338B5 /* 193-location-arrow@2x.png in Resources */,
+				ABB428A1172A174D00F338B5 /* 117-todo.png in Resources */,
+				ABB428A2172A174D00F338B5 /* 117-todo@2x.png in Resources */,
+				ABB428A3172A174D00F338B5 /* 83-calendar.png in Resources */,
+				ABB428A4172A174D00F338B5 /* 83-calendar@2x.png in Resources */,
+				ABB428A5172A174D00F338B5 /* 71-compass.png in Resources */,
+				ABB428A6172A174D00F338B5 /* 71-compass@2x.png in Resources */,
+				ABB428A7172A174D00F338B5 /* 19-gear.png in Resources */,
+				ABB428A8172A174D00F338B5 /* 19-gear@2x.png in Resources */,
+				ABB428A9172A174D00F338B5 /* 07-map-marker@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +558,8 @@
 				ABB42881172A06A200F338B5 /* ULTModelController.m in Sources */,
 				ABB42882172A06A200F338B5 /* ULTSignUpViewController.m in Sources */,
 				ABB42883172A06A200F338B5 /* ULTFriendsList.m in Sources */,
+				ABB4288E172A14D900F338B5 /* EditSettingsViewController.m in Sources */,
+				ABB4288F172A14D900F338B5 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
