@@ -49,7 +49,7 @@
         
         // saving an NSString
         [prefs setObject:serverOutput forKey:@"token"];
-        
+        [prefs setObject:serverOutput forKey:@"sessionid"];
         // This is suggested to synch prefs, but is not needed (I didn't put it in my tut)
         [prefs synchronize];
         
