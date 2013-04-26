@@ -44,7 +44,7 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
     // saving an NSInteger
-    [prefs setObject:[NSString stringWithFormat:@"6508477336"] forKey:@"sessionid"];
+    //[prefs setObject:[NSString stringWithFormat:@"6508477336"] forKey:@"sessionid"];
     
     self.tapped.delegate = self;
     
