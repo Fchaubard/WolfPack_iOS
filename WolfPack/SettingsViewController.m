@@ -34,6 +34,8 @@
 
 - (IBAction)unwindFromEditScreen:(UIStoryboardSegue *)segue
 {
+    NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
+    
 	EditSettingsViewController *edit = (EditSettingsViewController *)segue.sourceViewController;
 	UIAlertView *message;
 	NSString *tempProp1 = [edit.property1 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -44,7 +46,7 @@
 			self.fname.text = edit.property1;
 			self.lname.text = edit.property2;
 		
-			NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/editnamejson.php?session=15554543146&fname=%@&lname=%@",edit.property1,edit.property2]]; //Jesus
+			NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/editnamejson.php?session=%@&fname=%@&lname=%@",sessionid, edit.property1,edit.property2]]; //Jesus
 			NSURLRequest *request = [NSURLRequest requestWithURL:url];
 			
 			NSURLResponse *res;
@@ -63,7 +65,7 @@
 	} else if([edit.editType isEqualToString:@"editPassword"]) {
 		if([tempProp2 isEqualToString:tempProp3] && tempProp2.length > 0) {
 			
-			NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/editpasswordjson.php?session=15554543146&current=%@New&new=%@", edit.property1, edit.property2]]; //Jesus
+			NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/editpasswordjson.php?session=%@&current=%@New&new=%@", sessionid, edit.property1, edit.property2]]; //Jesus
 			NSURLRequest *request = [NSURLRequest requestWithURL:url];
 			
 			NSURLResponse *res;
@@ -82,7 +84,7 @@
 	} else if([edit.editType isEqualToString:@"editEmail"]) {
 		if([tempProp1 isEqualToString:tempProp2] && tempProp1.length > 0) {
 			
-			NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/editemailjson.php?session=15554543146&email=%@", edit.property1]]; //Jesus
+			NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/editemailjson.php?session=%@&email=%@",sessionid, edit.property1]]; //Jesus
 			NSURLRequest *request = [NSURLRequest requestWithURL:url];
 			
 			NSURLResponse *res;
@@ -121,8 +123,8 @@
 - (void)displaySettings
 {
 	//Stack overflow query: How to execute URL requests from an iOS application?
-	
-    NSURL *url = [NSURL URLWithString:@"http://hungrylikethewolves.com/serverlets/getwpuserjson.php?session=15554543146"]; //Jesus
+	NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getwpuserjson.php?session=%@", sessionid]]; //Jesus
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     NSURLResponse *res;
