@@ -287,12 +287,14 @@ UserTouchState touchState;
         if ([(Friend *)self.annotation added]==@0) {
             NSLog(@"add %@", [self.annotation title]);
             [(Friend *)self.annotation setAdded:@1];
+            [self addFriendOnServer];
         }else{
             NSLog(@"unadd %@", [self.annotation title]);
             [(Friend *)self.annotation setAdded:@0];
+            [self removeFriendOnServer];
         }
     }
-
+    
     
     
     
@@ -302,9 +304,11 @@ UserTouchState touchState;
         if ([(Friend *)self.annotation blocked]==@0) {
             NSLog(@"block %@", [self.annotation title]);
             [(Friend *)self.annotation setBlocked:@1];
+            [self hideFromFriendOnServer];
         }else{
             NSLog(@"unblock %@", [self.annotation title]);
             [(Friend *)self.annotation setBlocked:@0];
+            [self unhideFromFriendOnServer];
         }
     }
     
@@ -325,9 +329,11 @@ UserTouchState touchState;
         if ([(Friend *)self.annotation added]==@0) {
             NSLog(@"add %@", [self.annotation title]);
             [(Friend *)self.annotation setAdded:@1];
+            [self addFriendOnServer];
         }else{
             NSLog(@"unadd %@", [self.annotation title]);
             [(Friend *)self.annotation setAdded:@0];
+            [self removeFriendOnServer];
         }
     }
     
@@ -339,9 +345,11 @@ UserTouchState touchState;
         if ([(Friend *)self.annotation blocked]==@0) {
             NSLog(@"block %@", [self.annotation title]);
             [(Friend *)self.annotation setBlocked:@1];
+            [self hideFromFriendOnServer];
         }else{
             NSLog(@"unblock %@", [self.annotation title]);
             [(Friend *)self.annotation setBlocked:@0];
+            [self unhideFromFriendOnServer];
         }
     }
     
@@ -351,6 +359,60 @@ UserTouchState touchState;
     [self showSmallView];
     
 }
+
+-(void)addFriendOnServer{
+    [self updateServerFriendStatus:false withValue:true];
+}
+-(void)removeFriendOnServer{
+    [self updateServerFriendStatus:false withValue:false];
+}
+-(void)hideFromFriendOnServer{
+    [self updateServerFriendStatus:true withValue:true];
+}
+-(void)unhideFromFriendOnServer{
+    [self updateServerFriendStatus:true withValue:false];
+}
+-(void)updateServerFriendStatus:(BOOL)addedIsZeroHideIsOne withValue:(BOOL)value{
+    
+    dispatch_queue_t fetchQ = dispatch_queue_create("Update Friend Status", NULL);
+    dispatch_async(fetchQ, ^{
+        NSString *valueString = value?@"true":@"false";
+        
+        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
+        NSString *str;
+        
+        // Adding
+        if (!addedIsZeroHideIsOne) {
+              str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addfriendtochatjson.php?session=%@&friendid=%@&add=%@",sessionid, [(Friend *)self.annotation userID], valueString];
+                        
+        // Hiding
+        }else{
+              str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/hidefromfriendjson.php?session=%@&friendid=%@&hide=%@",sessionid, [(Friend *)self.annotation userID],valueString];
+            
+        }
+        
+     
+        
+      
+        NSURL *URL = [NSURL URLWithString:str];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+        NSError *error = [[NSError alloc] init];
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        
+        NSString * string = [[NSString alloc] initWithData:responseData encoding:
+                             NSASCIIStringEncoding];
+        
+        if (string.intValue == 1) {
+            NSLog(@"asdfa");
+        } else {
+            NSLog(@"error");
+        }
+        
+    });
+    return;
+
+}
+
 
 
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)

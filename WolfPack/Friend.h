@@ -2,7 +2,7 @@
 //  Friend.h
 //  WolfPack
 //
-//  Created by Francois Chaubard on 3/11/13.
+//  Created by Francois Chaubard on 4/25/13.
 //  Copyright (c) 2013 Francois Chaubard. All rights reserved.
 //
 
@@ -12,6 +12,8 @@
 
 @interface Friend : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * added;
+@property (nonatomic, retain) NSNumber * blocked;
 @property (nonatomic, retain) NSNumber * eventID;
 @property (nonatomic, retain) NSNumber * hungry;
 @property (nonatomic, retain) NSDate * lastUpdated;
@@ -22,7 +24,5 @@
 @property (nonatomic, retain) NSString * subtitle;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * userID;
-@property (nonatomic, retain) NSNumber * blocked;
-@property (nonatomic, retain) NSNumber * added;
 
 @end
