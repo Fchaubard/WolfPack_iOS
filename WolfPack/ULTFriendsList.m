@@ -11,13 +11,14 @@
 @interface ULTFriendsList ()
 @property (strong, nonatomic) NSMutableArray *wolfpackNamesList;
 @property (strong, nonatomic) NSMutableArray *wolfpackSessIdsList;
+@property (strong, nonatomic) NSMutableArray *wolfpackFriendStatusList;
 @end
 
 @implementation ULTFriendsList
 @synthesize myTableView;
 @synthesize wolfpackNamesList;
 @synthesize wolfpackSessIdsList;
-
+@synthesize wolfpackFriendStatusList;
 
 -(void) deleteWolf:(NSString *) wolfToDelete
 {
@@ -47,9 +48,11 @@
     
     if(self.wolfpackNamesList == NULL){
         self.wolfpackNamesList = [[NSMutableArray alloc] init];
+        self.wolfpackFriendStatusList = [[NSMutableArray alloc] init];
     }
     else{
         [self.wolfpackNamesList removeAllObjects];
+        [self.wolfpackFriendStatusList removeAllObjects];
     }
     if(self.wolfpackSessIdsList == NULL){
         self.wolfpackSessIdsList = [[NSMutableArray alloc] init];
@@ -60,7 +63,7 @@
     NSLog(@"Names Array: %@",self.wolfpackNamesList);
     NSLog(@"Sess Ids Array: %@",self.wolfpackSessIdsList);
     NSError *e = nil;
-    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmywolfpackjson.php?session=%@",token];
+    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getalljson.php?session=%@",token];
     NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
     NSLog(@"Data: %@",data);
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
@@ -77,7 +80,10 @@
             NSString *sessId = [item objectForKey:@"sessid"];
             NSLog(@"sessId: %@",sessId);
             NSString *friendName = [fname stringByAppendingString:lname];
+            NSString *friendStatus = [item objectForKey:@"friendstatus"];
+            
             NSLog(@"friendName: %@",friendName);
+            [wolfpackFriendStatusList addObject:friendStatus];
             [wolfpackNamesList addObject:friendName];
             [wolfpackSessIdsList addObject:sessId];
             NSLog(@"Wolfpack Names: %@",wolfpackNamesList);
@@ -144,13 +150,61 @@
     //NSArray *updatedFriendsList = [self getWolfpackFromDB];
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+   
+    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    addButton.frame = CGRectMake(250.0f, 5.0f, 60.0f, 30.0f);
+    NSLog(@"%@",[wolfpackFriendStatusList objectAtIndex:[indexPath row]]);
+    if ([wolfpackFriendStatusList objectAtIndex:[indexPath row]]!=NULL) {
+        [addButton setTitle:@"Add" forState:UIControlStateNormal];
+    }
+    else{
+        [addButton setTitle:@"Added" forState:UIControlStateNormal];
+        [addButton setEnabled:FALSE];
+    }
+    addButton.tag = [indexPath row];
+    [addButton addTarget:self action:@selector(addFriend:) forControlEvents:UIControlEventTouchUpInside];
+    [cell addSubview:addButton];
     // Configure the cell...
     cell.textLabel.text = [wolfpackNamesList
                            objectAtIndex: [indexPath row]];
     return cell;
 }
+- (void) addFriend:(id)sender{
+    
+    dispatch_queue_t fetchQ = dispatch_queue_create("Update Friend Status", NULL);
+    dispatch_async(fetchQ, ^{
+        
+        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+        [(UIButton *)sender setTitle:@"adding.." forState:UIControlStateNormal];
+        [(UIButton *)sender  setEnabled:FALSE];
 
+        [sender setNeedsDisplay];
+        NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addtowpjson.php?session=%@&friendid=%@",sessionid,[wolfpackSessIdsList objectAtIndex:[(UIButton *)sender tag]]];
+        
+        
+        NSLog(@"%@",str);
+        
+        
+        NSURL *URL = [NSURL URLWithString:str];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+        NSError *error = [[NSError alloc] init];
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        
+        NSString * string = [[NSString alloc] initWithData:responseData encoding:
+                             NSASCIIStringEncoding];
+        
+        if (string.intValue == 1) {
+            NSLog(@"asdfa");
+        } else {
+            NSLog(@"error");
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [(UIButton *)sender setTitle:@"added!" forState:UIControlStateNormal];
+            [(UIButton *)sender  setEnabled:FALSE];
+        });
+    });
+
+}
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

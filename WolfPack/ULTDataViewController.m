@@ -28,8 +28,6 @@
                                                    encoding: NSUTF8StringEncoding];
     NSLog(@"Server Output: %@",serverOutput);
     
-
-   
     if([serverOutput isEqualToString:@"already logged in"]){
             UIAlertView *alertsuccess = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Welcome to Wolfpack!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
@@ -49,7 +47,6 @@
         
         // saving an NSString
         [prefs setObject:serverOutput forKey:@"token"];
-        [prefs setObject:serverOutput forKey:@"sessionid"];
         // This is suggested to synch prefs, but is not needed (I didn't put it in my tut)
         [prefs synchronize];
         
@@ -115,6 +112,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+   
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -127,7 +126,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+   
     
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"token"]) {
+        [self performSegueWithIdentifier: @"alreadyLoggedIn" sender: self];
+    }else{
+        NSLog(@"not alraedy logged in");
+    }
+
 }
 
 - (IBAction)loginButtonPressed:(id)sender {

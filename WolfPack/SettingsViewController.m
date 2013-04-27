@@ -34,7 +34,7 @@
 
 - (IBAction)unwindFromEditScreen:(UIStoryboardSegue *)segue
 {
-    NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
+    NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
     
 	EditSettingsViewController *edit = (EditSettingsViewController *)segue.sourceViewController;
 	UIAlertView *message;
@@ -107,23 +107,31 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"EmbeddedSegue"]) {
+    
+	
 	if([segue.identifier isEqualToString:@"editName"]) {
+        EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
 		edit.editType = @"editName";
 		edit.property1 = self.fname.text;
 		edit.property2 = self.lname.text;
 	} else if([segue.identifier isEqualToString:@"editPassword"]) {
+        EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
 		edit.editType = @"editPassword";
 	} else if([segue.identifier isEqualToString:@"editEmail"]) {
+        EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
 		edit.editType = @"editEmail";
 		edit.property1 = self.email.text;
-	}
+	} else if ([segue.identifier isEqualToString:@"addFriends"]){
+        
+    }
+    }
 }
 
 - (void)displaySettings
 {
 	//Stack overflow query: How to execute URL requests from an iOS application?
-	NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
+	NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getwpuserjson.php?session=%@", sessionid]]; //Jesus
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     

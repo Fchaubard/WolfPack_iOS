@@ -44,7 +44,7 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
     // saving an NSInteger
-    //[prefs setObject:[NSString stringWithFormat:@"6508477336"] forKey:@"sessionid"];
+    //[prefs setObject:[NSString stringWithFormat:@"6508477336"] forKey:@"token"];
     
     self.tapped.delegate = self;
     
@@ -157,7 +157,7 @@
            
        CLLocation *loc = [MyCLLocationManager sharedSingleton].locationManager.location;
         
-        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
+        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
         NSString *strippedStatus = [status stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
         NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/updatemystatusjson.php?session=%@&adjective=%d&lat=%f&long=%f&status=%@",sessionid,[adjective intValue],loc.coordinate.latitude,loc.coordinate.longitude,strippedStatus];
         NSURL *URL = [NSURL URLWithString:str];

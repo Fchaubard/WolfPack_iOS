@@ -129,23 +129,26 @@
     BOOL started = NO;
     for (id <MKAnnotation> annotation in self.mapView.annotations) {
         CGRect annotationRect = CGRectMake(annotation.coordinate.latitude, annotation.coordinate.longitude, 0, 0);
-        if (!started) {
-            started = YES;
-            boundingRect = annotationRect;
-        } else {
-            boundingRect = CGRectUnion(boundingRect, annotationRect);
-        }
+        if (annotation.coordinate.latitude!=0 && annotation.coordinate.latitude!=0) {
+            if (!started) {
+                started = YES;
+                boundingRect = annotationRect;
+            } else {
+                
+                boundingRect = CGRectUnion(boundingRect, annotationRect);
+            }
+         }
     }
     if (started) {
         boundingRect = CGRectInset(boundingRect, -0.2, -0.2);
-        if ((boundingRect.size.width < 20) && (boundingRect.size.height < 20)) {
+        //if ((boundingRect.size.width < 20) && (boundingRect.size.height < 20)) {
             MKCoordinateRegion region;
-            region.center.latitude = boundingRect.origin.x + boundingRect.size.width / 2;
-            region.center.longitude = boundingRect.origin.y + boundingRect.size.height / 2;
-            region.span.latitudeDelta = boundingRect.size.width/6;
-            region.span.longitudeDelta = boundingRect.size.height/6;
+            region.center.latitude = boundingRect.origin.x + boundingRect.size.width/2;
+            region.center.longitude = boundingRect.origin.y + boundingRect.size.height/2;
+            region.span.latitudeDelta = boundingRect.size.width;
+            region.span.longitudeDelta = boundingRect.size.height;
             [self.mapView setRegion:region animated:YES];
-        }
+        //}
     }
      
   

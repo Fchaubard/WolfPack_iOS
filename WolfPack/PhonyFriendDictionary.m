@@ -111,7 +111,7 @@ static double distance;
    // }
     */
     
-     NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
+     NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
     NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmywolfpackjson.php?session=%@",sessionid];
     NSURL *URL = [NSURL URLWithString:str];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];

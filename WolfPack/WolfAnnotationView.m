@@ -378,7 +378,7 @@ UserTouchState touchState;
     dispatch_async(fetchQ, ^{
         NSString *valueString = value?@"true":@"false";
         
-        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"sessionid"];
+        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
         NSString *str;
         
         // Adding
@@ -407,7 +407,6 @@ UserTouchState touchState;
         } else {
             NSLog(@"error");
         }
-        
     });
     return;
 
