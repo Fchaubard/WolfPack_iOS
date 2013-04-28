@@ -39,8 +39,11 @@
 	EditSettingsViewController *edit = (EditSettingsViewController *)segue.sourceViewController;
 	UIAlertView *message;
 	NSString *tempProp1 = [edit.property1 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    tempProp1 = [tempProp1 stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
 	NSString *tempProp2 = [edit.property2 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    tempProp2 = [tempProp2 stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
 	NSString *tempProp3 = [edit.property3 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    tempProp3 = [tempProp3 stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
 	if([edit.editType isEqualToString:@"editName"]) {
 		if(tempProp1.length > 0 && tempProp2.length > 0) {
 			self.fname.text = edit.property1;
@@ -109,24 +112,58 @@
 {
     if ([segue.identifier isEqualToString:@"EmbeddedSegue"]) {
     
-	
-	if([segue.identifier isEqualToString:@"editName"]) {
-        EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
-		edit.editType = @"editName";
-		edit.property1 = self.fname.text;
-		edit.property2 = self.lname.text;
-	} else if([segue.identifier isEqualToString:@"editPassword"]) {
-        EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
-		edit.editType = @"editPassword";
-	} else if([segue.identifier isEqualToString:@"editEmail"]) {
-        EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
-		edit.editType = @"editEmail";
-		edit.property1 = self.email.text;
-	} else if ([segue.identifier isEqualToString:@"addFriends"]){
-        
-    }
+        if([segue.identifier isEqualToString:@"editName"]) {
+            EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
+            edit.editType = @"editName";
+            edit.property1 = self.fname.text;
+            edit.property2 = self.lname.text;
+        } else if([segue.identifier isEqualToString:@"editPassword"]) {
+            EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
+            edit.editType = @"editPassword";
+        } else if([segue.identifier isEqualToString:@"editEmail"]) {
+            EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
+            edit.editType = @"editEmail";
+            edit.property1 = self.email.text;
+        } else if([segue.identifier isEqualToString:@"logout"]) {
+            [self logoutUser];
+        }else if ([segue.identifier isEqualToString:@"addFriends"]){
+            
+        }
     }
 }
+
+
+- (void)logoutUser
+{
+    NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/logoutjson.php?session=%@", sessionid]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    NSURLResponse *res;
+    NSError *err;
+    
+    NSData *resData = [NSURLConnection sendSynchronousRequest:request returningResponse:&res error:&err];
+    NSString *resString = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
+	
+    NSString *errorString = @"error: logout error";
+    UIAlertView *logoutMessage;
+    
+    if(!err && ![resString isEqualToString:errorString]) {
+        logoutMessage = [[UIAlertView alloc] initWithTitle:@"Logout Success" message:@"You have successfully logged out!" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+        
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        
+        [prefs setObject:nil forKey:@"token"];
+        // This is suggested to synch prefs, but is not needed (I didn't put it in my tut) [Rebecca]
+        [prefs synchronize];
+    } else {
+        logoutMessage = [[UIAlertView alloc] initWithTitle:@"Logout Error" message:@"Error was experienced while trying to logout. Please try again!" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+    }
+    
+    [logoutMessage show];
+}
+
+
 
 - (void)displaySettings
 {

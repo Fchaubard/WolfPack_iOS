@@ -58,10 +58,10 @@
             //need to change this
             friend.lastUpdated = [friendDictionary valueForKey:@"lastUpdated"];
             
-            friend.added = [f numberFromString:[friendDictionary valueForKey:@"added"]];
+            friend.added = @0;//[f numberFromString:[friendDictionary valueForKey:@"added"]];
 
     
-            friend.blocked = [f numberFromString:[friendDictionary valueForKey:@"hidden"]];
+            friend.blocked = @0;//[f numberFromString:[friendDictionary valueForKey:@"hidden"]];
 
             friend.title = friend.name;
             friend.subtitle = friend.status;

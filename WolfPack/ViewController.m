@@ -33,25 +33,98 @@
 @implementation ViewController
 
 
+-(void)loadChat{
+    NSLog(@"Chat being loaded");
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    if(bubbleData == NULL){
+        bubbleData = [[NSMutableArray alloc] init];
+        bubbleTable.bubbleDataSource = self;
+    }
+    else{
+        NSLog(@"Bubble Data Being Cleared!");
+        [bubbleData removeAllObjects];
+    }
+    
+    // getting an NSString
+    NSString *token = [prefs stringForKey:@"token"]; //token
+    //NSString *token = @"6508477336";
+    NSError *e = nil;
+    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",token];
+    NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
+    NSLog(@"Data: %@",data);
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
+    
+    if (!jsonArray) {
+        NSLog(@"Error parsing JSON for CHAT: %@", e);
+    }
+    else {
+        for(NSDictionary *item in jsonArray) {
+            //NSLog(@"Item: %@", item);
+            NSString *fname = [item objectForKey:@"fname"];
+            NSString *lname = [item objectForKey:@"lname"];
+            //NSLog(@"fname: %@",fname);
+            //NSLog(@"lname: %@",lname);
+            NSString *message = [item objectForKey:@"message"];
+            message = [NSString stringWithFormat:@"%@ %@: %@", fname, lname ,message];
+            //NSLog(@"message: %@",message);
+            NSString *senderPhone = [item objectForKey:@"senderphone"];
+            //NSLog(@"sessid: %@",senderPhone);
+            NSString *messageTime = [item objectForKey:@"timesent"];
+            //NSLog(@"Message Time: %@",messageTime);
+            
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"yyyy-MM-dd*HH:mm:ss"];
+            NSDate *myDate = [df dateFromString: messageTime];
+            
+            NSLog(@"%@'s Message at: %@ Loaded",fname,myDate);
+            
+            if([senderPhone isEqualToString:token]){ // The current user is the sender
+                NSBubbleData *heyBubble = [NSBubbleData dataWithText:message date:myDate type:BubbleTypeMine];
+                [bubbleData addObject:heyBubble];
+            }
+            else{
+                NSBubbleData *replyBubble = [NSBubbleData dataWithText:message date:myDate type:BubbleTypeSomeoneElse];
+                replyBubble.avatar = nil;
+                [bubbleData addObject:replyBubble];
+            }
+        }
+    }
+    
+}
+
+-(void)refreshPressed{
+    NSLog(@"Refresh Pressed!");
+    [self loadChat];
+    [bubbleTable reloadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
+
+    UIBarButtonItem *chkmanuaaly = [[UIBarButtonItem alloc]initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPressed)];
+    self.navigationItem.rightBarButtonItem=chkmanuaaly;
+    
+    
    // [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     for (UIView* view in self.view.subviews) {
         //[view setTranslatesAutoresizingMaskIntoConstraints:NO];
     }
    // [bubbleTable setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-40)];
    // [textInputView setFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height-40, [[UIScreen mainScreen] bounds].size.width, 40) ];
-                                       
-    NSBubbleData *heyBubble = [NSBubbleData dataWithText:@"In the mood for tacos? (dont invite Sue..)" date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeSomeoneElse];
+    
+    [self loadChat];
+    
+    /////
+    //NSBubbleData *heyBubble = [NSBubbleData dataWithText:@"In the mood for tacos? (dont invite Sue..)" date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeSomeoneElse];
 
     
-    NSBubbleData *replyBubble = [NSBubbleData dataWithText:@"Sure. Never liked her anyway. See you at Coho in 10." date:[NSDate dateWithTimeIntervalSinceNow:-5] type:BubbleTypeMine];
-    replyBubble.avatar = nil;
+    //NSBubbleData *replyBubble = [NSBubbleData dataWithText:@"Sure. Never liked her anyway. See you at Coho in 10." date:[NSDate dateWithTimeIntervalSinceNow:-5] type:BubbleTypeMine];
+    //replyBubble.avatar = nil;
     
-    bubbleData = [[NSMutableArray alloc] initWithObjects:heyBubble, replyBubble, nil];
-    bubbleTable.bubbleDataSource = self;
+    //bubbleData = [[NSMutableArray alloc] initWithObjects:heyBubble, replyBubble, nil];
+    //bubbleTable.bubbleDataSource = self;
     
     // The line below sets the snap interval in seconds. This defines how the bubbles will be grouped in time.
     // Interval of 120 means that if the next messages comes in 2 minutes since the last message, it will be added into the same group.
@@ -135,10 +208,36 @@
 
 #pragma mark - Actions
 
+-(BOOL)addChatToDB:(NSString *)message{
+    NSLog(@"Chat Added");
+    
+    //Get current date:
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd*HH:mm:ss"];
+    NSString *dateString = [DateFormatter stringFromDate:[NSDate date]];
+    NSLog(@"Calculated Current Date: %@",dateString);
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    // getting an NSString
+    NSString *token = [prefs stringForKey:@"token"]; //token
+    message = [message stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
+    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addchatmessagejson.php?session=%@&message=%@&date=%@",token,message,dateString];
+    NSLog(@"URLSTRING: %@",urlText);
+    NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
+    NSString *serverOutput = [[NSString alloc] initWithData:data
+                                                   encoding: NSUTF8StringEncoding];
+    NSLog(@"Server Output: %@",serverOutput);
+    
+    if([serverOutput isEqualToString:@"1"]){
+        return true;
+    }
+    return false;
+}
+
 - (IBAction)sayPressed:(id)sender
 {
     bubbleTable.typingBubble = NSBubbleTypingTypeNobody;
-
+    [self addChatToDB:textField.text];
     NSBubbleData *sayBubble = [NSBubbleData dataWithText:textField.text date:[NSDate dateWithTimeIntervalSinceNow:0] type:BubbleTypeMine];
     [bubbleData addObject:sayBubble];
     [bubbleTable reloadData];

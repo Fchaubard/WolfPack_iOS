@@ -39,7 +39,6 @@
 		AB4771141724B59D003B1357 /* MyCLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4771131724B59D003B1357 /* MyCLLocationManager.m */; };
 		AB6CD1E316F39A2900C82052 /* MyConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1E216F39A2900C82052 /* MyConversation.m */; };
 		AB6CD1E716F39A7300C82052 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1E616F39A7300C82052 /* Conversation.m */; };
-		AB6CD1F916F39BEF00C82052 /* NSBubbleData.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1EF16F39BEF00C82052 /* NSBubbleData.m */; };
 		AB6CD1FA16F39BEF00C82052 /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1F116F39BEF00C82052 /* UIBubbleTableView.m */; };
 		AB6CD1FB16F39BEF00C82052 /* UIBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1F316F39BEF00C82052 /* UIBubbleTableViewCell.m */; };
 		AB6CD1FC16F39BEF00C82052 /* UIBubbleHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1F516F39BEF00C82052 /* UIBubbleHeaderTableViewCell.m */; };
@@ -54,11 +53,9 @@
 		AB6CD21016F39C2A00C82052 /* typingMine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB6CD20616F39C2A00C82052 /* typingMine@2x.png */; };
 		AB6CD21116F39C2A00C82052 /* typingSomeone.png in Resources */ = {isa = PBXBuildFile; fileRef = AB6CD20716F39C2A00C82052 /* typingSomeone.png */; };
 		AB6CD21216F39C2A00C82052 /* typingSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB6CD20816F39C2A00C82052 /* typingSomeone@2x.png */; };
-		AB6CD21816F3A06C00C82052 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD21716F3A06C00C82052 /* ViewController.m */; };
 		AB9F46A116ED8A0C00E5C2D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F46A016ED8A0C00E5C2D6 /* QuartzCore.framework */; };
 		ABA1B8E316E6A188006F3D7C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA1B8E216E6A187006F3D7C /* CoreLocation.framework */; };
 		ABB3731716F444BA00CF7C36 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB3731616F444BA00CF7C36 /* ViewController.xib */; };
-		ABB3731B16F44D2F00CF7C36 /* ChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB3731A16F44D2F00CF7C36 /* ChatTableViewController.m */; };
 		ABB3733116F46A2800CF7C36 /* wolf1.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB3732E16F46A2800CF7C36 /* wolf1.png */; };
 		ABB3733216F46A2800CF7C36 /* wolf4.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB3732F16F46A2800CF7C36 /* wolf4.png */; };
 		ABB3733D16F470F200CF7C36 /* hidden_wolf.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB3733A16F470F200CF7C36 /* hidden_wolf.png */; };
@@ -85,6 +82,9 @@
 		ABB428A7172A174D00F338B5 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB4289C172A174D00F338B5 /* 19-gear.png */; };
 		ABB428A8172A174D00F338B5 /* 19-gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB4289D172A174D00F338B5 /* 19-gear@2x.png */; };
 		ABB428A9172A174D00F338B5 /* 07-map-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB4289E172A174D00F338B5 /* 07-map-marker@2x.png */; };
+		ABB428BC172B851D00F338B5 /* ChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB428B7172B851D00F338B5 /* ChatTableViewController.m */; };
+		ABB428BD172B851D00F338B5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB428B9172B851D00F338B5 /* ViewController.m */; };
+		ABB428BE172B851D00F338B5 /* NSBubbleData.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB428BB172B851D00F338B5 /* NSBubbleData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,8 +138,6 @@
 		AB6CD1E216F39A2900C82052 /* MyConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyConversation.m; sourceTree = "<group>"; };
 		AB6CD1E516F39A7300C82052 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		AB6CD1E616F39A7300C82052 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
-		AB6CD1EE16F39BEF00C82052 /* NSBubbleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBubbleData.h; sourceTree = "<group>"; };
-		AB6CD1EF16F39BEF00C82052 /* NSBubbleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBubbleData.m; sourceTree = "<group>"; };
 		AB6CD1F016F39BEF00C82052 /* UIBubbleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableView.h; sourceTree = "<group>"; };
 		AB6CD1F116F39BEF00C82052 /* UIBubbleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTableView.m; sourceTree = "<group>"; };
 		AB6CD1F216F39BEF00C82052 /* UIBubbleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewCell.h; sourceTree = "<group>"; };
@@ -159,13 +157,9 @@
 		AB6CD20616F39C2A00C82052 /* typingMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingMine@2x.png"; sourceTree = "<group>"; };
 		AB6CD20716F39C2A00C82052 /* typingSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typingSomeone.png; sourceTree = "<group>"; };
 		AB6CD20816F39C2A00C82052 /* typingSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingSomeone@2x.png"; sourceTree = "<group>"; };
-		AB6CD21616F3A06C00C82052 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		AB6CD21716F3A06C00C82052 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AB9F46A016ED8A0C00E5C2D6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		ABA1B8E216E6A187006F3D7C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ABB3731616F444BA00CF7C36 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
-		ABB3731916F44D2F00CF7C36 /* ChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewController.h; sourceTree = "<group>"; };
-		ABB3731A16F44D2F00CF7C36 /* ChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewController.m; sourceTree = "<group>"; };
 		ABB3732E16F46A2800CF7C36 /* wolf1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolf1.png; sourceTree = "<group>"; };
 		ABB3732F16F46A2800CF7C36 /* wolf4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolf4.png; sourceTree = "<group>"; };
 		ABB3733A16F470F200CF7C36 /* hidden_wolf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hidden_wolf.png; sourceTree = "<group>"; };
@@ -201,6 +195,12 @@
 		ABB4289C172A174D00F338B5 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
 		ABB4289D172A174D00F338B5 /* 19-gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear@2x.png"; sourceTree = "<group>"; };
 		ABB4289E172A174D00F338B5 /* 07-map-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker@2x.png"; sourceTree = "<group>"; };
+		ABB428B6172B851D00F338B5 /* ChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewController.h; sourceTree = "<group>"; };
+		ABB428B7172B851D00F338B5 /* ChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewController.m; sourceTree = "<group>"; };
+		ABB428B8172B851D00F338B5 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		ABB428B9172B851D00F338B5 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		ABB428BA172B851D00F338B5 /* NSBubbleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBubbleData.h; sourceTree = "<group>"; };
+		ABB428BB172B851D00F338B5 /* NSBubbleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBubbleData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,12 +359,12 @@
 		AB6CD1ED16F39BD700C82052 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				ABB3731916F44D2F00CF7C36 /* ChatTableViewController.h */,
-				ABB3731A16F44D2F00CF7C36 /* ChatTableViewController.m */,
-				AB6CD21616F3A06C00C82052 /* ViewController.h */,
-				AB6CD21716F3A06C00C82052 /* ViewController.m */,
-				AB6CD1EE16F39BEF00C82052 /* NSBubbleData.h */,
-				AB6CD1EF16F39BEF00C82052 /* NSBubbleData.m */,
+				ABB428B6172B851D00F338B5 /* ChatTableViewController.h */,
+				ABB428B7172B851D00F338B5 /* ChatTableViewController.m */,
+				ABB428B8172B851D00F338B5 /* ViewController.h */,
+				ABB428B9172B851D00F338B5 /* ViewController.m */,
+				ABB428BA172B851D00F338B5 /* NSBubbleData.h */,
+				ABB428BB172B851D00F338B5 /* NSBubbleData.m */,
 				ABB3731616F444BA00CF7C36 /* ViewController.xib */,
 				AB6CD1FE16F39C0400C82052 /* images */,
 				AB6CD1F016F39BEF00C82052 /* UIBubbleTableView.h */,
@@ -543,13 +543,10 @@
 				AB1F572916ED14D70019B8CD /* WolfAnnotationView.m in Sources */,
 				AB6CD1E316F39A2900C82052 /* MyConversation.m in Sources */,
 				AB6CD1E716F39A7300C82052 /* Conversation.m in Sources */,
-				AB6CD1F916F39BEF00C82052 /* NSBubbleData.m in Sources */,
 				AB6CD1FA16F39BEF00C82052 /* UIBubbleTableView.m in Sources */,
 				AB6CD1FB16F39BEF00C82052 /* UIBubbleTableViewCell.m in Sources */,
 				AB6CD1FC16F39BEF00C82052 /* UIBubbleHeaderTableViewCell.m in Sources */,
 				AB6CD1FD16F39BEF00C82052 /* UIBubbleTypingTableViewCell.m in Sources */,
-				AB6CD21816F3A06C00C82052 /* ViewController.m in Sources */,
-				ABB3731B16F44D2F00CF7C36 /* ChatTableViewController.m in Sources */,
 				AB4771141724B59D003B1357 /* MyCLLocationManager.m in Sources */,
 				ABB428691729F61F00F338B5 /* Friend.m in Sources */,
 				ABB4287E172A06A200F338B5 /* ULTAppDelegate.m in Sources */,
@@ -560,6 +557,9 @@
 				ABB42883172A06A200F338B5 /* ULTFriendsList.m in Sources */,
 				ABB4288E172A14D900F338B5 /* EditSettingsViewController.m in Sources */,
 				ABB4288F172A14D900F338B5 /* SettingsViewController.m in Sources */,
+				ABB428BC172B851D00F338B5 /* ChatTableViewController.m in Sources */,
+				ABB428BD172B851D00F338B5 /* ViewController.m in Sources */,
+				ABB428BE172B851D00F338B5 /* NSBubbleData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,12 +638,11 @@
 		AB461E9716E15B47009FDC9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WolfPack/WolfPack-Prefix.pch";
 				INFOPLIST_FILE = "WolfPack/WolfPack-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -657,8 +656,8 @@
 				GCC_PREFIX_HEADER = "WolfPack/WolfPack-Prefix.pch";
 				INFOPLIST_FILE = "WolfPack/WolfPack-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2E83815F-8B78-45AE-B3E1-010D85CFAFBC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2E83815F-8B78-45AE-B3E1-010D85CFAFBC";
+				PROVISIONING_PROFILE = "1428BEEF-8329-492B-9634-3B2A939A0B31";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1428BEEF-8329-492B-9634-3B2A939A0B31";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
