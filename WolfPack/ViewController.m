@@ -34,7 +34,7 @@
 
 
 -(void)loadChat{
-    NSLog(@"Chat being loaded");
+    
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
     if(bubbleData == NULL){
@@ -47,10 +47,11 @@
     }
     
     // getting an NSString
-    NSString *token = [prefs stringForKey:@"token"]; //token
+    NSString *token = [prefs stringForKey:@"token"];
     //NSString *token = @"6508477336";
     NSError *e = nil;
     NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",token];
+    NSLog(@"Token: %@",token);
     NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
     NSLog(@"Data: %@",data);
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];

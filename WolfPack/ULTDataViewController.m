@@ -29,10 +29,10 @@
     NSLog(@"Server Output: %@",serverOutput);
     
     if([serverOutput isEqualToString:@"already logged in"]){
-            UIAlertView *alertsuccess = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Welcome to Wolfpack!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alertsuccess = [[UIAlertView alloc] initWithTitle:@"Already Logged In" message:@"Welcome to Wolfpack!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
             [alertsuccess show];
-            return true;
+            return false;
     }
     else if([serverOutput isEqualToString:@"invalid login"]){
             UIAlertView *alertsuccess = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Username or Password Incorrect" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -82,17 +82,17 @@
     return YES;
 }
 
-- (void)keyboardDidShow:(NSNotification *)notification
-{
+//- (void)keyboardDidShow:(NSNotification *)notification
+//{
     //Assign new frame to your view
     //[self.view setFrame:CGRectMake(0,-176,320,460)]; //here taken -20 for example i.e. your view will be scrolled to -20. change its value according to your requirement.
     
-}
+//}
 
--(void)keyboardDidHide:(NSNotification *)notification
-{
-    [self.view setFrame:CGRectMake(0,0,320,460)];
-}
+//-(void)keyboardDidHide:(NSNotification *)notification
+//{
+//    [self.view setFrame:CGRectMake(0,0,320,460)];
+//}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -110,8 +110,8 @@
     
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
    
     
 	// Do any additional setup after loading the view, typically from a nib.
