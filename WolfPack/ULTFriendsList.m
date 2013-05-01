@@ -145,7 +145,8 @@
    
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     addButton.frame = CGRectMake(250.0f, 5.0f, 60.0f, 30.0f);
-    if ([[self.jsonArray objectAtIndex:[indexPath row]] objectForKey:@"friendstatus"]==@"1") {
+    if ([[self.jsonArray objectAtIndex:[indexPath row]] objectForKey:@"friendstatus"]==@(-1))
+    {
         [addButton setTitle:@"Add" forState:UIControlStateNormal];
     }
     else{
@@ -174,7 +175,7 @@
         NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
         [(UIButton *)sender setTitle:@"adding.." forState:UIControlStateNormal];
         [(UIButton *)sender  setEnabled:FALSE];
-
+        
         [sender setNeedsDisplay];
         NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addtowpjson.php?session=%@&friendid=%@",sessionid,[[self.jsonArray objectAtIndex: [(UIButton *)sender tag]] objectForKey:@"phone"]];
         
@@ -198,6 +199,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [(UIButton *)sender setTitle:@"added!" forState:UIControlStateNormal];
             [(UIButton *)sender  setEnabled:FALSE];
+            [[self.jsonArray objectAtIndex:[(UIButton *)sender tag]] setObject:@1 forKey:@"friendstatus"];
         });
     });
 

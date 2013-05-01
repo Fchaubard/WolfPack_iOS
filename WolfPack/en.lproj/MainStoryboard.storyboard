@@ -919,8 +919,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="VyP-Kv-yJu" secondAttribute="bottom" constant="5" id="Abo-mH-ait"/>
                             <constraint firstItem="VyP-Kv-yJu" firstAttribute="centerX" secondItem="j2K-KW-jSy" secondAttribute="centerX" type="default" id="UhQ-Ke-GtR"/>
-                            <constraint firstAttribute="bottom" secondItem="VyP-Kv-yJu" secondAttribute="bottom" constant="6" id="sN5-Wo-kiQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wau-7U-BgO"/>
@@ -1046,9 +1046,6 @@
         </class>
         <class className="EditSettingsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="valueChanged:"/>
-            </relationships>
         </class>
         <class className="HungrySlider" superclassName="UISlider">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HungrySlider.h"/>

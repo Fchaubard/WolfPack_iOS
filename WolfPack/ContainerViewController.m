@@ -216,15 +216,15 @@
             [self.hungryLabel setText:@"Not Hungry"];
             [self.chatButton setEnabled:FALSE];
             [self.chatButton setAlpha:0.5];
-            [self.containerTBC setSelectedIndex:0];
+            [self.containerTBC setSelectedIndex:2];
             [self.hungryLabel setNeedsDisplay];
             [self fadeInLabel];
             self.mapViewController.mapView.alpha = 1.0;
             [UIView animateWithDuration:1.0 animations:^{
                 self.mapViewController.mapView.alpha = 0.0;
             }];
-            [self.mapViewController.mapView setHidden:true];
-            [self.mapViewController.refreshButton setHidden:true];
+            //[self.mapViewController.mapView setHidden:true];
+            //[self.mapViewController.refreshButton setHidden:true];
             [self hideTabBar:self.containerTBC];
         }
         
