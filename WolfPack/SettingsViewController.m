@@ -15,9 +15,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *email;
 @property (weak, nonatomic) IBOutlet UILabel *password;
 
+
 @end
 
 @implementation SettingsViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -110,8 +112,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"EmbeddedSegue"]) {
     
+        
+
         if([segue.identifier isEqualToString:@"editName"]) {
             EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
             edit.editType = @"editName";
@@ -129,7 +132,7 @@
         }else if ([segue.identifier isEqualToString:@"addFriends"]){
             
         }
-    }
+    
 }
 
 
@@ -205,13 +208,32 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	[self displaySettings];
+	[super viewWillAppear:animated];
+    [self displaySettings];
+    for(UIView *view in self.view.subviews)
+    {
+        if([view isKindOfClass:[UIScrollView class]])
+        {
+            [(UIScrollView *)view setContentOffset:CGPointMake(0, 0)];
+        }
+    }
+}
+
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+
 }
 
 - (void)didReceiveMemoryWarning

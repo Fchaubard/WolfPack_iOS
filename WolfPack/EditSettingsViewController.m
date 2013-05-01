@@ -37,12 +37,15 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 	[self.view endEditing:true];
+  
 	return true;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -51,6 +54,42 @@
 	self.property1 = self.prop1TextField.text;
 	self.property2 = self.prop2TextField.text;
 	self.property3 = self.prop3TextField.text;
+}
+
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    //Assign new frame to your view
+    if([self.prop3TextField isEditing])
+    {
+         [UIView transitionWithView:self.view
+                      duration:0.5
+                       options:UIViewAnimationCurveEaseIn
+                    animations:^{
+                           [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-150, self.view.frame.size.width, self.view.frame.size.height)];
+                    }
+                    completion:NULL];
+   
+    }else if([self.prop2TextField isEditing]){
+        [UIView transitionWithView:self.view
+                          duration:0.5
+                           options:UIViewAnimationCurveEaseIn
+                        animations:^{
+                            [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-70, self.view.frame.size.width, self.view.frame.size.height)];
+                        }
+                        completion:NULL];
+    }
+}
+
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    [UIView transitionWithView:self.view
+                      duration:0.5
+                       options:UIViewAnimationCurveEaseIn
+                    animations:^{
+                        [self.view setFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height)];
+                    }
+                    completion:NULL];
 }
 
 - (void)editEmailTools

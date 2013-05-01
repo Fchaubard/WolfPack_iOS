@@ -1046,6 +1046,9 @@
         </class>
         <class className="EditSettingsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="valueChanged:"/>
+            </relationships>
         </class>
         <class className="HungrySlider" superclassName="UISlider">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HungrySlider.h"/>

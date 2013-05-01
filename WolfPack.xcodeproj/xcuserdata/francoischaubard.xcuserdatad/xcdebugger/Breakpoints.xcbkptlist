@@ -957,24 +957,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/SettingsViewController.m"
-         timestampString = "388636326.018183"
+         timestampString = "389061608.114255"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "37"
-         endingLineNumber = "37"
+         startingLineNumber = "40"
+         endingLineNumber = "40"
          landmarkName = "-unwindFromEditScreen:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/SettingsViewController.m"
-         timestampString = "388874303.043244"
+         timestampString = "389061608.114255"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "171"
-         endingLineNumber = "171"
+         startingLineNumber = "175"
+         endingLineNumber = "175"
          landmarkName = "-displaySettings"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1009,11 +1009,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ULTFriendsList.m"
-         timestampString = "388722788.966487"
+         timestampString = "389056631.041011"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "158"
-         endingLineNumber = "158"
+         startingLineNumber = "149"
+         endingLineNumber = "149"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1022,11 +1022,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ULTFriendsList.m"
-         timestampString = "388722788.966487"
+         timestampString = "389056631.041011"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "161"
-         endingLineNumber = "161"
+         startingLineNumber = "152"
+         endingLineNumber = "152"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1093,6 +1093,19 @@
          startingLineNumber = "160"
          endingLineNumber = "160"
          landmarkName = "-updateStatusWithStatus:andAdjective:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "WolfPack/ULTFriendsList.m"
+         timestampString = "389056631.041011"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
+         landmarkName = "-getWolfpackFromDB"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

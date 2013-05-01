@@ -12,6 +12,8 @@
 @property (strong, nonatomic) NSMutableArray *wolfpackNamesList;
 @property (strong, nonatomic) NSMutableArray *wolfpackSessIdsList;
 @property (strong, nonatomic) NSMutableArray *wolfpackFriendStatusList;
+@property (strong, nonatomic) NSArray *jsonArray;
+
 @end
 
 @implementation ULTFriendsList
@@ -46,51 +48,41 @@
     NSString *token = [prefs stringForKey:@"token"];
     NSLog(@"Token Found from Defaults: %@",token);
     
-    if(self.wolfpackNamesList == NULL){
-        self.wolfpackNamesList = [[NSMutableArray alloc] init];
-        self.wolfpackFriendStatusList = [[NSMutableArray alloc] init];
-    }
-    else{
-        [self.wolfpackNamesList removeAllObjects];
-        [self.wolfpackFriendStatusList removeAllObjects];
-    }
-    if(self.wolfpackSessIdsList == NULL){
-        self.wolfpackSessIdsList = [[NSMutableArray alloc] init];
-    }
-    else{
-        [self.wolfpackSessIdsList removeAllObjects];
-    }
-    NSLog(@"Names Array: %@",self.wolfpackNamesList);
-    NSLog(@"Sess Ids Array: %@",self.wolfpackSessIdsList);
-    NSError *e = nil;
-    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getalljson.php?session=%@",token];
-    NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
-    NSLog(@"Data: %@",data);
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
-   
-    if (!jsonArray) {
-        NSLog(@"Error parsing JSON: %@", e);
-    } else {
-        for(NSDictionary *item in jsonArray) {
-            NSLog(@"Item: %@", item);
-            NSString *fname = [item objectForKey:@"fname"];
-            NSString *lname = [item objectForKey:@"lname"];
-            NSLog(@"fname: %@",fname);
-            NSLog(@"lname: %@",lname);
-            NSString *sessId = [item objectForKey:@"sessid"];
-            NSLog(@"sessId: %@",sessId);
-            NSString *friendName = [fname stringByAppendingString:lname];
-            NSString *friendStatus = [item objectForKey:@"friendstatus"];
-            
-            NSLog(@"friendName: %@",friendName);
-            [wolfpackFriendStatusList addObject:friendStatus];
-            [wolfpackNamesList addObject:friendName];
-            [wolfpackSessIdsList addObject:sessId];
-            NSLog(@"Wolfpack Names: %@",wolfpackNamesList);
-            NSLog(@"Wolfpack Session Ids: %@", wolfpackSessIdsList);
-        }
-    }
     
+    if(self.jsonArray == NULL){
+        self.jsonArray = [[NSArray alloc] init];
+    }
+ 
+    
+    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getalljson.php?session=%@",token];
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+	activityIndicator.center = self.view.center;
+	[self.view addSubview: activityIndicator];
+    [activityIndicator startAnimating];
+    [self.view setNeedsDisplay];
+    dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
+    dispatch_async(downloadQueue, ^{
+        
+        NSError *e = nil;
+        NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
+        NSLog(@"Data: %@",data);
+        self.jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
+        if (!self.jsonArray) {
+            NSLog(@"Error parsing JSON: %@", e);
+        } else {
+            for(NSDictionary *item in self.jsonArray) {
+                NSLog(@"Item: %@", item);
+            }
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [activityIndicator stopAnimating];
+            [activityIndicator removeFromSuperview];
+            [self.tableView reloadData];
+        });
+    });
+      
     //NSString *post = [NSString stringWithFormat:@"username=%@",@"rebecca"]; //**FIX**
     //NSString *hostStr = @"http://www.hungrylikethewolves.com/wolfpackListCheck.php?";
     //hostStr = [hostStr stringByAppendingString:post];
@@ -142,7 +134,7 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     
-    return [wolfpackNamesList count];
+    return [self.jsonArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,8 +145,7 @@
    
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     addButton.frame = CGRectMake(250.0f, 5.0f, 60.0f, 30.0f);
-    NSLog(@"%@",[wolfpackFriendStatusList objectAtIndex:[indexPath row]]);
-    if ([wolfpackFriendStatusList objectAtIndex:[indexPath row]]!=NULL) {
+    if ([[self.jsonArray objectAtIndex:[indexPath row]] objectForKey:@"friendstatus"]==@"1") {
         [addButton setTitle:@"Add" forState:UIControlStateNormal];
     }
     else{
@@ -164,9 +155,15 @@
     addButton.tag = [indexPath row];
     [addButton addTarget:self action:@selector(addFriend:) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:addButton];
-    // Configure the cell...
-    cell.textLabel.text = [wolfpackNamesList
-                           objectAtIndex: [indexPath row]];
+    // Configure the cell...[fname stringByAppendingString:lname];
+    cell.textLabel.text = [[[self.jsonArray
+                            objectAtIndex: [indexPath row]]
+                            objectForKey:@"fname"]
+                           stringByAppendingString:
+                           [[self.jsonArray
+                             objectAtIndex: [indexPath row]]
+                            objectForKey:@"lname"]];
+    
     return cell;
 }
 - (void) addFriend:(id)sender{
@@ -179,7 +176,7 @@
         [(UIButton *)sender  setEnabled:FALSE];
 
         [sender setNeedsDisplay];
-        NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addtowpjson.php?session=%@&friendid=%@",sessionid,[wolfpackSessIdsList objectAtIndex:[(UIButton *)sender tag]]];
+        NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addtowpjson.php?session=%@&friendid=%@",sessionid,[[self.jsonArray objectAtIndex: [(UIButton *)sender tag]] objectForKey:@"phone"]];
         
         
         NSLog(@"%@",str);
@@ -221,7 +218,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source:
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        NSString *sessIdToDelete = [self.wolfpackSessIdsList objectAtIndex:indexPath.row];
+        NSString *sessIdToDelete = [[self.jsonArray objectAtIndex:indexPath.row] objectForKey:@"phone"];
         [self deleteWolf:sessIdToDelete];
         //Old Approach:
         //NSString *str = cell.textLabel.text;
