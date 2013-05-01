@@ -10,6 +10,7 @@
 		AB1F572916ED14D70019B8CD /* WolfAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1F572816ED14D70019B8CD /* WolfAnnotationView.m */; };
 		AB1F573016ED1CCF0019B8CD /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1F572F16ED1CCF0019B8CD /* Icon-Small.png */; };
 		AB267DCD16E5610700DA22C3 /* PhonyFriendDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = AB267DCC16E5610700DA22C3 /* PhonyFriendDictionary.m */; };
+		AB269CBC1730B49E00B8F70C /* HorizontalTextScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = AB269CBB1730B49E00B8F70C /* HorizontalTextScroller.m */; };
 		AB461E7716E15B47009FDC9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7616E15B47009FDC9A /* UIKit.framework */; };
 		AB461E7916E15B47009FDC9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7816E15B47009FDC9A /* Foundation.framework */; };
 		AB461E7B16E15B47009FDC9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7A16E15B47009FDC9A /* CoreGraphics.framework */; };
@@ -93,6 +94,8 @@
 		AB1F572F16ED1CCF0019B8CD /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		AB267DCB16E5610700DA22C3 /* PhonyFriendDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhonyFriendDictionary.h; sourceTree = "<group>"; };
 		AB267DCC16E5610700DA22C3 /* PhonyFriendDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhonyFriendDictionary.m; sourceTree = "<group>"; };
+		AB269CBA1730B49E00B8F70C /* HorizontalTextScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalTextScroller.h; sourceTree = "<group>"; };
+		AB269CBB1730B49E00B8F70C /* HorizontalTextScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalTextScroller.m; sourceTree = "<group>"; };
 		AB461E7216E15B47009FDC9A /* WolfPack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WolfPack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB461E7616E15B47009FDC9A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB461E7816E15B47009FDC9A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -359,6 +362,8 @@
 		AB6CD1ED16F39BD700C82052 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				AB269CBA1730B49E00B8F70C /* HorizontalTextScroller.h */,
+				AB269CBB1730B49E00B8F70C /* HorizontalTextScroller.m */,
 				ABB428B6172B851D00F338B5 /* ChatTableViewController.h */,
 				ABB428B7172B851D00F338B5 /* ChatTableViewController.m */,
 				ABB428B8172B851D00F338B5 /* ViewController.h */,
@@ -560,6 +565,7 @@
 				ABB428BC172B851D00F338B5 /* ChatTableViewController.m in Sources */,
 				ABB428BD172B851D00F338B5 /* ViewController.m in Sources */,
 				ABB428BE172B851D00F338B5 /* NSBubbleData.m in Sources */,
+				AB269CBC1730B49E00B8F70C /* HorizontalTextScroller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

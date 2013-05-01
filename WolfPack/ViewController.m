@@ -24,7 +24,7 @@
     IBOutlet UIBubbleTableView *bubbleTable;
     IBOutlet UIView *textInputView;
     IBOutlet UITextField *textField;
-
+    IBOutlet HorizontalTextScroller *scroller;
     NSMutableArray *bubbleData;
 }
 
@@ -46,13 +46,37 @@
         [bubbleData removeAllObjects];
     }
     
+    // get chat meta data
+    
     // getting an NSString
     NSString *token = [prefs stringForKey:@"token"];
     //NSString *token = @"6508477336";
     NSError *e = nil;
-    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",token];
+    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmembersofchatjson.php?session=%@",token];
     NSLog(@"Token: %@",token);
     NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
+    NSLog(@"Data: %@",data);
+    NSArray *jsonMetaArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
+   
+    if (!jsonMetaArray) {
+        NSLog(@"Error parsing JSON for CHAT: %@", e);
+    }
+    else{
+        NSMutableArray *text = [[NSMutableArray alloc] init];
+        for(NSDictionary *item in jsonMetaArray) {
+            NSLog(@"%@",item);
+            NSString *name = [NSString stringWithFormat:@"%@ %@",[item objectForKey:@"fname"],[item objectForKey:@"lname"]];
+            [text addObject:name];
+            
+        }
+        [scroller initWithArray:text buttonHeight:30 spacing:20 topOfScroller:4];
+        
+        
+    }
+
+    urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",token];
+    NSLog(@"Token: %@",token);
+    data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
     NSLog(@"Data: %@",data);
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
     
