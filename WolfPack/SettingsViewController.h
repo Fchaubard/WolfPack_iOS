@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "EditSettingsViewController.h"
+#import "ULTDataViewController.h"
 
 @interface SettingsViewController : UIViewController
 

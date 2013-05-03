@@ -17,6 +17,35 @@
 @synthesize Password;
 
 
+- (IBAction)unwindFromLogoutButton:(UIStoryboardSegue *)segue
+{
+    NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/logoutjson.php?session=%@", sessionid]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    NSURLResponse *res;
+    NSError *err;
+    
+    NSData *resData = [NSURLConnection sendSynchronousRequest:request returningResponse:&res error:&err];
+    NSString *resString = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
+	
+    NSString *errorString = @"error: logout error";
+    UIAlertView *logoutMessage;
+    
+    if(!err && ![resString isEqualToString:errorString]) {
+        logoutMessage = [[UIAlertView alloc] initWithTitle:@"Logout Success" message:@"You have successfully logged out!" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+        
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        
+        [prefs setObject:nil forKey:@"token"];
+        // This is suggested to synch prefs, but is not needed (I didn't put it in my tut) [Rebecca]
+        [prefs synchronize];
+    } else {
+        logoutMessage = [[UIAlertView alloc] initWithTitle:@"Logout Error" message:@"Error was experienced while trying to logout. Please try again!" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+    }
+    
+    [logoutMessage show];
+}
 
 - (bool)checkUserLoginInfo:(NSString *)uname withPassword:(NSString *)pword{ //uname is email i guess???
     

@@ -243,6 +243,7 @@
         if([view isKindOfClass:[UITabBar class]])
         {
             self.originHeight = view.frame.origin.y;
+            
             [view setFrame:CGRectMake(view.frame.origin.x, 480, view.frame.size.width, view.frame.size.height)];
         }
         else
@@ -258,6 +259,13 @@
 {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
+    
+    if(self.originHeight ==0){
+        self.originHeight = [(NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:@"originHeight"] intValue];
+    }else{
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.originHeight] forKey:@"originHeight"];
+    }
+    
     for(UIView *view in tabbarcontroller.view.subviews)
     {
         

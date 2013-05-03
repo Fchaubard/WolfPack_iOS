@@ -19,5 +19,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *Password;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 - (IBAction)signUpNeeded:(id)sender;
-
+- (IBAction)unwindFromLogoutButton:(UIStoryboardSegue *)segue;
 @end
