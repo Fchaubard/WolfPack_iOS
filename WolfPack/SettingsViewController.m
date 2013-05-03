@@ -57,6 +57,11 @@
 			NSURLResponse *res;
 			NSError *err;
 			
+            
+            
+            
+            
+            
 			NSData *resData = [NSURLConnection sendSynchronousRequest:request returningResponse:&res error:&err];
 			NSString *resString = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
 			
@@ -139,40 +144,61 @@
 
 - (void)displaySettings
 {
-	//Stack overflow query: How to execute URL requests from an iOS application?
-	NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getwpuserjson.php?session=%@", sessionid]]; //Jesus
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    NSURLResponse *res;
-    NSError *err;
-	
-    NSData *resData = [NSURLConnection sendSynchronousRequest:request returningResponse:&res error:&err];
-    NSString *resString = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
-	
-    NSString *errorString = @"error: user not found in database";
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+	activityIndicator.center = self.view.center;
+	[self.view addSubview: activityIndicator];
+    [activityIndicator startAnimating];
+    [self.view setNeedsDisplay];
+    dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
+    dispatch_async(downloadQueue, ^{
+        
+
     
-    if(!err && ![resString isEqualToString:errorString]) {
-        NSRange fname = [resString rangeOfString:@"fname\":\""];
-        NSRange lname = [resString rangeOfString:@"lname\":\""];
-        NSRange email = [resString rangeOfString:@"email\":\""];
-        NSRange adjective = [resString rangeOfString:@"adjective\":\""];
+        //Stack overflow query: How to execute URL requests from an iOS application?
+        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getwpuserjson.php?session=%@", sessionid]]; //Jesus
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
         
-        int extraChars = 3;
-        NSInteger fnameIdx = fname.location + fname.length;
-        NSInteger lnameIdx = lname.location + lname.length;
-        NSInteger emailIdx = email.location + email.length;
+        NSURLResponse *res;
+        NSError *err;
         
-        self.fname.text = [resString substringWithRange:NSMakeRange(fnameIdx, lname.location - fnameIdx - extraChars)];
-        self.lname.text = [resString substringWithRange:NSMakeRange(lnameIdx, email.location - lnameIdx - extraChars)];
-        self.email.text = [resString substringWithRange:NSMakeRange(emailIdx, adjective.location - emailIdx - extraChars)];
-		self.password.text = @"********";
-    } else {
-        self.fname.text = @"unavailable";
-        self.lname.text = @"unavailable";
-        self.email.text = @"unavailable";
-		self.password.text = @"unavailable";
-    }
+        NSData *resData = [NSURLConnection sendSynchronousRequest:request returningResponse:&res error:&err];
+        NSString *resString = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
+        
+        NSString *errorString = @"error: user not found in database";
+        
+        if(!err && ![resString isEqualToString:errorString]) {
+            NSRange fname = [resString rangeOfString:@"fname\":\""];
+            NSRange lname = [resString rangeOfString:@"lname\":\""];
+            NSRange email = [resString rangeOfString:@"email\":\""];
+            NSRange adjective = [resString rangeOfString:@"adjective\":\""];
+            
+            int extraChars = 3;
+            NSInteger fnameIdx = fname.location + fname.length;
+            NSInteger lnameIdx = lname.location + lname.length;
+            NSInteger emailIdx = email.location + email.length;
+            
+            self.fname.text = [resString substringWithRange:NSMakeRange(fnameIdx, lname.location - fnameIdx - extraChars)];
+            self.lname.text = [resString substringWithRange:NSMakeRange(lnameIdx, email.location - lnameIdx - extraChars)];
+            self.email.text = [resString substringWithRange:NSMakeRange(emailIdx, adjective.location - emailIdx - extraChars)];
+            self.password.text = @"********";
+        } else {
+            self.fname.text = @"unavailable";
+            self.lname.text = @"unavailable";
+            self.email.text = @"unavailable";
+            self.password.text = @"unavailable";
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [activityIndicator stopAnimating];
+            [activityIndicator removeFromSuperview];
+            [self.view reloadInputViews];
+            [self.view setNeedsDisplay];
+        });
+    });
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
