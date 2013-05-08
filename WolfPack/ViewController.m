@@ -8,7 +8,7 @@
 //  To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/
 //
 
-// 
+//
 // Images used in this example by Petr Kratochvil released into public domain
 // http://www.publicdomainpictures.net/view-image.php?image=9806
 // http://www.publicdomainpictures.net/view-image.php?image=1358
@@ -46,18 +46,17 @@
         [bubbleData removeAllObjects];
     }
     
-    // get chat meta data
-    
-    // getting an NSString
     NSString *token = [prefs stringForKey:@"token"];
-    //NSString *token = @"6508477336";
     NSError *e = nil;
-    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmembersofchatjson.php?session=%@",token];
+    
+    
+    
+    NSString *urlText1 = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmembersofchatjson.php?session=%@",token];
     NSLog(@"Token: %@",token);
-    NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
-    NSLog(@"Data: %@",data);
-    NSArray *jsonMetaArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
-   
+    NSData* data1 = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText1]];
+    NSLog(@"Data: %@",data1);
+    NSArray *jsonMetaArray = [NSJSONSerialization JSONObjectWithData: data1 options: NSJSONReadingMutableContainers error: &e];
+    
     if (!jsonMetaArray) {
         NSLog(@"Error parsing JSON for CHAT: %@", e);
     }
@@ -73,10 +72,13 @@
         
         
     }
-
-    urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",token];
+    
+    
+    
+    
+    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",token];
     NSLog(@"Token: %@",token);
-    data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
+    NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
     NSLog(@"Data: %@",data);
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
     
@@ -85,34 +87,42 @@
     }
     else {
         for(NSDictionary *item in jsonArray) {
-            //NSLog(@"Item: %@", item);
-            NSString *fname = [item objectForKey:@"fname"];
-            NSString *lname = [item objectForKey:@"lname"];
-            //NSLog(@"fname: %@",fname);
-            //NSLog(@"lname: %@",lname);
-            NSString *message = [item objectForKey:@"message"];
-            message = [NSString stringWithFormat:@"%@ %@: %@", fname, lname ,message];
-            //NSLog(@"message: %@",message);
-            NSString *senderPhone = [item objectForKey:@"senderphone"];
-            //NSLog(@"sessid: %@",senderPhone);
-            NSString *messageTime = [item objectForKey:@"timesent"];
-            //NSLog(@"Message Time: %@",messageTime);
             
+            NSString *senderPhone = [item objectForKey:@"senderphone"];
+            NSLog(@"Sender Phone: %@",senderPhone);
+            NSString *adminPhone = @"00000000000";
+            NSString *message = [item objectForKey:@"message"];
+            NSString *messageTime = [item objectForKey:@"timesent"];
             NSDateFormatter *df = [[NSDateFormatter alloc] init];
             [df setDateFormat:@"yyyy-MM-dd*HH:mm:ss"];
             NSDate *myDate = [df dateFromString: messageTime];
-            
-            NSLog(@"%@'s Message at: %@ Loaded",fname,myDate);
-            
-            if([senderPhone isEqualToString:token]){ // The current user is the sender
-                NSBubbleData *heyBubble = [NSBubbleData dataWithText:message date:myDate type:BubbleTypeMine];
-                [bubbleData addObject:heyBubble];
+            if(![senderPhone isEqualToString:adminPhone]){ //Not Administrative Message:
+                NSString *fname = [item objectForKey:@"fname"];
+                NSString *lname = [item objectForKey:@"lname"];
+                message = [NSString stringWithFormat:@"%@ %@: %@", fname, lname ,message];
+                NSLog(@"%@'s Message at: %@ Loaded",fname,myDate);
+                if([senderPhone isEqualToString:token]){ // The current user is the sender
+                    NSBubbleData *heyBubble = [NSBubbleData dataWithText:message date:myDate type:BubbleTypeMine];
+                    [bubbleData addObject:heyBubble];
+                }
+                else{ //Administrative Message:
+                    NSBubbleData *replyBubble = [NSBubbleData dataWithText:message date:myDate type:BubbleTypeSomeoneElse];
+                    replyBubble.avatar = nil;
+                    [bubbleData addObject:replyBubble];
+                }
             }
             else{
-                NSBubbleData *replyBubble = [NSBubbleData dataWithText:message date:myDate type:BubbleTypeSomeoneElse];
-                replyBubble.avatar = nil;
-                [bubbleData addObject:replyBubble];
+                NSLog(@"Admin's Message at: %@ Loaded",myDate);
+                //Later create a BubbleTypeAdmin...
+                NSBubbleData *adminBubble = [NSBubbleData dataWithText:message date:myDate type:BubbleTypeSomeoneElse];
+                //UIImage *avatar = [UIImage alloc];
+                //[avatar initWithContentsOfFile:@"wolf1.png"];
+                //if(avatar==NULL){ NSLog(@"AVATAR NULL");}
+                adminBubble.avatar = nil;
+                [bubbleData addObject:adminBubble];
             }
+            
+            
         }
     }
     
@@ -127,23 +137,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     UIBarButtonItem *chkmanuaaly = [[UIBarButtonItem alloc]initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPressed)];
     self.navigationItem.rightBarButtonItem=chkmanuaaly;
     
     
-   // [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    // [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     for (UIView* view in self.view.subviews) {
         //[view setTranslatesAutoresizingMaskIntoConstraints:NO];
     }
-   // [bubbleTable setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-40)];
-   // [textInputView setFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height-40, [[UIScreen mainScreen] bounds].size.width, 40) ];
+    // [bubbleTable setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-40)];
+    // [textInputView setFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height-40, [[UIScreen mainScreen] bounds].size.width, 40) ];
     
     [self loadChat];
     
     /////
     //NSBubbleData *heyBubble = [NSBubbleData dataWithText:@"In the mood for tacos? (dont invite Sue..)" date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeSomeoneElse];
-
+    
     
     //NSBubbleData *replyBubble = [NSBubbleData dataWithText:@"Sure. Never liked her anyway. See you at Coho in 10." date:[NSDate dateWithTimeIntervalSinceNow:-5] type:BubbleTypeMine];
     //replyBubble.avatar = nil;
@@ -201,7 +211,7 @@
 {
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-
+    
     [UIView animateWithDuration:0.2f animations:^{
         
         CGRect frame = textInputView.frame;

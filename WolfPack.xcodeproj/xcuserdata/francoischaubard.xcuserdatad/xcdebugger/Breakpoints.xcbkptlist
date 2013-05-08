@@ -650,7 +650,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "307"
          endingLineNumber = "307"
-         landmarkName = "-shouldAutorotateToInterfaceOrientation:"
+         landmarkName = "-prepareForSegue:sender:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -957,16 +957,16 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/SettingsViewController.m"
-         timestampString = "389062166.504451"
+         timestampString = "389669302.098704"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "39"
-         endingLineNumber = "39"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
          landmarkName = "-unwindFromEditScreen:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ULTDataViewController.m"
@@ -979,7 +979,7 @@
          landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ULTDataViewController.m"
@@ -1070,7 +1070,7 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
@@ -1093,6 +1093,19 @@
          startingLineNumber = "68"
          endingLineNumber = "68"
          landmarkName = "-getWolfpackFromDB"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "WolfPack/ViewController.m"
+         timestampString = "389664743.591776"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "141"
+         endingLineNumber = "141"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

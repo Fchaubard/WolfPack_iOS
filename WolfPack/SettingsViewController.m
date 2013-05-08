@@ -36,6 +36,16 @@
 
 - (IBAction)unwindFromEditScreen:(UIStoryboardSegue *)segue
 {
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+	activityIndicator.center = self.view.center;
+	[self.view addSubview: activityIndicator];
+    [activityIndicator startAnimating];
+    [self.view setNeedsDisplay];
+    dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
+    dispatch_async(downloadQueue, ^{
+        
     NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
     
 	EditSettingsViewController *edit = (EditSettingsViewController *)segue.sourceViewController;
@@ -113,6 +123,13 @@
 		}
 	}
 	[message show];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [activityIndicator stopAnimating];
+            [activityIndicator removeFromSuperview];
+            [self.view reloadInputViews];
+            [self.view setNeedsDisplay];
+        });
+    });
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

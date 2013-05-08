@@ -38,6 +38,8 @@
 		AB4771071724826A003B1357 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4771051724826A003B1357 /* 01-refresh.png */; };
 		AB4771081724826A003B1357 /* 01-refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4771061724826A003B1357 /* 01-refresh@2x.png */; };
 		AB4771141724B59D003B1357 /* MyCLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4771131724B59D003B1357 /* MyCLLocationManager.m */; };
+		AB52B2A71739F3AD001465AD /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AB52B2A61739F3AD001465AD /* MBProgressHUD.m */; };
+		AB52B2A91739F3D0001465AD /* Images in Resources */ = {isa = PBXBuildFile; fileRef = AB52B2A81739F3D0001465AD /* Images */; };
 		AB6CD1E316F39A2900C82052 /* MyConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1E216F39A2900C82052 /* MyConversation.m */; };
 		AB6CD1E716F39A7300C82052 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1E616F39A7300C82052 /* Conversation.m */; };
 		AB6CD1FA16F39BEF00C82052 /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1F116F39BEF00C82052 /* UIBubbleTableView.m */; };
@@ -137,6 +139,9 @@
 		AB4771061724826A003B1357 /* 01-refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh@2x.png"; sourceTree = "<group>"; };
 		AB4771121724B59D003B1357 /* MyCLLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCLLocationManager.h; sourceTree = "<group>"; };
 		AB4771131724B59D003B1357 /* MyCLLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCLLocationManager.m; sourceTree = "<group>"; };
+		AB52B2A51739F3AD001465AD /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		AB52B2A61739F3AD001465AD /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		AB52B2A81739F3D0001465AD /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		AB6CD1E116F39A2900C82052 /* MyConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConversation.h; sourceTree = "<group>"; };
 		AB6CD1E216F39A2900C82052 /* MyConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyConversation.m; sourceTree = "<group>"; };
 		AB6CD1E516F39A7300C82052 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
@@ -273,6 +278,9 @@
 		AB461E7D16E15B47009FDC9A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AB52B2A81739F3D0001465AD /* Images */,
+				AB52B2A51739F3AD001465AD /* MBProgressHUD.h */,
+				AB52B2A61739F3AD001465AD /* MBProgressHUD.m */,
 				ABB42894172A174D00F338B5 /* 193-location-arrow.png */,
 				ABB42895172A174D00F338B5 /* 193-location-arrow@2x.png */,
 				ABB42896172A174D00F338B5 /* 117-todo.png */,
@@ -522,6 +530,7 @@
 				ABB428A7172A174D00F338B5 /* 19-gear.png in Resources */,
 				ABB428A8172A174D00F338B5 /* 19-gear@2x.png in Resources */,
 				ABB428A9172A174D00F338B5 /* 07-map-marker@2x.png in Resources */,
+				AB52B2A91739F3D0001465AD /* Images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +575,7 @@
 				ABB428BD172B851D00F338B5 /* ViewController.m in Sources */,
 				ABB428BE172B851D00F338B5 /* NSBubbleData.m in Sources */,
 				AB269CBC1730B49E00B8F70C /* HorizontalTextScroller.m in Sources */,
+				AB52B2A71739F3AD001465AD /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,12 +654,14 @@
 		AB461E9716E15B47009FDC9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Francois Chaubard (JUMT35YJGR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Francois Chaubard (JUMT35YJGR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WolfPack/WolfPack-Prefix.pch";
 				INFOPLIST_FILE = "WolfPack/WolfPack-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "E9FF7D73-89D4-4EC1-8237-8C7181AC9858";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E9FF7D73-89D4-4EC1-8237-8C7181AC9858";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -663,8 +675,8 @@
 				GCC_PREFIX_HEADER = "WolfPack/WolfPack-Prefix.pch";
 				INFOPLIST_FILE = "WolfPack/WolfPack-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1428BEEF-8329-492B-9634-3B2A939A0B31";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1428BEEF-8329-492B-9634-3B2A939A0B31";
+				PROVISIONING_PROFILE = "25523470-5351-4563-AA1B-3664FD8538C7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25523470-5351-4563-AA1B-3664FD8538C7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

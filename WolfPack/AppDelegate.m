@@ -66,8 +66,48 @@ NSPersistentStoreCoordinator *persistentStoreCoordinator;
 {
     // Override point for customization after application launch.
     [MyManagedObjectContext hungryFalse];
+    // Let the device know we want to receive push notifications
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    if (launchOptions != nil)
+	{
+		NSDictionary* dictionary = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+		if (dictionary != nil)
+		{
+			NSLog(@"Launched from push notification: %@", dictionary);
+			//[self addMessageFromRemoteNotification:dictionary updateUI:NO];
+		}
+	}
     return YES;
 }
+- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
+{
+	NSLog(@"Received notification: %@", userInfo);
+	//[self addMessageFromRemoteNotification:userInfo updateUI:YES];
+   // NSString* alertValue = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];
+    
+	//NSMutableArray* parts = [NSMutableArray arrayWithArray:[alertValue componentsSeparatedByString:@": "]];
+	
+}
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+	NSLog(@"My token is: %@", deviceToken);
+    NSString *newToken = [deviceToken description];
+    newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [[NSUserDefaults standardUserDefaults] setObject:newToken forKey:@"deviceToken"];
+    
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+	NSLog(@"Failed to get token, error: %@", error);
+    [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"deviceToken"];
+    
+}
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

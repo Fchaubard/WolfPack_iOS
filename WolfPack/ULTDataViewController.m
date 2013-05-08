@@ -163,7 +163,12 @@
     [super viewDidAppear:animated];
     
     if ([[NSUserDefaults standardUserDefaults] stringForKey:@"token"]) {
-        [self performSegueWithIdentifier: @"alreadyLoggedIn" sender: self];
+        if ([[NSUserDefaults standardUserDefaults] stringForKey:@"deviceToken"]!=@"no")
+        {
+            [self performSegueWithIdentifier: @"alreadyLoggedIn" sender: self];
+        }else{
+            NSLog(@"no device token");
+        }
     }else{
         NSLog(@"not alraedy logged in");
     }

@@ -48,8 +48,8 @@
         [alertsuccess show];
         return false;
     }
-    
-    NSString *urlString = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/signupjson.php?fname=%@&lname=%@&email=%@&password=%@&phoneNumber=%@", fname, lname, uname, pword,pNumber];
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+    NSString *urlString = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/signupjson.php?fname=%@&lname=%@&email=%@&password=%@&phoneNumber=%@&pushtoken=%@", fname, lname, uname, pword,pNumber, token];
     NSLog(@"URLSTRING: %@",urlString);
     NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlString]];
     NSString *serverOutput = [[NSString alloc] initWithData:data

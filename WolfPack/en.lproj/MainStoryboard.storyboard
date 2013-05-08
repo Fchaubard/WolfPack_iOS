@@ -1047,12 +1047,6 @@
                 <relationship kind="action" name="userChangedHungryStatus:"/>
                 <relationship kind="action" name="userChangedStatus:"/>
                 <relationship kind="action" name="userTappedToChangeStatus:"/>
-                <relationship kind="outlet" name="chatButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="hungryLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="hungrySlider" candidateClass="HungrySlider"/>
-                <relationship kind="outlet" name="statusInputView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="statusTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tapped" candidateClass="UITapGestureRecognizer"/>
             </relationships>
         </class>
         <class className="CoreDataTableViewController" superclassName="UITableViewController">
@@ -1060,9 +1054,6 @@
         </class>
         <class className="EditSettingsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="valueChanged:"/>
-            </relationships>
         </class>
         <class className="HorizontalTextScroller" superclassName="UIScrollView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HorizontalTextScroller.h"/>
@@ -1121,7 +1112,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTSignUpViewController.h"/>
             <relationships>
                 <relationship kind="action" name="loginNeeded:"/>
-                <relationship kind="action" name="signUpRequested:"/>
                 <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="pNumber" candidateClass="UITextField"/>
@@ -1132,13 +1122,6 @@
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="sayPressed:"/>
-                <relationship kind="outlet" name="bubbleTable" candidateClass="UIBubbleTableView"/>
-                <relationship kind="outlet" name="scroller" candidateClass="HorizontalTextScroller"/>
-                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="textInputView" candidateClass="UIView"/>
-            </relationships>
         </class>
         <class className="WolfListCDTVC" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WolfListCDTVC.h"/>
@@ -1146,7 +1129,6 @@
         <class className="WolfMapViewController" superclassName="MapViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WolfMapViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="refreshButton" candidateClass="UIButton"/>
             </relationships>
         </class>
