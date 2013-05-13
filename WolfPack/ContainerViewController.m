@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "MyManagedObjectContext.h"
 #import "MyCLLocationManager.h"
+#import "SVProgressHUD.h"
 @interface ContainerViewController ()
 
 @property (strong, nonatomic) UITabBarController *containerTBC;
@@ -84,8 +85,8 @@
         
         [self.hungrySlider setValue:1.0];
         [self.hungryLabel setText:@"Hungry"];
-        [self.chatButton setEnabled:true];
-        [self.chatButton setAlpha:1.0];
+        //[self.chatButton setEnabled:true];
+        //[self.chatButton setAlpha:1.0];
         [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
         
         [self.statusInputView setHidden:true];
@@ -134,10 +135,15 @@
 
 - (IBAction)userChangedStatus:(id)sender{
    
+    [SVProgressHUD showWithStatus:@"Joining the hungry..."];
     [self slideOutStatus];
+    [self.chatButton setEnabled:TRUE];
+    [self.chatButton setAlpha:1.0];
+    [self.view setNeedsDisplay];
     [self updateStatusWithStatus:[self.statusTextField text] andAdjective:@1];
     [self.view endEditing:YES];
     
+   
 }
 
 - (IBAction)userTappedToChangeStatus:(id)sender{
@@ -167,12 +173,21 @@
         
         NSString * string = [[NSString alloc] initWithData:responseData encoding:
          NSASCIIStringEncoding];
-         
+        
+        
+        
          if (string.intValue == 1) {
          NSLog(@"asdfa");
          } else {
          NSLog(@"asdfa");
          }
+        sleep(2.8);
+        dispatch_async(dispatch_get_main_queue(), ^ {
+       
+            [SVProgressHUD dismiss];
+        });
+        
+        
         
     });
     return;
@@ -192,9 +207,9 @@
             [self slideInStatus];
             [self updateStatusWithStatus:@"Hungry!" andAdjective:@1];
             [self.hungryLabel setText:@"Hungry"];
-            [self.chatButton setEnabled:TRUE];
+            //[self.chatButton setEnabled:TRUE];
+            //[self.chatButton setAlpha:1.0];
             [self.containerTBC setSelectedIndex:0];
-            [self.chatButton setAlpha:1.0];
             [self.hungryLabel setNeedsDisplay];
             [self fadeInLabel];
             [self.mapViewController.mapView setHidden:false];

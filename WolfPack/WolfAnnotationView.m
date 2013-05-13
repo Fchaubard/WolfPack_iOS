@@ -7,6 +7,7 @@
 //
 
 #import "WolfAnnotationView.h"
+#import "SVProgressHUD.h"
 
 @implementation WolfAnnotationView
 
@@ -288,10 +289,12 @@ UserTouchState touchState;
             NSLog(@"add %@", [self.annotation title]);
             [(Friend *)self.annotation setAdded:@1];
             [self addFriendOnServer];
+            [SVProgressHUD showSuccessWithStatus:@"Added"];
         }else{
             NSLog(@"unadd %@", [self.annotation title]);
             [(Friend *)self.annotation setAdded:@0];
             [self removeFriendOnServer];
+            [SVProgressHUD showSuccessWithStatus:@"Removed"];
         }
     }
     
@@ -330,10 +333,12 @@ UserTouchState touchState;
             NSLog(@"add %@", [self.annotation title]);
             [(Friend *)self.annotation setAdded:@1];
             [self addFriendOnServer];
+            [SVProgressHUD showSuccessWithStatus:@"Added"];
         }else{
             NSLog(@"unadd %@", [self.annotation title]);
             [(Friend *)self.annotation setAdded:@0];
             [self removeFriendOnServer];
+            [SVProgressHUD showSuccessWithStatus:@"Removed"];
         }
     }
     

@@ -8,6 +8,7 @@
 
 #import "MapViewController.h"
 #import "WolfAnnotationView.h"
+#import "MyCLLocationManager.h"
 
 @interface MapViewController ()
 @end
@@ -39,6 +40,7 @@
             imageView.image = [view.annotation performSelector:@selector(thumbnail)];
         }
     }*/
+    
 }
 
 
@@ -127,6 +129,7 @@
     self.needUpdateRegion = NO;
     CGRect boundingRect;
     BOOL started = NO;
+    
     for (id <MKAnnotation> annotation in self.mapView.annotations) {
         CGRect annotationRect = CGRectMake(annotation.coordinate.latitude, annotation.coordinate.longitude, 0, 0);
         if (annotation.coordinate.latitude!=0 && annotation.coordinate.latitude!=0) {
@@ -145,6 +148,9 @@
             MKCoordinateRegion region;
             region.center.latitude = boundingRect.origin.x + boundingRect.size.width/2;
             region.center.longitude = boundingRect.origin.y + boundingRect.size.height/2;
+             CLLocation *loc = [MyCLLocationManager sharedSingleton].locationManager.location;
+        
+            region.center = loc.coordinate; //for niko
             region.span.latitudeDelta = boundingRect.size.width;
             region.span.longitudeDelta = boundingRect.size.height;
             [self.mapView setRegion:region animated:YES];

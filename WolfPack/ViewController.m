@@ -18,6 +18,7 @@
 #import "UIBubbleTableView.h"
 #import "UIBubbleTableViewDataSource.h"
 #import "NSBubbleData.h"
+#import "SVProgressHUD.h"
 
 @interface ViewController ()
 {
@@ -25,6 +26,8 @@
     IBOutlet UIView *textInputView;
     IBOutlet UITextField *textField;
     IBOutlet HorizontalTextScroller *scroller;
+    NSArray *scrollerText;
+    NSArray *jsonArray;
     NSMutableArray *bubbleData;
 }
 
@@ -32,61 +35,15 @@
 
 @implementation ViewController
 
-
--(void)loadChat{
-    
+-(void)doMainThreadStuff{
+    [scroller initWithArray:self->scrollerText buttonHeight:30 spacing:20 topOfScroller:4];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    
-    if(bubbleData == NULL){
-        bubbleData = [[NSMutableArray alloc] init];
-        bubbleTable.bubbleDataSource = self;
-    }
-    else{
-        NSLog(@"Bubble Data Being Cleared!");
-        [bubbleData removeAllObjects];
-    }
-    
     NSString *token = [prefs stringForKey:@"token"];
-    NSError *e = nil;
-    
-    
-    
-    NSString *urlText1 = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmembersofchatjson.php?session=%@",token];
-    NSLog(@"Token: %@",token);
-    NSData* data1 = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText1]];
-    NSLog(@"Data: %@",data1);
-    NSArray *jsonMetaArray = [NSJSONSerialization JSONObjectWithData: data1 options: NSJSONReadingMutableContainers error: &e];
-    
-    if (!jsonMetaArray) {
-        NSLog(@"Error parsing JSON for CHAT: %@", e);
-    }
-    else{
-        NSMutableArray *text = [[NSMutableArray alloc] init];
-        for(NSDictionary *item in jsonMetaArray) {
-            NSLog(@"%@",item);
-            NSString *name = [NSString stringWithFormat:@"%@ %@",[item objectForKey:@"fname"],[item objectForKey:@"lname"]];
-            [text addObject:name];
-            
-        }
-        [scroller initWithArray:text buttonHeight:30 spacing:20 topOfScroller:4];
-        
-        
-    }
-    
-    
-    
-    
-    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",token];
-    NSLog(@"Token: %@",token);
-    NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
-    NSLog(@"Data: %@",data);
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
-    
     if (!jsonArray) {
-        NSLog(@"Error parsing JSON for CHAT: %@", e);
+        NSLog(@"Error parsing JSON for CHAT:");
     }
     else {
-        for(NSDictionary *item in jsonArray) {
+        for(NSDictionary *item in self->jsonArray) {
             
             NSString *senderPhone = [item objectForKey:@"senderphone"];
             NSLog(@"Sender Phone: %@",senderPhone);
@@ -125,19 +82,83 @@
             
         }
     }
+}
+
+-(void)loadChat{
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *token = [prefs stringForKey:@"token"];
+    if(bubbleData == NULL){
+        bubbleData = [[NSMutableArray alloc] init];
+        bubbleTable.bubbleDataSource = self;
+    }
+    else{
+        NSLog(@"Bubble Data Being Cleared!");
+        [bubbleData removeAllObjects];
+    }
+    
+    NSError *e = nil;
+    
+    
+    
+    NSString *urlText1 = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmembersofchatjson.php?session=%@",token];
+    NSLog(@"Token: %@",token);
+    NSData* data1 = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText1]];
+    NSLog(@"Data: %@",data1);
+    NSArray *jsonMetaArray = [NSJSONSerialization JSONObjectWithData: data1 options: NSJSONReadingMutableContainers error: &e];
+    
+    if (!jsonMetaArray) {
+        NSLog(@"Error parsing JSON for CHAT: %@", e);
+    }
+    else{
+        NSMutableArray *text = [[NSMutableArray alloc] init];
+        for(NSDictionary *item in jsonMetaArray) {
+            NSLog(@"%@",item);
+            NSString *name = [NSString stringWithFormat:@"%@ %@",[item objectForKey:@"fname"],[item objectForKey:@"lname"]];
+            [text addObject:name];
+            
+        }
+        self->scrollerText = text;
+        
+        
+    }
+    
+    
+    
+    
+    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",token];
+    NSLog(@"Token: %@",token);
+    NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
+    NSLog(@"Data: %@",data);
+    self->jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
+    
+   
     
 }
+    
+
 
 -(void)refreshPressed{
     NSLog(@"Refresh Pressed!");
+    
+    
+	
     [self loadChat];
+    [self doMainThreadStuff];
+    
     [bubbleTable reloadData];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+  
+    [self.view setNeedsDisplay];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshPressed)
+                                                 name:@"MessageNotification"
+                                               object:nil];
     UIBarButtonItem *chkmanuaaly = [[UIBarButtonItem alloc]initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPressed)];
     self.navigationItem.rightBarButtonItem=chkmanuaaly;
     
@@ -149,7 +170,7 @@
     // [bubbleTable setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-40)];
     // [textInputView setFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height-40, [[UIScreen mainScreen] bounds].size.width, 40) ];
     
-    [self loadChat];
+    
     
     /////
     //NSBubbleData *heyBubble = [NSBubbleData dataWithText:@"In the mood for tacos? (dont invite Sue..)" date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeSomeoneElse];
@@ -164,7 +185,25 @@
     // The line below sets the snap interval in seconds. This defines how the bubbles will be grouped in time.
     // Interval of 120 means that if the next messages comes in 2 minutes since the last message, it will be added into the same group.
     // Groups are delimited with header which contains date and time for the first message in the group.
+       
+    // Keyboard events
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    
+    
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    [SVProgressHUD showWithStatus:@"Doing Stuff"];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+    {
+    
+    [self loadChat];
     bubbleTable.snapInterval = 120;
     
     // The line below enables avatar support. Avatar can be specified for each bubble with .avatar property of NSBubbleData.
@@ -180,12 +219,15 @@
     
     bubbleTable.typingBubble = NSBubbleTypingTypeSomebody;
     
-    [bubbleTable reloadData];
     
-    // Keyboard events
+        dispatch_async(dispatch_get_main_queue(), ^ {
+            [self doMainThreadStuff];
+            [bubbleTable reloadData];
+            [SVProgressHUD dismiss];
+        });
+    });
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

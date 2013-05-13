@@ -67,7 +67,9 @@
     [self addSubview:hidebtn];
     
     */
-    
+    for(UIView *subview in [self subviews]) {
+        [subview removeFromSuperview];
+    }
     // Start populating the User Content
     int contentSize = 2*x;//2*x+hideButton;
     int numberOfButtons = [self.text count]; // number of buttons
