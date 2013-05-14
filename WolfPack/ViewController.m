@@ -19,12 +19,13 @@
 #import "UIBubbleTableViewDataSource.h"
 #import "NSBubbleData.h"
 #import "SVProgressHUD.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController ()
 {
     IBOutlet UIBubbleTableView *bubbleTable;
     IBOutlet UIView *textInputView;
-    IBOutlet UITextField *textField;
+    IBOutlet UITextView *textView;
     IBOutlet HorizontalTextScroller *scroller;
     NSArray *scrollerText;
     NSArray *scrollerStatuses;
@@ -45,6 +46,12 @@
               topOfScroller:4];
     
  
+
+    textView.delegate = self;
+    textView.clipsToBounds = YES;
+    textView.layer.cornerRadius = 10.0f;
+    
+    
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSString *token = [prefs stringForKey:@"token"];
     if (!jsonArray) {
@@ -90,6 +97,39 @@
             
         }
     }
+}
+
+
+- (BOOL)textView:(UITextView *)thisTextView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+  
+    [self adjustTextInputHeightForText:thisTextView.text animated:YES];
+    return TRUE;
+}
+
+- (void) adjustTextInputHeightForText:(NSString*)text animated:(BOOL)animated {
+    
+    int h1 = [text sizeWithFont:textView.font].height;
+    int h2 = [text sizeWithFont:textView.font constrainedToSize:CGSizeMake(textView.frame.size.width - 16, 170.0f) lineBreakMode:NSLineBreakByWordWrapping].height;
+    int inputHeightWithShadow = 44.0f;
+    
+    [UIView animateWithDuration:(animated ? .1f : 0) animations:^
+     {
+         int h = h2 == h1 ? inputHeightWithShadow : h2 + 24;
+         int delta = h - textInputView.frame.size.height;
+         CGRect r2 = CGRectMake(textInputView.frame.origin.x, textInputView.frame.origin.y - delta, textInputView.frame.size.width, h);
+         textInputView.frame = r2; //CGRectMake(0, self.frame.origin.y - delta, self.superview.frame.size.width, h);
+         textInputView.frame = CGRectMake(textInputView.frame.origin.x, textInputView.frame.origin.y, textInputView.frame.size.width, h);
+         
+         CGRect r = textView.frame;
+         r.origin.y = 12;
+         r.size.height = h - 18;
+         textView.frame = r;
+         
+     } completion:^(BOOL finished)
+     {
+         //
+     }];
 }
 
 -(void)loadChat{
@@ -332,13 +372,13 @@
 - (IBAction)sayPressed:(id)sender
 {
     bubbleTable.typingBubble = NSBubbleTypingTypeNobody;
-    [self addChatToDB:textField.text];
-    NSBubbleData *sayBubble = [NSBubbleData dataWithText:textField.text date:[NSDate dateWithTimeIntervalSinceNow:0] type:BubbleTypeMine];
+    [self addChatToDB:textView.text];
+    NSBubbleData *sayBubble = [NSBubbleData dataWithText:textView.text date:[NSDate dateWithTimeIntervalSinceNow:0] type:BubbleTypeMine];
     [bubbleData addObject:sayBubble];
     [bubbleTable reloadData];
     
-    textField.text = @"";
-    [textField resignFirstResponder];
+    textView.text = @"";
+    [textView resignFirstResponder];
 }
 
 @end

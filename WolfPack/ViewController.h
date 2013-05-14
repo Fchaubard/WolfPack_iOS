@@ -12,7 +12,7 @@
 #import "UIBubbleTableViewDataSource.h"
 #import "HorizontalTextScroller.h"
 
-@interface ViewController : UIViewController <UIBubbleTableViewDataSource>
+@interface ViewController : UIViewController <UIBubbleTableViewDataSource, UITextViewDelegate>
 
 
 @end

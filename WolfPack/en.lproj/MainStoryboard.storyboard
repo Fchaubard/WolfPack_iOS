@@ -262,20 +262,12 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mNv-P7-unV">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AON-Et-WwQ">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="235" id="HBv-MT-O6p"/>
-                                            <constraint firstAttribute="height" constant="30" type="user" id="PxG-9T-cfz"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Jq-P5-Cu7">
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="DX5-IP-XZY"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="73" type="user" id="UEd-TS-LyI"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="73" type="user" id="fkC-Mn-8sY"/>
                                             <constraint firstAttribute="width" constant="73" type="user" id="q6I-nl-yvx"/>
-                                            <constraint firstAttribute="height" constant="31" id="xxG-rc-94Q"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Send">
@@ -289,14 +281,23 @@
                                             <action selector="sayPressed:" destination="4yv-SG-zhk" eventType="touchUpInside" id="e5Y-p8-qbb"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgs-C3-cgS">
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="217" id="4RH-UE-iyE"/>
+                                            <constraint firstAttribute="height" constant="31" id="9nU-j5-l0i"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="7Jq-P5-Cu7" firstAttribute="leading" secondItem="AON-Et-WwQ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="NCB-6w-QAb"/>
-                                    <constraint firstItem="7Jq-P5-Cu7" firstAttribute="centerY" secondItem="mNv-P7-unV" secondAttribute="centerY" type="default" id="bB3-QN-Fgs"/>
-                                    <constraint firstItem="AON-Et-WwQ" firstAttribute="baseline" secondItem="7Jq-P5-Cu7" secondAttribute="baseline" type="default" id="hps-f0-D9a"/>
+                                    <constraint firstItem="7Jq-P5-Cu7" firstAttribute="leading" secondItem="dgs-C3-cgS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9Ma-al-L8G"/>
+                                    <constraint firstItem="7Jq-P5-Cu7" firstAttribute="top" secondItem="mNv-P7-unV" secondAttribute="top" constant="1" id="W4x-hv-Gao"/>
+                                    <constraint firstItem="dgs-C3-cgS" firstAttribute="leading" secondItem="mNv-P7-unV" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="WO7-3C-uSB"/>
                                     <constraint firstAttribute="height" constant="35" type="user" id="rhN-3o-FqX"/>
-                                    <constraint firstItem="AON-Et-WwQ" firstAttribute="leading" secondItem="mNv-P7-unV" secondAttribute="leading" constant="2" id="zsH-WZ-SPS"/>
+                                    <constraint firstItem="dgs-C3-cgS" firstAttribute="centerY" secondItem="mNv-P7-unV" secondAttribute="centerY" type="default" id="v9x-VP-jcW"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwt-Ry-McZ" customClass="HorizontalTextScroller">
@@ -324,8 +325,8 @@
                     <connections>
                         <outlet property="bubbleTable" destination="1FU-lz-Xk0" id="AXT-aG-Jph"/>
                         <outlet property="scroller" destination="uwt-Ry-McZ" id="2jD-ml-cvJ"/>
-                        <outlet property="textField" destination="AON-Et-WwQ" id="wFr-op-CBd"/>
                         <outlet property="textInputView" destination="mNv-P7-unV" id="8uZ-WI-Zut"/>
+                        <outlet property="textView" destination="dgs-C3-cgS" id="UQG-gV-J5w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjY-F4-LEm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1038,22 +1039,111 @@
         <image name="wolfPackBackground.jpg" width="320" height="460"/>
     </resources>
     <classes>
+        <class className="ContainerTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerTabBarController.h"/>
+        </class>
         <class className="ContainerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerViewController.h"/>
             <relationships>
                 <relationship kind="action" name="userChangedHungryStatus:"/>
                 <relationship kind="action" name="userChangedStatus:"/>
                 <relationship kind="action" name="userTappedToChangeStatus:"/>
+                <relationship kind="outlet" name="chatButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="hungryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="hungrySlider" candidateClass="HungrySlider"/>
+                <relationship kind="outlet" name="statusInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="statusTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tapped" candidateClass="UITapGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="CoreDataTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
+        </class>
+        <class className="EditSettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSettingsViewController.h"/>
+        </class>
+        <class className="HorizontalTextScroller" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HorizontalTextScroller.h"/>
+        </class>
+        <class className="HungrySlider" superclassName="UISlider">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HungrySlider.h"/>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="email" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fname" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lname" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="password" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="UIBubbleTableView" superclassName="UITableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIBubbleTableView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bubbleDataSource"/>
+            </relationships>
+        </class>
         <class className="UIRefreshControl" superclassName="UIControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
         </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+        <class className="ULTDataViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTDataViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButtonPressed:"/>
+                <relationship kind="action" name="signUpNeeded:"/>
+                <relationship kind="action" name="unwindFromLogoutButton:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="Password" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="UserName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ULTFriendsList" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTFriendsList.h"/>
+            <relationships>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="ULTSignUpViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTSignUpViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginNeeded:"/>
+                <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="pNumber" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordConfirm" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
+            </relationships>
+        </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bubbleTable" candidateClass="UIBubbleTableView"/>
+                <relationship kind="outlet" name="scroller" candidateClass="HorizontalTextScroller"/>
+                <relationship kind="outlet" name="textInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="WolfListCDTVC" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WolfListCDTVC.h"/>
+        </class>
+        <class className="WolfMapViewController" superclassName="MapViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WolfMapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="refreshButton" candidateClass="UIButton"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
