@@ -8,15 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HorizontalTextScroller : UIScrollView
+@interface HorizontalTextScroller : UIScrollView <UIGestureRecognizerDelegate>
 
-@property (strong,nonatomic) NSMutableArray *text;
+@property (strong,nonatomic) NSArray *text;
+@property (strong,nonatomic) NSArray *statuses;
 @property (nonatomic) int buttonHeight;
 @property (nonatomic) int spacing;
 @property (nonatomic) int distanceFromTopOfScroller;
+@property (nonatomic) BOOL bigViewBoolean;
 
 
--(void)initWithArray:(NSMutableArray *)array buttonHeight:(int)buttonheight spacing:(int)spacing topOfScroller:(int)topheight;
+
+-(void)initWithNames:(NSArray *)array
+         andStatuses:(NSArray *)status_array
+        buttonHeight:(int)buttonheight
+             spacing:(int)spacing
+       topOfScroller:(int)topheight;
 
 -(void)refreshScroller:(NSMutableArray *)array;
 

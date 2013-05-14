@@ -90,8 +90,6 @@
         [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
         
         [self.statusInputView setHidden:true];
-        [self.mapViewController.mapView setHidden:false];
-        [self.mapViewController.refreshButton setHidden:false];
         [self showTabBar:self.containerTBC];
         
         
@@ -140,6 +138,14 @@
     [self.chatButton setEnabled:TRUE];
     [self.chatButton setAlpha:1.0];
     [self.view setNeedsDisplay];
+    [self.mapViewController.mapView setHidden:false];
+    [self.mapViewController.refreshButton setHidden:false];
+    self.mapViewController.mapView.alpha = 0.0;
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        self.mapViewController.mapView.alpha = 1.0;
+    }];
+    
     [self updateStatusWithStatus:[self.statusTextField text] andAdjective:@1];
     [self.view endEditing:YES];
     
@@ -212,13 +218,6 @@
             [self.containerTBC setSelectedIndex:0];
             [self.hungryLabel setNeedsDisplay];
             [self fadeInLabel];
-            [self.mapViewController.mapView setHidden:false];
-            [self.mapViewController.refreshButton setHidden:false];
-            self.mapViewController.mapView.alpha = 0.0;
-            
-            [UIView animateWithDuration:1.0 animations:^{
-                self.mapViewController.mapView.alpha = 1.0;
-            }];
             
             [self showTabBar:self.containerTBC];
         }else if (self.hungrySlider.value <= 0.5 && [self.hungryLabel.text isEqual:@"Hungry"]){

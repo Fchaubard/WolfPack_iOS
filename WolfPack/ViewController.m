@@ -27,6 +27,8 @@
     IBOutlet UITextField *textField;
     IBOutlet HorizontalTextScroller *scroller;
     NSArray *scrollerText;
+    NSArray *scrollerStatuses;
+    
     NSArray *jsonArray;
     NSMutableArray *bubbleData;
 }
@@ -36,7 +38,13 @@
 @implementation ViewController
 
 -(void)doMainThreadStuff{
-    [scroller initWithArray:self->scrollerText buttonHeight:30 spacing:20 topOfScroller:4];
+    [scroller initWithNames:self->scrollerText
+                andStatuses:self->scrollerStatuses
+               buttonHeight:30
+                    spacing:20
+              topOfScroller:4];
+    
+ 
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSString *token = [prefs stringForKey:@"token"];
     if (!jsonArray) {
@@ -112,19 +120,20 @@
     }
     else{
         NSMutableArray *text = [[NSMutableArray alloc] init];
+        NSMutableArray *textStatus = [[NSMutableArray alloc] init];
         for(NSDictionary *item in jsonMetaArray) {
             NSLog(@"%@",item);
             NSString *name = [NSString stringWithFormat:@"%@ %@",[item objectForKey:@"fname"],[item objectForKey:@"lname"]];
             [text addObject:name];
+            NSString *status = [NSString stringWithFormat:@"%@",[item objectForKey:@"status"]];
+            [textStatus addObject:status];
+            
             
         }
         self->scrollerText = text;
-        
+        self->scrollerStatuses = textStatus;
         
     }
-    
-    
-    
     
     NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",token];
     NSLog(@"Token: %@",token);
@@ -159,8 +168,8 @@
                                              selector:@selector(refreshPressed)
                                                  name:@"MessageNotification"
                                                object:nil];
-    UIBarButtonItem *chkmanuaaly = [[UIBarButtonItem alloc]initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPressed)];
-    self.navigationItem.rightBarButtonItem=chkmanuaaly;
+    //UIBarButtonItem *chkmanuaaly = [[UIBarButtonItem alloc]initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPressed)];
+    //self.navigationItem.rightBarButtonItem=chkmanuaaly;
     
     
     // [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -285,30 +294,39 @@
 
 #pragma mark - Actions
 
--(BOOL)addChatToDB:(NSString *)message{
-    NSLog(@"Chat Added");
+-(void)addChatToDB:(NSString *)message{
     
-    //Get current date:
-    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
-    [DateFormatter setDateFormat:@"yyyy-MM-dd*HH:mm:ss"];
-    NSString *dateString = [DateFormatter stringFromDate:[NSDate date]];
-    NSLog(@"Calculated Current Date: %@",dateString);
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    // getting an NSString
-    NSString *token = [prefs stringForKey:@"token"]; //token
-    message = [message stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
-    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addchatmessagejson.php?session=%@&message=%@&date=%@",token,message,dateString];
-    NSLog(@"URLSTRING: %@",urlText);
-    NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
-    NSString *serverOutput = [[NSString alloc] initWithData:data
-                                                   encoding: NSUTF8StringEncoding];
-    NSLog(@"Server Output: %@",serverOutput);
-    
-    if([serverOutput isEqualToString:@"1"]){
-        return true;
-    }
-    return false;
+    dispatch_queue_t fetchQ = dispatch_queue_create("Update Status", NULL);
+    dispatch_async(fetchQ, ^{
+        
+        NSLog(@"Chat Added");
+        
+        //Get current date:
+        NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+        [DateFormatter setDateFormat:@"yyyy-MM-dd*HH:mm:ss"];
+        NSString *dateString = [DateFormatter stringFromDate:[NSDate date]];
+        NSLog(@"Calculated Current Date: %@",dateString);
+        
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        // getting an NSString
+        NSString *token = [prefs stringForKey:@"token"]; //token
+        NSString *strippedMessage = [message stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
+        NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addchatmessagejson.php?session=%@&message=%@&date=%@",token,strippedMessage,dateString];
+        NSLog(@"URLSTRING: %@",urlText);
+        NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText]];
+        NSString *serverOutput = [[NSString alloc] initWithData:data
+                                                       encoding: NSUTF8StringEncoding];
+        NSLog(@"Server Output: %@",serverOutput);
+        
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^ {
+     
+        });
+        
+        
+        
+    });
 }
 
 - (IBAction)sayPressed:(id)sender

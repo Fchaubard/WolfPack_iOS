@@ -40,7 +40,6 @@
             imageView.image = [view.annotation performSelector:@selector(thumbnail)];
         }
     }*/
-    
 }
 
 

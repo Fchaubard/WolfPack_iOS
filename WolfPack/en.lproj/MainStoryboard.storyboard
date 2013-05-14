@@ -1038,111 +1038,22 @@
         <image name="wolfPackBackground.jpg" width="320" height="460"/>
     </resources>
     <classes>
-        <class className="ContainerTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerTabBarController.h"/>
-        </class>
         <class className="ContainerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerViewController.h"/>
             <relationships>
                 <relationship kind="action" name="userChangedHungryStatus:"/>
                 <relationship kind="action" name="userChangedStatus:"/>
                 <relationship kind="action" name="userTappedToChangeStatus:"/>
-                <relationship kind="outlet" name="chatButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="hungryLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="hungrySlider" candidateClass="HungrySlider"/>
-                <relationship kind="outlet" name="statusInputView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="statusTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tapped" candidateClass="UITapGestureRecognizer"/>
-            </relationships>
-        </class>
-        <class className="CoreDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="EditSettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSettingsViewController.h"/>
-        </class>
-        <class className="HorizontalTextScroller" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HorizontalTextScroller.h"/>
-        </class>
-        <class className="HungrySlider" superclassName="UISlider">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HungrySlider.h"/>
-        </class>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
-        <class className="SettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="email" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fname" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lname" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="password" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="UIBubbleTableView" superclassName="UITableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIBubbleTableView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bubbleDataSource"/>
-            </relationships>
-        </class>
         <class className="UIRefreshControl" superclassName="UIControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
         </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
-        </class>
-        <class className="ULTDataViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTDataViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonPressed:"/>
-                <relationship kind="action" name="signUpNeeded:"/>
-                <relationship kind="action" name="unwindFromLogoutButton:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="outlet" name="Password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="UserName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ULTFriendsList" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTFriendsList.h"/>
-            <relationships>
-                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="ULTSignUpViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTSignUpViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginNeeded:"/>
-                <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="pNumber" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordConfirm" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
-            </relationships>
-        </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bubbleTable" candidateClass="UIBubbleTableView"/>
-                <relationship kind="outlet" name="scroller" candidateClass="HorizontalTextScroller"/>
-                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="textInputView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="WolfListCDTVC" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WolfListCDTVC.h"/>
-        </class>
-        <class className="WolfMapViewController" superclassName="MapViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WolfMapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="refreshButton" candidateClass="UIButton"/>
-            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
