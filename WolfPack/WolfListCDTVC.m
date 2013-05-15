@@ -61,9 +61,9 @@
 - (void)reload
 {
     
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Friend"];
+    //NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Friend"];
     // request.predicate = [NSPredicate predicateWithFormat:@"eventID "];
-    NSArray *friends = [self.managedObjectContext executeFetchRequest:request error:NULL];
+    //NSArray *friends = [self.managedObjectContext executeFetchRequest:request error:NULL];
     
 }
 

@@ -115,7 +115,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self updateRegion];
+    //[self updateRegion];
     
 }
 
@@ -150,8 +150,8 @@
              CLLocation *loc = [MyCLLocationManager sharedSingleton].locationManager.location;
         
             region.center = loc.coordinate; //for niko
-            region.span.latitudeDelta = boundingRect.size.width;
-            region.span.longitudeDelta = boundingRect.size.height;
+            region.span.latitudeDelta =0.02;
+            region.span.longitudeDelta =0.02;
             [self.mapView setRegion:region animated:YES];
         //}
     }

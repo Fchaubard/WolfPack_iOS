@@ -14,7 +14,7 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>appicon.png</string>
+				<string>wolfpack_icon_ios.png</string>
 			</array>
 		</dict>
 	</dict>

@@ -44,7 +44,7 @@
     [super viewDidLoad];
     [MyCLLocationManager sharedSingleton];
     
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    //NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
     // saving an NSInteger
     //[prefs setObject:[NSString stringWithFormat:@"6508477336"] forKey:@"token"];
@@ -188,7 +188,7 @@
         NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/updatemystatusjson.php?session=%@&adjective=%d&lat=%f&long=%f&status=%@",sessionid,[adjective intValue],loc.coordinate.latitude,loc.coordinate.longitude,strippedStatus];
         NSURL *URL = [NSURL URLWithString:str];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-        NSError *error = [[NSError alloc] init];
+        //NSError *error = [[NSError alloc] init];
         NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         
         NSString * string = [[NSString alloc] initWithData:responseData encoding:
@@ -205,6 +205,7 @@
         dispatch_async(dispatch_get_main_queue(), ^ {
        
             [SVProgressHUD dismiss];
+            [self.mapViewController updateRegion];
         });
         
         

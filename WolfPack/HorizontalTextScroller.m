@@ -88,6 +88,7 @@
                 
                 //create the labels
                 NSArray *cgrects = [self verticalCGRects];
+                int maxWidth = 0;
                 for (UIView *btn in self.subviews) {
                     if([btn isKindOfClass:[UIButton class]]){
                         CGRect cg = [[cgrects objectAtIndex:btn.tag] CGRectValue];
@@ -97,9 +98,11 @@
                         int h = 1.4*stringsize.height; // for the + button to be consistent
                         // Start Populating the btn
                         CGSize status_stringsize = [[self.statuses objectAtIndex:btn.tag] sizeWithFont:[UIFont systemFontOfSize:20]];
-                        int hstat = 1.4*stringsize.height;
                         
-                        UILabel *status = [[UILabel alloc] initWithFrame:CGRectMake(cg.origin.x+10, cg.origin.y+h, stringsize.width, hstat)];
+                        maxWidth = MAX(maxWidth,status_stringsize.width);
+                        
+                        UILabel *status = [[UILabel alloc] initWithFrame:CGRectMake(cg.origin.x+10, cg.origin.y+h, status_stringsize.width, 1.4*stringsize.height)];
+                        
                         
                         [status setText:[self.statuses objectAtIndex:btn.tag]];
                         [status setAlpha:0.0];
@@ -110,6 +113,8 @@
                     }
                 }
 
+                [self setContentSize:CGSizeMake(maxWidth, self.contentSize.height)];
+                
                 [UIView animateWithDuration:0.25 animations:^{
                     // fade the labels in
                     for (UIView *label in self.subviews) {

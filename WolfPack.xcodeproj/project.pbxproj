@@ -119,6 +119,7 @@
 		ABF06AB41743521A00544BB0 /* MessageEntrySendButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06AB01743521900544BB0 /* MessageEntrySendButtonPressed.png */; };
 		ABF06AB51743521A00544BB0 /* MessageEntryBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06AB11743521900544BB0 /* MessageEntryBackground.png */; };
 		ABF06AB61743521A00544BB0 /* MessageEntryInputField.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06AB21743521A00544BB0 /* MessageEntryInputField.png */; };
+		ABF06AB817436E1300544BB0 /* wolfpack_icon_ios.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06AB717436E0F00544BB0 /* wolfpack_icon_ios.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -278,6 +279,7 @@
 		ABF06AB01743521900544BB0 /* MessageEntrySendButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntrySendButtonPressed.png; sourceTree = "<group>"; };
 		ABF06AB11743521900544BB0 /* MessageEntryBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryBackground.png; sourceTree = "<group>"; };
 		ABF06AB21743521A00544BB0 /* MessageEntryInputField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryInputField.png; sourceTree = "<group>"; };
+		ABF06AB717436E0F00544BB0 /* wolfpack_icon_ios.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfpack_icon_ios.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 		AB461E6716E15B47009FDC9A = {
 			isa = PBXGroup;
 			children = (
+				ABF06AB717436E0F00544BB0 /* wolfpack_icon_ios.png */,
 				AB461E7C16E15B47009FDC9A /* WolfPack */,
 				AB461E7516E15B47009FDC9A /* Frameworks */,
 				AB461E7316E15B47009FDC9A /* Products */,
@@ -670,6 +673,7 @@
 				ABF06AB41743521A00544BB0 /* MessageEntrySendButtonPressed.png in Resources */,
 				ABF06AB51743521A00544BB0 /* MessageEntryBackground.png in Resources */,
 				ABF06AB61743521A00544BB0 /* MessageEntryInputField.png in Resources */,
+				ABF06AB817436E1300544BB0 /* wolfpack_icon_ios.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

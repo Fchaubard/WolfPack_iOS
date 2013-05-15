@@ -10,10 +10,9 @@
 #import "Friend+MKAnnotation.h"
 #import "MyManagedObjectContext.h"
 #import "PhonyFriendDictionary.h"
-
+#import "SVProgressHUD.h"
 @interface WolfMapViewController ()
 
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @end
 
 @implementation WolfMapViewController
@@ -30,11 +29,6 @@
 }
 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self refresh];
-}
 
 
 - (void)reload
@@ -45,6 +39,7 @@
     NSArray *friends = [self.managedObjectContext executeFetchRequest:request error:NULL];
     [self.mapView removeAnnotations:self.mapView.annotations];
     [self.mapView addAnnotations:friends];
+    
 
    
 }
@@ -88,18 +83,11 @@
         self.managedObjectContext = [doc managedObjectContext];
     }];
     
-    [self.activity setHidden:TRUE];
-    [self reload];
+    [self refreshWithoutHUD];
 }
 
 
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-
-- (IBAction)refresh
-{
-    [self.activity setHidden:FALSE];
-    [self.activity startAnimating];
+-(void)refreshWithoutHUD{
     dispatch_queue_t fetchQ = dispatch_queue_create("Flickr Fetch", NULL);
     dispatch_async(fetchQ, ^{
         
@@ -110,7 +98,7 @@
             NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Friend"];
             NSArray *oldfriends = [self.managedObjectContext executeFetchRequest:request error:NULL];
             for (Friend* friend in oldfriends) {
-                    [self.managedObjectContext deleteObject:friend];
+                [self.managedObjectContext deleteObject:friend];
             }
             //populate it with new ones
             for (NSDictionary *friend in friends) {
@@ -118,11 +106,26 @@
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self reload];
-                [self.activity stopAnimating];
-                [self.activity setHidden:TRUE];
+                [SVProgressHUD dismiss];
+                
             });
         }];
     });
+
+}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+
+- (IBAction)refresh
+{
+  
+    
+    if ([MyManagedObjectContext isThisUserHungry]) {
+    
+        [SVProgressHUD showWithStatus:@"Fetching your Hungry Wolves..."];
+    
+        [self refreshWithoutHUD];
+            
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

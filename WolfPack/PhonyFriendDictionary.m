@@ -11,11 +11,6 @@
 
 @implementation PhonyFriendDictionary
 
-
-static NSArray * dictionaries;
-static double distance;
-
-
 +(NSArray *)returnPhonyFriendDictionary{
     
    /* if (!dictionaries) {

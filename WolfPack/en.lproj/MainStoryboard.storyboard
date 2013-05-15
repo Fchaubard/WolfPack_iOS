@@ -174,7 +174,6 @@
                                     <action selector="refresh" destination="sOi-AY-ByT" eventType="touchUpInside" id="yhB-aH-jYy"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView contentMode="scaleToFill" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="VQv-E8-hew"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -186,14 +185,11 @@
                             <constraint firstItem="gts-aH-53p" firstAttribute="top" secondItem="aMw-7d-64N" secondAttribute="top" type="default" id="LQE-nO-12s"/>
                             <constraint firstItem="VTb-0A-Znu" firstAttribute="leading" secondItem="aMw-7d-64N" secondAttribute="leading" type="default" id="NQp-bb-5lK"/>
                             <constraint firstItem="gts-aH-53p" firstAttribute="bottom" secondItem="aMw-7d-64N" secondAttribute="bottom" type="default" id="Xtm-B2-zeK"/>
-                            <constraint firstItem="VQv-E8-hew" firstAttribute="centerY" secondItem="VTb-0A-Znu" secondAttribute="centerY" type="default" id="dpY-Ym-p72"/>
-                            <constraint firstItem="VQv-E8-hew" firstAttribute="centerX" secondItem="VTb-0A-Znu" secondAttribute="centerX" type="default" id="iv3-dM-cjf"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="71-compass.png" id="g1a-x4-jDT"/>
                     <toolbarItems/>
                     <connections>
-                        <outlet property="activity" destination="VQv-E8-hew" id="B4I-0A-CTq"/>
                         <outlet property="mapView" destination="gts-aH-53p" id="BKx-4A-o07"/>
                         <outlet property="refreshButton" destination="lyX-55-NVS" id="gcz-Be-qfJ"/>
                     </connections>
@@ -871,7 +867,6 @@
                 <relationship kind="outlet" name="bubbleTable" candidateClass="UIBubbleTableView"/>
                 <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="scroller" candidateClass="HorizontalTextScroller"/>
-                <relationship kind="outlet" name="swipe" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="outlet" name="textView" candidateClass="HPGrowingTextView"/>
             </relationships>
         </class>
@@ -881,7 +876,6 @@
         <class className="WolfMapViewController" superclassName="MapViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WolfMapViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="refreshButton" candidateClass="UIButton"/>
             </relationships>
         </class>
