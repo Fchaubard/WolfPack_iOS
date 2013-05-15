@@ -21,12 +21,14 @@
 #import "SVProgressHUD.h"
 #import <QuartzCore/QuartzCore.h>
 
+
 @interface ViewController ()
 {
     IBOutlet UIBubbleTableView *bubbleTable;
-    IBOutlet UIView *textInputView;
-    IBOutlet UITextView *textView;
+    IBOutlet HPGrowingTextView *textView;
+    IBOutlet UIView *containerView;
     IBOutlet HorizontalTextScroller *scroller;
+    
     NSArray *scrollerText;
     NSArray *scrollerStatuses;
     
@@ -100,10 +102,10 @@
 - (BOOL)textView:(UITextView *)thisTextView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
   
-    [self adjustTextInputHeightForText:thisTextView.text animated:YES];
+   // [self adjustTextInputHeightForText:thisTextView.text animated:YES];
     return TRUE;
 }
-
+/*
 - (void) adjustTextInputHeightForText:(NSString*)text animated:(BOOL)animated {
     
     int h1 = [text sizeWithFont:textView.font].height;
@@ -128,7 +130,7 @@
          //
      }];
 }
-
+*/
 -(void)loadChat{
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -208,9 +210,9 @@
     
     
     // [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-    for (UIView* view in self.view.subviews) {
+    //for (UIView* view in self.view.subviews) {
         //[view setTranslatesAutoresizingMaskIntoConstraints:NO];
-    }
+    //}
     // [bubbleTable setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-40)];
     // [textInputView setFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height-40, [[UIScreen mainScreen] bounds].size.width, 40) ];
     
@@ -232,13 +234,84 @@
        
     // Keyboard events
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeShown:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     
+    [containerView setFrame:CGRectMake(0, self.view.frame.size.height - 40, 320, 40)];
     
-    textView.delegate = self;
-    textView.clipsToBounds = YES;
-    textView.layer.cornerRadius = 10.0f;
+    
+    textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(6, 3, 240, 40)];
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRecognizer)];
+    swipe.direction = (UISwipeGestureRecognizerDirectionDown);
+    
+    [textView addGestureRecognizer:swipe];
+    textView.contentInset = UIEdgeInsetsMake(0, 5, 0, 5);
+    
+	textView.minNumberOfLines = 1;
+	textView.maxNumberOfLines = 6;
+	textView.returnKeyType = UIReturnKeyGo; //just as an example
+	textView.font = [UIFont systemFontOfSize:15.0f];
+	textView.delegate = self;
+    textView.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(5, 0, 5, 0);
+    textView.backgroundColor = [UIColor whiteColor];
+    
+    // textView.text = @"test\n\ntest";
+	// textView.animateHeightChange = NO; //turns off animation
+    
+    [self.view addSubview:containerView];
+	
+    UIImage *rawEntryBackground = [UIImage imageNamed:@"MessageEntryInputField.png"];
+    UIImage *entryBackground = [rawEntryBackground stretchableImageWithLeftCapWidth:13 topCapHeight:22];
+    UIImageView *entryImageView = [[UIImageView alloc] initWithImage:entryBackground];
+    entryImageView.frame = CGRectMake(5, 0, 248, 40);
+    entryImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    UIImage *rawBackground = [UIImage imageNamed:@"MessageEntryBackground.png"];
+    UIImage *background = [rawBackground stretchableImageWithLeftCapWidth:13 topCapHeight:22];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:background];
+    imageView.frame = CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height);
+    imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    // view hierachy
+    [containerView addSubview:imageView];
+    [containerView addSubview:textView];
+    [containerView addSubview:entryImageView];
+    
+    UIImage *sendBtnBackground = [[UIImage imageNamed:@"MessageEntrySendButton.png"] stretchableImageWithLeftCapWidth:13 topCapHeight:0];
+    UIImage *selectedSendBtnBackground = [[UIImage imageNamed:@"MessageEntrySendButton.png"] stretchableImageWithLeftCapWidth:13 topCapHeight:0];
+    
+	UIButton *doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	doneBtn.frame = CGRectMake(containerView.frame.size.width - 69, 8, 63, 27);
+    doneBtn.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
+	[doneBtn setTitle:@"Send" forState:UIControlStateNormal];
+    
+    [doneBtn setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.4] forState:UIControlStateNormal];
+    doneBtn.titleLabel.shadowOffset = CGSizeMake (0.0, -1.0);
+    doneBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    
+    [doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[doneBtn addTarget:self action:@selector(resignTextView) forControlEvents:UIControlEventTouchUpInside];
+    [doneBtn setBackgroundImage:sendBtnBackground forState:UIControlStateNormal];
+    [doneBtn setBackgroundImage:selectedSendBtnBackground forState:UIControlStateSelected];
+	[containerView addSubview:doneBtn];
+    containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+
+}
+
+-(void)swipeRecognizer
+{
+   [textView resignFirstResponder];
+   
+}
+
+
+-(void)resignTextView
+{
+	[self sayPressed:nil];
+    [textView resignFirstResponder];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -270,6 +343,8 @@
             [self doMainThreadStuff];
             [bubbleTable reloadData];
             [SVProgressHUD dismiss];
+            [self scrollToBottom];
+            
         });
     });
     
@@ -295,38 +370,102 @@
 
 #pragma mark - Keyboard events
 
-- (void)keyboardWasShown:(NSNotification*)aNotification
+- (void)keyboardWillBeShown:(NSNotification*)aNotification
 {
+    
+    //new
+    CGRect keyboardBounds;
+    [[aNotification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
+    NSNumber *duration = [aNotification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [aNotification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    
+    // Need to translate the bounds to account for rotation.
+    keyboardBounds = [self.view convertRect:keyboardBounds toView:nil];
+    
+	// get a rect for the textView frame
+	CGRect containerFrame = containerView.frame;
+    containerFrame.origin.y = self.view.bounds.size.height - (keyboardBounds.size.height + containerFrame.size.height);
+	// animations settings
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[duration doubleValue]];
+    [UIView setAnimationCurve:[curve intValue]];
+	
+	// set views with new info
+	containerView.frame = containerFrame;
+	
+	// commit animations
+	[UIView commitAnimations];
+    
+    
+    
+    
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     [UIView animateWithDuration:0.2f animations:^{
         
-        CGRect frame = textInputView.frame;
-        frame.origin.y -= kbSize.height;
-        textInputView.frame = frame;
-        
-        frame = bubbleTable.frame;
+        CGRect frame = bubbleTable.frame;
         frame.size.height -= kbSize.height;
         bubbleTable.frame = frame;
     }];
+    [self scrollToBottom];
+}
+
+-(void)scrollToBottom
+{
+//    NSIndexPath* indexPatherrrr = [NSIndexPath indexPathForRow: [bubbleTable numberOfRowsInSection:0]-1 inSection: 0];
+    //[bubbleTable scrollToRowAtIndexPath: indexPatherrrr atScrollPosition: UITableViewScrollPositionTop animated: YES];
+     CGPoint cgp = CGPointMake(0, MAX(bubbleTable.contentSize.height-(containerView.frame.origin.y)+bubbleTable.rowHeight, 0));
+    
+
+    [bubbleTable setContentOffset:cgp];
 }
 
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
+    
+    NSNumber *duration = [aNotification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [aNotification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+	
+	// get a rect for the textView frame
+	CGRect containerFrame = containerView.frame;
+    containerFrame.origin.y = self.view.bounds.size.height - containerFrame.size.height;
+	
+	// animations settings
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[duration doubleValue]];
+    [UIView setAnimationCurve:[curve intValue]];
+    
+	// set views with new info
+	containerView.frame = containerFrame;
+	
+	// commit animations
+	[UIView commitAnimations];
+
+    
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     [UIView animateWithDuration:0.2f animations:^{
         
-        CGRect frame = textInputView.frame;
-        frame.origin.y += kbSize.height;
-        textInputView.frame = frame;
-        
-        frame = bubbleTable.frame;
+        CGRect frame = bubbleTable.frame;
         frame.size.height += kbSize.height;
         bubbleTable.frame = frame;
     }];
+    [self scrollToBottom];
+}
+
+- (void)growingTextView:(HPGrowingTextView *)growingTextView willChangeHeight:(float)height
+{
+    float diff = (growingTextView.frame.size.height - height);
+    
+	CGRect r = containerView.frame;
+    r.size.height -= diff;
+    r.origin.y += diff;
+	containerView.frame = r;
+    [self scrollToBottom];
 }
 
 #pragma mark - Actions
@@ -357,6 +496,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^ {
             [bubbleTable reloadData];
+            [self scrollToBottom];
         });
         
     });
@@ -372,6 +512,7 @@
     
     textView.text = @"";
     [textView resignFirstResponder];
+    [self scrollToBottom];
 }
 
 @end

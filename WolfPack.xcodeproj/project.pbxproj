@@ -115,6 +115,10 @@
 		ABF06AA71742F4A200544BB0 /* HPGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF06AA41742F4A100544BB0 /* HPGrowingTextView.m */; };
 		ABF06AA81742F4A200544BB0 /* HPTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF06AA61742F4A200544BB0 /* HPTextViewInternal.m */; };
 		ABF06AAE1743132A00544BB0 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06AAD1743132A00544BB0 /* arrow.png */; };
+		ABF06AB31743521A00544BB0 /* MessageEntrySendButton.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06AAF1743521800544BB0 /* MessageEntrySendButton.png */; };
+		ABF06AB41743521A00544BB0 /* MessageEntrySendButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06AB01743521900544BB0 /* MessageEntrySendButtonPressed.png */; };
+		ABF06AB51743521A00544BB0 /* MessageEntryBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06AB11743521900544BB0 /* MessageEntryBackground.png */; };
+		ABF06AB61743521A00544BB0 /* MessageEntryInputField.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06AB21743521A00544BB0 /* MessageEntryInputField.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -270,6 +274,10 @@
 		ABF06AA51742F4A200544BB0 /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTextViewInternal.h; sourceTree = "<group>"; };
 		ABF06AA61742F4A200544BB0 /* HPTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPTextViewInternal.m; sourceTree = "<group>"; };
 		ABF06AAD1743132A00544BB0 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		ABF06AAF1743521800544BB0 /* MessageEntrySendButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntrySendButton.png; sourceTree = "<group>"; };
+		ABF06AB01743521900544BB0 /* MessageEntrySendButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntrySendButtonPressed.png; sourceTree = "<group>"; };
+		ABF06AB11743521900544BB0 /* MessageEntryBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryBackground.png; sourceTree = "<group>"; };
+		ABF06AB21743521A00544BB0 /* MessageEntryInputField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryInputField.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,6 +467,10 @@
 				ABF06AA41742F4A100544BB0 /* HPGrowingTextView.m */,
 				ABF06AA51742F4A200544BB0 /* HPTextViewInternal.h */,
 				ABF06AA61742F4A200544BB0 /* HPTextViewInternal.m */,
+				ABF06AAF1743521800544BB0 /* MessageEntrySendButton.png */,
+				ABF06AB01743521900544BB0 /* MessageEntrySendButtonPressed.png */,
+				ABF06AB11743521900544BB0 /* MessageEntryBackground.png */,
+				ABF06AB21743521A00544BB0 /* MessageEntryInputField.png */,
 				ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */,
 				ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */,
 				ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */,
@@ -654,6 +666,10 @@
 				ABF06A9D1742E4FA00544BB0 /* Chat_Send_Button_Pressed.png in Resources */,
 				ABF06A9E1742E4FA00544BB0 /* Chat_Send_Button_Pressed@2x.png in Resources */,
 				ABF06AAE1743132A00544BB0 /* arrow.png in Resources */,
+				ABF06AB31743521A00544BB0 /* MessageEntrySendButton.png in Resources */,
+				ABF06AB41743521A00544BB0 /* MessageEntrySendButtonPressed.png in Resources */,
+				ABF06AB51743521A00544BB0 /* MessageEntryBackground.png in Resources */,
+				ABF06AB61743521A00544BB0 /* MessageEntryInputField.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,8 +11,10 @@
 #import <UIKit/UIKit.h>
 #import "UIBubbleTableViewDataSource.h"
 #import "HorizontalTextScroller.h"
+#import "HPGrowingTextView.h"
+#import "HPTextViewInternal.h"
 
-@interface ViewController : UIViewController <UIBubbleTableViewDataSource, UITextViewDelegate>
+@interface ViewController : UIViewController <UIBubbleTableViewDataSource, HPGrowingTextViewDelegate, UIGestureRecognizerDelegate>
 
 
 @end
