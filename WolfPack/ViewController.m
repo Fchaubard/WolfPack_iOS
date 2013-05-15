@@ -47,9 +47,6 @@
     
  
 
-    textView.delegate = self;
-    textView.clipsToBounds = YES;
-    textView.layer.cornerRadius = 10.0f;
     
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -239,7 +236,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     
     
-    
+    textView.delegate = self;
+    textView.clipsToBounds = YES;
+    textView.layer.cornerRadius = 10.0f;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -356,13 +355,9 @@
                                                        encoding: NSUTF8StringEncoding];
         NSLog(@"Server Output: %@",serverOutput);
         
-        
-        
         dispatch_async(dispatch_get_main_queue(), ^ {
-     
+            [bubbleTable reloadData];
         });
-        
-        
         
     });
 }

@@ -378,7 +378,9 @@ UserTouchState touchState;
     [self updateServerFriendStatus:true withValue:false];
 }
 -(void)updateServerFriendStatus:(BOOL)addedIsZeroHideIsOne withValue:(BOOL)value{
-    
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd*HH:mm:ss"];
+    NSString *dateString = [DateFormatter stringFromDate:[NSDate date]];
     dispatch_queue_t fetchQ = dispatch_queue_create("Update Friend Status", NULL);
     dispatch_async(fetchQ, ^{
         NSString *valueString = value?@"true":@"false";
@@ -388,15 +390,14 @@ UserTouchState touchState;
         
         // Adding
         if (!addedIsZeroHideIsOne) {
-              str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addfriendtochatjson.php?session=%@&friendid=%@&add=%@",sessionid, [(Friend *)self.annotation userID], valueString];
-                        
-        // Hiding
-        }else{
-              str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/hidefromfriendjson.php?session=%@&friendid=%@&hide=%@",sessionid, [(Friend *)self.annotation userID],valueString];
+            str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addfriendtochatjson.php?session=%@&friendid=%@&add=%@&date=%@",sessionid, [(Friend *)self.annotation userID], valueString, dateString];
             
+            // Hiding
+        }else{
+            str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/hidefromfriendjson.php?session=%@&friendid=%@&hide=%@&date=%@",sessionid, [(Friend *)self.annotation userID],valueString, dateString];
         }
         
-     
+        
         
       
         NSURL *URL = [NSURL URLWithString:str];
