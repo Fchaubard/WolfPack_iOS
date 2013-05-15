@@ -147,8 +147,6 @@
     
     NSError *e = nil;
     
-    
-    
     NSString *urlText1 = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmembersofchatjson.php?session=%@",token];
     NSLog(@"Token: %@",token);
     NSData* data1 = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlText1]];

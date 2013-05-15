@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "EditSettingsViewController.h"
 #import "ULTDataViewController.h"
+#import "MyManagedObjectContext.h"
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
-- (void)displaySettings;
+- (void)switchViews:(BOOL)showSettings;
+- (IBAction)unwindFromEditScreen:(UIStoryboardSegue *)segue;
+
 
 @end

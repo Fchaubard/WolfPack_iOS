@@ -114,6 +114,7 @@
 		ABF06A9E1742E4FA00544BB0 /* Chat_Send_Button_Pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A901742E4FA00544BB0 /* Chat_Send_Button_Pressed@2x.png */; };
 		ABF06AA71742F4A200544BB0 /* HPGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF06AA41742F4A100544BB0 /* HPGrowingTextView.m */; };
 		ABF06AA81742F4A200544BB0 /* HPTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF06AA61742F4A200544BB0 /* HPTextViewInternal.m */; };
+		ABF06AAE1743132A00544BB0 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06AAD1743132A00544BB0 /* arrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -268,6 +269,7 @@
 		ABF06AA41742F4A100544BB0 /* HPGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGrowingTextView.m; sourceTree = "<group>"; };
 		ABF06AA51742F4A200544BB0 /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTextViewInternal.h; sourceTree = "<group>"; };
 		ABF06AA61742F4A200544BB0 /* HPTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPTextViewInternal.m; sourceTree = "<group>"; };
+		ABF06AAD1743132A00544BB0 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 		AB461E7D16E15B47009FDC9A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABF06AAD1743132A00544BB0 /* arrow.png */,
 				AB981EF6173CBF6B00FB0FAF /* appicon.png */,
 				AB62DF3E173C242600A0E630 /* SVProgressHUD.h */,
 				AB62DF3F173C242600A0E630 /* SVProgressHUD.m */,
@@ -650,6 +653,7 @@
 				ABF06A9C1742E4FA00544BB0 /* Chat_Send_Button@2x.png in Resources */,
 				ABF06A9D1742E4FA00544BB0 /* Chat_Send_Button_Pressed.png in Resources */,
 				ABF06A9E1742E4FA00544BB0 /* Chat_Send_Button_Pressed@2x.png in Resources */,
+				ABF06AAE1743132A00544BB0 /* arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

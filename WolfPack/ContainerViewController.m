@@ -11,11 +11,13 @@
 #import "MyManagedObjectContext.h"
 #import "MyCLLocationManager.h"
 #import "SVProgressHUD.h"
+#import "SettingsViewController.h"
 @interface ContainerViewController ()
 
 @property (strong, nonatomic) UITabBarController *containerTBC;
 @property (weak, nonatomic) WolfListCDTVC *listViewController;
 @property (weak, nonatomic) WolfMapViewController *mapViewController;
+@property (weak, nonatomic) SettingsViewController *settingsController;
 @property (strong, nonatomic) IBOutlet UILabel *hungryLabel;
 @property (strong, nonatomic) IBOutlet UIButton *chatButton;
 @property (strong, nonatomic) IBOutlet HungrySlider *hungrySlider;
@@ -58,16 +60,28 @@
     if (self.containerTBC) {
         for (UIViewController *v in self.containerTBC.viewControllers)
         {
-            if ([v isKindOfClass:[WolfListCDTVC class]])
-            {
-                self.listViewController = (WolfListCDTVC *)v;
-            }
             if ([v isKindOfClass:[WolfMapViewController class]])
             {
                 self.mapViewController = (WolfMapViewController *)v;
             }
+            else if([v isKindOfClass:[UINavigationController class]]){
+                UINavigationController *navVC = (UINavigationController *)v;
+                for (UIViewController *nav_v in navVC.viewControllers) {
+                    
+                    if ([nav_v isKindOfClass:[WolfListCDTVC class]])
+                    {
+                        self.listViewController = (WolfListCDTVC *)nav_v;
+                    }
+                    else if ([nav_v isKindOfClass:[SettingsViewController class]])
+                    {
+                        self.settingsController = (SettingsViewController *)nav_v;
+                    }
+                    
+                }
+            }
         }
     }
+
     if (![MyManagedObjectContext isThisUserHungry]) {
         
         [self.hungrySlider setValue:0.0];
@@ -79,7 +93,7 @@
         [self.mapViewController.mapView setHidden:true];
         [self.mapViewController.refreshButton setHidden:true];
         [self hideTabBar:self.containerTBC];
-        
+        [self.containerTBC setSelectedIndex:2];
         
     }else{
         
@@ -203,8 +217,8 @@
 - (IBAction)userChangedHungryStatus:(id)sender{
     
   //  if (self.hungrySlider.valueChanged) {
-    
-
+        //make sure we have the most current VC's
+       
         if (self.hungrySlider.value > 0.5 && ![self.hungryLabel.text isEqual:@"Hungry"]) {
             // user is hungry
             // fade out the not hungry status
@@ -215,11 +229,16 @@
             [self.hungryLabel setText:@"Hungry"];
             //[self.chatButton setEnabled:TRUE];
             //[self.chatButton setAlpha:1.0];
+            
+            
             [self.containerTBC setSelectedIndex:0];
             [self.hungryLabel setNeedsDisplay];
             [self fadeInLabel];
             
             [self showTabBar:self.containerTBC];
+            [self.settingsController switchViews:1]; // switch to settings view
+            
+            
         }else if (self.hungrySlider.value <= 0.5 && [self.hungryLabel.text isEqual:@"Hungry"]){
             // user is not hungry
             
@@ -233,6 +252,7 @@
             [self.containerTBC setSelectedIndex:2];
             [self.hungryLabel setNeedsDisplay];
             [self fadeInLabel];
+            [self.settingsController switchViews:0]; // send them home
             self.mapViewController.mapView.alpha = 1.0;
             [UIView animateWithDuration:1.0 animations:^{
                 self.mapViewController.mapView.alpha = 0.0;
