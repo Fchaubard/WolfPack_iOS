@@ -114,7 +114,7 @@
                 }
 
                 [self setContentSize:CGSizeMake(maxWidth, self.contentSize.height)];
-                
+                [self setClipsToBounds:TRUE];
                 [UIView animateWithDuration:0.25 animations:^{
                     // fade the labels in
                     for (UIView *label in self.subviews) {

@@ -18,10 +18,11 @@
                                     <segue destination="fla-gi-ktw" kind="embed" identifier="EmbeddedSegue" id="ELY-kA-9of"/>
                                 </connections>
                             </containerView>
-                            <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k58-zM-2wk">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k58-zM-2wk">
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="I want Mexican!" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6h-aM-2W0">
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="tqq-8d-EWd"/>
                                             <constraint firstAttribute="width" constant="163" type="user" id="xLK-iE-k8P"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -29,7 +30,6 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqp-jt-shZ">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="OOC-Qa-zMZ"/>
                                             <constraint firstAttribute="width" constant="70" id="bxz-J7-k20"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -44,17 +44,26 @@
                                             <action selector="userChangedStatus:" destination="2" eventType="touchUpInside" id="M9w-iZ-vPn"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="What are you hungry for?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cj5-PA-3fX">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Cj5-PA-3fX" firstAttribute="top" secondItem="k58-zM-2wk" secondAttribute="top" constant="7" id="49h-6f-YJN"/>
+                                    <constraint firstItem="jqp-jt-shZ" firstAttribute="top" secondItem="Cj5-PA-3fX" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="E6Q-ap-Wyh"/>
+                                    <constraint firstItem="Cj5-PA-3fX" firstAttribute="leading" secondItem="k58-zM-2wk" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GGT-Yz-atH"/>
                                     <constraint firstItem="v6h-aM-2W0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="k58-zM-2wk" secondAttribute="leading" constant="4" type="user" id="I3o-Me-sDg"/>
+                                    <constraint firstItem="v6h-aM-2W0" firstAttribute="top" secondItem="Cj5-PA-3fX" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Jcu-4r-5jN"/>
                                     <constraint firstItem="jqp-jt-shZ" firstAttribute="leading" secondItem="v6h-aM-2W0" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="KdV-FM-438"/>
                                     <constraint firstItem="v6h-aM-2W0" firstAttribute="baseline" secondItem="jqp-jt-shZ" secondAttribute="baseline" type="default" id="duz-We-axi"/>
                                     <constraint firstItem="v6h-aM-2W0" firstAttribute="leading" secondItem="k58-zM-2wk" secondAttribute="leading" constant="4" type="user" id="e6l-hf-xVp"/>
-                                    <constraint firstAttribute="height" constant="46" type="user" id="egB-nr-iHL"/>
+                                    <constraint firstAttribute="height" constant="70" type="user" id="egB-nr-iHL"/>
                                     <constraint firstItem="jqp-jt-shZ" firstAttribute="leading" secondItem="k58-zM-2wk" secondAttribute="leading" constant="175" type="user" id="gKW-RS-eM6"/>
-                                    <constraint firstItem="v6h-aM-2W0" firstAttribute="centerY" secondItem="k58-zM-2wk" secondAttribute="centerY" type="default" id="kpe-dd-fuh"/>
-                                    <constraint firstItem="jqp-jt-shZ" firstAttribute="top" secondItem="k58-zM-2wk" secondAttribute="top" constant="7" id="vWx-Xg-6Cj"/>
+                                    <constraint firstItem="jqp-jt-shZ" firstAttribute="bottom" secondItem="v6h-aM-2W0" secondAttribute="bottom" type="default" id="gL7-uD-FBZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cj5-PA-3fX" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="iXB-pq-PqB"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KoI-3O-1la">
@@ -92,7 +101,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="4yv-SG-zhk" kind="push" id="FzO-Pz-5O7"/>
+                                            <segue destination="4yv-SG-zhk" kind="push" identifier="Chat" id="FzO-Pz-5O7"/>
                                         </connections>
                                     </button>
                                 </subviews>

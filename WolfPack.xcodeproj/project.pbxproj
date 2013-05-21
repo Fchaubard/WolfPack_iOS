@@ -279,7 +279,7 @@
 		ABF06AB01743521900544BB0 /* MessageEntrySendButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntrySendButtonPressed.png; sourceTree = "<group>"; };
 		ABF06AB11743521900544BB0 /* MessageEntryBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryBackground.png; sourceTree = "<group>"; };
 		ABF06AB21743521A00544BB0 /* MessageEntryInputField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryInputField.png; sourceTree = "<group>"; };
-		ABF06AB717436E0F00544BB0 /* wolfpack_icon_ios.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfpack_icon_ios.png; sourceTree = "<group>"; };
+		ABF06AB717436E0F00544BB0 /* wolfpack_icon_ios.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wolfpack_icon_ios.png; path = ../wolfpack_icon_ios.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,7 +303,6 @@
 		AB461E6716E15B47009FDC9A = {
 			isa = PBXGroup;
 			children = (
-				ABF06AB717436E0F00544BB0 /* wolfpack_icon_ios.png */,
 				AB461E7C16E15B47009FDC9A /* WolfPack */,
 				AB461E7516E15B47009FDC9A /* Frameworks */,
 				AB461E7316E15B47009FDC9A /* Products */,
@@ -350,6 +349,7 @@
 		AB461E7D16E15B47009FDC9A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABF06AB717436E0F00544BB0 /* wolfpack_icon_ios.png */,
 				ABF06AAD1743132A00544BB0 /* arrow.png */,
 				AB981EF6173CBF6B00FB0FAF /* appicon.png */,
 				AB62DF3E173C242600A0E630 /* SVProgressHUD.h */,
@@ -470,24 +470,6 @@
 				ABF06AA41742F4A100544BB0 /* HPGrowingTextView.m */,
 				ABF06AA51742F4A200544BB0 /* HPTextViewInternal.h */,
 				ABF06AA61742F4A200544BB0 /* HPTextViewInternal.m */,
-				ABF06AAF1743521800544BB0 /* MessageEntrySendButton.png */,
-				ABF06AB01743521900544BB0 /* MessageEntrySendButtonPressed.png */,
-				ABF06AB11743521900544BB0 /* MessageEntryBackground.png */,
-				ABF06AB21743521A00544BB0 /* MessageEntryInputField.png */,
-				ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */,
-				ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */,
-				ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */,
-				ABF06A861742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed@2x.png */,
-				ABF06A871742E4F900544BB0 /* Chat_Footer_BG.png */,
-				ABF06A881742E4F900544BB0 /* Chat_Footer_BG@2x.png */,
-				ABF06A891742E4F900544BB0 /* Chat_Footer_Smiley_Icon.png */,
-				ABF06A8A1742E4F900544BB0 /* Chat_Footer_Smiley_Icon@2x.png */,
-				ABF06A8B1742E4FA00544BB0 /* Chat_Footer_Smiley_Icon_Pressed.png */,
-				ABF06A8C1742E4FA00544BB0 /* Chat_Footer_Smiley_Icon_Pressed@2x.png */,
-				ABF06A8D1742E4FA00544BB0 /* Chat_Send_Button.png */,
-				ABF06A8E1742E4FA00544BB0 /* Chat_Send_Button@2x.png */,
-				ABF06A8F1742E4FA00544BB0 /* Chat_Send_Button_Pressed.png */,
-				ABF06A901742E4FA00544BB0 /* Chat_Send_Button_Pressed@2x.png */,
 				AB269CBA1730B49E00B8F70C /* HorizontalTextScroller.h */,
 				AB269CBB1730B49E00B8F70C /* HorizontalTextScroller.m */,
 				ABB428B6172B851D00F338B5 /* ChatTableViewController.h */,
@@ -514,6 +496,24 @@
 		AB6CD1FE16F39C0400C82052 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				ABF06AAF1743521800544BB0 /* MessageEntrySendButton.png */,
+				ABF06AB01743521900544BB0 /* MessageEntrySendButtonPressed.png */,
+				ABF06AB11743521900544BB0 /* MessageEntryBackground.png */,
+				ABF06AB21743521A00544BB0 /* MessageEntryInputField.png */,
+				ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */,
+				ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */,
+				ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */,
+				ABF06A861742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed@2x.png */,
+				ABF06A871742E4F900544BB0 /* Chat_Footer_BG.png */,
+				ABF06A881742E4F900544BB0 /* Chat_Footer_BG@2x.png */,
+				ABF06A891742E4F900544BB0 /* Chat_Footer_Smiley_Icon.png */,
+				ABF06A8A1742E4F900544BB0 /* Chat_Footer_Smiley_Icon@2x.png */,
+				ABF06A8B1742E4FA00544BB0 /* Chat_Footer_Smiley_Icon_Pressed.png */,
+				ABF06A8C1742E4FA00544BB0 /* Chat_Footer_Smiley_Icon_Pressed@2x.png */,
+				ABF06A8D1742E4FA00544BB0 /* Chat_Send_Button.png */,
+				ABF06A8E1742E4FA00544BB0 /* Chat_Send_Button@2x.png */,
+				ABF06A8F1742E4FA00544BB0 /* Chat_Send_Button_Pressed.png */,
+				ABF06A901742E4FA00544BB0 /* Chat_Send_Button_Pressed@2x.png */,
 				AB6CD1FF16F39C2A00C82052 /* bubbleMine.png */,
 				AB6CD20016F39C2A00C82052 /* bubbleMine@2x.png */,
 				AB6CD20116F39C2A00C82052 /* bubbleSomeone.png */,

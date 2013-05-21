@@ -193,6 +193,7 @@
     [self doMainThreadStuff];
     
     [bubbleTable reloadData];
+    [self scrollToBottom];
     
 }
 

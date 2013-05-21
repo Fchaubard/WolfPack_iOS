@@ -341,7 +341,7 @@
         }
     }
     if ([segue.identifier isEqualToString:@"Chat"]) {
-        
+        [SVProgressHUD dismiss];
         
     }
 }
@@ -362,6 +362,7 @@
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

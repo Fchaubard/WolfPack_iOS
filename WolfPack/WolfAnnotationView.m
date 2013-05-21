@@ -52,10 +52,16 @@ UserTouchState touchState;
         self.name = [[UILabel alloc] init];
         self.name.text = [self.annotation title];
         self.name.textAlignment=NSTextAlignmentCenter;
+        [self.name sizeToFit];
         
         self.status = [[UILabel alloc] init];
         self.status.text = [self.annotation subtitle];
         self.status.textAlignment=NSTextAlignmentCenter;
+        self.status.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.9];
+        self.status.layer.cornerRadius = 0.5;
+        //self.status.shadowOffset = CGSizeMake(0,3);
+        //self.status.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+        //[self.status sizeToFit];
         
         [self addSubview:_smallView];
         [self addSubview:_bigView];
@@ -63,7 +69,7 @@ UserTouchState touchState;
      
         
         [self addGestureRecognizer:_recognizer];
-        thumbSize = 10;
+        thumbSize = 20;
         touchState = NotTouching;
         animating = false;
         [self showSmallView];
@@ -172,17 +178,19 @@ UserTouchState touchState;
         CGPoint newPoint    = [[touches anyObject] locationInView:self];
         //CGPoint prevPoint   = [[touches anyObject] previousLocationInView:self];
       
-       
-        
-        
-        
         double rad1 = [self calcRadius:newPoint.x-deltaInWidth andDeltY:newPoint.y - height];
         
-        touchPoint1 =  [self creatTouchPointAt:deltaInWidth andHeight:height andRadius:30*[self sigmoidAtValue:rad1]];
+        touchPoint1 =  [self creatTouchPointAt:deltaInWidth
+                                     andHeight:height
+                                     andRadius:30*[self sigmoidAtValue:rad1]
+                                      andColor:[UIColor colorWithRed:(82.0/255.0) green:(239.0/255.0) blue:(140.0/255.0) alpha:0.9]];
         
         double rad2 = [self calcRadius:newPoint.x-(self.bounds.size.width-deltaInWidth) andDeltY:newPoint.y - height];
         
-          touchPoint2 =  [self creatTouchPointAt:(self.bounds.size.width-deltaInWidth) andHeight:height andRadius:30*[self sigmoidAtValue:rad2]];
+        touchPoint2 =  [self creatTouchPointAt:(self.bounds.size.width-deltaInWidth)
+                                       andHeight:height
+                                       andRadius:30*[self sigmoidAtValue:rad2]
+                                        andColor:[UIColor colorWithRed:(247.0/255.0) green:(93.0/255.0) blue:(93.0/255.0) alpha:0.9]];
        
         if (rad1>thumbSize && rad2>thumbSize) {
             touchState = MessingAround;
@@ -191,10 +199,10 @@ UserTouchState touchState;
                 [touchPoint1 removeFromSuperlayer];
                 NSLog(@"add %@", [self.annotation title]);
                 if ([(Friend *)self.annotation added]==@0) {
-                    [self hotSpotFunctionalityTo:touchPoint1 WithText:@"Add Friend?"];
+                    [self hotSpotFunctionalityTo:touchPoint1 WithText:@"Add to chat"];
                     
                 }else{
-                    [self hotSpotFunctionalityTo:touchPoint1 WithText:@"Remove Friend?"];
+                    [self hotSpotFunctionalityTo:touchPoint1 WithText:@"Remove from chat"];
                     
                 }
                 touchState = AddingAFriend;
@@ -205,10 +213,10 @@ UserTouchState touchState;
             if (touchState != HidingFromAFriend) {
                 [touchPoint2 removeFromSuperlayer];
                 if ([(Friend *)self.annotation blocked]==@0) {
-                    [self hotSpotFunctionalityTo:touchPoint2 WithText:@"Hide From Friend?"];
+                    [self hotSpotFunctionalityTo:touchPoint2 WithText:@"Hide From Friend"];
                     
                 }else{
-                    [self hotSpotFunctionalityTo:touchPoint2 WithText:@"Unhide From Friend?"];
+                    [self hotSpotFunctionalityTo:touchPoint2 WithText:@"Unhide From Friend"];
                     
                 }
                
@@ -226,6 +234,13 @@ UserTouchState touchState;
         
         if (touchState == MessingAround) {
             self.status.text = [self.annotation subtitle];
+            CGSize status_stringsize = [self.status.text sizeWithFont:[UIFont systemFontOfSize:20]];
+            
+            
+            [self.status setFrame:CGRectMake(self.bounds.size.width/2 - status_stringsize.width/2,
+                                             self.bounds.size.height/2 -self.radius-status_stringsize.height*1.2,
+                                             status_stringsize.width, status_stringsize.height*1.2)];
+            [self.status sizeToFit];
         }
         [touchPoint1 removeFromSuperlayer];
         [touchPoint2 removeFromSuperlayer];
@@ -258,12 +273,20 @@ UserTouchState touchState;
     if (self.status.text!=text) {
         [self fadeOutLabel];
         self.status.text = text;
+        CGSize status_stringsize = [self.status.text sizeWithFont:[UIFont systemFontOfSize:20]];
+        
+        
+        [self.status setFrame:CGRectMake(self.bounds.size.width/2 - status_stringsize.width/2,
+                                         self.bounds.size.height/2 -self.radius-status_stringsize.height*1.2,
+                                         status_stringsize.width, status_stringsize.height*1.2)];
+        [self.status sizeToFit];
         [self fadeInLabel];
     }
     
     
 }
--(double)calcRadius:(double)deltX andDeltY:(double)deltY{
+-(double)calcRadius:(double)deltX
+           andDeltY:(double)deltY{
     
     double radius = sqrt((deltX*deltX) + (deltY*deltY));
     return radius = radius<thumbSize? 0:radius; // floor the value so the size doesnt go bigger
@@ -441,13 +464,16 @@ UserTouchState touchState;
     return circlePath;
 }
 
--(CAShapeLayer *)creatTouchPointAt:(double)x andHeight:(double)y andRadius:(double)rad{
+-(CAShapeLayer *)creatTouchPointAt:(double)x
+                         andHeight:(double)y
+                         andRadius:(double)rad
+                          andColor:(UIColor *)color{
     UIBezierPath* circlePath =[UIBezierPath bezierPathWithArcCenter:CGPointMake(x, y) radius:rad startAngle:DEGREES_TO_RADIANS(0.1) endAngle:DEGREES_TO_RADIANS(0) clockwise:YES];
     
     CAShapeLayer *spot = [CAShapeLayer layer];
     spot.path = circlePath.CGPath;
     spot.strokeColor = [[UIColor blackColor] CGColor];
-    spot.fillColor   = [[UIColor colorWithRed:0 green:255 blue:128 alpha:0.9] CGColor];
+    spot.fillColor   = [color CGColor];
     spot.lineWidth   = 1.0;
     spot.strokeEnd   = 1.0;
     
@@ -481,14 +507,28 @@ UserTouchState touchState;
         animating = false;
         height = self.bounds.size.height/2 -self.radius*0.6;
         deltaInWidth = self.bounds.size.width*1.1;
-        touchPoint1 = [self creatTouchPointAt:deltaInWidth andHeight:height andRadius:10];
-        touchPoint2 = [self creatTouchPointAt:self.bounds.size.width-deltaInWidth andHeight:height andRadius:10];
+        touchPoint1 = [self creatTouchPointAt:deltaInWidth
+                                    andHeight:height
+                                    andRadius:10
+                                     andColor:[UIColor colorWithRed:(82.0/255.0) green:(239.0/255.0) blue:(140.0/255.0) alpha:0.9]];
+        touchPoint2 = [self creatTouchPointAt:self.bounds.size.width-deltaInWidth
+                                    andHeight:height
+                                    andRadius:10
+                                     andColor:[UIColor colorWithRed:(247.0/255.0) green:(93.0/255.0) blue:(93.0/255.0) alpha:0.9]];
         self.status.hidden =false;
         self.name.hidden =true;
-        // place the status
-        float width = 200;
+        // place the status at the top
+        
+       
         self.status.text = [self.annotation subtitle];
-        [self.status setFrame:CGRectMake(self.bounds.size.width/2 - width/2,self.bounds.size.height/2 -self.radius*1.5, width, 50)];
+        CGSize status_stringsize = [self.status.text sizeWithFont:[UIFont systemFontOfSize:20]];
+        
+    
+        [self.status setFrame:CGRectMake(self.bounds.size.width/2 - status_stringsize.width/2,
+                                         self.bounds.size.height/2 -self.radius-status_stringsize.height*1.2,
+                                         status_stringsize.width, status_stringsize.height*1.2)];
+        [self.status sizeToFit];
+        
         [self.status setClipsToBounds:FALSE];
         
        
@@ -526,7 +566,7 @@ UserTouchState touchState;
     scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
     scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)];
     scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-    scaleAnim.duration = 0.17;
+    scaleAnim.duration = 0.2;
     scaleAnim.removedOnCompletion = NO;
     animating = true;
     [scaleAnim setDelegate:self];
