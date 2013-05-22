@@ -12,14 +12,17 @@
 @implementation WolfAnnotationView
 
 CGPoint startPoint;
-CAShapeLayer *circle;
-CAShapeLayer *touchPoint1;
-CAShapeLayer *touchPoint2;
+NSMutableArray *circle;
+//CAShapeLayer *touchPoint1;
+//CAShapeLayer *touchPoint2;
+NSMutableArray *imagesForCircle;
+
 double height;
 double deltaInWidth;
 double defaultTouchSize;
 bool animating;
 double thumbSize;
+double vspacer = 10.0;
 CABasicAnimation *scaleAnim;
 
 typedef enum {
@@ -66,7 +69,7 @@ UserTouchState touchState;
         [self addSubview:_smallView];
         [self addSubview:_bigView];
         
-     
+        
         
         [self addGestureRecognizer:_recognizer];
         thumbSize = 20;
@@ -85,27 +88,47 @@ UserTouchState touchState;
 
 -(void)showBigView{
     
-        [self.smallView setHidden:true];
-        [self.bigView setHidden:false];
-        [circle removeFromSuperlayer];
-        [touchPoint1 removeFromSuperlayer];
-        [touchPoint2 removeFromSuperlayer];
+    [self.smallView setHidden:true];
+    [self.bigView setHidden:false];
+    for (CAShapeLayer* shape in circle) {
+        [shape removeFromSuperlayer];
+    }
+    for (CALayer* shape in imagesForCircle) {
+       // [shape removeFromSuperlayer];
+    }
+
+    //[touchPoint1 removeFromSuperlayer];
+    //[touchPoint2 removeFromSuperlayer];
+
+
+    circle = nil;
+    
+
+    imagesForCircle = [[NSMutableArray alloc] init];
+    [imagesForCircle addObject:(id)[[UIImage imageNamed:@"01-refresh.png"] CGImage]];
+    [imagesForCircle addObject:(id)[[UIImage imageNamed:@"arrow.png"] CGImage]];
     
     
-        circle = nil;
-    
-        circle =[self createRadialView:self.radius];
-        [self.layer addSublayer:circle];
-        [self setNeedsDisplay];
+    circle =[self createRadialView:self.radius withNumberOfPieSlices:3];
+
+    for (CAShapeLayer* shape in circle) {
+        [self.layer addSublayer:shape];
+    }
+    [self setNeedsDisplay];
     
 }
 
 -(void)showSmallView{
     [self.smallView setHidden:false];
     [self.bigView setHidden:true];
-    [circle removeFromSuperlayer];
-    [touchPoint1 removeFromSuperlayer];
-    [touchPoint2 removeFromSuperlayer];
+    for (CAShapeLayer* shape in circle) {
+        [shape removeFromSuperlayer];
+    }
+    for (CALayer* shape in imagesForCircle) {
+       // [shape removeFromSuperlayer];
+    }
+    //[touchPoint1 removeFromSuperlayer];
+    //[touchPoint2 removeFromSuperlayer];
     circle = nil;
     if ([(Friend *)self.annotation blocked]==@1) {
         [self.smallView setAlpha:0.5];
@@ -169,8 +192,11 @@ UserTouchState touchState;
     NSLog(@"%f %f", [[touches anyObject] locationInView:self].x, [[touches anyObject] locationInView:self].y );
     //if (self.state == UIGestureRecognizerStateFailed)
     //    return;
-    [touchPoint1 removeFromSuperlayer];
-    [touchPoint2 removeFromSuperlayer];
+    //[touchPoint1 removeFromSuperlayer];
+    //[touchPoint2 removeFromSuperlayer];
+    for (CALayer* shape in imagesForCircle) {
+        //[shape removeFromSuperlayer];
+    }
     if (!animating) {
         
     
@@ -178,6 +204,7 @@ UserTouchState touchState;
         CGPoint newPoint    = [[touches anyObject] locationInView:self];
         //CGPoint prevPoint   = [[touches anyObject] previousLocationInView:self];
       
+        /*
         double rad1 = [self calcRadius:newPoint.x-deltaInWidth andDeltY:newPoint.y - height];
         
         touchPoint1 =  [self creatTouchPointAt:deltaInWidth
@@ -191,65 +218,106 @@ UserTouchState touchState;
                                        andHeight:height
                                        andRadius:30*[self sigmoidAtValue:rad2]
                                         andColor:[UIColor colorWithRed:(247.0/255.0) green:(93.0/255.0) blue:(93.0/255.0) alpha:0.9]];
-       
-        if (rad1>thumbSize && rad2>thumbSize) {
-            touchState = MessingAround;
-        }else if(rad1<thumbSize){
-            if (touchState!=AddingAFriend) {
-                [touchPoint1 removeFromSuperlayer];
+       */
+        int touchInLayer = [self getTouchedPieSlice:touches];
+        if (touchInLayer==0) //addingFriend
+        {
+            if (touchState != AddingAFriend) {
+                //[touchPoint2 removeFromSuperlayer];
+                
                 NSLog(@"add %@", [self.annotation title]);
                 if ([(Friend *)self.annotation added]==@0) {
-                    [self hotSpotFunctionalityTo:touchPoint1 WithText:@"Add to chat"];
+                    //[self hotSpotFunctionalityTo:touchPoint1 WithText:@"Add to chat"];
+                    [self changeStatusText:@"Add to chat"];
                     
                 }else{
-                    [self hotSpotFunctionalityTo:touchPoint1 WithText:@"Remove from chat"];
-                    
+                    //[self hotSpotFunctionalityTo:touchPoint1 WithText:@"Remove from chat"];
+                    [self changeStatusText:@"Remove from chat"];
                 }
                 touchState = AddingAFriend;
             }
-            touchPoint1.strokeColor = [[UIColor whiteColor] CGColor];
-            touchPoint1.fillColor   = [[UIColor whiteColor] CGColor];
-        }else if(rad2<thumbSize){
+        }else if(touchInLayer==1){
             if (touchState != HidingFromAFriend) {
-                [touchPoint2 removeFromSuperlayer];
+                //[touchPoint2 removeFromSuperlayer];
                 if ([(Friend *)self.annotation blocked]==@0) {
-                    [self hotSpotFunctionalityTo:touchPoint2 WithText:@"Hide From Friend"];
-                    
+                    //[self hotSpotFunctionalityTo:touchPoint2 WithText:@"Hide From Friend"];
+                    [self changeStatusText:@"Hide From Friend"];
                 }else{
-                    [self hotSpotFunctionalityTo:touchPoint2 WithText:@"Unhide From Friend"];
-                    
+                    //[self hotSpotFunctionalityTo:touchPoint2 WithText:@"Unhide From Friend"];
+                    [self changeStatusText:@"UnHide From Friend"];
                 }
-               
                 touchState = HidingFromAFriend;
             }
-            touchPoint2.strokeColor = [[UIColor whiteColor] CGColor];
-            touchPoint2.fillColor   = [[UIColor whiteColor] CGColor];
+        }else if(touchInLayer==2){
+            
+            if (![self.status.text isEqualToString:@"WOLF DANCE!"]) {
+               [self changeStatusText:@"WOLF DANCE!"]; 
+            }
+            
+            
+            
         }else{
-            NSLog(@"rad1 and rad2 issue");
-        }
-        
-      
-        
-      
-        
-        if (touchState == MessingAround) {
+            // return to normal
             self.status.text = [self.annotation subtitle];
             CGSize status_stringsize = [self.status.text sizeWithFont:[UIFont systemFontOfSize:20]];
             
             
-            [self.status setFrame:CGRectMake(self.bounds.size.width/2 - status_stringsize.width/2,
-                                             self.bounds.size.height/2 -self.radius-status_stringsize.height*1.2,
+            [self.status setFrame:CGRectMake(self.bounds.size.width/2 - status_stringsize.width/2, self.bounds.size.height/2 -self.radius-status_stringsize.height*1.2 -vspacer,
                                              status_stringsize.width, status_stringsize.height*1.2)];
             [self.status sizeToFit];
+            NSLog(@"not in either");
+            touchState=MessingAround;
         }
-        [touchPoint1 removeFromSuperlayer];
-        [touchPoint2 removeFromSuperlayer];
-        [self.layer addSublayer:touchPoint1];
-        [touchPoint1 setNeedsDisplay];
-        [self.layer addSublayer:touchPoint2];
-        [touchPoint2 setNeedsDisplay];
+        
             
     }
+}
+-(int)getTouchedPieSlice:(NSSet *)touches{
+    
+    int touchInLayer = -1;
+    //for (UITouch *touch in touches) {
+        CGPoint touchLocation = [[touches anyObject] locationInView:self];
+        //CGPoint touchLocation =newPoint;
+        for (int i=0; i<[circle count]; i++) {
+            CAShapeLayer *shape = [circle objectAtIndex:i];
+            if (CGPathContainsPoint(shape.path, 0, touchLocation, YES)) {
+                // This touch is in this shape layer
+                touchInLayer = i;
+                [shape setFillColor:[UIColor cyanColor].CGColor];
+                NSLog(@"touch in layer %d",i);
+                break;
+            }else{
+                shape.fillColor   = [[UIColor colorWithWhite:0.4 alpha:0.8] CGColor];
+            }
+            
+            
+        }
+    for (int i=0; i<[circle count]; i++) {
+        CAShapeLayer *shape = [circle objectAtIndex:i];
+        if (i!=touchInLayer) {
+            shape.fillColor   = [[UIColor colorWithWhite:0.4 alpha:0.8] CGColor];
+        }
+        
+        
+    }
+    //}
+    return touchInLayer;
+}
+-(void)changeStatusText:(NSString *)text{
+    
+    if (self.status.text!=text) {
+        [self fadeOutLabel];
+        self.status.text = text;
+        CGSize status_stringsize = [self.status.text sizeWithFont:[UIFont systemFontOfSize:20]];
+        
+        
+        [self.status setFrame:CGRectMake(self.bounds.size.width/2 - status_stringsize.width/2,
+                                         self.bounds.size.height/2 -self.radius-status_stringsize.height*1.2-vspacer,
+                                         status_stringsize.width, status_stringsize.height*1.2)];
+        [self.status sizeToFit];
+        [self fadeInLabel];
+    }
+
 }
 
 -(void) fadeInLabel
@@ -270,19 +338,7 @@ UserTouchState touchState;
 -(void)hotSpotFunctionalityTo:(CAShapeLayer *)shape WithText:(NSString*)text{
     shape.strokeColor = [[UIColor whiteColor] CGColor];
     shape.fillColor   = [[UIColor whiteColor] CGColor];
-    if (self.status.text!=text) {
-        [self fadeOutLabel];
-        self.status.text = text;
-        CGSize status_stringsize = [self.status.text sizeWithFont:[UIFont systemFontOfSize:20]];
-        
-        
-        [self.status setFrame:CGRectMake(self.bounds.size.width/2 - status_stringsize.width/2,
-                                         self.bounds.size.height/2 -self.radius-status_stringsize.height*1.2,
-                                         status_stringsize.width, status_stringsize.height*1.2)];
-        [self.status sizeToFit];
-        [self fadeInLabel];
-    }
-    
+    [self changeStatusText:text];
     
 }
 -(double)calcRadius:(double)deltX
@@ -305,9 +361,9 @@ UserTouchState touchState;
 {
     [super touchesCancelled:touches withEvent:event];
     NSLog(@"cancelled");
-    
-    double rad1 = [self calcRadius:[[touches anyObject] locationInView:self].x-deltaInWidth andDeltY:[[touches anyObject] locationInView:self].y - height];
-    if (rad1<thumbSize) {
+    int touchInLayer = [self getTouchedPieSlice:touches];
+   
+    if (touchInLayer==0) {
         if ([(Friend *)self.annotation added]==@0) {
             NSLog(@"add %@", [self.annotation title]);
             [(Friend *)self.annotation setAdded:@1];
@@ -320,27 +376,32 @@ UserTouchState touchState;
             [SVProgressHUD showSuccessWithStatus:@"Removed"];
         }
     }
-    
-    
-    
-    
-    double rad2 = [self calcRadius:[[touches anyObject] locationInView:self].x-(self.bounds.size.width-deltaInWidth) andDeltY:[[touches anyObject] locationInView:self].y - height];
-    
-    if (rad2<thumbSize) {
+    else if(touchInLayer==1){
         if ([(Friend *)self.annotation blocked]==@0) {
             NSLog(@"block %@", [self.annotation title]);
             [(Friend *)self.annotation setBlocked:@1];
             [self hideFromFriendOnServer];
+            
+            [SVProgressHUD showSuccessWithStatus:@"Hidden From"];
         }else{
             NSLog(@"unblock %@", [self.annotation title]);
             [(Friend *)self.annotation setBlocked:@0];
             [self unhideFromFriendOnServer];
+            
+            [SVProgressHUD showSuccessWithStatus:@"Unhidden From"];
         }
+
     }
-    
-    
+   
     touchState = NotTouching;
     [self showSmallView];
+    if(touchInLayer==2){
+        
+        [self spinem];
+        [SVProgressHUD showSuccessWithStatus:@"WOLF DANCE!"];
+        
+        
+    }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -350,8 +411,9 @@ UserTouchState touchState;
     NSLog(@"ended");
     
     
-    double rad1 = [self calcRadius:[[touches anyObject] locationInView:self].x-deltaInWidth andDeltY:[[touches anyObject] locationInView:self].y - height];
-    if (rad1<thumbSize) {
+    int touchInLayer = [self getTouchedPieSlice:touches];
+    
+    if (touchInLayer==0) {
         if ([(Friend *)self.annotation added]==@0) {
             NSLog(@"add %@", [self.annotation title]);
             [(Friend *)self.annotation setAdded:@1];
@@ -364,28 +426,43 @@ UserTouchState touchState;
             [SVProgressHUD showSuccessWithStatus:@"Removed"];
         }
     }
-    
-    
-    
-    double rad2 = [self calcRadius:[[touches anyObject] locationInView:self].x-(self.bounds.size.width-deltaInWidth) andDeltY:[[touches anyObject] locationInView:self].y - height];
-    
-    if (rad2<thumbSize) {
+    else if(touchInLayer==1){
         if ([(Friend *)self.annotation blocked]==@0) {
             NSLog(@"block %@", [self.annotation title]);
             [(Friend *)self.annotation setBlocked:@1];
             [self hideFromFriendOnServer];
+            
+            [SVProgressHUD showSuccessWithStatus:@"Hidden From"];
         }else{
             NSLog(@"unblock %@", [self.annotation title]);
             [(Friend *)self.annotation setBlocked:@0];
             [self unhideFromFriendOnServer];
+            
+            [SVProgressHUD showSuccessWithStatus:@"Unhidden From"];
         }
+        
     }
-    
-    
-    
     touchState = NotTouching;
     [self showSmallView];
     
+    if(touchInLayer==2){
+        
+        [self spinem];
+        [SVProgressHUD showSuccessWithStatus:@"WOLF DANCE!"];
+        
+    }
+}
+
+-(void)spinem{
+    
+    [UIView animateWithDuration:0.5 animations:^{
+       
+        [self.smallView setTransform:CGAffineTransformRotate(self.smallView.transform,3.14159)];
+    } completion:^(BOOL finished){
+        [UIView animateWithDuration:0.5 animations:^{
+         [self.smallView setTransform:CGAffineTransformRotate(self.smallView.transform,3.14159)];
+        }];
+    }];
 }
 
 -(void)addFriendOnServer{
@@ -445,23 +522,42 @@ UserTouchState touchState;
 
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
--(UIBezierPath *)createRadialBezPath:(double)radius{
+-(UIBezierPath *)createRadialBezPath:(double)radius
+                              number:(int)number
+                                  of:(int)total{
     
-    double angle = DEGREES_TO_RADIANS(45);
-    UIBezierPath* circlePath =[UIBezierPath bezierPath];
-    [circlePath moveToPoint:CGPointMake( self.bounds.size.width/2, self.bounds.size.height/2)];
+    double angle = DEGREES_TO_RADIANS(45); // size of a pie slice
+    double spacer = DEGREES_TO_RADIANS(0);
+    double hspacer = 4.0;
     
-    [circlePath addLineToPoint:CGPointMake(self.bounds.size.width/2-radius*cos(angle),self.bounds.size.height/2-radius*sin(angle))];
     
-    /*[circlePath addCurveToPoint:CGPointMake(self.bounds.origin.x+2*cos(DEGREES_TO_RADIANS(45))*radius,self.bounds.origin.y-radius)
-     controlPoint1:CGPointMake( self.bounds.size.width/2-5, self.bounds.size.height/2 - 2*radius)
-     controlPoint2:CGPointMake(self.bounds.size.width/2+5, self.bounds.size.height/2 - 2*radius)];*/
-    [circlePath addArcWithCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2) radius:radius startAngle:DEGREES_TO_RADIANS(270)-angle endAngle:DEGREES_TO_RADIANS(270)+angle clockwise:YES];
+    double totalAngle = (total+1)*(angle+spacer) - spacer;
+    if (totalAngle<=M_PI) {
+        
+        double angleOfXAxis = ((M_PI) - totalAngle)/2;
+        
+        UIBezierPath* circlePath =[UIBezierPath bezierPath];
+        double startWidth = self.bounds.size.width/2 +(total-number)*hspacer;
+        double startHeight = self.bounds.size.height/2 -vspacer;
+        [circlePath moveToPoint:CGPointMake( startWidth, startHeight)];
+        
+        [circlePath addLineToPoint:CGPointMake(startWidth-radius*cos(angleOfXAxis+(total-number)*(angle+spacer)),startHeight-radius*sin(angleOfXAxis+(total-number)*(angle+spacer)))];
+        
+        [circlePath addArcWithCenter:CGPointMake(startWidth, startHeight)
+                              radius:radius
+                          startAngle:DEGREES_TO_RADIANS(180)+angleOfXAxis+(total-number)*(angle+spacer)
+                            endAngle:DEGREES_TO_RADIANS(180)+angleOfXAxis+(total-number+1)*(angle) clockwise:YES];
+        
+        [circlePath addLineToPoint:CGPointMake(startWidth, startHeight)];
+        //[circlePath addLineToPoint:CGPointMake( self.bounds.size.width/2, self.bounds.size.height/2-self.radius)];
+        
+        return circlePath;
+        
+    }else{
+        // handle a biggg radial view..
+        return nil;
+    }
     
-    [circlePath addLineToPoint:CGPointMake( self.bounds.size.width/2, self.bounds.size.height/2)];
-    [circlePath addLineToPoint:CGPointMake( self.bounds.size.width/2, self.bounds.size.height/2-self.radius)];
-    
-    return circlePath;
 }
 
 -(CAShapeLayer *)creatTouchPointAt:(double)x
@@ -507,7 +603,7 @@ UserTouchState touchState;
         animating = false;
         height = self.bounds.size.height/2 -self.radius*0.6;
         deltaInWidth = self.bounds.size.width*1.1;
-        touchPoint1 = [self creatTouchPointAt:deltaInWidth
+        /*touchPoint1 = [self creatTouchPointAt:deltaInWidth
                                     andHeight:height
                                     andRadius:10
                                      andColor:[UIColor colorWithRed:(82.0/255.0) green:(239.0/255.0) blue:(140.0/255.0) alpha:0.9]];
@@ -515,6 +611,7 @@ UserTouchState touchState;
                                     andHeight:height
                                     andRadius:10
                                      andColor:[UIColor colorWithRed:(247.0/255.0) green:(93.0/255.0) blue:(93.0/255.0) alpha:0.9]];
+         */
         self.status.hidden =false;
         self.name.hidden =true;
         // place the status at the top
@@ -525,52 +622,63 @@ UserTouchState touchState;
         
     
         [self.status setFrame:CGRectMake(self.bounds.size.width/2 - status_stringsize.width/2,
-                                         self.bounds.size.height/2 -self.radius-status_stringsize.height*1.2,
+                                         self.bounds.size.height/2 -self.radius-status_stringsize.height*1.2-vspacer,
                                          status_stringsize.width, status_stringsize.height*1.2)];
         [self.status sizeToFit];
         
         [self.status setClipsToBounds:FALSE];
         
        
-        [touchPoint1 removeFromSuperlayer];
+        /*[touchPoint1 removeFromSuperlayer];
         [touchPoint2 removeFromSuperlayer];
         [self.layer addSublayer:touchPoint1];
         [self.layer addSublayer:touchPoint2];
-        
+        */
         [self addSubview:self.status];
         //[self addSubview:touchPoint1Label];
         //[self addSubview:touchPoint2Label];
         [self setNeedsDisplay];
         NSString *path = [theAnimation keyPath];
-        [circle setValue:[theAnimation toValue] forKeyPath:path];
-        [circle removeAnimationForKey:path];
+        for (CAShapeLayer* shape in circle) {
+            [shape setValue:[theAnimation toValue] forKeyPath:path];
+            [shape removeAnimationForKey:path];
+        }
+       
             
     }
 }
 
--(CAShapeLayer *)createRadialView:(float)radius{
+-(NSMutableArray *)createRadialView:(float)radius withNumberOfPieSlices:(int)numPieSlices{
 
     
+    NSMutableArray *pieSlices = [[NSMutableArray alloc] initWithCapacity:numPieSlices];
+    
+    for (int i=0; i<numPieSlices; i++) {
+        // returns an array of Bez Paths
+        UIBezierPath* circlePathBig = [self createRadialBezPath:self.radius
+                                                         number:i
+                                                             of:(numPieSlices-1)];
         
-    UIBezierPath* circlePathBig = [self createRadialBezPath:self.radius];
+        
+        CAShapeLayer *pieSlice = [CAShapeLayer layer];
+        pieSlice.path = circlePathBig.CGPath;
+        pieSlice.strokeColor = [[UIColor blackColor] CGColor];
+        pieSlice.fillColor   = [[UIColor colorWithWhite:0.4 alpha:0.8] CGColor];
+        pieSlice.lineWidth   = 1.2;
+        pieSlice.strokeEnd   = 1.2;
+        
+        
+        scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
+        scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)];
+        scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+        scaleAnim.duration = 0.2;
+        scaleAnim.removedOnCompletion = NO;
+        animating = true;
+        [scaleAnim setDelegate:self];
+        [pieSlice addAnimation:scaleAnim forKey:nil];
+        [pieSlices addObject:pieSlice];
+    }
     
-    
-    CAShapeLayer *circle = [CAShapeLayer layer];
-    circle.path = circlePathBig.CGPath;
-    circle.strokeColor = [[UIColor blackColor] CGColor];
-    circle.fillColor   = [[UIColor colorWithWhite:0.4 alpha:0.8] CGColor];
-    circle.lineWidth   = 1.2;
-    circle.strokeEnd   = 1.2;
-    
-   
-    scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
-    scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)];
-    scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-    scaleAnim.duration = 0.2;
-    scaleAnim.removedOnCompletion = NO;
-    animating = true;
-    [scaleAnim setDelegate:self];
-    [circle addAnimation:scaleAnim forKey:nil];
     
     /*
    
@@ -600,7 +708,7 @@ UserTouchState touchState;
     */
 
     
-    return circle;
+    return pieSlices;
 /*
     CGContextRef gc = UIGraphicsGetCurrentContext();
     CGContextBeginPath(gc);

@@ -20,19 +20,19 @@
                             </containerView>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k58-zM-2wk">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="I want Mexican!" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6h-aM-2W0">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="I want Mexican!" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6h-aM-2W0">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="tqq-8d-EWd"/>
                                             <constraint firstAttribute="width" constant="163" type="user" id="xLK-iE-k8P"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqp-jt-shZ">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="bxz-J7-k20"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="15"/>
                                         <state key="normal" title="Status!">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,8 +44,11 @@
                                             <action selector="userChangedStatus:" destination="2" eventType="touchUpInside" id="M9w-iZ-vPn"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="What are you hungry for?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cj5-PA-3fX">
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="What are you hungry for?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cj5-PA-3fX">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="vQu-qi-gf5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="13"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -70,8 +73,7 @@
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8nh-Tu-bqJ" customClass="HungrySlider">
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="92" type="user" id="Bh5-Qe-HOo"/>
-                                            <constraint firstAttribute="width" constant="92" id="Sgw-4l-7gN"/>
+                                            <constraint firstAttribute="width" constant="82" id="Xv6-0f-RSs"/>
                                         </constraints>
                                         <connections>
                                             <action selector="userChangedHungryStatus:" destination="2" eventType="editingDidEndOnExit" id="gkS-eR-czP"/>
@@ -79,21 +81,22 @@
                                             <action selector="userChangedHungryStatus:" destination="2" eventType="valueChanged" id="xWv-Jl-c7u"/>
                                         </connections>
                                     </slider>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Not Hungry" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5y-Yf-Y5z">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Not Hungry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5y-Yf-Y5z">
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="LNM-Yu-KOi"/>
                                             <constraint firstAttribute="width" constant="119" id="SHn-f6-tgZ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3p2-MY-bTD">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3p2-MY-bTD">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="114" type="user" id="BGE-Oa-0hc"/>
-                                            <constraint firstAttribute="height" constant="43" type="user" id="TLN-vB-WOs"/>
+                                            <constraint firstAttribute="width" constant="45" id="CbH-n7-KmI"/>
+                                            <constraint firstAttribute="height" constant="45" id="P2j-zT-xCV"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Hungry Chat">
+                                        <state key="normal" image="chatBubble2.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -104,22 +107,30 @@
                                             <segue destination="4yv-SG-zhk" kind="push" identifier="Chat" id="FzO-Pz-5O7"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="wolfEngrave.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="UFP-Ht-yRd">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="65" id="EpK-2Q-zzF"/>
+                                            <constraint firstAttribute="height" constant="65" id="ruw-YI-Bxn"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="3p2-MY-bTD" firstAttribute="centerY" secondItem="KoI-3O-1la" secondAttribute="centerY" type="default" id="3MR-ew-gca"/>
                                     <constraint firstAttribute="height" constant="70" type="user" id="5VQ-4S-pwu"/>
-                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="top" secondItem="KoI-3O-1la" secondAttribute="top" constant="33" id="C10-Ze-cWF"/>
-                                    <constraint firstItem="3p2-MY-bTD" firstAttribute="top" secondItem="v5y-Yf-Y5z" secondAttribute="top" type="user" id="MJO-ct-UjE"/>
-                                    <constraint firstAttribute="trailing" secondItem="3p2-MY-bTD" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="R7A-Aj-DEQ"/>
-                                    <constraint firstAttribute="centerY" secondItem="3p2-MY-bTD" secondAttribute="centerY" type="user" id="Xs4-zY-itA"/>
-                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="leading" secondItem="KoI-3O-1la" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="gHE-RB-lFr"/>
-                                    <constraint firstItem="v5y-Yf-Y5z" firstAttribute="leading" secondItem="KoI-3O-1la" secondAttribute="leading" constant="24" id="hXt-pp-2Rz"/>
+                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="bottom" secondItem="3p2-MY-bTD" secondAttribute="bottom" type="default" id="Llg-oT-WIY"/>
+                                    <constraint firstItem="UFP-Ht-yRd" firstAttribute="bottom" secondItem="KoI-3O-1la" secondAttribute="bottom" type="default" id="MKj-B3-efg"/>
+                                    <constraint firstItem="3p2-MY-bTD" firstAttribute="top" secondItem="v5y-Yf-Y5z" secondAttribute="top" type="default" id="RI9-Wj-qhj"/>
+                                    <constraint firstItem="UFP-Ht-yRd" firstAttribute="centerX" secondItem="KoI-3O-1la" secondAttribute="centerX" type="default" id="c3b-cr-swc"/>
+                                    <constraint firstItem="v5y-Yf-Y5z" firstAttribute="leading" secondItem="KoI-3O-1la" secondAttribute="leading" constant="7" id="e8N-8L-t0o"/>
+                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="centerX" secondItem="v5y-Yf-Y5z" secondAttribute="centerX" type="default" id="uXJ-Hc-TPe"/>
+                                    <constraint firstAttribute="trailing" secondItem="3p2-MY-bTD" secondAttribute="trailing" constant="39" id="xDp-s1-OBS"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" type="user" id="yhI-f2-mXT"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="KoI-3O-1la" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="1hK-Ae-z1H"/>
                             <constraint firstAttribute="trailing" secondItem="k58-zM-2wk" secondAttribute="trailing" constant="33" type="user" id="7nh-nJ-KEq"/>
@@ -673,11 +684,11 @@
             </objects>
             <point key="canvasLocation" x="2862" y="1267"/>
         </scene>
-        <!--Navigation Controller - List-->
+        <!--Navigation Controller - WolfPack-->
         <scene sceneID="smq-0u-Cek">
             <objects>
                 <navigationController id="mdo-qt-xwx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="117-todo.png" id="6hR-RZ-F8K"/>
+                    <tabBarItem key="tabBarItem" title="WolfPack" image="117-todo.png" id="6hR-RZ-F8K"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nzT-l4-z8K">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -762,8 +773,10 @@
         <image name="117-todo.png" width="18" height="19"/>
         <image name="19-gear.png" width="26" height="26"/>
         <image name="71-compass.png" width="24" height="24"/>
+        <image name="chatBubble2.png" width="512" height="512"/>
         <image name="reload.png" width="48" height="48"/>
         <image name="wolf2.png" width="140" height="106"/>
+        <image name="wolfEngrave.jpg" width="84" height="91"/>
         <image name="wolfPackBackground.jpg" width="320" height="460"/>
     </resources>
     <classes>

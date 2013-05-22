@@ -26,7 +26,9 @@
     return self;
 }
 
-
+-(void)changeMode:(int)mode{
+    
+}
 
 
 - (void)viewDidLoad

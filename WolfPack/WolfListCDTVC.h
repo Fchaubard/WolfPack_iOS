@@ -12,4 +12,7 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
+
+-(void)changeMode:(int)mode; // 0 is user is not hungry, 1 is user is hungry
+
 @end
