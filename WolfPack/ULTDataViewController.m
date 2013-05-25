@@ -162,6 +162,7 @@
 {
     [super viewDidAppear:animated];
     
+    // this should never be hit!
     if ([[NSUserDefaults standardUserDefaults] stringForKey:@"token"]) {
         if ([[NSUserDefaults standardUserDefaults] stringForKey:@"deviceToken"]!=@"no")
         {

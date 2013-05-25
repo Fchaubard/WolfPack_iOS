@@ -92,7 +92,7 @@
         [self.statusInputView setHidden:true];
         [self.mapViewController.mapView setHidden:true];
         [self.mapViewController.refreshButton setHidden:true];
-        [self hideTabBar:self.containerTBC];
+        //[self hideTabBar:self.containerTBC];
         [self.containerTBC setSelectedIndex:2];
         
     }else{
@@ -104,7 +104,7 @@
         [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
         
         [self.statusInputView setHidden:true];
-        [self showTabBar:self.containerTBC];
+        //[self showTabBar:self.containerTBC];
         
         
     }
@@ -235,7 +235,7 @@
         [self.hungryLabel setNeedsDisplay];
         [self fadeInLabel];
         
-        [self showTabBar:self.containerTBC];
+        //[self showTabBar:self.containerTBC];
         [self.settingsController switchViews:1]; // switch to settings view
         
         
@@ -259,7 +259,7 @@
         }];
         //[self.mapViewController.mapView setHidden:true];
         //[self.mapViewController.refreshButton setHidden:true];
-        [self hideTabBar:self.containerTBC];
+        //[self hideTabBar:self.containerTBC];
     }
     
     // }
@@ -361,6 +361,17 @@
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"token"]) {
+        if ([[NSUserDefaults standardUserDefaults] stringForKey:@"deviceToken"]!=@"no")
+        {
+            NSLog(@"logged In alreadyyy");
+        }else{
+            NSLog(@"no device token");
+        }
+    }else{
+        NSLog(@"not alraedy logged in");
+          [self performSegueWithIdentifier: @"noToken" sender: self];
+    }
     
 }
 
