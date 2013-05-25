@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "391054772.508056"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "232"
-         endingLineNumber = "232"
+         startingLineNumber = "311"
+         endingLineNumber = "311"
          landmarkName = "-userChangedHungryStatus:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "391054772.508056"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "256"
-         endingLineNumber = "256"
+         startingLineNumber = "335"
+         endingLineNumber = "335"
          landmarkName = "-userChangedHungryStatus:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "391054772.508056"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "226"
-         endingLineNumber = "226"
+         startingLineNumber = "305"
+         endingLineNumber = "305"
          landmarkName = "-userChangedHungryStatus:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "391054772.508056"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "229"
-         endingLineNumber = "229"
+         startingLineNumber = "308"
+         endingLineNumber = "308"
          landmarkName = "-userChangedHungryStatus:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "391054772.508056"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "300"
-         endingLineNumber = "300"
+         startingLineNumber = "379"
+         endingLineNumber = "379"
          landmarkName = "-showTabBar:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -450,11 +450,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "390446205.406013"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "88"
-         endingLineNumber = "88"
+         startingLineNumber = "167"
+         endingLineNumber = "167"
          landmarkName = "-viewDidAppear:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -463,11 +463,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "390446205.406013"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "101"
-         endingLineNumber = "101"
+         startingLineNumber = "180"
+         endingLineNumber = "180"
          landmarkName = "-viewDidAppear:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -515,11 +515,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "390446205.406013"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "108"
-         endingLineNumber = "108"
+         startingLineNumber = "187"
+         endingLineNumber = "187"
          landmarkName = "-viewDidAppear:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -528,11 +528,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "390446205.406013"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "95"
-         endingLineNumber = "95"
+         startingLineNumber = "174"
+         endingLineNumber = "174"
          landmarkName = "-viewDidAppear:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -541,11 +541,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "391054772.508056"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "341"
-         endingLineNumber = "341"
+         startingLineNumber = "420"
+         endingLineNumber = "420"
          landmarkName = "-prepareForSegue:sender:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -580,11 +580,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "390446205.406013"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "152"
-         endingLineNumber = "152"
+         startingLineNumber = "231"
+         endingLineNumber = "231"
          landmarkName = "-userChangedStatus:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -645,24 +645,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "390446205.406013"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
-         landmarkName = "-viewDidLoad"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "390446205.406013"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
+         startingLineNumber = "124"
+         endingLineNumber = "124"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -853,11 +840,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WolfPack/ContainerViewController.m"
-         timestampString = "391054772.508056"
+         timestampString = "391214610.070429"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "185"
-         endingLineNumber = "185"
+         startingLineNumber = "264"
+         endingLineNumber = "264"
          landmarkName = "-updateStatusWithStatus:andAdjective:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1197,6 +1184,19 @@
          startingLineNumber = "369"
          endingLineNumber = "369"
          landmarkName = "-touchesCancelled:withEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "WolfPack/ContainerViewController.m"
+         timestampString = "391214610.070429"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "250"
+         endingLineNumber = "250"
+         landmarkName = "-userTappedToChangeStatus:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

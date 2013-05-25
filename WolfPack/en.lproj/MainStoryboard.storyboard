@@ -44,7 +44,7 @@
                                             <action selector="userChangedStatus:" destination="2" eventType="touchUpInside" id="M9w-iZ-vPn"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="What are you hungry for?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cj5-PA-3fX">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="What are you hungry for?" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cj5-PA-3fX">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="vQu-qi-gf5"/>
                                         </constraints>
@@ -81,15 +81,6 @@
                                             <action selector="userChangedHungryStatus:" destination="2" eventType="valueChanged" id="xWv-Jl-c7u"/>
                                         </connections>
                                     </slider>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Not Hungry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5y-Yf-Y5z">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="LNM-Yu-KOi"/>
-                                            <constraint firstAttribute="width" constant="119" id="SHn-f6-tgZ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="16"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3p2-MY-bTD">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="CbH-n7-KmI"/>
@@ -108,23 +99,41 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="wolfEngrave.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="UFP-Ht-yRd">
+                                        <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="65" id="EpK-2Q-zzF"/>
-                                            <constraint firstAttribute="height" constant="65" id="ruw-YI-Bxn"/>
+                                            <constraint firstAttribute="height" constant="65" id="huS-1m-GHQ"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Dnr-pA-Q8E">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="27" id="z8I-cE-tNw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Not Hungry">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="adjectiveButtonClicked:" destination="2" eventType="touchUpInside" id="Y1h-PU-9nb"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="3p2-MY-bTD" firstAttribute="centerY" secondItem="KoI-3O-1la" secondAttribute="centerY" type="default" id="3MR-ew-gca"/>
                                     <constraint firstAttribute="height" constant="70" type="user" id="5VQ-4S-pwu"/>
-                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="bottom" secondItem="3p2-MY-bTD" secondAttribute="bottom" type="default" id="Llg-oT-WIY"/>
+                                    <constraint firstItem="3p2-MY-bTD" firstAttribute="centerY" secondItem="KoI-3O-1la" secondAttribute="centerY" type="default" id="5zu-pC-RdY"/>
+                                    <constraint firstItem="Dnr-pA-Q8E" firstAttribute="bottom" secondItem="3p2-MY-bTD" secondAttribute="bottom" type="default" id="DRg-an-Fva"/>
+                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="centerX" secondItem="Dnr-pA-Q8E" secondAttribute="centerX" type="default" id="ERK-5S-fHw"/>
                                     <constraint firstItem="UFP-Ht-yRd" firstAttribute="bottom" secondItem="KoI-3O-1la" secondAttribute="bottom" type="default" id="MKj-B3-efg"/>
-                                    <constraint firstItem="3p2-MY-bTD" firstAttribute="top" secondItem="v5y-Yf-Y5z" secondAttribute="top" type="default" id="RI9-Wj-qhj"/>
+                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="leading" secondItem="KoI-3O-1la" secondAttribute="leading" constant="23" id="WqN-uy-XUX"/>
+                                    <constraint firstItem="Dnr-pA-Q8E" firstAttribute="top" secondItem="8nh-Tu-bqJ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Zzx-fM-ivK"/>
                                     <constraint firstItem="UFP-Ht-yRd" firstAttribute="centerX" secondItem="KoI-3O-1la" secondAttribute="centerX" type="default" id="c3b-cr-swc"/>
-                                    <constraint firstItem="v5y-Yf-Y5z" firstAttribute="leading" secondItem="KoI-3O-1la" secondAttribute="leading" constant="7" id="e8N-8L-t0o"/>
-                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="centerX" secondItem="v5y-Yf-Y5z" secondAttribute="centerX" type="default" id="uXJ-Hc-TPe"/>
+                                    <constraint firstItem="Dnr-pA-Q8E" firstAttribute="leading" secondItem="KoI-3O-1la" secondAttribute="leading" type="default" id="fqr-5N-E87"/>
+                                    <constraint firstItem="UFP-Ht-yRd" firstAttribute="leading" secondItem="Dnr-pA-Q8E" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="xB5-51-UbU"/>
                                     <constraint firstAttribute="trailing" secondItem="3p2-MY-bTD" secondAttribute="trailing" constant="39" id="xDp-s1-OBS"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" type="user" id="yhI-f2-mXT"/>
                                 </constraints>
@@ -147,21 +156,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="MKE-qb-12e"/>
                     <connections>
+                        <outlet property="adjectiveButton" destination="Dnr-pA-Q8E" id="T0B-bU-p9g"/>
                         <outlet property="chatButton" destination="3p2-MY-bTD" id="97a-Xi-ZAj"/>
-                        <outlet property="hungryLabel" destination="v5y-Yf-Y5z" id="Mgq-8n-FgU"/>
                         <outlet property="hungrySlider" destination="8nh-Tu-bqJ" id="nce-Ax-uFW"/>
+                        <outlet property="mainLogo" destination="UFP-Ht-yRd" id="aOI-fe-nW2"/>
+                        <outlet property="questionForInput" destination="Cj5-PA-3fX" id="Ir3-9H-anA"/>
                         <outlet property="statusInputView" destination="k58-zM-2wk" id="j0h-lP-i2I"/>
                         <outlet property="statusTextField" destination="v6h-aM-2W0" id="Sur-fM-lGB"/>
                         <segue destination="PDY-2q-Tcf" kind="modal" identifier="noToken" id="R0Q-9k-vQ2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="kq1-H6-p4T">
-                    <connections>
-                        <action selector="userTappedToChangeStatus:" destination="2" id="AaO-W0-cBI"/>
-                        <outlet property="delegate" destination="2" id="fXj-JX-6w7"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="530" y="19"/>
         </scene>
@@ -786,6 +791,131 @@
         <image name="wolfEngrave.jpg" width="84" height="91"/>
         <image name="wolfPackBackground.jpg" width="320" height="460"/>
     </resources>
+    <classes>
+        <class className="ContainerTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerTabBarController.h"/>
+        </class>
+        <class className="ContainerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="adjectiveButtonClicked:" candidateClass="UIButton"/>
+                <relationship kind="action" name="userChangedHungryStatus:"/>
+                <relationship kind="action" name="userChangedStatus:"/>
+                <relationship kind="action" name="userTappedToChangeStatus:"/>
+                <relationship kind="outlet" name="adjectiveButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="chatButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="hungrySlider" candidateClass="HungrySlider"/>
+                <relationship kind="outlet" name="mainLogo" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="questionForInput" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statusInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="statusTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="CoreDataTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
+        </class>
+        <class className="EditSettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSettingsViewController.h"/>
+        </class>
+        <class className="HPGrowingTextView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HPGrowingTextView.h"/>
+        </class>
+        <class className="HorizontalTextScroller" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HorizontalTextScroller.h"/>
+        </class>
+        <class className="HungrySlider" superclassName="UISlider">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HungrySlider.h"/>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="unwindFromEditScreen:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="addFriendButtonRight" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="adjectiveArray" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="destHome" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="destSettings" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="editEmailButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="editNameButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="email" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="password" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="policy" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="resetPasswordButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="terms" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="UIBubbleTableView" superclassName="UITableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIBubbleTableView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bubbleDataSource"/>
+            </relationships>
+        </class>
+        <class className="UIRefreshControl" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+        <class className="ULTDataViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTDataViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButtonPressed:"/>
+                <relationship kind="action" name="signUpNeeded:"/>
+                <relationship kind="action" name="unwindFromLogoutButton:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="Password" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="UserName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ULTFriendsList" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTFriendsList.h"/>
+            <relationships>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="ULTSignUpViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTSignUpViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginNeeded:"/>
+                <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="pNumber" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordConfirm" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="sayPressed:"/>
+                <relationship kind="outlet" name="bubbleTable" candidateClass="UIBubbleTableView"/>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scroller" candidateClass="HorizontalTextScroller"/>
+                <relationship kind="outlet" name="textView" candidateClass="HPGrowingTextView"/>
+            </relationships>
+        </class>
+        <class className="WolfListCDTVC" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WolfListCDTVC.h"/>
+        </class>
+        <class className="WolfMapViewController" superclassName="MapViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WolfMapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="refreshButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

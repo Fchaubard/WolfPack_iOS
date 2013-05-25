@@ -375,7 +375,7 @@ const int TEXT_SPACING = 4;
 - (void)addHomepage
 {
 	//add pickerView
-	self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(INDENT, 3*INDENT, self.view.frame.size.width - 2*INDENT, 50)];
+	/*self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(INDENT, 3*INDENT, self.view.frame.size.width - 2*INDENT, 50)];
 	
 	self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
@@ -384,6 +384,7 @@ const int TEXT_SPACING = 4;
     self.adjectiveArray = [[NSMutableArray alloc] initWithObjects:@"Hungry", @"Exercise", @"Shop", @"Party", nil];
 	
 	[self.scrollView addSubview:self.pickerView];
+     */
 	//end
 	
 	//add addFriend button
@@ -429,31 +430,31 @@ const int TEXT_SPACING = 4;
 }
 
 /*
- Populates self.pickerView
- */
+ //Populates self.pickerView
+ 
 - (NSString*)pickerView:(UIPickerView *)pickerView
 			titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     return [self.adjectiveArray objectAtIndex:row];
 }
 
-/*
- Returns the number of items in self.pickerView
- */
+
+// Returns the number of items in self.pickerView
+ 
 - (NSInteger)pickerView:(UIPickerView *)pickerView
 numberOfRowsInComponent:(NSInteger)component
 {
     return self.adjectiveArray.count;
 }
 
-/*
- Returns the numbers of columns in the self.pickerView
- */
+
+// Returns the numbers of columns in the self.pickerView
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
 	return 1;
 }
-
+*/
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];

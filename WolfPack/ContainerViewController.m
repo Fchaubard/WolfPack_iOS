@@ -12,32 +12,111 @@
 #import "MyCLLocationManager.h"
 #import "SVProgressHUD.h"
 #import "SettingsViewController.h"
+#import "PopoverTVC.h"
 @interface ContainerViewController ()
 
 @property (strong, nonatomic) UITabBarController *containerTBC;
 @property (weak, nonatomic) WolfListCDTVC *listViewController;
 @property (weak, nonatomic) WolfMapViewController *mapViewController;
 @property (weak, nonatomic) SettingsViewController *settingsController;
-@property (strong, nonatomic) IBOutlet UILabel *hungryLabel;
+@property (strong, nonatomic) IBOutlet UIButton *adjectiveButton;
 @property (strong, nonatomic) IBOutlet UIButton *chatButton;
 @property (strong, nonatomic) IBOutlet HungrySlider *hungrySlider;
-@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapped;
 @property (strong, nonatomic) IBOutlet UIView *statusInputView;
 @property (strong, nonatomic) IBOutlet UITextField *statusTextField;
-
+@property (strong, nonatomic) IBOutlet UIImageView *mainLogo;
+@property (strong, nonatomic) IBOutlet UILabel *questionForInput;
+@property (strong, nonatomic) UITapGestureRecognizer *tapped;
+@property (strong, nonatomic) NSMutableArray *possibleAdjectives;
+@property (strong, nonatomic) FPPopoverController *popover;
+@property (strong, nonatomic) NSString* currentAdjective;
 
 
 @property (nonatomic) CGFloat originHeight;
 
 - (IBAction)userChangedHungryStatus:(id)sender;
 - (IBAction)userChangedStatus:(id)sender;
-- (IBAction)userTappedToChangeStatus:(id)sender;
+- (IBAction)userTappedToChangeStatus:(id)sender; // doing this by code
+- (IBAction)adjectiveButtonClicked:(UIButton*)adjectiveButton;
 
 @end
 
 @implementation ContainerViewController
 
 
+
+-(void)selectedTableRow:(NSUInteger)rowNum
+{
+    self.currentAdjective = [self.possibleAdjectives objectAtIndex:rowNum];
+    if (![MyManagedObjectContext isThisUserHungry]) {
+        
+        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",self.currentAdjective] forState:UIControlStateNormal];
+    }else{
+        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"%@",self.currentAdjective] forState:UIControlStateNormal];
+    }
+   
+    
+    //update the input question
+    if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:0]]) {
+        self.questionForInput.text = @"What are you hungry for?";
+        [self.statusTextField setPlaceholder:@"I want Mexican!"];
+    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:1]])
+    {
+        self.questionForInput.text = @"How you gna excercise?";
+        [self.statusTextField setPlaceholder:@"Lets play Soccer!"];
+    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:2]])
+    {
+        self.questionForInput.text = @"What are you studying?";
+        [self.statusTextField setPlaceholder:@"Math sucks!"];
+    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:3]])
+    {
+        self.questionForInput.text = @"Where you raging bra?";
+        [self.statusTextField setPlaceholder:@"TOGA PARTYY!"];
+    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:4]])
+    {
+        self.questionForInput.text = @"Where are you shopping?";
+        [self.statusTextField setPlaceholder:@"Palisades Mall!"];
+    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:5]])
+    {
+        self.questionForInput.text = @"Where do you want to coffee?";
+        [self.statusTextField setPlaceholder:@"Starbucks!"];
+    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:6]])
+    {
+        self.questionForInput.text = @"What do you wanna do?";
+        [self.statusTextField setPlaceholder:@"KITE FLYINGG!"];
+    }
+    [self.questionForInput sizeToFit];
+    
+    
+    [self.adjectiveButton.titleLabel sizeToFit];
+    [self.popover dismissPopoverAnimated:YES];
+}
+
+- (IBAction)adjectiveButtonClicked:(UIButton*)adjectiveButton
+{
+    //the view controller you want to present as popover
+    PopoverTVC *controller = [[PopoverTVC alloc] initWithStyle:UITableViewStylePlain];
+    controller.delegate = self;
+    [controller setTitle:@"What are you up to?"];
+    [controller setAdjectives:self.possibleAdjectives];
+    
+    //our popover
+    self.popover = [[FPPopoverController alloc] initWithViewController:controller];
+    self.popover.tint = FPPopoverLightGrayTint;
+    if(self.statusTextField.isEditing) //keyboard is showing
+    {
+        self.popover.contentSize = CGSizeMake(self.popover.contentSize.width, self.popover.contentSize.height/(12/7));
+    }else{
+        self.popover.contentSize = CGSizeMake(self.popover.contentSize.width, self.popover.contentSize.height);
+    }
+    
+    
+    //the popover will be presented from the okButton view
+    [self.popover presentPopoverFromView:adjectiveButton];
+    
+    //no release (ARC enable)
+    //[controller release];
+}
 
 - (void)viewDidLoad
 {    // talk to the server and get user info
@@ -49,13 +128,13 @@
     // saving an NSInteger
     //[prefs setObject:[NSString stringWithFormat:@"6508477336"] forKey:@"token"];
     
-    self.tapped.delegate = self;
-    
+   
+    _possibleAdjectives = [[NSMutableArray alloc] initWithArray:@[@"Hungry",@"Excersizing",@"Studying",@"Raging",@"Shopping",@"Coffeeing",@"Bored"]];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     // DISCLAIMER: NOT GOOD DESIGN
-    [super viewDidLoad];
+    [super viewDidAppear:animated];
     
     if (self.containerTBC) {
         for (UIViewController *v in self.containerTBC.viewControllers)
@@ -85,7 +164,7 @@
     if (![MyManagedObjectContext isThisUserHungry]) {
         
         [self.hungrySlider setValue:0.0];
-        [self.hungryLabel setText:@"Not Hungry"];
+        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",self.currentAdjective] forState:UIControlStateNormal];
         [self.chatButton setEnabled:false];
         [self.chatButton setAlpha:0.5];
         [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
@@ -98,7 +177,7 @@
     }else{
         
         [self.hungrySlider setValue:1.0];
-        [self.hungryLabel setText:@"Hungry"];
+        [self.adjectiveButton setTitle:self.currentAdjective forState:UIControlStateNormal];
         //[self.chatButton setEnabled:true];
         //[self.chatButton setAlpha:1.0];
         [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
@@ -219,38 +298,38 @@
     //  if (self.hungrySlider.valueChanged) {
     //make sure we have the most current VC's
     
-    if (self.hungrySlider.value > 0.5 && ![self.hungryLabel.text isEqual:@"Hungry"]) {
+    if (self.hungrySlider.value > 0.5 && ![self.adjectiveButton.titleLabel.text isEqual:self.currentAdjective]) {
         // user is hungry
         // fade out the not hungry status
         [MyManagedObjectContext hungryTrue];
         [self fadeOutLabel];
         [self slideInStatus];
-        [self updateStatusWithStatus:@"Hungry!" andAdjective:@1];
-        [self.hungryLabel setText:@"Hungry"];
+        [self updateStatusWithStatus:self.currentAdjective andAdjective:@1];
+        [self.adjectiveButton setTitle:self.currentAdjective forState:UIControlStateNormal];
         //[self.chatButton setEnabled:TRUE];
         //[self.chatButton setAlpha:1.0];
         
         
         [self.containerTBC setSelectedIndex:0];
-        [self.hungryLabel setNeedsDisplay];
+        [self.adjectiveButton setNeedsDisplay];
         [self fadeInLabel];
         
         //[self showTabBar:self.containerTBC];
         [self.settingsController switchViews:1]; // switch to settings view
         
         
-    }else if (self.hungrySlider.value <= 0.5 && [self.hungryLabel.text isEqual:@"Hungry"]){
+    }else if (self.hungrySlider.value <= 0.5 && [self.adjectiveButton.titleLabel.text isEqual:self.currentAdjective]){
         // user is not hungry
         
         [MyManagedObjectContext hungryFalse];
         [self fadeOutLabel];
         [self slideOutStatus];
         [self updateStatusWithStatus:@"" andAdjective:@0];
-        [self.hungryLabel setText:@"Not Hungry"];
+        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",self.currentAdjective] forState:UIControlStateNormal];
         [self.chatButton setEnabled:FALSE];
         [self.chatButton setAlpha:0.5];
         [self.containerTBC setSelectedIndex:2];
-        [self.hungryLabel setNeedsDisplay];
+        [self.adjectiveButton setNeedsDisplay];
         [self fadeInLabel];
         [self.settingsController switchViews:0]; // send them home
         self.mapViewController.mapView.alpha = 1.0;
@@ -318,7 +397,7 @@
 -(void) fadeInLabel
 {
     [UIView animateWithDuration:1.0 animations:^{
-        self.hungryLabel.alpha = 1.0;
+        self.adjectiveButton.alpha = 1.0;
         
     }];
     
@@ -327,7 +406,7 @@
 -(void) fadeOutLabel
 {
     [UIView animateWithDuration:1.0 animations:^{
-        self.hungryLabel.alpha = 0.0;
+        self.adjectiveButton.alpha = 0.0;
     }];
 }
 
@@ -361,6 +440,7 @@
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    
     if ([[NSUserDefaults standardUserDefaults] stringForKey:@"token"]) {
         if ([[NSUserDefaults standardUserDefaults] stringForKey:@"deviceToken"]!=@"no")
         {
@@ -372,6 +452,15 @@
         NSLog(@"not alraedy logged in");
           [self performSegueWithIdentifier: @"noToken" sender: self];
     }
+    
+    
+    self.tapped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedToChangeStatus:)];
+    
+    [self.tapped setNumberOfTouchesRequired:1];
+    self.tapped.delegate = self;
+    [self.mainLogo addGestureRecognizer:self.tapped];
+    self.currentAdjective = [self.possibleAdjectives objectAtIndex:0];
+    
     
 }
 

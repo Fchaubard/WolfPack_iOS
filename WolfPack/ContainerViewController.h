@@ -10,9 +10,11 @@
 #import "HungrySlider.h"
 #import "WolfMapViewController.h"
 #import "WolfListCDTVC.h"
-@interface ContainerViewController : UIViewController <UIGestureRecognizerDelegate>
+#import "FPPopoverController.h"
+#import "ARCMacros.h"
+@interface ContainerViewController : UIViewController <UIGestureRecognizerDelegate, FPPopoverControllerDelegate>
 
-
+-(void)selectedTableRow:(NSUInteger)rowNum;
 
 
 @end
