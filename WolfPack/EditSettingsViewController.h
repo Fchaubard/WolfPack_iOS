@@ -13,7 +13,7 @@
 /*
  Depending on type of edit (name, password, email) property 1, 2, and 3 will
  reflect different data which is why I decided vague identifiers.
-*/
+ */
 @property NSString *editType;
 @property NSString *property1;
 @property NSString *property2;

@@ -64,6 +64,9 @@
 		AB6CD21016F39C2A00C82052 /* typingMine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB6CD20616F39C2A00C82052 /* typingMine@2x.png */; };
 		AB6CD21116F39C2A00C82052 /* typingSomeone.png in Resources */ = {isa = PBXBuildFile; fileRef = AB6CD20716F39C2A00C82052 /* typingSomeone.png */; };
 		AB6CD21216F39C2A00C82052 /* typingSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB6CD20816F39C2A00C82052 /* typingSomeone@2x.png */; };
+		AB73F2F6174F02EC003B97FD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB73F2F4174F02EC003B97FD /* AddressBook.framework */; };
+		AB73F2F7174F02EC003B97FD /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB73F2F5174F02EC003B97FD /* AddressBookUI.framework */; };
+		AB73F2FA174F02F3003B97FD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB73F2F9174F02F3003B97FD /* MessageUI.framework */; };
 		AB807788174C53FC00E63331 /* chatBubble2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB807787174C53FB00E63331 /* chatBubble2.png */; };
 		AB80778C174C542800E63331 /* wolfEngraveResize.png in Resources */ = {isa = PBXBuildFile; fileRef = AB80778B174C542800E63331 /* wolfEngraveResize.png */; };
 		AB80778E174C554500E63331 /* wolfEngrave.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB80778D174C554400E63331 /* wolfEngrave.jpg */; };
@@ -214,6 +217,9 @@
 		AB6CD20616F39C2A00C82052 /* typingMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingMine@2x.png"; sourceTree = "<group>"; };
 		AB6CD20716F39C2A00C82052 /* typingSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typingSomeone.png; sourceTree = "<group>"; };
 		AB6CD20816F39C2A00C82052 /* typingSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingSomeone@2x.png"; sourceTree = "<group>"; };
+		AB73F2F4174F02EC003B97FD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		AB73F2F5174F02EC003B97FD /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		AB73F2F9174F02F3003B97FD /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		AB807787174C53FB00E63331 /* chatBubble2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chatBubble2.png; path = ../../../Downloads/chatBubble2.png; sourceTree = "<group>"; };
 		AB80778B174C542800E63331 /* wolfEngraveResize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wolfEngraveResize.png; path = ../wolfEngraveResize.png; sourceTree = "<group>"; };
 		AB80778D174C554400E63331 /* wolfEngrave.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wolfEngrave.jpg; path = ../../../Downloads/wolfEngrave.jpg; sourceTree = "<group>"; };
@@ -295,6 +301,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB73F2FA174F02F3003B97FD /* MessageUI.framework in Frameworks */,
+				AB73F2F6174F02EC003B97FD /* AddressBook.framework in Frameworks */,
+				AB73F2F7174F02EC003B97FD /* AddressBookUI.framework in Frameworks */,
 				ABA1B8E316E6A188006F3D7C /* CoreLocation.framework in Frameworks */,
 				AB9F46A116ED8A0C00E5C2D6 /* QuartzCore.framework in Frameworks */,
 				AB461EAD16E161DB009FDC9A /* MapKit.framework in Frameworks */,
@@ -328,6 +337,9 @@
 		AB461E7516E15B47009FDC9A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB73F2F9174F02F3003B97FD /* MessageUI.framework */,
+				AB73F2F4174F02EC003B97FD /* AddressBook.framework */,
+				AB73F2F5174F02EC003B97FD /* AddressBookUI.framework */,
 				AB9F46A016ED8A0C00E5C2D6 /* QuartzCore.framework */,
 				AB461EAC16E161DB009FDC9A /* MapKit.framework */,
 				AB461EAA16E161D3009FDC9A /* CoreData.framework */,

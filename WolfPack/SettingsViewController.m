@@ -11,7 +11,7 @@
 @interface SettingsViewController ()
 
 @property (strong, nonatomic) IBOutlet UILabel *name, *email, *password, *policy, *terms;
-@property (strong, nonatomic) IBOutlet UIButton *editNameButton, *resetPasswordButton, *editEmailButton, *logoutButton, *addFriendButton, *addFriendButtonLeft, *destHome, *destSettings;
+@property (strong, nonatomic) IBOutlet UIButton *editNameButton, *resetPasswordButton, *editEmailButton, *logoutButton, *addFriendButtonRight, *destHome, *destSettings;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (strong, nonatomic) IBOutlet NSMutableArray *adjectiveArray;
@@ -20,8 +20,6 @@
 @end
 
 @implementation SettingsViewController
-
-
 
 const int INDENT = 20;
 const int CHAR_WIDTH = 10;
@@ -46,7 +44,7 @@ const int TEXT_SPACING = 4;
 		
 		[self.destSettings setEnabled:false];
 		[self.destSettings setHidden:true];
-        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
+        [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:true];
 	} else {
 		[self.destHome setEnabled:true];
 		[self.destHome setHidden:false];
@@ -54,22 +52,16 @@ const int TEXT_SPACING = 4;
 		[self.destSettings setEnabled:true];
 		[self.destSettings setHidden:false];
         if(showSettings) {
-            
             // show settings
-            [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
+            [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:true];
         } else {
             // show home
-            [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:true];
-            
+            [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
         }
-
 	}
     
-	    
     [self.destHome setNeedsDisplay];
     [self.destSettings setNeedsDisplay];
-    
-    
 }
 
 
@@ -200,13 +192,9 @@ const int TEXT_SPACING = 4;
 	} else if([button.titleLabel.text isEqualToString:@"Logout"]) {
 		[self performSegueWithIdentifier:@"unwindToHome" sender:self];
 	} else if([button.titleLabel.text isEqualToString:@"switchToSettings"]) {
-		//action required
-		[self switchViews:1];
-		NSLog(@"switch to settings");
-	} else if([button.titleLabel.text isEqualToString:@"switchToHome"]) {
-		//action required
 		[self switchViews:0];
-		NSLog(@"switch to home");
+	} else if([button.titleLabel.text isEqualToString:@"switchToHome"]) {
+		[self switchViews:1];
 	}
 }
 
@@ -215,23 +203,24 @@ const int TEXT_SPACING = 4;
 	CGFloat butSpace = 10;
 	CGFloat textHeight = 21;
 	CGFloat textWidth = self.view.frame.size.width - 2*INDENT;
+	CGFloat scrnWidth = self.view.frame.size.width;
 	
 	//add friend button
-	self.addFriendButtonLeft = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	self.addFriendButtonRight = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	
-	self.addFriendButtonLeft.frame = CGRectMake(106, butSpace, 112, 44);
-	[self.addFriendButtonLeft setTitle:@"Add Friends"
+	self.addFriendButtonRight.frame = CGRectMake(scrnWidth + 106, butSpace, 112, 44);
+	[self.addFriendButtonRight setTitle:@"Add Friends"
 							  forState:UIControlStateNormal];
-	[self.addFriendButtonLeft addTarget:self
+	[self.addFriendButtonRight addTarget:self
 								 action:@selector(buttonClicked:)
 					   forControlEvents:UIControlEventTouchUpInside];
 	
-	[self.scrollView addSubview:self.addFriendButtonLeft];
+	[self.scrollView addSubview:self.addFriendButtonRight];
 	//end
 	
 	//first name label
-	CGFloat fnameYSpace = self.addFriendButtonLeft.frame.origin.y + self.addFriendButtonLeft.frame.size.height + butSpace;
-	self.name = [[UILabel alloc] initWithFrame:CGRectMake(INDENT, fnameYSpace, textWidth, textHeight)];
+	CGFloat fnameYSpace = self.addFriendButtonRight.frame.origin.y + self.addFriendButtonRight.frame.size.height + butSpace;
+	self.name = [[UILabel alloc] initWithFrame:CGRectMake(scrnWidth + INDENT, fnameYSpace, textWidth, textHeight)];
 	self.name.textColor = [UIColor whiteColor];
 	self.name.backgroundColor = [UIColor clearColor];
 	
@@ -242,7 +231,7 @@ const int TEXT_SPACING = 4;
 	self.editNameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	
 	CGFloat editNameY = fnameYSpace + self.name.frame.size.height + butSpace;
-	self.editNameButton.frame = CGRectMake(INDENT, editNameY, 140, 22);
+	self.editNameButton.frame = CGRectMake(scrnWidth + INDENT, editNameY, 140, 22);
 	[self.editNameButton setTitle:@"Edit Name"
 						 forState:UIControlStateNormal];
 	[self.editNameButton addTarget:self
@@ -254,7 +243,7 @@ const int TEXT_SPACING = 4;
 	
 	//add email
 	CGFloat emailYSpace = editNameY + self.editNameButton.frame.size.height + butSpace;
-	self.email = [[UILabel alloc] initWithFrame:CGRectMake(INDENT, emailYSpace, textWidth, textHeight)];
+	self.email = [[UILabel alloc] initWithFrame:CGRectMake(scrnWidth + INDENT, emailYSpace, textWidth, textHeight)];
 	self.email.textColor = [UIColor whiteColor];
 	self.email.backgroundColor = [UIColor clearColor];
 	
@@ -264,7 +253,7 @@ const int TEXT_SPACING = 4;
 	//add edit email button
 	self.editEmailButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	CGFloat editEmailY = emailYSpace + textHeight + butSpace;
-	self.editEmailButton.frame = CGRectMake(INDENT, editEmailY, 140, 22);
+	self.editEmailButton.frame = CGRectMake(scrnWidth + INDENT, editEmailY, 140, 22);
 	[self.editEmailButton setTitle:@"Edit Email"
 						  forState:UIControlStateNormal];
 	[self.editEmailButton addTarget:self
@@ -276,7 +265,7 @@ const int TEXT_SPACING = 4;
 	
 	//add password
 	CGFloat passwordYSpace = editEmailY + self.editEmailButton.frame.size.height + butSpace;
-	self.password = [[UILabel alloc] initWithFrame:CGRectMake(INDENT, passwordYSpace, textWidth, textHeight)];
+	self.password = [[UILabel alloc] initWithFrame:CGRectMake(scrnWidth + INDENT, passwordYSpace, textWidth, textHeight)];
 	self.password.textColor = [UIColor whiteColor];
 	self.password.backgroundColor = [UIColor clearColor];
 	
@@ -286,7 +275,7 @@ const int TEXT_SPACING = 4;
 	//add reset password button
 	self.resetPasswordButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	CGFloat resetPWY = passwordYSpace + textHeight + butSpace;
-	self.resetPasswordButton.frame = CGRectMake(INDENT, resetPWY, 140, 22);
+	self.resetPasswordButton.frame = CGRectMake(scrnWidth + INDENT, resetPWY, 140, 22);
 	[self.resetPasswordButton setTitle:@"Reset Password"
 							  forState:UIControlStateNormal];
 	[self.resetPasswordButton addTarget:self
@@ -300,7 +289,7 @@ const int TEXT_SPACING = 4;
 	CGFloat policyYSpace = self.resetPasswordButton.frame.origin.y + self.resetPasswordButton.frame.size.height + butSpace;
 	//CGFloat chWidth = 9
 	CGFloat textLen =  CHAR_WIDTH*[@"Privacy Policy" length];
-	self.policy = [[UILabel alloc] initWithFrame:CGRectMake(INDENT, policyYSpace, textLen, textHeight)];
+	self.policy = [[UILabel alloc] initWithFrame:CGRectMake(scrnWidth + INDENT, policyYSpace, textLen, textHeight)];
 	self.policy.textColor = [UIColor lightGrayColor];
 	self.policy.backgroundColor = [UIColor clearColor];
 	self.policy.text = @"Privacy Policy";
@@ -310,7 +299,7 @@ const int TEXT_SPACING = 4;
 	
 	//add terms label
 	textLen =  CHAR_WIDTH*[@"Terms" length];
-	CGFloat policyXPos = self.view.frame.size.width - INDENT - textLen;
+	CGFloat policyXPos = 2 * scrnWidth - INDENT - textLen;
 	self.terms = [[UILabel alloc] initWithFrame:CGRectMake(policyXPos, policyYSpace, textLen, textHeight)];
 	self.terms.textColor = [UIColor lightGrayColor];
 	self.terms.backgroundColor = [UIColor clearColor];
@@ -322,7 +311,7 @@ const int TEXT_SPACING = 4;
 	//add logout button
 	self.logoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	CGFloat logoutY = policyYSpace + textHeight + butSpace;
-	self.logoutButton.frame = CGRectMake(INDENT, logoutY, self.view.frame.size.width - 2*INDENT, 28);
+	self.logoutButton.frame = CGRectMake(scrnWidth + INDENT, logoutY, self.view.frame.size.width - 2*INDENT, 28);
 	[self.logoutButton setTitle:@"Logout"
                        forState:UIControlStateNormal];
 	[self.logoutButton setTitleColor:[UIColor redColor]
@@ -337,7 +326,7 @@ const int TEXT_SPACING = 4;
 	
 	//add switch to home page button
 	UIImage *rightArrow = [[UIImage alloc] initWithCGImage:[UIImage imageNamed:@"arrow.png"].CGImage
-													 scale:1.0
+													 scale:0.85
 											   orientation:UIImageOrientationUp];
 	
 	self.destHome = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -355,17 +344,7 @@ const int TEXT_SPACING = 4;
 	[self.scrollView addSubview:self.destHome];
 	//end
 	
-	//talk to db
-    /*UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-     activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
-     activityIndicator.center = self.view.center;
-     [self.view addSubview: activityIndicator];
-     [activityIndicator startAnimating];
-     [self.view setNeedsDisplay];
-     dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
-     dispatch_async(downloadQueue, ^{
-     */
-    NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+	NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getwpuserjson.php?session=%@", sessionid]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSData *resData = [NSURLConnection sendSynchronousRequest:request
@@ -391,23 +370,12 @@ const int TEXT_SPACING = 4;
         self.password.text = @"unavailable";
         self.resetPasswordButton.enabled = false;
     }
-    //NSLog(@"setup1: %@, %@, %@, %@", self.fname.text, self.lname.text, self.email.text, self.password.text);
-    
-    /*dispatch_async(dispatch_get_main_queue(), ^{
-     [activityIndicator stopAnimating];
-     [activityIndicator removeFromSuperview];
-     [self.view reloadInputViews];
-     [self.view setNeedsDisplay];
-     });
-     });*/
-	
-	//NSLog(@"setup: %@, %@, %@, %@", self.fname.text, self.lname.text, self.email.text, self.password.text);
 }
 
 - (void)addHomepage
 {
 	//add pickerView
-	self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(self.view.frame.size.width + INDENT, 2*INDENT, self.view.frame.size.width - 2*INDENT, 50)];
+	self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(INDENT, 3*INDENT, self.view.frame.size.width - 2*INDENT, 50)];
 	
 	self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
@@ -419,21 +387,12 @@ const int TEXT_SPACING = 4;
 	//end
 	
 	//add addFriend button
-	self.addFriendButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	
-	self.addFriendButton.frame = CGRectMake(self.view.frame.size.width + 106, self.pickerView.frame.size.height + 3*INDENT, 112, 44);
-    [self.addFriendButton setTitle:@"Add Friends"
-                          forState:UIControlStateNormal];
-	[self.addFriendButton addTarget:self
-							 action:@selector(buttonClicked:)
-				   forControlEvents:UIControlEventTouchUpInside];
-    
-	[self.scrollView addSubview:self.addFriendButton];
 	//end
 	
 	//add button to switch to detailed settings
 	UIImage *leftArrow = [[UIImage alloc] initWithCGImage:[UIImage imageNamed:@"arrow.png"].CGImage
-                                                    scale:1.0
+                                                    scale:0.85
                                               orientation:UIImageOrientationDown];
 	
 	self.destSettings = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -508,22 +467,6 @@ numberOfRowsInComponent:(NSInteger)component
     [self addDetailedSettings];
 	[self addHomepage];
     [self switchViews:0];
-	
-	/*
-     for(UIView *view in self.view.subviews)
-     {
-     if([view isKindOfClass:[UIScrollView class]])
-     {
-     [(UIScrollView *)view setContentOffset:CGPointMake(0, 0)];
-     }
-     }*/
-	
-	/*
-	 delete
-	 if([MyManagedObjectContext isThisUserHungry]) {
-     NSLog(@"true");
-     } else NSLog(@"false");
-	 */
 }
 
 - (void)didReceiveMemoryWarning

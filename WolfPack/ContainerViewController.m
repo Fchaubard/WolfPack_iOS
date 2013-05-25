@@ -56,7 +56,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     // DISCLAIMER: NOT GOOD DESIGN
     [super viewDidLoad];
-   
+    
     if (self.containerTBC) {
         for (UIViewController *v in self.containerTBC.viewControllers)
         {
@@ -81,7 +81,7 @@
             }
         }
     }
-
+    
     if (![MyManagedObjectContext isThisUserHungry]) {
         
         [self.hungrySlider setValue:0.0];
@@ -131,22 +131,22 @@
 
 -(void)slideOutStatus{
     
-  
+    
     [UIView animateWithDuration:0.25 animations:^{
         
         self.statusInputView.frame = CGRectMake(self.statusInputView.frame.origin.x, self.statusInputView.frame.origin.y-50, self.statusInputView.frame.size.width, self.statusInputView.frame.size.height);
         
     } completion:^(BOOL finished) {
-         self.statusInputView.frame = CGRectMake(self.statusInputView.frame.origin.x, self.statusInputView.frame.origin.y+50, self.statusInputView.frame.size.width, self.statusInputView.frame.size.height);
-         [self.statusInputView setHidden:true];
-         [self.statusTextField resignFirstResponder];
+        self.statusInputView.frame = CGRectMake(self.statusInputView.frame.origin.x, self.statusInputView.frame.origin.y+50, self.statusInputView.frame.size.width, self.statusInputView.frame.size.height);
+        [self.statusInputView setHidden:true];
+        [self.statusTextField resignFirstResponder];
     }
      ];
     
 }
 
 - (IBAction)userChangedStatus:(id)sender{
-   
+    
     [SVProgressHUD showWithStatus:@"Joining the hungry..."];
     [self slideOutStatus];
     [self.chatButton setEnabled:TRUE];
@@ -163,11 +163,11 @@
     [self updateStatusWithStatus:[self.statusTextField text] andAdjective:@1];
     [self.view endEditing:YES];
     
-   
+    
 }
 
 - (IBAction)userTappedToChangeStatus:(id)sender{
-   
+    
     if (self.statusInputView.hidden) {
         [self slideInStatus];
     }else{
@@ -180,8 +180,7 @@
     dispatch_queue_t fetchQ = dispatch_queue_create("Update Status", NULL);
     dispatch_async(fetchQ, ^{
         
-           
-       CLLocation *loc = [MyCLLocationManager sharedSingleton].locationManager.location;
+        CLLocation *loc = [MyCLLocationManager sharedSingleton].locationManager.location;
         
         NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
         NSString *strippedStatus = [status stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
@@ -192,18 +191,18 @@
         NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         
         NSString * string = [[NSString alloc] initWithData:responseData encoding:
-         NSASCIIStringEncoding];
+                             NSASCIIStringEncoding];
         
         
         
-         if (string.intValue == 1) {
-         NSLog(@"asdfa");
-         } else {
-         NSLog(@"asdfa");
-         }
+        if (string.intValue == 1) {
+            NSLog(@"asdfa");
+        } else {
+            NSLog(@"asdfa");
+        }
         sleep(2.8);
         dispatch_async(dispatch_get_main_queue(), ^ {
-       
+            
             [SVProgressHUD dismiss];
             [self.mapViewController updateRegion];
         });
@@ -217,53 +216,53 @@
 
 - (IBAction)userChangedHungryStatus:(id)sender{
     
-  //  if (self.hungrySlider.valueChanged) {
-        //make sure we have the most current VC's
-       
-        if (self.hungrySlider.value > 0.5 && ![self.hungryLabel.text isEqual:@"Hungry"]) {
-            // user is hungry
-            // fade out the not hungry status
-            [MyManagedObjectContext hungryTrue];
-            [self fadeOutLabel];
-            [self slideInStatus];
-            [self updateStatusWithStatus:@"Hungry!" andAdjective:@1];
-            [self.hungryLabel setText:@"Hungry"];
-            //[self.chatButton setEnabled:TRUE];
-            //[self.chatButton setAlpha:1.0];
-            
-            
-            [self.containerTBC setSelectedIndex:0];
-            [self.hungryLabel setNeedsDisplay];
-            [self fadeInLabel];
-            
-            [self showTabBar:self.containerTBC];
-            [self.settingsController switchViews:1]; // switch to settings view
-            
-            
-        }else if (self.hungrySlider.value <= 0.5 && [self.hungryLabel.text isEqual:@"Hungry"]){
-            // user is not hungry
-            
-            [MyManagedObjectContext hungryFalse];
-            [self fadeOutLabel];
-            [self slideOutStatus];
-            [self updateStatusWithStatus:@"" andAdjective:@0];
-            [self.hungryLabel setText:@"Not Hungry"];
-            [self.chatButton setEnabled:FALSE];
-            [self.chatButton setAlpha:0.5];
-            [self.containerTBC setSelectedIndex:2];
-            [self.hungryLabel setNeedsDisplay];
-            [self fadeInLabel];
-            [self.settingsController switchViews:0]; // send them home
-            self.mapViewController.mapView.alpha = 1.0;
-            [UIView animateWithDuration:1.0 animations:^{
-                self.mapViewController.mapView.alpha = 0.0;
-            }];
-            //[self.mapViewController.mapView setHidden:true];
-            //[self.mapViewController.refreshButton setHidden:true];
-            [self hideTabBar:self.containerTBC];
-        }
+    //  if (self.hungrySlider.valueChanged) {
+    //make sure we have the most current VC's
+    
+    if (self.hungrySlider.value > 0.5 && ![self.hungryLabel.text isEqual:@"Hungry"]) {
+        // user is hungry
+        // fade out the not hungry status
+        [MyManagedObjectContext hungryTrue];
+        [self fadeOutLabel];
+        [self slideInStatus];
+        [self updateStatusWithStatus:@"Hungry!" andAdjective:@1];
+        [self.hungryLabel setText:@"Hungry"];
+        //[self.chatButton setEnabled:TRUE];
+        //[self.chatButton setAlpha:1.0];
         
-   // }
+        
+        [self.containerTBC setSelectedIndex:0];
+        [self.hungryLabel setNeedsDisplay];
+        [self fadeInLabel];
+        
+        [self showTabBar:self.containerTBC];
+        [self.settingsController switchViews:1]; // switch to settings view
+        
+        
+    }else if (self.hungrySlider.value <= 0.5 && [self.hungryLabel.text isEqual:@"Hungry"]){
+        // user is not hungry
+        
+        [MyManagedObjectContext hungryFalse];
+        [self fadeOutLabel];
+        [self slideOutStatus];
+        [self updateStatusWithStatus:@"" andAdjective:@0];
+        [self.hungryLabel setText:@"Not Hungry"];
+        [self.chatButton setEnabled:FALSE];
+        [self.chatButton setAlpha:0.5];
+        [self.containerTBC setSelectedIndex:2];
+        [self.hungryLabel setNeedsDisplay];
+        [self fadeInLabel];
+        [self.settingsController switchViews:0]; // send them home
+        self.mapViewController.mapView.alpha = 1.0;
+        [UIView animateWithDuration:1.0 animations:^{
+            self.mapViewController.mapView.alpha = 0.0;
+        }];
+        //[self.mapViewController.mapView setHidden:true];
+        //[self.mapViewController.refreshButton setHidden:true];
+        [self hideTabBar:self.containerTBC];
+    }
+    
+    // }
     
     
 }

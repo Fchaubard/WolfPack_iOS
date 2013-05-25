@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface ULTFriendsList : UITableViewController{
+@interface ULTFriendsList : UITableViewController <MFMessageComposeViewControllerDelegate> {
     //NSMutableArray *wolfpacklistarray;
 }
 //@property (strong, nonatomic) IBOutlet NSMutableArray *wolfpacklistarray;
