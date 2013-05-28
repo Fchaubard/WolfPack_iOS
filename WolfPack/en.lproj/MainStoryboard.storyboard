@@ -101,7 +101,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="wolfEngrave.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="UFP-Ht-yRd">
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="65" id="huS-1m-GHQ"/>
+                                            <constraint firstAttribute="width" constant="67" id="Jfk-B5-VJI"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Dnr-pA-Q8E">
@@ -124,18 +124,17 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" type="user" id="5VQ-4S-pwu"/>
-                                    <constraint firstItem="3p2-MY-bTD" firstAttribute="centerY" secondItem="KoI-3O-1la" secondAttribute="centerY" type="default" id="5zu-pC-RdY"/>
-                                    <constraint firstItem="Dnr-pA-Q8E" firstAttribute="bottom" secondItem="3p2-MY-bTD" secondAttribute="bottom" type="default" id="DRg-an-Fva"/>
+                                    <constraint firstItem="UFP-Ht-yRd" firstAttribute="centerY" secondItem="KoI-3O-1la" secondAttribute="centerY" type="default" id="2sN-uZ-683"/>
+                                    <constraint firstItem="Dnr-pA-Q8E" firstAttribute="bottom" secondItem="UFP-Ht-yRd" secondAttribute="bottom" type="default" id="BVP-qu-JK9"/>
                                     <constraint firstItem="8nh-Tu-bqJ" firstAttribute="centerX" secondItem="Dnr-pA-Q8E" secondAttribute="centerX" type="default" id="ERK-5S-fHw"/>
-                                    <constraint firstItem="UFP-Ht-yRd" firstAttribute="bottom" secondItem="KoI-3O-1la" secondAttribute="bottom" type="default" id="MKj-B3-efg"/>
-                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="leading" secondItem="KoI-3O-1la" secondAttribute="leading" constant="23" id="WqN-uy-XUX"/>
-                                    <constraint firstItem="Dnr-pA-Q8E" firstAttribute="top" secondItem="8nh-Tu-bqJ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Zzx-fM-ivK"/>
+                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="top" secondItem="UFP-Ht-yRd" secondAttribute="top" type="default" id="Vtx-TY-gCn"/>
+                                    <constraint firstItem="3p2-MY-bTD" firstAttribute="top" secondItem="UFP-Ht-yRd" secondAttribute="top" type="default" id="aW5-Tg-BY1"/>
                                     <constraint firstItem="UFP-Ht-yRd" firstAttribute="centerX" secondItem="KoI-3O-1la" secondAttribute="centerX" type="default" id="c3b-cr-swc"/>
+                                    <constraint firstItem="Dnr-pA-Q8E" firstAttribute="top" secondItem="KoI-3O-1la" secondAttribute="top" constant="32" id="e51-8n-944"/>
                                     <constraint firstItem="Dnr-pA-Q8E" firstAttribute="leading" secondItem="KoI-3O-1la" secondAttribute="leading" type="default" id="fqr-5N-E87"/>
+                                    <constraint firstAttribute="height" constant="65" type="user" id="kOJ-aT-Aay"/>
                                     <constraint firstItem="UFP-Ht-yRd" firstAttribute="leading" secondItem="Dnr-pA-Q8E" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="xB5-51-UbU"/>
                                     <constraint firstAttribute="trailing" secondItem="3p2-MY-bTD" secondAttribute="trailing" constant="39" id="xDp-s1-OBS"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" type="user" id="yhI-f2-mXT"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -144,14 +143,13 @@
                             <constraint firstItem="KoI-3O-1la" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="1hK-Ae-z1H"/>
                             <constraint firstAttribute="trailing" secondItem="k58-zM-2wk" secondAttribute="trailing" constant="33" type="user" id="7nh-nJ-KEq"/>
                             <constraint firstItem="k58-zM-2wk" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="39" id="9Tx-qr-Kkn"/>
-                            <constraint firstItem="KoI-3O-1la" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="GtU-Va-JhW"/>
+                            <constraint firstItem="LIY-L6-4bA" firstAttribute="top" secondItem="KoI-3O-1la" secondAttribute="bottom" constant="3" type="user" id="Hcb-jb-Asx"/>
                             <constraint firstAttribute="trailing" secondItem="KoI-3O-1la" secondAttribute="trailing" constant="-19" id="Lex-ce-hE6"/>
-                            <constraint firstItem="LIY-L6-4bA" firstAttribute="top" secondItem="KoI-3O-1la" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Vge-dd-K2G"/>
+                            <constraint firstItem="KoI-3O-1la" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="O3i-Q7-aF0"/>
                             <constraint firstItem="LIY-L6-4bA" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="VlM-XG-KHg"/>
+                            <constraint firstItem="k58-zM-2wk" firstAttribute="top" secondItem="LIY-L6-4bA" secondAttribute="top" type="default" id="dgI-Th-1sX"/>
                             <constraint firstItem="LIY-L6-4bA" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="eGo-3j-9yD"/>
                             <constraint firstItem="LIY-L6-4bA" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="seW-Z2-JUW"/>
-                            <constraint firstItem="k58-zM-2wk" firstAttribute="top" secondItem="KoI-3O-1la" secondAttribute="bottom" constant="9" type="user" id="wSV-4c-al2"/>
-                            <constraint firstAttribute="bottom" secondItem="KoI-3O-1la" secondAttribute="bottom" constant="478" type="user" id="ze6-TM-S8u"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MKE-qb-12e"/>
@@ -175,7 +173,7 @@
             <objects>
                 <viewController id="sOi-AY-ByT" customClass="WolfMapViewController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aMw-7d-64N">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="421"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="wolfPackBackground.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="VTb-0A-Znu"/>
@@ -229,7 +227,7 @@
             <objects>
                 <tableViewController id="CUf-Ve-VKY" customClass="WolfListCDTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nPh-cf-bdJ">
-                        <rect key="frame" x="0.0" y="64" width="320" height="357"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -655,7 +653,7 @@
             <objects>
                 <viewController id="UUX-AM-D0K" customClass="SettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m9i-Bm-bhN">
-                        <rect key="frame" x="0.0" y="64" width="320" height="357"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -678,7 +676,7 @@
             <objects>
                 <viewController id="Odr-Rm-ZjX" customClass="EditSettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j2K-KW-jSy">
-                        <rect key="frame" x="0.0" y="64" width="320" height="357"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -719,7 +717,7 @@
             <objects>
                 <tableViewController id="eYT-l4-DV2" customClass="ULTFriendsList" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="oz4-Ai-qec">
-                        <rect key="frame" x="0.0" y="64" width="320" height="357"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>

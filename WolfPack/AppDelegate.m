@@ -86,6 +86,7 @@ NSPersistentStoreCoordinator *persistentStoreCoordinator;
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"MessageNotification"
      object:self];
+    
 
 	//[self addMessageFromRemoteNotification:userInfo updateUI:YES];
    // NSString* alertValue = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];

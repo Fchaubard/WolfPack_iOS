@@ -86,10 +86,16 @@
         [self.statusTextField setPlaceholder:@"KITE FLYINGG!"];
     }
     [self.questionForInput sizeToFit];
-    
-    
     [self.adjectiveButton.titleLabel sizeToFit];
     [self.popover dismissPopoverAnimated:YES];
+    
+    if (self.statusInputView.hidden && [[self hungrySlider] value]==1)
+    {
+        [self userTappedToChangeStatus:@1];
+    }
+      
+    
+    
 }
 
 - (IBAction)adjectiveButtonClicked:(UIButton*)adjectiveButton
@@ -97,7 +103,7 @@
     //the view controller you want to present as popover
     PopoverTVC *controller = [[PopoverTVC alloc] initWithStyle:UITableViewStylePlain];
     controller.delegate = self;
-    [controller setTitle:@"What are you up to?"];
+    //[controller setTitle:@"What are you up to?"];
     [controller setAdjectives:self.possibleAdjectives];
     
     //our popover
@@ -105,7 +111,7 @@
     self.popover.tint = FPPopoverLightGrayTint;
     if(self.statusTextField.isEditing) //keyboard is showing
     {
-        self.popover.contentSize = CGSizeMake(self.popover.contentSize.width, self.popover.contentSize.height/(12/7));
+        self.popover.contentSize = CGSizeMake(self.popover.contentSize.width, self.popover.contentSize.height/(14/7));
     }else{
         self.popover.contentSize = CGSizeMake(self.popover.contentSize.width, self.popover.contentSize.height);
     }
@@ -128,6 +134,10 @@
     // saving an NSInteger
     //[prefs setObject:[NSString stringWithFormat:@"6508477336"] forKey:@"token"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(glowChatButton)
+                                                 name:@"MessageNotification"
+                                               object:nil];
    
     _possibleAdjectives = [[NSMutableArray alloc] initWithArray:@[@"Hungry",@"Excersizing",@"Studying",@"Raging",@"Shopping",@"Coffeeing",@"Bored"]];
 }
@@ -166,6 +176,7 @@
         [self.hungrySlider setValue:0.0];
         [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",self.currentAdjective] forState:UIControlStateNormal];
         [self.chatButton setEnabled:false];
+        
         [self.chatButton setAlpha:0.5];
         [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
         [self.statusInputView setHidden:true];
@@ -187,6 +198,31 @@
         
         
     }
+}
+
+-(void)glowChatButton{
+    
+    [UIView animateWithDuration:0.7f delay:0 options:UIViewAnimationOptionAutoreverse | UIViewAnimationCurveEaseInOut | UIViewAnimationOptionRepeat | UIViewAnimationOptionAllowUserInteraction  animations:^{
+        
+        [UIView setAnimationRepeatCount:3];
+        
+        //self.chatButton.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+        
+        
+        [self.chatButton setBackgroundColor:[UIColor blueColor]];
+        
+        
+    } completion:^(BOOL finished) {
+          [UIView animateWithDuration:0.7f delay:0 options: UIViewAnimationCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction  animations:^{
+                    [self.chatButton setBackgroundColor:[UIColor clearColor]];
+                    self.chatButton.layer.shadowRadius = 0.0f;
+                    self.chatButton.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+               } completion:^(BOOL finished) {
+                   
+             }];      
+    }];
+    
+    
 }
 
 -(void)slideInStatus{
@@ -226,7 +262,7 @@
 
 - (IBAction)userChangedStatus:(id)sender{
     
-    [SVProgressHUD showWithStatus:@"Joining the hungry..."];
+    [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"Joining the %@...",self.currentAdjective]];
     [self slideOutStatus];
     [self.chatButton setEnabled:TRUE];
     [self.chatButton setAlpha:1.0];

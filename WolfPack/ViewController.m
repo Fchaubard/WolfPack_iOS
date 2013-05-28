@@ -206,6 +206,7 @@
                                              selector:@selector(refreshPressed)
                                                  name:@"MessageNotification"
                                                object:nil];
+   
     //UIBarButtonItem *chkmanuaaly = [[UIBarButtonItem alloc]initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPressed)];
     //self.navigationItem.rightBarButtonItem=chkmanuaaly;
     

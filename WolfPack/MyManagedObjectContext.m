@@ -13,7 +13,21 @@
 
 
 static UIManagedDocument * document;
+
+// User setting vars
 static bool hungry;
+static NSString *fname;
+static NSString *lname;
+static NSString *email;
+static NSString *currentAdjective;
+static int currentAdjectiveNumber;
+static NSString *phoneNumber;
+
+/// Chat Vars
+static NSMutableArray *friendsInChat;
+static NSMutableArray *chats;
+
+
 
 +(BOOL)isThisUserHungry{
    

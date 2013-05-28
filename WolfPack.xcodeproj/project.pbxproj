@@ -109,6 +109,7 @@
 		ABC8E4741751551B00EC8EF5 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC8E4701751551B00EC8EF5 /* FPPopoverView.m */; };
 		ABC8E4751751551B00EC8EF5 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC8E4721751551B00EC8EF5 /* FPTouchView.m */; };
 		ABC8E478175159EA00EC8EF5 /* PopoverTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC8E477175159EA00EC8EF5 /* PopoverTVC.m */; };
+		ABC8E47F1755436B00EC8EF5 /* UIView+Glow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC8E47E1755436B00EC8EF5 /* UIView+Glow.m */; };
 		ABF06A911742E4FA00544BB0 /* Chat_Footer_ArrowUp.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */; };
 		ABF06A921742E4FA00544BB0 /* Chat_Footer_ArrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */; };
 		ABF06A931742E4FA00544BB0 /* Chat_Footer_ArrowUp_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */; };
@@ -283,6 +284,8 @@
 		ABC8E4721751551B00EC8EF5 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
 		ABC8E476175159EA00EC8EF5 /* PopoverTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverTVC.h; sourceTree = "<group>"; };
 		ABC8E477175159EA00EC8EF5 /* PopoverTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverTVC.m; sourceTree = "<group>"; };
+		ABC8E47D1755436B00EC8EF5 /* UIView+Glow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Glow.h"; sourceTree = "<group>"; };
+		ABC8E47E1755436B00EC8EF5 /* UIView+Glow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Glow.m"; sourceTree = "<group>"; };
 		ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat_Footer_ArrowUp.png; sourceTree = "<group>"; };
 		ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chat_Footer_ArrowUp@2x.png"; sourceTree = "<group>"; };
 		ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat_Footer_ArrowUp_Pressed.png; sourceTree = "<group>"; };
@@ -427,6 +430,8 @@
 		AB461EAE16E161FC009FDC9A /* Container */ = {
 			isa = PBXGroup;
 			children = (
+				ABC8E47D1755436B00EC8EF5 /* UIView+Glow.h */,
+				ABC8E47E1755436B00EC8EF5 /* UIView+Glow.m */,
 				ABC8E46B175154F500EC8EF5 /* popover */,
 				ABC8E469175154E600EC8EF5 /* images */,
 				AB461EB316E165BE009FDC9A /* ContainerTabBarController.h */,
@@ -796,6 +801,7 @@
 				ABC8E4741751551B00EC8EF5 /* FPPopoverView.m in Sources */,
 				ABC8E4751751551B00EC8EF5 /* FPTouchView.m in Sources */,
 				ABC8E478175159EA00EC8EF5 /* PopoverTVC.m in Sources */,
+				ABC8E47F1755436B00EC8EF5 /* UIView+Glow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
