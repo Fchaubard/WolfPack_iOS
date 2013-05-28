@@ -115,6 +115,27 @@
 }
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 
+-(void)hideMode{
+
+    
+    [self.mapView setHidden:true];
+    [self.refreshButton setHidden:true];
+    self.mapView.alpha = 1.0;
+    [UIView animateWithDuration:1.0 animations:^{
+        self.mapView.alpha = 0.0;
+    }];
+}
+
+-(void)getOutOfHideMode{
+    [self.mapView setHidden:false];
+    [self.refreshButton setHidden:false];
+    self.mapView.alpha = 0.0;
+    [UIView animateWithDuration:1.0 animations:^{
+        self.mapView.alpha = 1.0;
+    }];
+}
+
+
 - (IBAction)refresh
 {
   

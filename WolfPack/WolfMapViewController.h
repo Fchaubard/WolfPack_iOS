@@ -13,6 +13,8 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) IBOutlet UIButton *refreshButton;
 
-- (void)reload;
+-(void)reload;
+-(void)hideMode;
+-(void)getOutOfHideMode;
 
 @end

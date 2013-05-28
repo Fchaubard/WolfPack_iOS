@@ -47,40 +47,42 @@
 
 -(void)selectedTableRow:(NSUInteger)rowNum
 {
-    self.currentAdjective = [self.possibleAdjectives objectAtIndex:rowNum];
+    [MyManagedObjectContext setCurrentAdjective:[self.possibleAdjectives objectAtIndex:rowNum]];
+    [MyManagedObjectContext setCurrentAdjectiveNumber:rowNum];
+    
     if (![MyManagedObjectContext isThisUserHungry]) {
         
-        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",self.currentAdjective] forState:UIControlStateNormal];
+        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",[MyManagedObjectContext currentAdjective]] forState:UIControlStateNormal];
     }else{
-        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"%@",self.currentAdjective] forState:UIControlStateNormal];
+        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"%@",[MyManagedObjectContext currentAdjective]] forState:UIControlStateNormal];
     }
    
     
     //update the input question
-    if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:0]]) {
+    if ([[MyManagedObjectContext currentAdjective] isEqualToString:[self.possibleAdjectives objectAtIndex:0]]) {
         self.questionForInput.text = @"What are you hungry for?";
         [self.statusTextField setPlaceholder:@"I want Mexican!"];
-    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:1]])
+    }else if ([[MyManagedObjectContext currentAdjective] isEqualToString:[self.possibleAdjectives objectAtIndex:1]])
     {
         self.questionForInput.text = @"How you gna excercise?";
         [self.statusTextField setPlaceholder:@"Lets play Soccer!"];
-    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:2]])
+    }else if ([[MyManagedObjectContext currentAdjective] isEqualToString:[self.possibleAdjectives objectAtIndex:2]])
     {
         self.questionForInput.text = @"What are you studying?";
         [self.statusTextField setPlaceholder:@"Math sucks!"];
-    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:3]])
+    }else if ([[MyManagedObjectContext currentAdjective] isEqualToString:[self.possibleAdjectives objectAtIndex:3]])
     {
         self.questionForInput.text = @"Where you raging bra?";
         [self.statusTextField setPlaceholder:@"TOGA PARTYY!"];
-    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:4]])
+    }else if ([[MyManagedObjectContext currentAdjective] isEqualToString:[self.possibleAdjectives objectAtIndex:4]])
     {
         self.questionForInput.text = @"Where are you shopping?";
         [self.statusTextField setPlaceholder:@"Palisades Mall!"];
-    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:5]])
+    }else if ([[MyManagedObjectContext currentAdjective] isEqualToString:[self.possibleAdjectives objectAtIndex:5]])
     {
         self.questionForInput.text = @"Where do you want to coffee?";
         [self.statusTextField setPlaceholder:@"Starbucks!"];
-    }else if ([self.currentAdjective isEqualToString:[self.possibleAdjectives objectAtIndex:6]])
+    }else if ([[MyManagedObjectContext currentAdjective] isEqualToString:[self.possibleAdjectives objectAtIndex:6]])
     {
         self.questionForInput.text = @"What do you wanna do?";
         [self.statusTextField setPlaceholder:@"KITE FLYINGG!"];
@@ -139,7 +141,15 @@
                                                  name:@"MessageNotification"
                                                object:nil];
    
+    
     _possibleAdjectives = [[NSMutableArray alloc] initWithArray:@[@"Hungry",@"Excersizing",@"Studying",@"Raging",@"Shopping",@"Coffeeing",@"Bored"]];
+    
+    // set the initial adjective to be "Hungry"
+    if([[MyManagedObjectContext currentAdjective] isEqualToString:@""]){
+        [MyManagedObjectContext setCurrentAdjective:[self.possibleAdjectives objectAtIndex:0]];
+        [MyManagedObjectContext setCurrentAdjectiveNumber:0];
+    }
+    NSLog(@"%@",[MyManagedObjectContext currentAdjective]);
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -171,24 +181,26 @@
         }
     }
     
+  
     if (![MyManagedObjectContext isThisUserHungry]) {
-        
+        //user is not hungry
         [self.hungrySlider setValue:0.0];
-        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",self.currentAdjective] forState:UIControlStateNormal];
+        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",[MyManagedObjectContext currentAdjective]] forState:UIControlStateNormal];
         [self.chatButton setEnabled:false];
         
         [self.chatButton setAlpha:0.5];
         [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
         [self.statusInputView setHidden:true];
-        [self.mapViewController.mapView setHidden:true];
-        [self.mapViewController.refreshButton setHidden:true];
+        [self.mapViewController hideMode];
+        
         //[self hideTabBar:self.containerTBC];
         [self.containerTBC setSelectedIndex:2];
         
     }else{
-        
+        // user is hungry
         [self.hungrySlider setValue:1.0];
-        [self.adjectiveButton setTitle:self.currentAdjective forState:UIControlStateNormal];
+        [self.adjectiveButton setTitle:[MyManagedObjectContext currentAdjective] forState:UIControlStateNormal];
+        
         //[self.chatButton setEnabled:true];
         //[self.chatButton setAlpha:1.0];
         [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
@@ -262,20 +274,19 @@
 
 - (IBAction)userChangedStatus:(id)sender{
     
-    [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"Joining the %@...",self.currentAdjective]];
+    [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"Joining the %@...",[MyManagedObjectContext currentAdjective]]];
     [self slideOutStatus];
     [self.chatButton setEnabled:TRUE];
     [self.chatButton setAlpha:1.0];
     [self.view setNeedsDisplay];
-    [self.mapViewController.mapView setHidden:false];
-    [self.mapViewController.refreshButton setHidden:false];
-    self.mapViewController.mapView.alpha = 0.0;
+   
+    [self.mapViewController getOutOfHideMode];
     
-    [UIView animateWithDuration:1.0 animations:^{
-        self.mapViewController.mapView.alpha = 1.0;
-    }];
+    int adjectiveNumber = [self.possibleAdjectives indexOfObject:[MyManagedObjectContext currentAdjective]];
+    NSLog(@"%d",adjectiveNumber);
+
     
-    [self updateStatusWithStatus:[self.statusTextField text] andAdjective:@1];
+    [self updateStatusWithStatus:[self.statusTextField text] andAdjective:[NSNumber numberWithInt:adjectiveNumber]];
     [self.view endEditing:YES];
     
     
@@ -292,6 +303,8 @@
 
 -(void)updateStatusWithStatus:(NSString *)status
                  andAdjective:(NSNumber *)adjective{
+    
+       
     dispatch_queue_t fetchQ = dispatch_queue_create("Update Status", NULL);
     dispatch_async(fetchQ, ^{
         
@@ -334,14 +347,17 @@
     //  if (self.hungrySlider.valueChanged) {
     //make sure we have the most current VC's
     
-    if (self.hungrySlider.value > 0.5 && ![self.adjectiveButton.titleLabel.text isEqual:self.currentAdjective]) {
+    if (self.hungrySlider.value > 0.5 && ![self.adjectiveButton.titleLabel.text isEqual:[MyManagedObjectContext currentAdjective]]) {
         // user is hungry
         // fade out the not hungry status
         [MyManagedObjectContext hungryTrue];
+       
+
         [self fadeOutLabel];
         [self slideInStatus];
-        [self updateStatusWithStatus:self.currentAdjective andAdjective:@1];
-        [self.adjectiveButton setTitle:self.currentAdjective forState:UIControlStateNormal];
+        
+        [self updateStatusWithStatus:[MyManagedObjectContext currentAdjective] andAdjective:[NSNumber numberWithInt:[MyManagedObjectContext currentAdjectiveNumber]]];
+        [self.adjectiveButton setTitle:[MyManagedObjectContext currentAdjective] forState:UIControlStateNormal];
         //[self.chatButton setEnabled:TRUE];
         //[self.chatButton setAlpha:1.0];
         
@@ -354,24 +370,25 @@
         [self.settingsController switchViews:1]; // switch to settings view
         
         
-    }else if (self.hungrySlider.value <= 0.5 && [self.adjectiveButton.titleLabel.text isEqual:self.currentAdjective]){
+    }else if (self.hungrySlider.value <= 0.5 && [self.adjectiveButton.titleLabel.text isEqual:[MyManagedObjectContext currentAdjective]]){
         // user is not hungry
         
         [MyManagedObjectContext hungryFalse];
         [self fadeOutLabel];
         [self slideOutStatus];
-        [self updateStatusWithStatus:@"" andAdjective:@0];
-        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",self.currentAdjective] forState:UIControlStateNormal];
+        
+        [self updateStatusWithStatus:@"" andAdjective:[NSNumber numberWithInt:[MyManagedObjectContext currentAdjectiveNumber]]];
+        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",[MyManagedObjectContext currentAdjective]] forState:UIControlStateNormal];
         [self.chatButton setEnabled:FALSE];
         [self.chatButton setAlpha:0.5];
         [self.containerTBC setSelectedIndex:2];
         [self.adjectiveButton setNeedsDisplay];
         [self fadeInLabel];
         [self.settingsController switchViews:0]; // send them home
-        self.mapViewController.mapView.alpha = 1.0;
-        [UIView animateWithDuration:1.0 animations:^{
-            self.mapViewController.mapView.alpha = 0.0;
-        }];
+        
+        [self.mapViewController getOutOfHideMode];
+        
+        
         //[self.mapViewController.mapView setHidden:true];
         //[self.mapViewController.refreshButton setHidden:true];
         //[self hideTabBar:self.containerTBC];
@@ -495,8 +512,6 @@
     [self.tapped setNumberOfTouchesRequired:1];
     self.tapped.delegate = self;
     [self.mainLogo addGestureRecognizer:self.tapped];
-    self.currentAdjective = [self.possibleAdjectives objectAtIndex:0];
-    
     
 }
 
