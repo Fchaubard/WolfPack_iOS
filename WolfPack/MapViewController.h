@@ -20,5 +20,5 @@
 
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (nonatomic) bool  needUpdateRegion;
-- (void)updateRegion;
+- (void)updateRegion:(NSNumber *)i;
 @end

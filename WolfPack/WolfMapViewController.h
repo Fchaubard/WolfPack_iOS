@@ -12,6 +12,9 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) IBOutlet UIButton *refreshButton;
+@property (strong, nonatomic) IBOutlet UIButton *viewWolfPackButton;
+@property (strong, nonatomic) IBOutlet UIButton *viewCurrentLocationButton;
+
 
 -(void)reload;
 -(void)hideMode;

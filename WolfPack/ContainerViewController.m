@@ -43,7 +43,130 @@
 
 @implementation ContainerViewController
 
+#pragma mark -lifecycles
 
+- (void)viewDidLoad
+{    // talk to the server and get user info
+    [super viewDidLoad];
+    [MyCLLocationManager sharedSingleton];
+    
+    //NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    // saving an NSInteger
+    //[prefs setObject:[NSString stringWithFormat:@"6508477336"] forKey:@"token"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(glowChatButton)
+                                                 name:@"MessageNotification"
+                                               object:nil];
+    
+    
+    _possibleAdjectives = [[NSMutableArray alloc] initWithArray:@[@"Hungry",@"Excercising",@"Studying",@"Raging",@"Shopping",@"Coffeeing",@"Bored"]];
+    
+    // set the initial adjective to be "Hungry"
+    if([[MyManagedObjectContext currentAdjective] isEqualToString:@""]){
+        [MyManagedObjectContext setCurrentAdjective:[self.possibleAdjectives objectAtIndex:0]];
+        [MyManagedObjectContext setCurrentAdjectiveNumber:0];
+    }
+    NSLog(@"%@",[MyManagedObjectContext currentAdjective]);
+}
+
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+    
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"token"]) {
+        if ([[NSUserDefaults standardUserDefaults] stringForKey:@"deviceToken"]!=@"no")
+        {
+            NSLog(@"logged In alreadyyy");
+        }else{
+            NSLog(@"no device token");
+        }
+    }else{
+        NSLog(@"not alraedy logged in");
+        [self performSegueWithIdentifier: @"noToken" sender: self];
+    }
+    
+    
+    self.tapped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedToChangeStatus:)];
+    
+    [self.tapped setNumberOfTouchesRequired:1];
+    self.tapped.delegate = self;
+    [self.mainLogo addGestureRecognizer:self.tapped];
+    
+}
+
+
+- (void)viewDidAppear:(BOOL)animated{
+    // DISCLAIMER: NOT GOOD DESIGN
+    [super viewDidAppear:animated];
+    
+    if (self.containerTBC) {
+        for (UIViewController *v in self.containerTBC.viewControllers)
+        {
+            if ([v isKindOfClass:[WolfMapViewController class]])
+            {
+                self.mapViewController = (WolfMapViewController *)v;
+            }
+            else if([v isKindOfClass:[UINavigationController class]]){
+                UINavigationController *navVC = (UINavigationController *)v;
+                for (UIViewController *nav_v in navVC.viewControllers) {
+                    
+                    if ([nav_v isKindOfClass:[WolfListCDTVC class]])
+                    {
+                        self.listViewController = (WolfListCDTVC *)nav_v;
+                    }
+                    else if ([nav_v isKindOfClass:[SettingsViewController class]])
+                    {
+                        self.settingsController = (SettingsViewController *)nav_v;
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    
+    if (![MyManagedObjectContext isThisUserHungry]) {
+        //user is not hungry
+        [self.hungrySlider setValue:0.0];
+        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",[MyManagedObjectContext currentAdjective]] forState:UIControlStateNormal];
+        [self.chatButton setEnabled:false];
+        
+        [self.chatButton setAlpha:0.5];
+        [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
+        [self.statusInputView setHidden:true];
+        [self.mapViewController hideMode];
+        
+        //[self hideTabBar:self.containerTBC];
+        [self.containerTBC setSelectedIndex:2];
+        
+    }else{
+        // user is hungry
+        [self.hungrySlider setValue:1.0];
+        [self.adjectiveButton setTitle:[MyManagedObjectContext currentAdjective] forState:UIControlStateNormal];
+       
+        //[self.chatButton setEnabled:true];
+        //[self.chatButton setAlpha:1.0];
+        [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
+        
+        [self.statusInputView setHidden:true];
+        //[self showTabBar:self.containerTBC];
+        
+        
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+}
+
+#pragma mark - popover
 
 -(void)selectedTableRow:(NSUInteger)rowNum
 {
@@ -93,7 +216,8 @@
     
     if (self.statusInputView.hidden && [[self hungrySlider] value]==1)
     {
-        [self userTappedToChangeStatus:@1];
+        [self.mapViewController hideMode];
+        [self userTappedToChangeStatus:@1]; // the sender in this isnt used so no worries with the @1...
     }
       
     
@@ -126,92 +250,8 @@
     //[controller release];
 }
 
-- (void)viewDidLoad
-{    // talk to the server and get user info
-    [super viewDidLoad];
-    [MyCLLocationManager sharedSingleton];
-    
-    //NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    
-    // saving an NSInteger
-    //[prefs setObject:[NSString stringWithFormat:@"6508477336"] forKey:@"token"];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(glowChatButton)
-                                                 name:@"MessageNotification"
-                                               object:nil];
-   
-    
-    _possibleAdjectives = [[NSMutableArray alloc] initWithArray:@[@"Hungry",@"Excersizing",@"Studying",@"Raging",@"Shopping",@"Coffeeing",@"Bored"]];
-    
-    // set the initial adjective to be "Hungry"
-    if([[MyManagedObjectContext currentAdjective] isEqualToString:@""]){
-        [MyManagedObjectContext setCurrentAdjective:[self.possibleAdjectives objectAtIndex:0]];
-        [MyManagedObjectContext setCurrentAdjectiveNumber:0];
-    }
-    NSLog(@"%@",[MyManagedObjectContext currentAdjective]);
-}
 
-- (void)viewDidAppear:(BOOL)animated{
-    // DISCLAIMER: NOT GOOD DESIGN
-    [super viewDidAppear:animated];
-    
-    if (self.containerTBC) {
-        for (UIViewController *v in self.containerTBC.viewControllers)
-        {
-            if ([v isKindOfClass:[WolfMapViewController class]])
-            {
-                self.mapViewController = (WolfMapViewController *)v;
-            }
-            else if([v isKindOfClass:[UINavigationController class]]){
-                UINavigationController *navVC = (UINavigationController *)v;
-                for (UIViewController *nav_v in navVC.viewControllers) {
-                    
-                    if ([nav_v isKindOfClass:[WolfListCDTVC class]])
-                    {
-                        self.listViewController = (WolfListCDTVC *)nav_v;
-                    }
-                    else if ([nav_v isKindOfClass:[SettingsViewController class]])
-                    {
-                        self.settingsController = (SettingsViewController *)nav_v;
-                    }
-                    
-                }
-            }
-        }
-    }
-    
-  
-    if (![MyManagedObjectContext isThisUserHungry]) {
-        //user is not hungry
-        [self.hungrySlider setValue:0.0];
-        [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",[MyManagedObjectContext currentAdjective]] forState:UIControlStateNormal];
-        [self.chatButton setEnabled:false];
-        
-        [self.chatButton setAlpha:0.5];
-        [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
-        [self.statusInputView setHidden:true];
-        [self.mapViewController hideMode];
-        
-        //[self hideTabBar:self.containerTBC];
-        [self.containerTBC setSelectedIndex:2];
-        
-    }else{
-        // user is hungry
-        [self.hungrySlider setValue:1.0];
-        [self.adjectiveButton setTitle:[MyManagedObjectContext currentAdjective] forState:UIControlStateNormal];
-        
-        //[self.chatButton setEnabled:true];
-        //[self.chatButton setAlpha:1.0];
-        [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
-        
-        [self.statusInputView setHidden:true];
-        //[self showTabBar:self.containerTBC];
-        
-        
-    }
-}
-
+#pragma mark - chat button
 -(void)glowChatButton{
     
     [UIView animateWithDuration:0.7f delay:0 options:UIViewAnimationOptionAutoreverse | UIViewAnimationCurveEaseInOut | UIViewAnimationOptionRepeat | UIViewAnimationOptionAllowUserInteraction  animations:^{
@@ -237,6 +277,7 @@
     
 }
 
+#pragma mark - status input
 -(void)slideInStatus{
     [self.statusInputView setHidden:false];
     
@@ -295,8 +336,12 @@
 - (IBAction)userTappedToChangeStatus:(id)sender{
     
     if (self.statusInputView.hidden) {
+        
+        
         [self slideInStatus];
+    
     }else{
+        
         [self slideOutStatus];
     }
 }
@@ -332,7 +377,7 @@
         dispatch_async(dispatch_get_main_queue(), ^ {
             
             [SVProgressHUD dismiss];
-            [self.mapViewController updateRegion];
+            //[self.mapViewController updateRegion:@2]; // slinky thing happens if you do this
         });
         
         
@@ -342,6 +387,8 @@
     
 }
 
+
+#pragma mark - Hungry Slider stuff
 - (IBAction)userChangedHungryStatus:(id)sender{
     
     //  if (self.hungrySlider.valueChanged) {
@@ -368,7 +415,7 @@
         
         //[self showTabBar:self.containerTBC];
         [self.settingsController switchViews:1]; // switch to settings view
-        
+         [self.mapViewController hideMode];
         
     }else if (self.hungrySlider.value <= 0.5 && [self.adjectiveButton.titleLabel.text isEqual:[MyManagedObjectContext currentAdjective]]){
         // user is not hungry
@@ -386,7 +433,7 @@
         [self fadeInLabel];
         [self.settingsController switchViews:0]; // send them home
         
-        [self.mapViewController getOutOfHideMode];
+        [self.mapViewController hideMode];
         
         
         //[self.mapViewController.mapView setHidden:true];
@@ -396,8 +443,56 @@
     
     // }
     
+}
+
+
+
+#pragma mark - adjective label
+-(void) fadeInLabel
+{
+    [UIView animateWithDuration:1.0 animations:^{
+        self.adjectiveButton.alpha = 1.0;
+        
+    }];
     
 }
+
+-(void) fadeOutLabel
+{
+    [UIView animateWithDuration:1.0 animations:^{
+        self.adjectiveButton.alpha = 0.0;
+    }];
+}
+
+#pragma mark - segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"EmbeddedSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[UITabBarController class]]) {
+            self.containerTBC = segue.destinationViewController;
+        }
+    }
+    if ([segue.identifier isEqualToString:@"Chat"]) {
+        [SVProgressHUD dismiss];
+        
+    }
+}
+
+#pragma mark - not used...
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return false;//(interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
 // Method implementations
 - (void)hideTabBar:(UITabBarController *) tabbarcontroller
 {
@@ -447,78 +542,7 @@
     
     [UIView commitAnimations];
 }
--(void) fadeInLabel
-{
-    [UIView animateWithDuration:1.0 animations:^{
-        self.adjectiveButton.alpha = 1.0;
-        
-    }];
-    
-}
-
--(void) fadeOutLabel
-{
-    [UIView animateWithDuration:1.0 animations:^{
-        self.adjectiveButton.alpha = 0.0;
-    }];
-}
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"EmbeddedSegue"]) {
-        if ([segue.destinationViewController isKindOfClass:[UITabBarController class]]) {
-            self.containerTBC = segue.destinationViewController;
-        }
-    }
-    if ([segue.identifier isEqualToString:@"Chat"]) {
-        [SVProgressHUD dismiss];
-        
-    }
-}
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return false;//(interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [super viewWillAppear:animated];
-    
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"token"]) {
-        if ([[NSUserDefaults standardUserDefaults] stringForKey:@"deviceToken"]!=@"no")
-        {
-            NSLog(@"logged In alreadyyy");
-        }else{
-            NSLog(@"no device token");
-        }
-    }else{
-        NSLog(@"not alraedy logged in");
-          [self performSegueWithIdentifier: @"noToken" sender: self];
-    }
-    
-    
-    self.tapped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedToChangeStatus:)];
-    
-    [self.tapped setNumberOfTouchesRequired:1];
-    self.tapped.delegate = self;
-    [self.mainLogo addGestureRecognizer:self.tapped];
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [super viewWillDisappear:animated];
-}
 
 @end

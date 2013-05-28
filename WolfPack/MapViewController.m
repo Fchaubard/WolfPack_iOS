@@ -123,8 +123,11 @@
 // kind of a crude version
 // (using CGRect for latitude/longitude regions is sorta weird, but CGRectUnion is nice to have!)
 
-- (void)updateRegion
+- (void)updateRegion:(NSNumber *)mode
 {
+    
+    // mode 1 is 50 miles around you..
+    // mode 2 is all your wolfpack
     self.needUpdateRegion = NO;
     CGRect boundingRect;
     BOOL started = NO;
@@ -144,15 +147,25 @@
     if (started) {
         boundingRect = CGRectInset(boundingRect, -0.2, -0.2);
         //if ((boundingRect.size.width < 20) && (boundingRect.size.height < 20)) {
-            MKCoordinateRegion region;
+        
+        MKCoordinateRegion region;
+        if (mode.intValue==1) {
+            
             region.center.latitude = boundingRect.origin.x + boundingRect.size.width/2;
             region.center.longitude = boundingRect.origin.y + boundingRect.size.height/2;
-             CLLocation *loc = [MyCLLocationManager sharedSingleton].locationManager.location;
-        
+            region.span.latitudeDelta =boundingRect.size.height;
+            region.span.longitudeDelta =boundingRect.size.width;
+        }else if (mode.intValue==2){
+            CLLocation *loc = [MyCLLocationManager sharedSingleton].locationManager.location;
             region.center = loc.coordinate; //for niko
             region.span.latitudeDelta =0.02;
             region.span.longitudeDelta =0.02;
-            [self.mapView setRegion:region animated:YES];
+            
+        }
+        
+        
+        [self.mapView setRegion:region animated:YES];
+           
         //}
     }
      
