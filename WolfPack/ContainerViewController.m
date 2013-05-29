@@ -90,7 +90,6 @@
         [self performSegueWithIdentifier: @"noToken" sender: self];
     }
     
-    
     self.tapped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedToChangeStatus:)];
     
     [self.tapped setNumberOfTouchesRequired:1];

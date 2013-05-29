@@ -10,10 +10,21 @@
 #import "ULTFriendsList.h"
 
 @interface ULTFriendsList ()
+@property (strong, nonatomic) NSArray *alphaCharSecArray;
 @property (strong, nonatomic) NSMutableArray *wolfpackNamesList, *wolfpackSessIdsList;
 @property (strong, nonatomic) NSMutableArray *wolfpackFriendStatusList, *blockedArray, *friendArray, *inviteArray;
-@property (strong, nonatomic) NSMutableArray *jsonArray, *potentialArray, *pendingArray, *contactsArray, *alphaArray;
-@property NSInteger numFriendsPotential, numFriendsPending, numFriends, numBlocked, numFriendsInvite;
+@property (strong, nonatomic) NSMutableArray *jsonArray, *potentialArray, *pendingArray, *contactsArray, *alphaArra;
+@property NSInteger numFriendsPotential, numFriendsPending, numFriends, numBlocked;
+@end
+
+@interface CustomUIButton : UIButton
+@property NSString *mobile;
+
+@end
+
+@implementation CustomUIButton
+//empty
+
 @end
 
 @implementation ULTFriendsList
@@ -61,13 +72,9 @@
 	}
 	
 	if(self.inviteArray == NULL) {
-		self.inviteArray = [NSMutableArray array];
-	}
-	
-	if(self.alphaArray == NULL) {
-		self.alphaArray = [NSMutableArray arrayWithCapacity:26];
+		self.inviteArray = [NSMutableArray arrayWithCapacity:26];
 		for(int i = 0; i < 26; i++) {
-			[self.alphaArray insertObject:[NSNumber numberWithInt:0] atIndex:i];
+			[self.inviteArray insertObject:[NSMutableArray array] atIndex:i];
 		}
 	}
     
@@ -85,26 +92,30 @@
 			} else if([friendStatus isEqualToString:blocked]) {
 				[self.blockedArray addObject:entry];
 			} else if([friendStatus isEqualToString:invite]) {
-				NSLog(@"potential: %@", entry);
-				[self.inviteArray addObject:entry];
+				if(![[entry objectForKey:@"fname"] isEqualToString:@""]) {
+					int result = [[[entry objectForKey:@"fname"] uppercaseString] UTF8String][0] - 'A';
+					NSMutableArray *copy = [self.inviteArray objectAtIndex:result];
+					[copy addObject:entry];
+					[self.inviteArray replaceObjectAtIndex:result withObject:copy];
+				}
 			} else NSLog(@"didn't find a spot: %@", entry);
 		}
 	}
 	
-	
 	if(self.pendingArray.count > 0) {
 		NSMutableArray *tempPotentialArray = [NSMutableArray array];
-		
-		for(NSDictionary *pending in self.pendingArray) {
-			NSString *pendNumber = [pending valueForKey:@"friendphone"];
-			for(NSDictionary *potential in self.potentialArray) {
-				NSString *potNumber = [potential valueForKey:@"friendphone"];
-				if(![pendNumber isEqualToString:potNumber]) {
-					[tempPotentialArray addObject:potential];
+		Boolean addToTempPotArray = true;
+		for(NSDictionary *pot in self.potentialArray) {
+			NSString *potFriendPhone = [pot valueForKey:@"friendphone"];
+			for(NSDictionary *pend in self.pendingArray) {
+				if([[pend valueForKey:@"friendphone"] isEqualToString:potFriendPhone]) {
+					addToTempPotArray = false;
 				}
 			}
+			if(addToTempPotArray) {
+				[tempPotentialArray addObject:pot];
+			}
 		}
-		
 		[self.potentialArray setArray:tempPotentialArray];
 	}
 	
@@ -112,7 +123,6 @@
 	self.numFriendsPending = self.pendingArray.count;
 	self.numFriends = self.friendArray.count;
 	self.numBlocked = self.blockedArray.count;
-	self.numFriendsInvite = self.inviteArray.count;
 }
 
 -(void)getWolfpackFriendMapping
@@ -212,7 +222,7 @@
 			
 			NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
             
-			NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/accessfriendmappingjson.php?session=%@&type=0", token]];
+			NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/accessfriendmappingjson.php?session=%@", token]];
 			
 			[request setURL:url];
 			[request setHTTPMethod:@"POST"];
@@ -264,10 +274,19 @@
     return self;
 }
 
+- (void)initAlphaArray
+{
+	if(self.alphaCharSecArray == NULL) {
+		self.alphaCharSecArray = @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N",
+        @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
+	}
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self getWolfpackFriendMapping];
+	[self initAlphaArray];
 }
 
 - (void)didReceiveMemoryWarning
@@ -280,15 +299,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 3;
+	return 28; //request, potential, 26 letters in the alphabet
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	int count = (section == 0) ? self.numFriendsPending : (section == 1) ? self.numFriendsPotential : (section == 2) ? self.numFriendsInvite : 0;
+	int count = (section == 0) ? self.numFriendsPending : (section == 1) ? self.numFriendsPotential : (section > 1 && section < 28) ? [[self.inviteArray objectAtIndex:(section - 2)] count] : 0;
 	if(count == 0) {
-		return 0;
-	} else return 30;
+		return 0.01;
+	} else return 22;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -297,20 +317,27 @@
 		return self.numFriendsPending;
 	} else if(section == 1) {
 		return self.numFriendsPotential;
-	} else if(section == 2) {
-		return self.numFriendsInvite;
+	} else if(section > 1 && section < 28) {
+		return [[self.inviteArray objectAtIndex:(section - 2)] count];
 	} else return  0;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	if(section == 0) {
-		return @"Wants to join your WolfPack";
+		return (self.numFriendsPending == 0) ? nil : @"Wants to join your WolfPack";
 	} else if(section == 1) {
-		return @"Add to your WolfPack";
-	} else if(section == 2) {
-		return @"Invite to join WolfPack";
-	} else return @"";
+		return (self.numFriendsPotential == 0) ? nil : @"Add to your WolfPack";
+	} else if(section > 1 && section < 28) {
+		return ([[self.inviteArray objectAtIndex:(section - 2)] count] == 0) ? nil : [self.alphaCharSecArray objectAtIndex:(section - 2)];
+	} else return nil;
+}
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+	[self dismissViewControllerAnimated:true
+							 completion:nil];
+	
 }
 
 - (NSString *)formatDetail:(NSString *)detail
@@ -322,67 +349,15 @@
 	return detail;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-	NSString *fname = @"", *lname = @"", *detail = @"";
-	
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
-															forIndexPath:indexPath];
-	
-	UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	button.frame = CGRectMake(251.5f, 5.0f, 63.0f, 34.0f);
-	int section = [indexPath section];
-	if(section == 0) {
-		fname = [[self.pendingArray objectAtIndex:[indexPath row]] objectForKey:@"fname"];
-		lname = [[self.pendingArray objectAtIndex:[indexPath row]] objectForKey:@"lname"];
-		[button setTitle:@"Approve"
-				forState:UIControlStateNormal];
-		[button addTarget:self
-				   action:@selector(approveFriend:)
-		 forControlEvents:UIControlEventTouchUpInside];
-		detail = [[self.pendingArray objectAtIndex:[indexPath row]] objectForKey:@"status"];
-	} else if(section == 1) {
-		fname = [[self.potentialArray objectAtIndex:[indexPath row]] objectForKey:@"fname"];
-		lname = [[self.potentialArray objectAtIndex:[indexPath row]] objectForKey:@"lname"];
-		[button setTitle:@"Add"
-				forState:UIControlStateNormal];
-		[button addTarget:self
-				   action:@selector(addFriend:)
-		 forControlEvents:UIControlEventTouchUpInside];
-		detail = [[self.potentialArray objectAtIndex:[indexPath row]] objectForKey:@"status"];
-	} else if(section == 2) {
-		fname = [[self.inviteArray objectAtIndex:[indexPath row]] objectForKey:@"fname"];
-		lname = [[self.inviteArray objectAtIndex:[indexPath row]] objectForKey:@"lname"];
-		[button setTitle:@"Invite"
-				forState:UIControlStateNormal];
-		[button addTarget:self
-				   action:@selector(inviteFriend:)
-		 forControlEvents:UIControlEventTouchUpInside];
-		detail = [[self.inviteArray objectAtIndex:[indexPath row]] objectForKey:@"friendphone"];
-		detail = [self formatDetail:detail];
-	}
-	
-	[button.titleLabel setFont:[UIFont systemFontOfSize:15]];
-	[button setTag:[indexPath row]];
-	[cell addSubview:button];
-	
-	[cell.textLabel setText:[NSString stringWithFormat:@"%@ %@", fname, lname]];
-	if(detail == (NSString *)[NSNull null]) detail = @"WOLF WOLF WOLFPACK";
-	[cell.detailTextLabel setText:detail];
-	
-	return cell;
-}
-
 -(void)inviteFriend:(id)sender
 {
 	MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
 	
 	if([MFMessageComposeViewController canSendText]) {
 		
-		UIButton *button = (UIButton *)sender;
+		CustomUIButton *button = (CustomUIButton *)sender;
 		
-		NSString *number = [[self.inviteArray objectAtIndex:button.tag] valueForKey:@"friendphone"];
+		NSString *number = button.mobile;
 		
 		controller.body = @"JOIN WOLFPACK!";
 		controller.recipients = [NSArray arrayWithObjects:number, nil];
@@ -394,26 +369,18 @@
 	}
 }
 
--(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{
-	[self dismissViewControllerAnimated:true
-							 completion:nil];
-	
-}
-
 -(void)approveFriend:(id)sender
 {
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
     NSString *token = [prefs stringForKey:@"token"];
 	
-	UIButton *button = (UIButton *)sender;
-	NSString *number = [[self.pendingArray objectAtIndex:button.tag] valueForKey:@"friendphone"];
-	
+	CustomUIButton *button = (CustomUIButton *)sender;
+	NSString *number = button.mobile;
     
     NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/respondtowprequestjson.php?session=%@&response=3&friendid=%@", token, number];
 	
-	dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
+	dispatch_queue_t downloadQueue = dispatch_queue_create("approve - update Friend Status", NULL);
     dispatch_async(downloadQueue, ^{
         
 		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlText]];
@@ -437,14 +404,12 @@
 
 -(void)addFriend:(id)sender
 {
-    [sender setTitle:@"Adding"
-            forState:UIControlStateNormal];
-    dispatch_queue_t fetchQ = dispatch_queue_create("Update Friend Status", NULL);
+    dispatch_queue_t fetchQ = dispatch_queue_create("add - Update Friend Status", NULL);
     dispatch_async(fetchQ, ^{
         
         NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
         
-        NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addtowpjson.php?session=%@&friendid=%@", sessionid, [[self.potentialArray objectAtIndex: [(UIButton *)sender tag]] objectForKey:@"friendphone"]];
+        NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addtowpjson.php?session=%@&friendid=%@", sessionid, ((CustomUIButton *)sender).mobile];
         
         NSURL *URL = [NSURL URLWithString:str];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
@@ -458,11 +423,100 @@
 			self.numFriendsPotential--;
 		}
         dispatch_async(dispatch_get_main_queue(), ^{
-            [sender setTitle:@"Added"
-                    forState:UIControlStateNormal];
 			[self.tableView reloadData];
 		});
 	});
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    NSMutableArray *sideLabels = [NSMutableArray array];
+	if(self.numFriendsPending != 0) {
+		[sideLabels addObject:@"+"];
+	}
+	if(self.numFriendsPotential != 0) {
+		[sideLabels addObject:@"?"];
+	}
+	[sideLabels addObjectsFromArray:self.alphaCharSecArray];
+	
+	return sideLabels;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *CellIdentifier = @"Cell";
+	NSString *fname = @"", *lname = @"", *detail = @"";
+	
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+															forIndexPath:indexPath];
+	//[cell setBounds:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+	
+	CustomUIButton *button = [[CustomUIButton alloc] initWithFrame:CGRectMake(220.0f, 5.0f, 62.0f, 33.0f)];
+	[button.layer setCornerRadius:5];
+	int section = [indexPath section];
+	
+	if(section == 0) {
+		fname = [[self.pendingArray objectAtIndex:[indexPath row]] objectForKey:@"fname"];
+		lname = [[self.pendingArray objectAtIndex:[indexPath row]] objectForKey:@"lname"];
+		
+		[button setTitle:@"Approve"
+				forState:UIControlStateNormal];
+		
+		[button addTarget:self
+				   action:@selector(approveFriend:)
+		 forControlEvents:UIControlEventTouchUpInside];
+        
+		button.mobile = [[self.pendingArray objectAtIndex:[indexPath row]] objectForKey:@"friendphone"];
+		
+		detail = [[self.pendingArray objectAtIndex:[indexPath row]] objectForKey:@"status"];
+		
+		[button setTag:[indexPath row]];
+	} else if(section == 1) {
+		fname = [[self.potentialArray objectAtIndex:[indexPath row]] objectForKey:@"fname"];
+		lname = [[self.potentialArray objectAtIndex:[indexPath row]] objectForKey:@"lname"];
+		
+		[button setTitle:@"Add"
+				forState:UIControlStateNormal];
+		
+		[button addTarget:self
+				   action:@selector(addFriend:)
+		 forControlEvents:UIControlEventTouchUpInside];
+		
+		button.mobile = [[self.potentialArray objectAtIndex:[indexPath row]] objectForKey:@"friendphone"];
+		
+		detail = [[self.potentialArray objectAtIndex:[indexPath row]] objectForKey:@"status"];
+		
+		[button setTag:[indexPath row]];
+	} else if(section > 1 && section < 28) {
+		fname = [[[self.inviteArray objectAtIndex:([indexPath section] - 2)] objectAtIndex:[indexPath row]] objectForKey:@"fname"];
+		lname = [[[self.inviteArray objectAtIndex:([indexPath section] - 2)] objectAtIndex:[indexPath row]] objectForKey:@"lname"];
+		
+		[button setTitle:@"Invite"
+				forState:UIControlStateNormal];
+        
+		[button addTarget:self
+				   action:@selector(inviteFriend:)
+		 forControlEvents:UIControlEventTouchUpInside];
+		
+		detail = [[[self.inviteArray objectAtIndex:([indexPath section] - 2)] objectAtIndex:[indexPath row]] objectForKey:@"friendphone"];
+        
+		button.mobile = detail;
+        
+		detail = [self formatDetail:detail];
+	}
+	
+	[button setBackgroundColor:[UIColor lightGrayColor]];
+	[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+	[button.titleLabel setFont:[UIFont systemFontOfSize:15]];
+	
+	[cell addSubview:button];
+	
+	[cell.textLabel setText:[NSString stringWithFormat:@"%@ %@", fname, lname]];
+	
+	if(detail == (NSString *)[NSNull null]) detail = @"WOLF WOLF WOLFPACK";
+	
+	[cell.detailTextLabel setText:detail];
+	
+	return cell;
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

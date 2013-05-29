@@ -94,10 +94,12 @@
 {
 	self.prop1Label.text = @"New Email";
 	self.prop1TextField.placeholder = @"Required Field";
+	self.prop1TextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	self.prop1TextField.keyboardType = UIKeyboardTypeEmailAddress;
 	
 	self.prop2Label.text = @"Confirm New Email";
 	self.prop2TextField.placeholder = @"Required Field";
+	self.prop2TextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	self.prop2TextField.keyboardType = UIKeyboardTypeEmailAddress;
 }
 
