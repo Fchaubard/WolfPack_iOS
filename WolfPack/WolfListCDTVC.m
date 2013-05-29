@@ -13,9 +13,12 @@
 
 @interface WolfListCDTVC ()
 
+@property (nonatomic) BOOL adjMode;
+
 @end
 
 @implementation WolfListCDTVC
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,17 +29,18 @@
     return self;
 }
 
--(void)changeMode:(int)mode{
-    
-}
+
 
 
 - (void)viewDidLoad
 {
+    
+    
     [self.refreshControl addTarget:self
                             action:@selector(loadLatestFriendsData)
                   forControlEvents:UIControlEventValueChanged];
     [super viewDidLoad];
+    self.adjMode = TRUE;
     [self reload];
     
 }
@@ -44,6 +48,9 @@
 
 
 
+
+// original
+/*
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     _managedObjectContext = managedObjectContext;
@@ -56,7 +63,116 @@
         self.fetchedResultsController = nil;
     }
 }
+*/
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 
+{
+    
+    _managedObjectContext = managedObjectContext;
+    
+    if (managedObjectContext) {
+        
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Friend"];
+        
+        if(self.adjMode){
+            
+            NSSortDescriptor *statusDescriptor = [[NSSortDescriptor alloc] initWithKey:@"hungry" ascending:YES];
+            
+            //NSSortDescriptor *statusDescriptor = [[NSSortDescriptor alloc] initWithKey:@"hungry" ascending:YES selector:@selector(compareHungry:)];
+            
+            
+            
+            //Blocks are not allowed:
+            
+            
+            
+            /*NSSortDescriptor *statusDescriptor = [[NSSortDescriptor alloc] initWithKey:@"hungry" ascending:YES comparator:^NSComparisonResult(id obj1, id obj2) {
+             
+             NSString *oneHungry = (NSString *)obj1;
+             
+             NSString *toAnotherHungry = (NSString *)obj2;
+             
+             NSString *specialHungry = @"2";
+             
+             if([oneHungry isEqualToString: specialHungry]){
+             
+             return NSOrderedAscending;
+             
+             }
+             
+             else if ([toAnotherHungry isEqualToString: specialHungry]){
+             
+             return NSOrderedDescending;
+             
+             }
+             
+             else if ([oneHungry intValue]>[toAnotherHungry intValue]){
+             
+             return NSOrderedDescending;
+             
+             }
+             
+             else if ([oneHungry intValue]<[toAnotherHungry intValue]){
+             
+             return NSOrderedAscending;
+             
+             }
+             
+             else{
+             
+             return NSOrderedSame;
+             
+             }
+             
+             }];*/
+            
+            NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+            
+            [request setSortDescriptors:@[statusDescriptor, nameDescriptor]];
+            
+            request.predicate = nil;
+            
+            self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:@"hungry" cacheName:nil];
+            
+        }
+        
+        else{
+            
+            NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+            
+            [request setSortDescriptors:@[nameDescriptor]];
+            
+            request.predicate = nil;
+            
+            self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+            
+        }
+        
+        
+        
+    } else {
+        
+        self.fetchedResultsController = nil;
+        
+    }
+    
+}
+
+-(void)changeMode:(int)mode{
+    
+    if(mode==0){
+        
+        self.adjMode = FALSE;
+        
+    }
+    
+    else{
+        
+        self.adjMode = TRUE;
+        
+    }
+    
+}
 
 
 

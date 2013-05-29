@@ -13,7 +13,7 @@
 @property (strong, nonatomic) NSArray *alphaCharSecArray;
 @property (strong, nonatomic) NSMutableArray *wolfpackNamesList, *wolfpackSessIdsList;
 @property (strong, nonatomic) NSMutableArray *wolfpackFriendStatusList, *blockedArray, *friendArray, *inviteArray;
-@property (strong, nonatomic) NSMutableArray *jsonArray, *potentialArray, *pendingArray, *contactsArray, *alphaArra;
+@property (strong, nonatomic) NSMutableArray *jsonArray, *potentialArray, *pendingArray, *contactsArray;
 @property NSInteger numFriendsPotential, numFriendsPending, numFriends, numBlocked;
 @end
 
@@ -72,8 +72,8 @@
 	}
 	
 	if(self.inviteArray == NULL) {
-		self.inviteArray = [NSMutableArray arrayWithCapacity:26];
-		for(int i = 0; i < 26; i++) {
+		self.inviteArray = [NSMutableArray arrayWithCapacity:27];
+		for(int i = 0; i < 27; i++) {
 			[self.inviteArray insertObject:[NSMutableArray array] atIndex:i];
 		}
 	}
@@ -94,6 +94,10 @@
 			} else if([friendStatus isEqualToString:invite]) {
 				if(![[entry objectForKey:@"fname"] isEqualToString:@""]) {
 					int result = [[[entry objectForKey:@"fname"] uppercaseString] UTF8String][0] - 'A';
+					if(result > 25 || result < 0) {
+						//A-Z = 0-25, misc = 26
+						result = 26;
+					}
 					NSMutableArray *copy = [self.inviteArray objectAtIndex:result];
 					[copy addObject:entry];
 					[self.inviteArray replaceObjectAtIndex:result withObject:copy];
@@ -278,7 +282,7 @@
 {
 	if(self.alphaCharSecArray == NULL) {
 		self.alphaCharSecArray = @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N",
-        @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
+        @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", @"#"];
 	}
 }
 
@@ -299,13 +303,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 28; //request, potential, 26 letters in the alphabet
+	//request, potential, 26 letters in the alphabet, misc
+	return 29;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	int count = (section == 0) ? self.numFriendsPending : (section == 1) ? self.numFriendsPotential : (section > 1 && section < 28) ? [[self.inviteArray objectAtIndex:(section - 2)] count] : 0;
+	int count = (section == 0) ? self.numFriendsPending : (section == 1) ? self.numFriendsPotential : (section > 1 && section < 29) ? [[self.inviteArray objectAtIndex:(section - 2)] count] : 0;
 	if(count == 0) {
 		return 0.01;
 	} else return 22;
@@ -317,7 +322,7 @@
 		return self.numFriendsPending;
 	} else if(section == 1) {
 		return self.numFriendsPotential;
-	} else if(section > 1 && section < 28) {
+	} else if(section > 1 && section < 29) {
 		return [[self.inviteArray objectAtIndex:(section - 2)] count];
 	} else return  0;
 }
@@ -328,7 +333,7 @@
 		return (self.numFriendsPending == 0) ? nil : @"Wants to join your WolfPack";
 	} else if(section == 1) {
 		return (self.numFriendsPotential == 0) ? nil : @"Add to your WolfPack";
-	} else if(section > 1 && section < 28) {
+	} else if(section > 1 && section < 29) {
 		return ([[self.inviteArray objectAtIndex:(section - 2)] count] == 0) ? nil : [self.alphaCharSecArray objectAtIndex:(section - 2)];
 	} else return nil;
 }
@@ -486,7 +491,7 @@
 		detail = [[self.potentialArray objectAtIndex:[indexPath row]] objectForKey:@"status"];
 		
 		[button setTag:[indexPath row]];
-	} else if(section > 1 && section < 28) {
+	} else if(section > 1 && section < 29) {
 		fname = [[[self.inviteArray objectAtIndex:([indexPath section] - 2)] objectAtIndex:[indexPath row]] objectForKey:@"fname"];
 		lname = [[[self.inviteArray objectAtIndex:([indexPath section] - 2)] objectAtIndex:[indexPath row]] objectForKey:@"lname"];
 		

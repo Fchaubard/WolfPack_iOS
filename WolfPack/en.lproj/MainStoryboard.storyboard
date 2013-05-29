@@ -101,6 +101,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="wolfEngrave.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="UFP-Ht-yRd">
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="53" id="0UI-ST-2bJ"/>
                                             <constraint firstAttribute="width" constant="67" id="Jfk-B5-VJI"/>
                                         </constraints>
                                     </imageView>
@@ -127,12 +128,11 @@
                                     <constraint firstItem="UFP-Ht-yRd" firstAttribute="centerY" secondItem="KoI-3O-1la" secondAttribute="centerY" type="default" id="2sN-uZ-683"/>
                                     <constraint firstItem="Dnr-pA-Q8E" firstAttribute="bottom" secondItem="UFP-Ht-yRd" secondAttribute="bottom" type="default" id="BVP-qu-JK9"/>
                                     <constraint firstItem="8nh-Tu-bqJ" firstAttribute="centerX" secondItem="Dnr-pA-Q8E" secondAttribute="centerX" type="default" id="ERK-5S-fHw"/>
-                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="top" secondItem="UFP-Ht-yRd" secondAttribute="top" type="default" id="Vtx-TY-gCn"/>
                                     <constraint firstItem="3p2-MY-bTD" firstAttribute="top" secondItem="UFP-Ht-yRd" secondAttribute="top" type="default" id="aW5-Tg-BY1"/>
                                     <constraint firstItem="UFP-Ht-yRd" firstAttribute="centerX" secondItem="KoI-3O-1la" secondAttribute="centerX" type="default" id="c3b-cr-swc"/>
-                                    <constraint firstItem="Dnr-pA-Q8E" firstAttribute="top" secondItem="KoI-3O-1la" secondAttribute="top" constant="32" id="e51-8n-944"/>
                                     <constraint firstItem="Dnr-pA-Q8E" firstAttribute="leading" secondItem="KoI-3O-1la" secondAttribute="leading" type="default" id="fqr-5N-E87"/>
                                     <constraint firstAttribute="height" constant="65" type="user" id="kOJ-aT-Aay"/>
+                                    <constraint firstItem="8nh-Tu-bqJ" firstAttribute="top" secondItem="KoI-3O-1la" secondAttribute="top" constant="5" id="wFN-rG-e3d"/>
                                     <constraint firstItem="UFP-Ht-yRd" firstAttribute="leading" secondItem="Dnr-pA-Q8E" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="xB5-51-UbU"/>
                                     <constraint firstAttribute="trailing" secondItem="3p2-MY-bTD" secondAttribute="trailing" constant="39" id="xDp-s1-OBS"/>
                                 </constraints>
