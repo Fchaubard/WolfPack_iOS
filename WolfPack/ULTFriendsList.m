@@ -15,6 +15,8 @@
 @property (strong, nonatomic) NSMutableArray *wolfpackFriendStatusList, *blockedArray, *friendArray, *inviteArray;
 @property (strong, nonatomic) NSMutableArray *jsonArray, *potentialArray, *pendingArray, *contactsArray;
 @property NSInteger numFriendsPotential, numFriendsPending, numFriends, numBlocked;
+@property (strong, nonatomic) NSMutableDictionary *buttonDictionary;
+
 @end
 
 @interface CustomUIButton : UIButton
@@ -32,6 +34,37 @@
 @synthesize wolfpackNamesList;
 @synthesize wolfpackSessIdsList;
 @synthesize wolfpackFriendStatusList;
+
+
+
+
+- (void)initAlphaArray
+{
+	if(self.alphaCharSecArray == NULL) {
+		self.alphaCharSecArray = @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N",
+        @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", @"#"];
+	}
+}
+
+
+#pragma mark - life cycle methods
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        //custom init
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    _buttonDictionary = [[NSMutableDictionary alloc] init];
+    [self getWolfpackFriendMapping];
+	[self initAlphaArray];
+    
+}
 
 -(void)deleteWolf:(NSString *)wolfToDelete
 {
@@ -269,29 +302,7 @@
     });
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        //custom init
-    }
-    return self;
-}
 
-- (void)initAlphaArray
-{
-	if(self.alphaCharSecArray == NULL) {
-		self.alphaCharSecArray = @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N",
-        @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", @"#"];
-	}
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self getWolfpackFriendMapping];
-	[self initAlphaArray];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -453,9 +464,15 @@
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
 															forIndexPath:indexPath];
+    
+    
+        
 	//[cell setBounds:CGRectMake(0, 0, self.view.frame.size.width, 44)];
 	
+    //if (![self.buttonDictionary objectForKey:[NSString stringWithFormat:@"%d %d",indexPath.section,indexPath.row]]) {
+    
 	CustomUIButton *button = [[CustomUIButton alloc] initWithFrame:CGRectMake(220.0f, 5.0f, 62.0f, 33.0f)];
+    
 	[button.layer setCornerRadius:5];
 	int section = [indexPath section];
 	
@@ -512,15 +529,24 @@
 	[button setBackgroundColor:[UIColor lightGrayColor]];
 	[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	[button.titleLabel setFont:[UIFont systemFontOfSize:15]];
-	
-	[cell addSubview:button];
-	
-	[cell.textLabel setText:[NSString stringWithFormat:@"%@ %@", fname, lname]];
-	
-	if(detail == (NSString *)[NSNull null]) detail = @"WOLF WOLF WOLFPACK";
-	
-	[cell.detailTextLabel setText:detail];
-	
+	//if (cell==nil) {
+    //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        [self.buttonDictionary setValue:button forKey:[NSString stringWithFormat:@"%d %d",indexPath.section,indexPath.row]];
+        [cell addSubview:button];
+        
+    //}
+        //[cell addSubview:(UIButton *)[self.buttonDictionary objectForKey:[NSString stringWithFormat:@"%d %d",indexPath.section,indexPath.row]]];
+    
+    
+    
+    [cell.textLabel setText:[NSString stringWithFormat:@"%@ %@", fname, lname]];
+    
+    if(detail == (NSString *)[NSNull null]) detail = @"WOLF WOLF WOLFPACK";
+    
+    [cell.detailTextLabel setText:detail];
+    
+    //}
+    
 	return cell;
 }
 

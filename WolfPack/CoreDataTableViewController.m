@@ -113,9 +113,7 @@
     }
     
     else{
-        
         return sectionName;
-        
     }
     
     
@@ -126,12 +124,12 @@
 {
 	return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
 }
-
+/*
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     return [self.fetchedResultsController sectionIndexTitles];
 }
-
+*/
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller

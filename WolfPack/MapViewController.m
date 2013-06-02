@@ -31,8 +31,37 @@
 // all it does is set the thumbnail (if the annotation has one)
 //   in the leftCalloutAccessoryView (if that is a UIImageView)
 
+
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
+    if ([view.annotation isKindOfClass:[WolfAnnotationView class]]) {
+        
+        for (MKAnnotationView *an in mapView.selectedAnnotations) {
+            //[mapView deselectAnnotation:an animated:NO];
+            /* this happens automatically
+            if([an isKindOfClass:[WolfAnnotationView class]])
+            {
+                [(WolfAnnotationView *)an showSmallView];
+            } http://stackoverflow.com/questions/15831612/custom-callout-in-mkmapview-in-ios
+             */
+        }
+        // Hide another annotation if it is shown
+        /*if (mapView.selectedAnnotationView != nil && [mapView.selectedAnnotationView isKindOfClass:[WolfAnnotationView class]] && mapView.selectedAnnotationView != view) {
+            [mapView.selectedAnnotationView showSm];
+        }
+        mapView.selectedAnnotationView = view;
+        */
+        //WolfAnnotationView *annotationView = (WolfAnnotationView *)view;
+        
+        // This just adds *calloutView* as a subview
+        
+        /* Here the trickiest piece of code goes */
+        
+        /* 1. We capture _annotation's (not callout's)_ frame in its superview's (map's!) coordinate system resulting in something like (CGRect){4910547.000000, 2967852.000000, 23.000000, 28.000000} The .origin.x and .origin.y are especially important! */
+       
+    }
+    
+    
    /* if ([view.leftCalloutAccessoryView isKindOfClass:[UIImageView class]]) {
         UIImageView *imageView = (UIImageView *)(view.leftCalloutAccessoryView);
         if ([view.annotation respondsToSelector:@selector(thumbnail)]) {
@@ -69,6 +98,8 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     static NSString *reuseId = @"MapViewController";
+    
+    
     WolfAnnotationView *view = (WolfAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
     
     
@@ -80,6 +111,7 @@
             wolfView.annotation = annotation;
             wolfView.friend = (Friend*)annotation;
             [wolfView showSmallView];
+            wolfView.mapView = mapView;
             view  = wolfView;
             
         }else{
@@ -171,5 +203,11 @@
      
   
 }
+
+
+
+
+
+
 
 @end

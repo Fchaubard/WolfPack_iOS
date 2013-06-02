@@ -20,6 +20,7 @@
 @property (nonatomic) int radius;
 @property (nonatomic, strong) UIView *smallView;
 @property (nonatomic, strong) UIView *bigView;
+@property (nonatomic, weak) MKMapView *mapView;
 
 -(void)showSmallView;
 

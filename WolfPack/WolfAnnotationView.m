@@ -682,7 +682,45 @@ UserTouchState touchState;
         }
         
         
+        [self reshapeMapViewSoTheCallOutIsntOffTheEdge];
+        
+        
     }
+}
+
+#define ANNOTATION_CALLOUT_WIDTH 60
+#define ANNOTATION_CALLOUT_HEIGHT 230
+-(void)reshapeMapViewSoTheCallOutIsntOffTheEdge
+{
+    
+    CGRect annotationFrame = self.frame;
+
+    /* 2. Now we need to perform an adjustment, so our frame would correspond to the annotation view's _callout view subview_ that it holds. */
+    annotationFrame.origin.x = self.frame.origin.x - ANNOTATION_CALLOUT_WIDTH; // Mine callout view has small x offset - you should choose yours!
+    annotationFrame.origin.y = self.frame.origin.y - ANNOTATION_CALLOUT_HEIGHT / 2; // Again my custom offset.
+    annotationFrame.size = self.frame.size; // We can grab calloutView size directly because in its case we don't care about the coordinate system.
+    
+    MKCoordinateRegion mapRegion = self.mapView.region; 
+    
+    /* 3. This was a long run before I did stop to try to pass mapView.view as an argument to _toRegionFromView_. */
+    /* annotationView.superView is very important - it gives us the same coordinate system that annotationFrame.origin is based. */
+    MKCoordinateRegion annotationRegion = [self.mapView convertRect:annotationFrame toRegionFromView:self.superview];
+    
+    /* I hope that the following MKEdgedRegion magic is self-explanatory */
+    MKEdgedRegion mapEdgedRegion = MKEdgedRegionFromCoordinateRegion(mapRegion);
+    MKEdgedRegion annotationEdgedRegion = MKEdgedRegionFromCoordinateRegion(annotationRegion);
+    
+    float diff;
+    
+    if ((diff = (annotationEdgedRegion.longitude.left - mapEdgedRegion.longitude.left)) < 0 ||
+        (diff = (annotationEdgedRegion.longitude.right - mapEdgedRegion.longitude.right)) > 0)
+        mapRegion.center.longitude += diff;
+    
+    if ((diff = (annotationEdgedRegion.latitude.bottom - mapEdgedRegion.latitude.bottom)) < 0 ||
+        (diff = (annotationEdgedRegion.latitude.top - mapEdgedRegion.latitude.top)) > 0)
+        mapRegion.center.latitude += diff;
+    
+    [self.mapView setRegion:mapRegion animated:YES];
 }
 
 -(NSMutableArray *)createRadialView:(float)radius withNumberOfPieSlices:(int)numPieSlices{
@@ -793,4 +831,42 @@ UserTouchState touchState;
  }
  */
 
+
+
+
+
+
+
+// mapView resizing stuff
+
+typedef struct {
+    CLLocationDegrees top;
+    CLLocationDegrees bottom;
+} MKLatitudeEdgedSpan;
+
+typedef struct {
+    CLLocationDegrees left;
+    CLLocationDegrees right;
+} MKLongitudeEdgedSpan;
+
+typedef struct {
+    MKLatitudeEdgedSpan latitude;
+    MKLongitudeEdgedSpan longitude;
+} MKEdgedRegion;
+
+MKEdgedRegion MKEdgedRegionFromCoordinateRegion(MKCoordinateRegion region) {
+    MKEdgedRegion edgedRegion;
+    
+    float latitude = region.center.latitude;
+    float longitude = region.center.longitude;
+    float latitudeDelta = region.span.latitudeDelta;
+    float longitudeDelta = region.span.longitudeDelta;
+    
+    edgedRegion.longitude.left = longitude - longitudeDelta / 2;
+    edgedRegion.longitude.right = longitude + longitudeDelta / 2;
+    edgedRegion.latitude.top = latitude + latitudeDelta / 2;
+    edgedRegion.latitude.bottom = latitude - latitudeDelta / 2;
+    
+    return edgedRegion;
+}
 @end
