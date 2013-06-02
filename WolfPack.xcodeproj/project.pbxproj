@@ -43,11 +43,6 @@
 		AB62DF46173C243300A0E630 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB62DF42173C243300A0E630 /* error@2x.png */; };
 		AB62DF47173C243300A0E630 /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = AB62DF43173C243300A0E630 /* success.png */; };
 		AB62DF48173C243300A0E630 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB62DF44173C243300A0E630 /* success@2x.png */; };
-		AB687B6A1740ACDC008E167C /* NSArray+BB.m in Sources */ = {isa = PBXBuildFile; fileRef = AB687B691740ACDC008E167C /* NSArray+BB.m */; };
-		AB687B731740ACEE008E167C /* KPAnnotationTree.m in Sources */ = {isa = PBXBuildFile; fileRef = AB687B6C1740ACEE008E167C /* KPAnnotationTree.m */; };
-		AB687B741740ACEE008E167C /* KPTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AB687B6E1740ACEE008E167C /* KPTreeNode.m */; };
-		AB687B751740ACEE008E167C /* KPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB687B701740ACEE008E167C /* KPAnnotation.m */; };
-		AB687B761740ACEE008E167C /* KPTreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB687B721740ACEE008E167C /* KPTreeController.m */; };
 		AB6CD1E316F39A2900C82052 /* MyConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1E216F39A2900C82052 /* MyConversation.m */; };
 		AB6CD1E716F39A7300C82052 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1E616F39A7300C82052 /* Conversation.m */; };
 		AB6CD1FA16F39BEF00C82052 /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6CD1F116F39BEF00C82052 /* UIBubbleTableView.m */; };
@@ -189,16 +184,6 @@
 		AB62DF42173C243300A0E630 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
 		AB62DF43173C243300A0E630 /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
 		AB62DF44173C243300A0E630 /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
-		AB687B681740ACDC008E167C /* NSArray+BB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BB.h"; sourceTree = "<group>"; };
-		AB687B691740ACDC008E167C /* NSArray+BB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BB.m"; sourceTree = "<group>"; };
-		AB687B6B1740ACEE008E167C /* KPAnnotationTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPAnnotationTree.h; sourceTree = "<group>"; };
-		AB687B6C1740ACEE008E167C /* KPAnnotationTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPAnnotationTree.m; sourceTree = "<group>"; };
-		AB687B6D1740ACEE008E167C /* KPTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTreeNode.h; sourceTree = "<group>"; };
-		AB687B6E1740ACEE008E167C /* KPTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTreeNode.m; sourceTree = "<group>"; };
-		AB687B6F1740ACEE008E167C /* KPAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPAnnotation.h; sourceTree = "<group>"; };
-		AB687B701740ACEE008E167C /* KPAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPAnnotation.m; sourceTree = "<group>"; };
-		AB687B711740ACEE008E167C /* KPTreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTreeController.h; sourceTree = "<group>"; };
-		AB687B721740ACEE008E167C /* KPTreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTreeController.m; sourceTree = "<group>"; };
 		AB6CD1E116F39A2900C82052 /* MyConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConversation.h; sourceTree = "<group>"; };
 		AB6CD1E216F39A2900C82052 /* MyConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyConversation.m; sourceTree = "<group>"; };
 		AB6CD1E516F39A7300C82052 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
@@ -457,7 +442,6 @@
 		AB461EAF16E16213009FDC9A /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				AB687B661740ACC8008E167C /* KP */,
 				AB4771051724826A003B1357 /* 01-refresh.png */,
 				AB4771061724826A003B1357 /* 01-refresh@2x.png */,
 				ABB3733A16F470F200CF7C36 /* hidden_wolf.png */,
@@ -484,23 +468,6 @@
 				AB461EA516E16170009FDC9A /* CoreDataTableViewController.m */,
 			);
 			name = List;
-			sourceTree = "<group>";
-		};
-		AB687B661740ACC8008E167C /* KP */ = {
-			isa = PBXGroup;
-			children = (
-				AB687B681740ACDC008E167C /* NSArray+BB.h */,
-				AB687B691740ACDC008E167C /* NSArray+BB.m */,
-				AB687B6B1740ACEE008E167C /* KPAnnotationTree.h */,
-				AB687B6C1740ACEE008E167C /* KPAnnotationTree.m */,
-				AB687B6D1740ACEE008E167C /* KPTreeNode.h */,
-				AB687B6E1740ACEE008E167C /* KPTreeNode.m */,
-				AB687B6F1740ACEE008E167C /* KPAnnotation.h */,
-				AB687B701740ACEE008E167C /* KPAnnotation.m */,
-				AB687B711740ACEE008E167C /* KPTreeController.h */,
-				AB687B721740ACEE008E167C /* KPTreeController.m */,
-			);
-			name = KP;
 			sourceTree = "<group>";
 		};
 		AB6CD1ED16F39BD700C82052 /* Chat */ = {
@@ -790,11 +757,6 @@
 				ABB428BE172B851D00F338B5 /* NSBubbleData.m in Sources */,
 				AB269CBC1730B49E00B8F70C /* HorizontalTextScroller.m in Sources */,
 				AB62DF40173C242600A0E630 /* SVProgressHUD.m in Sources */,
-				AB687B6A1740ACDC008E167C /* NSArray+BB.m in Sources */,
-				AB687B731740ACEE008E167C /* KPAnnotationTree.m in Sources */,
-				AB687B741740ACEE008E167C /* KPTreeNode.m in Sources */,
-				AB687B751740ACEE008E167C /* KPAnnotation.m in Sources */,
-				AB687B761740ACEE008E167C /* KPTreeController.m in Sources */,
 				ABF06AA71742F4A200544BB0 /* HPGrowingTextView.m in Sources */,
 				ABF06AA81742F4A200544BB0 /* HPTextViewInternal.m in Sources */,
 				ABC8E4731751551B00EC8EF5 /* FPPopoverController.m in Sources */,
