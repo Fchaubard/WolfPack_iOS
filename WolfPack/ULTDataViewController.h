@@ -14,10 +14,12 @@
 	NSString *databasePath;
 }
 
+- (IBAction)unwindFromLogoutButton:(UIStoryboardSegue *)segue;
 - (IBAction)loginButtonPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *UserName;
 @property (weak, nonatomic) IBOutlet UITextField *Password;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 - (IBAction)signUpNeeded:(id)sender;
-- (IBAction)unwindFromLogoutButton:(UIStoryboardSegue *)segue;
+
+
 @end

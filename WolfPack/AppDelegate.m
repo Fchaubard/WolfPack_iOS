@@ -102,7 +102,7 @@ NSPersistentStoreCoordinator *persistentStoreCoordinator;
     newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
 	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     [MyManagedObjectContext setDeviceToken:newToken];
-   // [[NSUserDefaults standardUserDefaults] setObject:newToken forKey:@"deviceToken"];
+    [[NSUserDefaults standardUserDefaults] setObject:newToken forKey:@"deviceToken"];
     
 }
 

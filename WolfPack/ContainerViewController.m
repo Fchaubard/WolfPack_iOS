@@ -98,6 +98,7 @@
     //check NSUserDefaults before declaring no token
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"token"]){
         [MyManagedObjectContext setToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"token"] ];
+         [MyManagedObjectContext setDeviceToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"] ];
     }
     
     if (![[MyManagedObjectContext token] isEqualToString:@""]) {
@@ -112,13 +113,14 @@
             NSLog(@"no device token");
             NSLog(@"%@",[MyManagedObjectContext deviceToken]);
             
-            [self performSegueWithIdentifier: @"noToken" sender: self];
+            
+            [self performSegueWithIdentifier: @"notSignedIn" sender: self];
             
         }
     }else{
         NSLog(@"not alraedy logged in");
         NSLog(@"%@",[MyManagedObjectContext token]);
-        [self performSegueWithIdentifier: @"noToken" sender: self];
+        [self performSegueWithIdentifier: @"notSignedIn" sender: self];
     }
     
     self.tapped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedToChangeStatus:)];

@@ -12,6 +12,12 @@
 		AB267DCD16E5610700DA22C3 /* PhonyFriendDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = AB267DCC16E5610700DA22C3 /* PhonyFriendDictionary.m */; };
 		AB269CBC1730B49E00B8F70C /* HorizontalTextScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = AB269CBB1730B49E00B8F70C /* HorizontalTextScroller.m */; };
 		AB2B782F175C37DF00A9E2D4 /* UserTurtorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2B782E175C37DF00A9E2D4 /* UserTurtorialViewController.m */; };
+		AB2B7836175C3BAD00A9E2D4 /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7830175C3BAD00A9E2D4 /* image1.png */; };
+		AB2B7837175C3BAD00A9E2D4 /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7831175C3BAD00A9E2D4 /* image2.png */; };
+		AB2B7838175C3BAD00A9E2D4 /* image3.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7832175C3BAD00A9E2D4 /* image3.png */; };
+		AB2B7839175C3BAD00A9E2D4 /* image4.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7833175C3BAD00A9E2D4 /* image4.png */; };
+		AB2B783A175C3BAD00A9E2D4 /* image5.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7834175C3BAD00A9E2D4 /* image5.png */; };
+		AB2B783B175C3BAD00A9E2D4 /* image6.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7835175C3BAD00A9E2D4 /* image6.png */; };
 		AB461E7716E15B47009FDC9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7616E15B47009FDC9A /* UIKit.framework */; };
 		AB461E7916E15B47009FDC9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7816E15B47009FDC9A /* Foundation.framework */; };
 		AB461E7B16E15B47009FDC9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7A16E15B47009FDC9A /* CoreGraphics.framework */; };
@@ -140,6 +146,12 @@
 		AB269CBB1730B49E00B8F70C /* HorizontalTextScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalTextScroller.m; sourceTree = "<group>"; };
 		AB2B782D175C37DF00A9E2D4 /* UserTurtorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTurtorialViewController.h; sourceTree = "<group>"; };
 		AB2B782E175C37DF00A9E2D4 /* UserTurtorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTurtorialViewController.m; sourceTree = "<group>"; };
+		AB2B7830175C3BAD00A9E2D4 /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image1.png; sourceTree = "<group>"; };
+		AB2B7831175C3BAD00A9E2D4 /* image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image2.png; sourceTree = "<group>"; };
+		AB2B7832175C3BAD00A9E2D4 /* image3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image3.png; sourceTree = "<group>"; };
+		AB2B7833175C3BAD00A9E2D4 /* image4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image4.png; sourceTree = "<group>"; };
+		AB2B7834175C3BAD00A9E2D4 /* image5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image5.png; sourceTree = "<group>"; };
+		AB2B7835175C3BAD00A9E2D4 /* image6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image6.png; sourceTree = "<group>"; };
 		AB461E7216E15B47009FDC9A /* WolfPack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WolfPack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB461E7616E15B47009FDC9A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB461E7816E15B47009FDC9A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -324,6 +336,12 @@
 		AB2B782C175C37C800A9E2D4 /* Introduction */ = {
 			isa = PBXGroup;
 			children = (
+				AB2B7830175C3BAD00A9E2D4 /* image1.png */,
+				AB2B7831175C3BAD00A9E2D4 /* image2.png */,
+				AB2B7832175C3BAD00A9E2D4 /* image3.png */,
+				AB2B7833175C3BAD00A9E2D4 /* image4.png */,
+				AB2B7834175C3BAD00A9E2D4 /* image5.png */,
+				AB2B7835175C3BAD00A9E2D4 /* image6.png */,
 				AB2B782D175C37DF00A9E2D4 /* UserTurtorialViewController.h */,
 				AB2B782E175C37DF00A9E2D4 /* UserTurtorialViewController.m */,
 			);
@@ -725,6 +743,12 @@
 				AB80778C174C542800E63331 /* wolfEngraveResize.png in Resources */,
 				AB80778E174C554500E63331 /* wolfEngrave.jpg in Resources */,
 				AB807790174C561900E63331 /* blackButton.png in Resources */,
+				AB2B7836175C3BAD00A9E2D4 /* image1.png in Resources */,
+				AB2B7837175C3BAD00A9E2D4 /* image2.png in Resources */,
+				AB2B7838175C3BAD00A9E2D4 /* image3.png in Resources */,
+				AB2B7839175C3BAD00A9E2D4 /* image4.png in Resources */,
+				AB2B783A175C3BAD00A9E2D4 /* image5.png in Resources */,
+				AB2B783B175C3BAD00A9E2D4 /* image6.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

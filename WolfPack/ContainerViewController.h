@@ -12,6 +12,8 @@
 #import "WolfListCDTVC.h"
 #import "FPPopoverController.h"
 #import "ARCMacros.h"
+#import "ULTDataViewController.h"
+
 @interface ContainerViewController : UIViewController <UIGestureRecognizerDelegate, FPPopoverControllerDelegate>
 
 -(void)selectedTableRow:(NSUInteger)rowNum;

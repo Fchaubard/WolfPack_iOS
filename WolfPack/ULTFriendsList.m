@@ -77,6 +77,14 @@
 	[self initAlphaArray];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    CGRect rect = self.tableView.frame;
+    rect.size.height = rect.size.height;//-self.tabBarController.tabBar.frame.size.height;
+    [self.tableView setFrame:rect];
+    
+}
+
 -(void)deleteWolf:(NSString *)wolfToDelete
 {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];

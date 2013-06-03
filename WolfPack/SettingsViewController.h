@@ -12,7 +12,7 @@
 #import "MyManagedObjectContext.h"
 #import "ULTFriendsList.h"
 
-@interface SettingsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface SettingsViewController : UIViewController
 
 - (void)switchViews:(BOOL)showSettings;
 - (IBAction)unwindFromEditScreen:(UIStoryboardSegue *)segue;

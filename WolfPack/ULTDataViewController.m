@@ -187,7 +187,7 @@
     if (check){
     //if([usernameEntry isEqualToString:@"bob"] && [passwordEntry isEqualToString:@"Password"]){
         NSLog(@"Login Correct");
-        [self performSegueWithIdentifier:@"loggingIn" sender:self];
+        [self performSegueWithIdentifier:@"alreadyLoggedIn" sender:self];
     }
     else{
         NSLog(@"Login Incorrect");

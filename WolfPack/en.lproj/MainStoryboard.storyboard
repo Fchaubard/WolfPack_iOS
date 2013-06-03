@@ -162,9 +162,11 @@
                         <outlet property="statusInputView" destination="k58-zM-2wk" id="j0h-lP-i2I"/>
                         <outlet property="statusTextField" destination="v6h-aM-2W0" id="Sur-fM-lGB"/>
                         <segue destination="PDY-2q-Tcf" kind="modal" identifier="noToken" id="R0Q-9k-vQ2"/>
+                        <segue destination="9om-WC-9ZG" kind="unwind" identifier="notSignedIn" unwindAction="unwindFromLogoutButton:" id="ckv-ex-EyL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <exit id="9om-WC-9ZG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="530" y="19"/>
         </scene>
@@ -464,7 +466,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JIm-cE-ibm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1155" y="-268"/>
+            <point key="canvasLocation" x="-2227" y="-276"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="P2a-fn-Oqj">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="8Jk-vS-zv0" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cfs-9m-lbP">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="jDh-3Y-aEK" kind="relationship" relationship="rootViewController" id="grz-yI-Ciq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bB5-ov-hOt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1584" y="994"/>
+        </scene>
+        <!--User Turtorial View Controller - Penis Pump-->
+        <scene sceneID="V9X-0e-ecG">
+            <objects>
+                <viewController id="jDh-3Y-aEK" customClass="UserTurtorialViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="28P-X5-AyE">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Penis Pump" id="hyz-3f-h4W">
+                        <barButtonItem key="rightBarButtonItem" title="Skip" id="i2u-hj-DeC">
+                            <connections>
+                                <segue destination="dsZ-CZ-vYv" kind="push" id="bS0-5h-dIi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="barButton" destination="i2u-hj-DeC" id="2B0-PR-Hhv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MZu-8F-Qhm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1012" y="1002"/>
         </scene>
         <!--Friends List - Add some friends-->
         <scene sceneID="nwI-rM-6Qk">
@@ -474,22 +515,9 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="MYV-Li-gPf">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Create Your WolfPack" id="u43-gy-b9s">
-                                    <barButtonItem key="rightBarButtonItem" title="Done" id="qZ5-xO-Rpc">
-                                        <connections>
-                                            <action selector="dismissModal:" destination="dsZ-CZ-vYv" id="XLp-k5-hlB"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="7RT-2J-4z1" detailTextLabel="KB6-Nh-xTQ" style="IBUITableViewCellStyleSubtitle" id="qDc-yV-bnS">
-                                <rect key="frame" x="0.0" y="80" width="320" height="46"/>
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="10" y="1" width="300" height="43"/>
@@ -516,16 +544,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add some friends" id="1J5-Ru-F9S">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="gEI-Rj-hV3"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="gEI-Rj-hV3">
+                            <connections>
+                                <segue destination="5Tc-3e-gqg" kind="modal" identifier="toTheMap" id="h6U-D2-m23"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="myTableView" destination="ZaY-63-pwg" id="tEu-Wx-lBR"/>
-                        <segue destination="5Tc-3e-gqg" kind="modal" identifier="toTheMap" id="tAa-fT-6nY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEj-2S-PO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-639" y="249"/>
+            <point key="canvasLocation" x="-647" y="46"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="cql-8G-l1s">
@@ -658,13 +689,13 @@
                         <outlet property="password" destination="5zM-mJ-kdn" id="hIQ-pO-GBb"/>
                         <outlet property="passwordConfirm" destination="gY8-Vx-oRQ" id="Wwd-ZI-sx3"/>
                         <outlet property="username" destination="fRb-3O-OKa" id="c5z-xf-lGi"/>
-                        <segue destination="dsZ-CZ-vYv" kind="modal" identifier="signupLogin" id="fDo-rM-4dP"/>
                         <segue destination="QhH-Bf-E9y" kind="modal" identifier="backToLogin" id="Wal-Ju-Dj2"/>
+                        <segue destination="8Jk-vS-zv0" kind="modal" identifier="signupLogin" id="zZd-JF-tWE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kx9-QY-7uK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1199" y="599"/>
+            <point key="canvasLocation" x="-2271" y="591"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pEH-Ip-ekT">
@@ -700,7 +731,7 @@
                         <segue destination="Odr-Rm-ZjX" kind="push" identifier="resetPassword" id="K8q-QW-wbi"/>
                         <segue destination="Odr-Rm-ZjX" kind="push" identifier="editEmail" id="LCu-aa-76W"/>
                         <segue destination="eYT-l4-DV2" kind="push" identifier="addFriends" id="3nC-yb-QgA"/>
-                        <segue destination="hSX-Ai-lSU" kind="unwind" identifier="unwindToHome" unwindAction="unwindFromLogoutButton:" id="v2a-bx-MHm"/>
+                        <segue destination="hSX-Ai-lSU" kind="unwind" identifier="unwindToHome" unwindAction="unwindFromLogoutButton:" id="AXz-8G-n52"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hP-Vk-CaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -853,9 +884,6 @@
         </class>
         <class className="EditSettingsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="valueChanged:"/>
-            </relationships>
         </class>
         <class className="HPGrowingTextView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HPGrowingTextView.h"/>
@@ -874,9 +902,6 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NSMutableArray" superclassName="NSArray">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
         </class>
         <class className="SettingsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
@@ -924,7 +949,6 @@
         <class className="ULTFriendsList" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTFriendsList.h"/>
             <relationships>
-                <relationship kind="action" name="dismissModal:"/>
                 <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -932,7 +956,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTSignUpViewController.h"/>
             <relationships>
                 <relationship kind="action" name="loginNeeded:"/>
-                <relationship kind="action" name="signUpRequested:"/>
                 <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="pNumber" candidateClass="UITextField"/>
@@ -941,10 +964,17 @@
                 <relationship kind="outlet" name="username" candidateClass="UITextField"/>
             </relationships>
         </class>
+        <class className="UserTurtorialViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserTurtorialViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="barButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="sayPressed:"/>
                 <relationship kind="outlet" name="bubbleTable" candidateClass="UIBubbleTableView"/>
                 <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="scroller" candidateClass="HorizontalTextScroller"/>
@@ -969,9 +999,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tAa-fT-6nY"/>
-        <segue reference="fDo-rM-4dP"/>
+        <segue reference="Hxa-0I-Pzv"/>
         <segue reference="R0Q-9k-vQ2"/>
-        <segue reference="tVN-nW-tBh"/>
+        <segue reference="olA-d6-NjI"/>
+        <segue reference="LCu-aa-76W"/>
     </inferredMetricsTieBreakers>
 </document>
