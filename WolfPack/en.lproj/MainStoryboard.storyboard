@@ -481,7 +481,7 @@
                                 <navigationItem title="Create Your WolfPack" id="u43-gy-b9s">
                                     <barButtonItem key="rightBarButtonItem" title="Done" id="qZ5-xO-Rpc">
                                         <connections>
-                                            <segue destination="5Tc-3e-gqg" kind="modal" identifier="toTheMap" id="G6y-NU-sXr"/>
+                                            <action selector="dismissModal:" destination="dsZ-CZ-vYv" id="XLp-k5-hlB"/>
                                         </connections>
                                     </barButtonItem>
                                 </navigationItem>
@@ -520,6 +520,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="myTableView" destination="ZaY-63-pwg" id="tEu-Wx-lBR"/>
+                        <segue destination="5Tc-3e-gqg" kind="modal" identifier="toTheMap" id="tAa-fT-6nY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEj-2S-PO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -852,6 +853,9 @@
         </class>
         <class className="EditSettingsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="valueChanged:"/>
+            </relationships>
         </class>
         <class className="HPGrowingTextView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HPGrowingTextView.h"/>
@@ -870,6 +874,9 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NSMutableArray" superclassName="NSArray">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
         </class>
         <class className="SettingsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
@@ -917,6 +924,7 @@
         <class className="ULTFriendsList" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTFriendsList.h"/>
             <relationships>
+                <relationship kind="action" name="dismissModal:"/>
                 <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -924,6 +932,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTSignUpViewController.h"/>
             <relationships>
                 <relationship kind="action" name="loginNeeded:"/>
+                <relationship kind="action" name="signUpRequested:"/>
                 <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="pNumber" candidateClass="UITextField"/>
@@ -935,6 +944,7 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="sayPressed:"/>
                 <relationship kind="outlet" name="bubbleTable" candidateClass="UIBubbleTableView"/>
                 <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="scroller" candidateClass="HorizontalTextScroller"/>
@@ -959,7 +969,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="G6y-NU-sXr"/>
+        <segue reference="tAa-fT-6nY"/>
         <segue reference="fDo-rM-4dP"/>
         <segue reference="R0Q-9k-vQ2"/>
         <segue reference="tVN-nW-tBh"/>

@@ -8,6 +8,7 @@
 
 #import <AddressBookUI/AddressBookUI.h>
 #import "ULTFriendsList.h"
+#import "MyManagedObjectContext.h"
 
 @interface ULTFriendsList ()
 @property (strong, nonatomic) NSArray *alphaCharSecArray;
@@ -36,7 +37,17 @@
 @synthesize wolfpackFriendStatusList;
 
 
-
+-(IBAction)dismissModal:(id)sender{
+    
+    
+    [[UIApplication sharedApplication] dismissViewControllerAnimated:NO completion:nil];
+    
+    
+    [self dismissViewControllerAnimated:TRUE completion:^(void){
+       
+        [self performSegueWithIdentifier:@"toTheMap" sender:self];
+    }];
+}
 
 - (void)initAlphaArray
 {
@@ -71,7 +82,7 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
     // getting an NSString
-    NSString *token = [prefs stringForKey:@"token"];
+    NSString *token = [MyManagedObjectContext token];
     NSLog(@"Token Found from Defaults: %@",token);
     
     
@@ -165,7 +176,7 @@
 -(void)getWolfpackFriendMapping
 {
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	NSString *token = [prefs stringForKey:@"token"];
+	NSString *token = [MyManagedObjectContext token];
 	
 	if(self.jsonArray == NULL) {
 		self.jsonArray = [NSMutableArray array];
@@ -389,7 +400,7 @@
 {
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
-    NSString *token = [prefs stringForKey:@"token"];
+    NSString *token = [MyManagedObjectContext token];
 	
 	CustomUIButton *button = (CustomUIButton *)sender;
 	NSString *number = button.mobile;
@@ -423,7 +434,7 @@
     dispatch_queue_t fetchQ = dispatch_queue_create("add - Update Friend Status", NULL);
     dispatch_async(fetchQ, ^{
         
-        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+        NSString *sessionid =[MyManagedObjectContext token];
         
         NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addtowpjson.php?session=%@&friendid=%@", sessionid, ((CustomUIButton *)sender).mobile];
         
@@ -566,7 +577,7 @@
 		NSString *number = [[self.pendingArray objectAtIndex:[indexPath row]] valueForKey:@"friendphone"];
 		
 		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-		NSString *token = [prefs stringForKey:@"token"];
+		NSString *token = [MyManagedObjectContext token];
 		
 		NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/respondtowprequestjson.php?session=%@&response=1&friendid=%@", token, number];
         

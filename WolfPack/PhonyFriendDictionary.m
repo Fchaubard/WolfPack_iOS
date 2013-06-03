@@ -8,6 +8,7 @@
 
 #import "PhonyFriendDictionary.h"
 #import "Friend+MKAnnotation.h"
+#import "MyManagedObjectContext.h"
 
 @implementation PhonyFriendDictionary
 
@@ -106,44 +107,7 @@
    // }
     */
     
-     NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
-    NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmywolfpackjson.php?session=%@",sessionid];
-    NSURL *URL = [NSURL URLWithString:str];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    //request.HTTPMethod = @"POST";
     
-    //NSString *params = @"access_token=asdf&action_name=get_apptracker_info";
-    
-    //NSData *data = [params dataUsingEncoding:NSUTF8StringEncoding];
-    //[request addValue:@"8bit" forHTTPHeaderField:@"Content-Transfer-Encoding"];
-    //[request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    //[request addValue:[NSString stringWithFormat:@"%i", [data length]] forHTTPHeaderField:@"Content-Length"];
-    //[request setHTTPBody:data];
-    NSError *error = [[NSError alloc] init];
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    
-    /*NSString * string = [[NSString alloc] initWithData:responseData encoding:
-                         NSASCIIStringEncoding];
-    
-    if (string.intValue == 1) {
-        NSLog(@"asdfa");
-    } else {
-        NSLog(@"asdfa");
-    }*/
-    NSArray *jsonArray;
-   // if ([NSJSONSerialization isValidJSONObject:responseData]) {
-    if ([responseData length]>1){
-        jsonArray = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
-        for (NSMutableDictionary *dict in jsonArray) {
-            NSLog(@"%@", [dict allKeys]);
-            NSLog(@"%@", [dict allValues]);
-            
-        }
-        return jsonArray;
-    }
-    else{
-        return nil;
-    }
    
    /* NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setValue:@1 forKey:@"eventID"];
@@ -158,6 +122,48 @@
     [dict setValue:@0 forKey:@"blocked"];
     
     [temp addObject:dict];*/
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     NSString *sessionid =[MyManagedObjectContext token];
+     NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmywolfpackjson.php?session=%@",sessionid];
+     NSURL *URL = [NSURL URLWithString:str];
+     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+     //request.HTTPMethod = @"POST";
+     
+     //NSString *params = @"access_token=asdf&action_name=get_apptracker_info";
+     
+     //NSData *data = [params dataUsingEncoding:NSUTF8StringEncoding];
+     //[request addValue:@"8bit" forHTTPHeaderField:@"Content-Transfer-Encoding"];
+     //[request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+     //[request addValue:[NSString stringWithFormat:@"%i", [data length]] forHTTPHeaderField:@"Content-Length"];
+     //[request setHTTPBody:data];
+     NSError *error = [[NSError alloc] init];
+     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+     
+    
+    NSArray *jsonArray;
+    // if ([NSJSONSerialization isValidJSONObject:responseData]) {
+    if ([responseData length]>1){
+        jsonArray = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
+        for (NSMutableDictionary *dict in jsonArray) {
+            NSLog(@"%@", [dict allKeys]);
+            NSLog(@"%@", [dict allValues]);
+            
+        }
+        return jsonArray;
+    }
+    else{
+        return nil;
+    }
     
 }
 

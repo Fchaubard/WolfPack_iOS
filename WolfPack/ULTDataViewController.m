@@ -7,6 +7,7 @@
 //
 
 #import "ULTDataViewController.h"
+#import "MyManagedObjectContext.h"
 
 @interface ULTDataViewController ()
 @end
@@ -19,7 +20,7 @@
 
 - (IBAction)unwindFromLogoutButton:(UIStoryboardSegue *)segue
 {
-    NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+    NSString *sessionid =[MyManagedObjectContext token];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/logoutjson.php?session=%@", sessionid]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
@@ -38,6 +39,7 @@
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         
         [prefs setObject:nil forKey:@"token"];
+        [MyManagedObjectContext setToken:nil];
         // This is suggested to synch prefs, but is not needed (I didn't put it in my tut) [Rebecca]
         [prefs synchronize];
     } else {
@@ -76,11 +78,12 @@
         
         // saving an NSString
         [prefs setObject:serverOutput forKey:@"token"];
+        [MyManagedObjectContext setToken:serverOutput];
         // This is suggested to synch prefs, but is not needed (I didn't put it in my tut)
         [prefs synchronize];
         
         //pushed???
-        NSString *tokenPushed = [prefs stringForKey:@"token"];
+        NSString *tokenPushed = [MyManagedObjectContext token];
         NSLog(@"Token Pushed: %@",tokenPushed);
         
         //
@@ -163,8 +166,8 @@
     [super viewDidAppear:animated];
     
     // this should never be hit!
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"token"]) {
-        if ([[NSUserDefaults standardUserDefaults] stringForKey:@"deviceToken"]!=@"no")
+    if (![[MyManagedObjectContext token] isEqualToString:@""]) {
+        if (![[MyManagedObjectContext deviceToken] isEqualToString:@"no"] && ![[MyManagedObjectContext deviceToken] isEqualToString:@""])
         {
             [self performSegueWithIdentifier: @"alreadyLoggedIn" sender: self];
         }else{

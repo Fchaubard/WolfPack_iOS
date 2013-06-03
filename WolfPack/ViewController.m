@@ -20,7 +20,7 @@
 #import "NSBubbleData.h"
 #import "SVProgressHUD.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "MyManagedObjectContext.h"
 
 @interface ViewController ()
 {
@@ -52,7 +52,7 @@
     
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSString *token = [prefs stringForKey:@"token"];
+    NSString *token = [MyManagedObjectContext token];
     if (!jsonArray) {
         NSLog(@"Error parsing JSON for CHAT:");
     }
@@ -134,7 +134,7 @@
 -(void)loadChat{
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSString *token = [prefs stringForKey:@"token"];
+    NSString *token =[MyManagedObjectContext token];
     if(bubbleData == NULL){
         bubbleData = [[NSMutableArray alloc] init];
         bubbleTable.bubbleDataSource = self;
@@ -487,7 +487,7 @@
         
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         // getting an NSString
-        NSString *token = [prefs stringForKey:@"token"]; //token
+        NSString *token = [MyManagedObjectContext token]; //token
         NSString *strippedMessage = [message stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
         NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addchatmessagejson.php?session=%@&message=%@&date=%@",token,strippedMessage,dateString];
         NSLog(@"URLSTRING: %@",urlText);

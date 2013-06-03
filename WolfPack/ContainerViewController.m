@@ -61,10 +61,19 @@
                                                object:nil];
     
     
-    _possibleAdjectives = [[NSMutableArray alloc] initWithArray:@[@"Hungry",@"Excercising",@"Studying",@"Raging",@"Shopping",@"Coffeeing",@"Bored"]];
+    [MyManagedObjectContext pullUserData];
+    [MyManagedObjectContext pullChatData];
+    
+    
+    _possibleAdjectives = [MyManagedObjectContext possibleAdjectives];
+    
+    
     
     // set the initial adjective to be "Hungry"
     if([[MyManagedObjectContext currentAdjective] isEqualToString:@""]){
+        // check NSUserDefaults
+        
+        
         [MyManagedObjectContext setCurrentAdjective:[self.possibleAdjectives objectAtIndex:0]];
         [MyManagedObjectContext setCurrentAdjectiveNumber:0];
     }
@@ -78,15 +87,37 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
     
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"token"]) {
-        if ([[NSUserDefaults standardUserDefaults] stringForKey:@"deviceToken"]!=@"no")
+  
+    
+}
+
+
+- (void)viewDidAppear:(BOOL)animated{
+    // DISCLAIMER: NOT GOOD DESIGN
+    [super viewDidAppear:animated];
+    //check NSUserDefaults before declaring no token
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"token"]){
+        [MyManagedObjectContext setToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"token"] ];
+    }
+    
+    if (![[MyManagedObjectContext token] isEqualToString:@""]) {
+        if (![[MyManagedObjectContext deviceToken] isEqualToString:@"no"] && ![[MyManagedObjectContext deviceToken] isEqualToString:@""] )
         {
             NSLog(@"logged In alreadyyy");
+            NSLog(@"%@",[MyManagedObjectContext deviceToken]);
+            NSLog(@"%@",[MyManagedObjectContext token]);
+           
+            
         }else{
             NSLog(@"no device token");
+            NSLog(@"%@",[MyManagedObjectContext deviceToken]);
+            
+            [self performSegueWithIdentifier: @"noToken" sender: self];
+            
         }
     }else{
         NSLog(@"not alraedy logged in");
+        NSLog(@"%@",[MyManagedObjectContext token]);
         [self performSegueWithIdentifier: @"noToken" sender: self];
     }
     
@@ -95,14 +126,6 @@
     [self.tapped setNumberOfTouchesRequired:1];
     self.tapped.delegate = self;
     [self.mainLogo addGestureRecognizer:self.tapped];
-    
-}
-
-
-- (void)viewDidAppear:(BOOL)animated{
-    // DISCLAIMER: NOT GOOD DESIGN
-    [super viewDidAppear:animated];
-    
     if (self.containerTBC) {
         for (UIViewController *v in self.containerTBC.viewControllers)
         {
@@ -171,6 +194,7 @@
 {
     [MyManagedObjectContext setCurrentAdjective:[self.possibleAdjectives objectAtIndex:rowNum]];
     [MyManagedObjectContext setCurrentAdjectiveNumber:rowNum];
+    MyManagedObjectContext *moc = [[MyManagedObjectContext alloc] init];
     
     if (![MyManagedObjectContext isThisUserHungry]) {
         
@@ -354,7 +378,7 @@
         
         CLLocation *loc = [MyCLLocationManager sharedSingleton].locationManager.location;
         
-        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+        NSString *sessionid =[MyManagedObjectContext token];
         NSString *strippedStatus = [status stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
         NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/updatemystatusjson.php?session=%@&adjective=%d&lat=%f&long=%f&status=%@",sessionid,[adjective intValue],loc.coordinate.latitude,loc.coordinate.longitude,strippedStatus];
         NSURL *URL = [NSURL URLWithString:str];

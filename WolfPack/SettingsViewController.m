@@ -70,7 +70,7 @@ const int TEXT_SPACING = 4;
 	UIAlertView *message;
 	NSString *errorMessage;
     
-    NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+    NSString *sessionid =[MyManagedObjectContext token];
     
 	EditSettingsViewController *edit = (EditSettingsViewController *)segue.sourceViewController;
 	NSString *tempProp1 = [edit.property1 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -344,7 +344,7 @@ const int TEXT_SPACING = 4;
 	[self.scrollView addSubview:self.destHome];
 	//end
 	
-	NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+	NSString *sessionid =[MyManagedObjectContext token];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getwpuserjson.php?session=%@", sessionid]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSData *resData = [NSURLConnection sendSynchronousRequest:request
@@ -354,12 +354,23 @@ const int TEXT_SPACING = 4;
     NSDictionary *userData = [NSJSONSerialization JSONObjectWithData:resData
 															 options:0
                                                                error:nil];
+    
+    
     if(userData) {
         self.fname = [userData valueForKey:@"fname"];
         self.lname = [userData valueForKey:@"lname"];
         self.name.text = [NSString stringWithFormat:@"%@ %@", self.fname, self.lname];
         self.password.text = [userData valueForKey:@"password"];
         self.email.text = [userData valueForKey:@"email"];
+        
+        [MyManagedObjectContext setFname:self.fname];
+        [MyManagedObjectContext setLname:self.lname];
+        [MyManagedObjectContext setEmail:self.email.text];
+        [MyManagedObjectContext setPhoneNumber:[userData valueForKey:@"phone"]];
+        [MyManagedObjectContext setEventID:[[userData valueForKey:@"chatid"] intValue]];
+        [MyManagedObjectContext setFoodIcon:[[userData valueForKey:@"foodicon"] intValue]];
+        
+        
     } else {
         self.fname = @"unavailable";
         self.lname = @"unavailable";

@@ -7,7 +7,7 @@
 //
 
 #import "ULTSignUpViewController.h"
-
+#import "MyManagedObjectContext.h"
 @interface ULTSignUpViewController ()
 
 @end
@@ -48,7 +48,7 @@
         [alertsuccess show];
         return false;
     }
-    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+    NSString *token = [MyManagedObjectContext deviceToken];
     NSString *urlString = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/signupjson.php?fname=%@&lname=%@&email=%@&password=%@&phoneNumber=%@&pushtoken=%@", fname, lname, uname, pword,pNumber, token];
     
      urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
@@ -102,13 +102,14 @@
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         
         // saving an NSString
+        [MyManagedObjectContext setToken:phoneNumber];
         [prefs setObject:phoneNumber forKey:@"token"]; //careful here...
         
         // This is suggested to synch prefs, but is not needed (I didn't put it in my tut)
         [prefs synchronize];
         
         //pushed???
-        NSString *tokenPushed = [prefs stringForKey:@"token"];
+        NSString *tokenPushed = [MyManagedObjectContext token];
         NSLog(@"Token Pushed: %@",tokenPushed);
         
         //Segue

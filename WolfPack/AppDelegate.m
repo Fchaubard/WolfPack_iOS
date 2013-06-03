@@ -101,14 +101,16 @@ NSPersistentStoreCoordinator *persistentStoreCoordinator;
     NSString *newToken = [deviceToken description];
     newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
 	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
-    [[NSUserDefaults standardUserDefaults] setObject:newToken forKey:@"deviceToken"];
+    [MyManagedObjectContext setDeviceToken:newToken];
+   // [[NSUserDefaults standardUserDefaults] setObject:newToken forKey:@"deviceToken"];
     
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
 	NSLog(@"Failed to get token, error: %@", error);
-    [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"deviceToken"];
+    [MyManagedObjectContext setDeviceToken:@""];
+   // [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"deviceToken"];
     
 }
 

@@ -9,6 +9,7 @@
 #import "ChatTableViewController.h"
 #import "UIBubbleTableView.h"
 #import "NSBubbleData.h"
+#import "MyManagedObjectContext.h"
 
 
 @interface ChatTableViewController (){
@@ -35,7 +36,7 @@
         }
         
     // getting an NSString
-    NSString *token = [prefs stringForKey:@"token"]; //token
+    NSString *token = [MyManagedObjectContext token]; //[prefs stringForKey:@"token"]; //token
     //NSString *token = @"6508477336";
     NSError *e = nil;
     NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",token];

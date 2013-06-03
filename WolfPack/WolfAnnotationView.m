@@ -8,6 +8,7 @@
 
 #import "WolfAnnotationView.h"
 #import "SVProgressHUD.h"
+#import "MyManagedObjectContext.h"
 
 @implementation WolfAnnotationView
 
@@ -36,7 +37,8 @@ typedef enum {
 
 UserTouchState touchState;
 
-- (id)initWithFrame:(CGRect)frame andAnnotation:(id<MKAnnotation>)thisAnnotation withReuseId:(NSString *)string
+- (id)initWithFrame:(CGRect)frame
+      andAnnotation:(id<MKAnnotation>)thisAnnotation withReuseId:(NSString *)string
 {
     self = [super initWithAnnotation:thisAnnotation reuseIdentifier:string];
     if (self) {
@@ -46,6 +48,9 @@ UserTouchState touchState;
         _recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                               action:@selector(handleGesture)];
         defaultTouchSize = 0.5;
+        
+        
+        
         
         _smallView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"normal_wolf.png"]];
         _bigView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wolf4.png"]];
@@ -135,17 +140,45 @@ UserTouchState touchState;
     //[touchPoint2 removeFromSuperlayer];
     circle = nil;
     if ([(Friend *)self.annotation blocked]==@1) {
-        [self.smallView setAlpha:0.5];
+        [self.smallView setAlpha:1.0];
         [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"hidden_wolf.png"] waitUntilDone:YES];
     }else{
         if ([(Friend *)self.annotation added]==@1) {
-            [self.smallView setFrame:CGRectMake(self.smallView.frame.origin.x, self.smallView.frame.origin.y, 50, 50)];
+            [self.smallView setFrame:CGRectMake(self.smallView.frame.origin.x, self.smallView.frame.origin.y, 30, 30)];
             [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"friend_wolf.png"] waitUntilDone:YES];
             
         }else{
             [self.smallView setAlpha:1.0];
             [self.smallView setFrame:CGRectMake(self.smallView.frame.origin.x, self.smallView.frame.origin.y, 30, 30)];
-            [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
+            
+            // pick which image to show based what what the persons hungry number is
+            switch ([(Friend *)self.annotation hungry].integerValue) {
+                case 1: // hungry
+                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
+                    break;
+                case 2:// excercise
+                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
+                    break;
+                case 3://studying
+                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
+                    break;
+                case 4://raging
+                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
+                    break;
+                case 5://shopping
+                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
+                    break;
+                case 6://coffee
+                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
+                    break;
+                case 7://bored
+                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
+                    break;
+                default:
+                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
+                    break;
+            }
+        
         }
     }
     
@@ -499,7 +532,7 @@ UserTouchState touchState;
     dispatch_async(fetchQ, ^{
         NSString *valueString = value?@"true":@"false";
         
-        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+        NSString *sessionid =[MyManagedObjectContext token];
         NSString *str;
         
         // Adding

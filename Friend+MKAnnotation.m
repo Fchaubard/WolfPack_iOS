@@ -7,7 +7,7 @@
 //
 
 #import "Friend+MKAnnotation.h"
-
+#import "MyManagedObjectContext.h"
 @implementation Friend (MKAnnotation)
 - (CLLocationCoordinate2D)coordinate
 {
@@ -57,8 +57,14 @@
             friend.userID = [f numberFromString:[friendDictionary valueForKey:@"phone"]];
             //need to change this
             friend.lastUpdated = [friendDictionary valueForKey:@"lastUpdated"];
-            
-            friend.added = @0;//[f numberFromString:[friendDictionary valueForKey:@"added"]];
+    
+            if ([friend.eventID isEqualToNumber:@([MyManagedObjectContext eventID])]) { //literals are awesome!!!!!!!!
+                friend.added = @0;
+            }else{
+                friend.added = @1;
+            }
+    
+            //[f numberFromString:[friendDictionary valueForKey:@"added"]];
 
     
             friend.blocked = @0;//[f numberFromString:[friendDictionary valueForKey:@"hidden"]];
