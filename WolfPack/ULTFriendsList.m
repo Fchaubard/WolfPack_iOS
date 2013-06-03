@@ -39,10 +39,6 @@
 
 -(IBAction)dismissModal:(id)sender{
     
-    
-    [[UIApplication sharedApplication] dismissViewControllerAnimated:NO completion:nil];
-    
-    
     [self dismissViewControllerAnimated:TRUE completion:^(void){
        
         [self performSegueWithIdentifier:@"toTheMap" sender:self];
@@ -72,9 +68,13 @@
 {
     [super viewDidLoad];
     _buttonDictionary = [[NSMutableDictionary alloc] init];
-    [self getWolfpackFriendMapping];
-	[self initAlphaArray];
     
+	if([self.originView isEqualToString:@"tutorial"]) {
+		self.navigationItem.hidesBackButton = YES;
+	}
+    
+	[self getWolfpackFriendMapping];
+	[self initAlphaArray];
 }
 
 -(void)deleteWolf:(NSString *)wolfToDelete
@@ -146,14 +146,15 @@
 					[copy addObject:entry];
 					[self.inviteArray replaceObjectAtIndex:result withObject:copy];
 				}
-			} else NSLog(@"didn't find a spot: %@", entry);
+			}
 		}
 	}
-	
+    
 	if(self.pendingArray.count > 0) {
 		NSMutableArray *tempPotentialArray = [NSMutableArray array];
-		Boolean addToTempPotArray = true;
+		Boolean addToTempPotArray;
 		for(NSDictionary *pot in self.potentialArray) {
+			addToTempPotArray = true;
 			NSString *potFriendPhone = [pot valueForKey:@"friendphone"];
 			for(NSDictionary *pend in self.pendingArray) {
 				if([[pend valueForKey:@"friendphone"] isEqualToString:potFriendPhone]) {
@@ -386,7 +387,7 @@
 		
 		NSString *number = button.mobile;
 		
-		controller.body = @"JOIN WOLFPACK!";
+		controller.body = @"JOIN WOLFPACK!\nThe best way to hangout with me.\n\nhttp://tflig.ht/18Ibtb0";
 		controller.recipients = [NSArray arrayWithObjects:number, nil];
 		controller.messageComposeDelegate = self;
 		
@@ -398,11 +399,16 @@
 
 -(void)approveFriend:(id)sender
 {
+	CustomUIButton *button = (CustomUIButton *)sender;
+	
+	[button setEnabled:false];
+	[button setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+	[button setBackgroundColor:[UIColor blackColor]];
+	
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
-    NSString *token = [MyManagedObjectContext token];
+    NSString *token = [prefs stringForKey:@"token"];
 	
-	CustomUIButton *button = (CustomUIButton *)sender;
 	NSString *number = button.mobile;
     
     NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/respondtowprequestjson.php?session=%@&response=3&friendid=%@", token, number];
@@ -431,22 +437,27 @@
 
 -(void)addFriend:(id)sender
 {
+	CustomUIButton *button = (CustomUIButton *)sender;
+	[button setEnabled:false];
+	[button setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+	[button setBackgroundColor:[UIColor blackColor]];
+	
     dispatch_queue_t fetchQ = dispatch_queue_create("add - Update Friend Status", NULL);
     dispatch_async(fetchQ, ^{
         
-        NSString *sessionid =[MyManagedObjectContext token];
+        NSString *sessionid =[[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
         
-        NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addtowpjson.php?session=%@&friendid=%@", sessionid, ((CustomUIButton *)sender).mobile];
+        NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/addtowpjson.php?session=%@&friendid=%@", sessionid, button.mobile];
         
         NSURL *URL = [NSURL URLWithString:str];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
         NSData *responseData = [NSURLConnection sendSynchronousRequest:request
 													 returningResponse:nil
 																 error:nil];
-        if(!responseData) {
+		if(!responseData) {
 			NSLog(@"error in add friend");
 		} else {
-			[self.potentialArray removeObjectAtIndex:[(UIButton *)sender tag]];
+			[self.potentialArray removeObjectAtIndex:[button tag]];
 			self.numFriendsPotential--;
 		}
         dispatch_async(dispatch_get_main_queue(), ^{

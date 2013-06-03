@@ -176,6 +176,9 @@ const int TEXT_SPACING = 4;
 	} else if([segue.identifier isEqualToString:@"editEmail"]) {
 		EditSettingsViewController *edit = (EditSettingsViewController *)segue.destinationViewController;
 		edit.editType = @"editEmail";
+	} else if([segue.identifier isEqualToString:@"addFriend"]) {
+		ULTFriendsList *addFriend = (ULTFriendsList *)(segue.destinationViewController);
+		addFriend.originView = @"settingsPage";
 	}
 }
 

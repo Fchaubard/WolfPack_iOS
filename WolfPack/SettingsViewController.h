@@ -10,6 +10,7 @@
 #import "EditSettingsViewController.h"
 #import "ULTDataViewController.h"
 #import "MyManagedObjectContext.h"
+#import "ULTFriendsList.h"
 
 @interface SettingsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 

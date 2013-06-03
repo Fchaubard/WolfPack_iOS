@@ -15,4 +15,5 @@
 }
 //@property (strong, nonatomic) IBOutlet NSMutableArray *wolfpacklistarray;
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
+@property NSString *originView;
 @end
