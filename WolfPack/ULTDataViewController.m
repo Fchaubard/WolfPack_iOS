@@ -169,7 +169,7 @@
     if (![[MyManagedObjectContext token] isEqualToString:@""]) {
         if (![[MyManagedObjectContext deviceToken] isEqualToString:@"no"] && ![[MyManagedObjectContext deviceToken] isEqualToString:@""])
         {
-            [self performSegueWithIdentifier: @"alreadyLoggedIn" sender: self];
+            //dont do this anymore because the unwind method will [self performSegueWithIdentifier: @"alreadyLoggedIn" sender: self];
         }else{
             NSLog(@"no device token");
         }

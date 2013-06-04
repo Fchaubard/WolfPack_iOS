@@ -78,27 +78,11 @@
         [MyManagedObjectContext setCurrentAdjectiveNumber:0];
     }
     NSLog(@"%@",[MyManagedObjectContext currentAdjective]);
-}
-
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [super viewWillAppear:animated];
     
-  
-    
-}
-
-
-- (void)viewDidAppear:(BOOL)animated{
-    // DISCLAIMER: NOT GOOD DESIGN
-    [super viewDidAppear:animated];
     //check NSUserDefaults before declaring no token
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"token"]){
         [MyManagedObjectContext setToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"token"] ];
-         [MyManagedObjectContext setDeviceToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"] ];
+        [MyManagedObjectContext setDeviceToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"] ];
     }
     
     if (![[MyManagedObjectContext token] isEqualToString:@""]) {
@@ -107,23 +91,44 @@
             NSLog(@"logged In alreadyyy");
             NSLog(@"%@",[MyManagedObjectContext deviceToken]);
             NSLog(@"%@",[MyManagedObjectContext token]);
-           
+            
             
         }else{
             NSLog(@"no device token");
             NSLog(@"%@",[MyManagedObjectContext deviceToken]);
             
             
-            [self performSegueWithIdentifier: @"notSignedIn" sender: self];
+            ULTDataViewController *ult = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginScreen"];
+            [self presentViewController:ult animated:NO completion:^(void) {
+                
+                //[ult unwindFromLogoutButton:nil];
+                
+                
+            }];
             
         }
     }else{
         NSLog(@"not alraedy logged in");
         NSLog(@"%@",[MyManagedObjectContext token]);
-        [self performSegueWithIdentifier: @"notSignedIn" sender: self];
+        
+        ULTDataViewController *ult = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginScreen"];
+        [self presentViewController:ult animated:NO completion:^(void) {
+            
+            //[ult unwindFromLogoutButton:nil];
+            
+        }];
     }
     
-    self.tapped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedToChangeStatus:)];
+
+}
+
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+        self.tapped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedToChangeStatus:)];
     
     [self.tapped setNumberOfTouchesRequired:1];
     self.tapped.delegate = self;
@@ -172,7 +177,7 @@
         // user is hungry
         [self.hungrySlider setValue:1.0];
         [self.adjectiveButton setTitle:[MyManagedObjectContext currentAdjective] forState:UIControlStateNormal];
-       
+        
         //[self.chatButton setEnabled:true];
         //[self.chatButton setAlpha:1.0];
         [self.hungrySlider addTarget:self action:@selector(userChangedHungryStatus:) forControlEvents:UIControlEventValueChanged];
@@ -182,6 +187,15 @@
         
         
     }
+  
+    
+}
+
+
+- (void)viewDidAppear:(BOOL)animated{
+    // DISCLAIMER: NOT GOOD DESIGN
+    [super viewDidAppear:animated];
+   
 }
 
 - (void)viewWillDisappear:(BOOL)animated

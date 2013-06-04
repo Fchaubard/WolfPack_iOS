@@ -18,6 +18,8 @@
 		AB2B7839175C3BAD00A9E2D4 /* image4.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7833175C3BAD00A9E2D4 /* image4.png */; };
 		AB2B783A175C3BAD00A9E2D4 /* image5.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7834175C3BAD00A9E2D4 /* image5.png */; };
 		AB2B783B175C3BAD00A9E2D4 /* image6.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7835175C3BAD00A9E2D4 /* image6.png */; };
+		AB2B7841175D768600A9E2D4 /* wolfPackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7840175D768600A9E2D4 /* wolfPackBackground.png */; };
+		AB2B7843175D76A200A9E2D4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7842175D76A100A9E2D4 /* Default.png */; };
 		AB461E7716E15B47009FDC9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7616E15B47009FDC9A /* UIKit.framework */; };
 		AB461E7916E15B47009FDC9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7816E15B47009FDC9A /* Foundation.framework */; };
 		AB461E7B16E15B47009FDC9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7A16E15B47009FDC9A /* CoreGraphics.framework */; };
@@ -152,6 +154,8 @@
 		AB2B7833175C3BAD00A9E2D4 /* image4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image4.png; sourceTree = "<group>"; };
 		AB2B7834175C3BAD00A9E2D4 /* image5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image5.png; sourceTree = "<group>"; };
 		AB2B7835175C3BAD00A9E2D4 /* image6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image6.png; sourceTree = "<group>"; };
+		AB2B7840175D768600A9E2D4 /* wolfPackBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfPackBackground.png; sourceTree = "<group>"; };
+		AB2B7842175D76A100A9E2D4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		AB461E7216E15B47009FDC9A /* WolfPack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WolfPack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB461E7616E15B47009FDC9A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB461E7816E15B47009FDC9A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -402,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				ABF06AB717436E0F00544BB0 /* wolfpack_icon_ios.png */,
+				AB2B7842175D76A100A9E2D4 /* Default.png */,
 				ABF06AAD1743132A00544BB0 /* arrow.png */,
 				AB981EF6173CBF6B00FB0FAF /* appicon.png */,
 				AB62DF3E173C242600A0E630 /* SVProgressHUD.h */,
@@ -439,6 +444,7 @@
 				AB461E8A16E15B47009FDC9A /* Default@2x.png */,
 				AB461E8C16E15B47009FDC9A /* Default-568h@2x.png */,
 				AB461E9916E15EEE009FDC9A /* wolfPackBackground.jpg */,
+				AB2B7840175D768600A9E2D4 /* wolfPackBackground.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -749,6 +755,8 @@
 				AB2B7839175C3BAD00A9E2D4 /* image4.png in Resources */,
 				AB2B783A175C3BAD00A9E2D4 /* image5.png in Resources */,
 				AB2B783B175C3BAD00A9E2D4 /* image6.png in Resources */,
+				AB2B7841175D768600A9E2D4 /* wolfPackBackground.png in Resources */,
+				AB2B7843175D76A200A9E2D4 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -379,7 +379,7 @@
         <!--Data View Controller-->
         <scene sceneID="deb-Jg-BYY">
             <objects>
-                <viewController id="QhH-Bf-E9y" customClass="ULTDataViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginScreen" id="QhH-Bf-E9y" customClass="ULTDataViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y2X-sm-OPT">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -483,7 +483,7 @@
             </objects>
             <point key="canvasLocation" x="-1584" y="994"/>
         </scene>
-        <!--User Turtorial View Controller - Penis Pump-->
+        <!--User Turtorial View Controller - Welcome to WP!-->
         <scene sceneID="V9X-0e-ecG">
             <objects>
                 <viewController id="jDh-3Y-aEK" customClass="UserTurtorialViewController" sceneMemberID="viewController">
@@ -492,7 +492,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Penis Pump" id="hyz-3f-h4W">
+                    <navigationItem key="navigationItem" title="Welcome to WP!" id="hyz-3f-h4W">
                         <barButtonItem key="rightBarButtonItem" title="Skip" id="i2u-hj-DeC">
                             <connections>
                                 <segue destination="dsZ-CZ-vYv" kind="push" id="bS0-5h-dIi"/>
@@ -1000,8 +1000,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Hxa-0I-Pzv"/>
-        <segue reference="R0Q-9k-vQ2"/>
-        <segue reference="olA-d6-NjI"/>
+        <segue reference="GGB-aF-OCU"/>
+        <segue reference="bS0-5h-dIi"/>
         <segue reference="LCu-aa-76W"/>
     </inferredMetricsTieBreakers>
 </document>

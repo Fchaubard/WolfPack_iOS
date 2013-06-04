@@ -193,7 +193,15 @@ const int TEXT_SPACING = 4;
 	} else if([button.titleLabel.text isEqualToString:@"Add Friends"]) {
 		[self performSegueWithIdentifier:@"addFriends" sender:self];
 	} else if([button.titleLabel.text isEqualToString:@"Logout"]) {
-		[self performSegueWithIdentifier:@"unwindToHome" sender:self];
+        
+        ULTDataViewController *ult = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginScreen"];
+        [self presentViewController:ult animated:YES completion:^(void) {
+           
+            [ult unwindFromLogoutButton:nil];
+            
+        }];
+        
+		// not working anymore bc we do not instantiate the login FIRST cant unwind to a place that doesnt exist yet [self performSegueWithIdentifier:@"unwindToHome" sender:self];
 	} else if([button.titleLabel.text isEqualToString:@"switchToSettings"]) {
 		[self switchViews:0];
 	} else if([button.titleLabel.text isEqualToString:@"switchToHome"]) {
