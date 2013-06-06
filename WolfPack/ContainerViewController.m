@@ -171,7 +171,7 @@
         [self.mapViewController hideMode];
         
         //[self hideTabBar:self.containerTBC];
-        [self.containerTBC setSelectedIndex:2];
+        [self.containerTBC setSelectedIndex:0];
         
     }else{
         // user is hungry

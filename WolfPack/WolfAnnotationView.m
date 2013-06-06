@@ -67,7 +67,7 @@ UserTouchState touchState;
         [self.name sizeToFit];
         
         self.status = [[UILabel alloc] init];
-        self.status.text = [self.annotation subtitle];
+        self.status.text = [NSString stringWithFormat:@"%@: '%@'",[(Friend *)self.annotation name],[self.annotation subtitle]];
         self.status.textAlignment=NSTextAlignmentCenter;
         self.status.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.9];
         self.status.layer.cornerRadius = 0.5;
@@ -142,24 +142,27 @@ UserTouchState touchState;
     //[touchPoint1 removeFromSuperlayer];
     //[touchPoint2 removeFromSuperlayer];
     circle = nil;
+    [self.smallView setFrame:CGRectMake(self.smallView.frame.origin.x, self.smallView.frame.origin.y, 30, 30)];
+    
     if ([(Friend *)self.annotation blocked]==@1) {
         [self.smallView setAlpha:1.0];
-        [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"hidden_wolf.png"] waitUntilDone:YES];
+        UIImage *img = [UIImage imageNamed:@"hidden_wolf.png"];
+        img = [MyManagedObjectContext imageWithImage:img scaledToSize:CGSizeMake(30, 30)];
+        [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject:img waitUntilDone:YES];
     }else{
         if ([(Friend *)self.annotation added]==@1) { // you are chatting with this person
-            [self.smallView setFrame:CGRectMake(self.smallView.frame.origin.x, self.smallView.frame.origin.y, 30, 30)];
+            
              UIImage *img = [UIImage imageNamed:[[MyManagedObjectContext adjectiveImagesChat] objectAtIndex:([(Friend *)self.annotation hungry].integerValue)]];
-            //img = [MyManagedObjectContext imageWithImage:img scaledToSize:CGSizeMake(30, 30)];
+            img = [MyManagedObjectContext imageWithImage:img scaledToSize:CGSizeMake(30, 30)];
               [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject:img  waitUntilDone:YES];
             
         }else{ // you are not chatting with this person
-            [self.smallView setAlpha:1.0];
-            [self.smallView setFrame:CGRectMake(self.smallView.frame.origin.x, self.smallView.frame.origin.y, 30, 30)];
+            //[self.smallView setAlpha:1.0];
+            
             UIImage *img = [UIImage imageNamed:[[MyManagedObjectContext adjectiveImages] objectAtIndex:([(Friend *)self.annotation hungry].integerValue)]];
-            //img = [MyManagedObjectContext imageWithImage:img scaledToSize:CGSizeMake(30, 30)];
+            img = [MyManagedObjectContext imageWithImage:img scaledToSize:CGSizeMake(30, 30)];
             [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject:img  waitUntilDone:YES];
 
-            
         }
     }
     
@@ -285,7 +288,7 @@ UserTouchState touchState;
             
         }else{
             // return to normal
-            self.status.text = [self.annotation subtitle];
+            self.status.text = [NSString stringWithFormat:@"%@: '%@'",[(Friend *)self.annotation name],[self.annotation subtitle]];
             CGSize status_stringsize = [self.status.text sizeWithFont:[UIFont systemFontOfSize:20]];
             
             

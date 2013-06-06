@@ -113,25 +113,28 @@
 		ABC8E478175159EA00EC8EF5 /* PopoverTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC8E477175159EA00EC8EF5 /* PopoverTVC.m */; };
 		ABC8E47F1755436B00EC8EF5 /* UIView+Glow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC8E47E1755436B00EC8EF5 /* UIView+Glow.m */; };
 		ABC948621760286000C7810D /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948611760286000C7810D /* UserObject.m */; };
-		ABC948991760354500C7810D /* wolfStudyingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948871760354500C7810D /* wolfStudyingPurpleChat.png */; };
-		ABC9489A1760354500C7810D /* wolfShoppingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948881760354500C7810D /* wolfShoppingWhiteChat.png */; };
-		ABC9489B1760354500C7810D /* wolfShoppingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948891760354500C7810D /* wolfShoppingPurpleChat.png */; };
-		ABC9489C1760354500C7810D /* wolfRagingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488A1760354500C7810D /* wolfRagingWhiteChat.png */; };
-		ABC9489D1760354500C7810D /* wolfExercisingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488B1760354500C7810D /* wolfExercisingPurpleChat.png */; };
-		ABC9489E1760354500C7810D /* wolfExercisingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488C1760354500C7810D /* wolfExercisingWhiteChat.png */; };
-		ABC9489F1760354500C7810D /* wolfCoffeeingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488D1760354500C7810D /* wolfCoffeeingPurpleChat.png */; };
-		ABC948A01760354500C7810D /* wolfCoffeeing.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488E1760354500C7810D /* wolfCoffeeing.png */; };
-		ABC948A11760354500C7810D /* wolfCoffeeingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488F1760354500C7810D /* wolfCoffeeingWhiteChat.png */; };
-		ABC948A21760354500C7810D /* wolfExercising.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948901760354500C7810D /* wolfExercising.png */; };
-		ABC948A31760354500C7810D /* wolfHungryNew.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948911760354500C7810D /* wolfHungryNew.png */; };
-		ABC948A41760354500C7810D /* wolfHungryNewPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948921760354500C7810D /* wolfHungryNewPurpleChat.png */; };
-		ABC948A51760354500C7810D /* wolfHungryNewWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948931760354500C7810D /* wolfHungryNewWhiteChat.png */; };
-		ABC948A61760354500C7810D /* wolfRaging.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948941760354500C7810D /* wolfRaging.png */; };
-		ABC948A71760354500C7810D /* wolfRagingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948951760354500C7810D /* wolfRagingPurpleChat.png */; };
-		ABC948A81760354500C7810D /* wolfShopping.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948961760354500C7810D /* wolfShopping.png */; };
-		ABC948A91760354500C7810D /* wolfStudying.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948971760354500C7810D /* wolfStudying.png */; };
-		ABC948AA1760354500C7810D /* wolfStudyingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948981760354500C7810D /* wolfStudyingWhiteChat.png */; };
 		ABC948B3176123B200C7810D /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948B2176123B200C7810D /* Friend.m */; };
+		ABC948C9176141B400C7810D /* wolfBored.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948B4176141B400C7810D /* wolfBored.png */; };
+		ABC948CA176141B400C7810D /* wolfBoredPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948B5176141B400C7810D /* wolfBoredPurpleChat.png */; };
+		ABC948CB176141B400C7810D /* wolfBoredWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948B6176141B400C7810D /* wolfBoredWhiteChat.png */; };
+		ABC948CC176141B400C7810D /* wolfCoffeeing.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948B7176141B400C7810D /* wolfCoffeeing.png */; };
+		ABC948CD176141B400C7810D /* wolfCoffeeingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948B8176141B400C7810D /* wolfCoffeeingPurpleChat.png */; };
+		ABC948CE176141B400C7810D /* wolfCoffeeingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948B9176141B400C7810D /* wolfCoffeeingWhiteChat.png */; };
+		ABC948CF176141B400C7810D /* wolfExercising.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948BA176141B400C7810D /* wolfExercising.png */; };
+		ABC948D0176141B400C7810D /* wolfExercisingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948BB176141B400C7810D /* wolfExercisingPurpleChat.png */; };
+		ABC948D1176141B400C7810D /* wolfExercisingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948BC176141B400C7810D /* wolfExercisingWhiteChat.png */; };
+		ABC948D2176141B400C7810D /* wolfHungry.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948BD176141B400C7810D /* wolfHungry.png */; };
+		ABC948D3176141B400C7810D /* wolfHungryPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948BE176141B400C7810D /* wolfHungryPurpleChat.png */; };
+		ABC948D4176141B400C7810D /* wolfHungryWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948BF176141B400C7810D /* wolfHungryWhiteChat.png */; };
+		ABC948D5176141B400C7810D /* wolfRaging.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C0176141B400C7810D /* wolfRaging.png */; };
+		ABC948D6176141B400C7810D /* wolfRagingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C1176141B400C7810D /* wolfRagingPurpleChat.png */; };
+		ABC948D7176141B400C7810D /* wolfRagingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C2176141B400C7810D /* wolfRagingWhiteChat.png */; };
+		ABC948D8176141B400C7810D /* wolfShopping.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C3176141B400C7810D /* wolfShopping.png */; };
+		ABC948D9176141B400C7810D /* wolfShoppingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C4176141B400C7810D /* wolfShoppingPurpleChat.png */; };
+		ABC948DA176141B400C7810D /* wolfShoppingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C5176141B400C7810D /* wolfShoppingWhiteChat.png */; };
+		ABC948DB176141B400C7810D /* wolfStudying.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C6176141B400C7810D /* wolfStudying.png */; };
+		ABC948DC176141B400C7810D /* wolfStudyingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C7176141B400C7810D /* wolfStudyingPurpleChat.png */; };
+		ABC948DD176141B400C7810D /* wolfStudyingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C8176141B400C7810D /* wolfStudyingWhiteChat.png */; };
 		ABF06A911742E4FA00544BB0 /* Chat_Footer_ArrowUp.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */; };
 		ABF06A921742E4FA00544BB0 /* Chat_Footer_ArrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */; };
 		ABF06A931742E4FA00544BB0 /* Chat_Footer_ArrowUp_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */; };
@@ -308,26 +311,29 @@
 		ABC8E47E1755436B00EC8EF5 /* UIView+Glow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Glow.m"; sourceTree = "<group>"; };
 		ABC948601760286000C7810D /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
 		ABC948611760286000C7810D /* UserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
-		ABC948871760354500C7810D /* wolfStudyingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudyingPurpleChat.png; sourceTree = "<group>"; };
-		ABC948881760354500C7810D /* wolfShoppingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfShoppingWhiteChat.png; sourceTree = "<group>"; };
-		ABC948891760354500C7810D /* wolfShoppingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfShoppingPurpleChat.png; sourceTree = "<group>"; };
-		ABC9488A1760354500C7810D /* wolfRagingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfRagingWhiteChat.png; sourceTree = "<group>"; };
-		ABC9488B1760354500C7810D /* wolfExercisingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfExercisingPurpleChat.png; sourceTree = "<group>"; };
-		ABC9488C1760354500C7810D /* wolfExercisingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfExercisingWhiteChat.png; sourceTree = "<group>"; };
-		ABC9488D1760354500C7810D /* wolfCoffeeingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfCoffeeingPurpleChat.png; sourceTree = "<group>"; };
-		ABC9488E1760354500C7810D /* wolfCoffeeing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfCoffeeing.png; sourceTree = "<group>"; };
-		ABC9488F1760354500C7810D /* wolfCoffeeingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfCoffeeingWhiteChat.png; sourceTree = "<group>"; };
-		ABC948901760354500C7810D /* wolfExercising.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfExercising.png; sourceTree = "<group>"; };
-		ABC948911760354500C7810D /* wolfHungryNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfHungryNew.png; sourceTree = "<group>"; };
-		ABC948921760354500C7810D /* wolfHungryNewPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfHungryNewPurpleChat.png; sourceTree = "<group>"; };
-		ABC948931760354500C7810D /* wolfHungryNewWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfHungryNewWhiteChat.png; sourceTree = "<group>"; };
-		ABC948941760354500C7810D /* wolfRaging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfRaging.png; sourceTree = "<group>"; };
-		ABC948951760354500C7810D /* wolfRagingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfRagingPurpleChat.png; sourceTree = "<group>"; };
-		ABC948961760354500C7810D /* wolfShopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfShopping.png; sourceTree = "<group>"; };
-		ABC948971760354500C7810D /* wolfStudying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudying.png; sourceTree = "<group>"; };
-		ABC948981760354500C7810D /* wolfStudyingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudyingWhiteChat.png; sourceTree = "<group>"; };
 		ABC948B1176123B100C7810D /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
 		ABC948B2176123B200C7810D /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		ABC948B4176141B400C7810D /* wolfBored.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfBored.png; sourceTree = "<group>"; };
+		ABC948B5176141B400C7810D /* wolfBoredPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfBoredPurpleChat.png; sourceTree = "<group>"; };
+		ABC948B6176141B400C7810D /* wolfBoredWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfBoredWhiteChat.png; sourceTree = "<group>"; };
+		ABC948B7176141B400C7810D /* wolfCoffeeing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfCoffeeing.png; sourceTree = "<group>"; };
+		ABC948B8176141B400C7810D /* wolfCoffeeingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfCoffeeingPurpleChat.png; sourceTree = "<group>"; };
+		ABC948B9176141B400C7810D /* wolfCoffeeingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfCoffeeingWhiteChat.png; sourceTree = "<group>"; };
+		ABC948BA176141B400C7810D /* wolfExercising.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfExercising.png; sourceTree = "<group>"; };
+		ABC948BB176141B400C7810D /* wolfExercisingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfExercisingPurpleChat.png; sourceTree = "<group>"; };
+		ABC948BC176141B400C7810D /* wolfExercisingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfExercisingWhiteChat.png; sourceTree = "<group>"; };
+		ABC948BD176141B400C7810D /* wolfHungry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfHungry.png; sourceTree = "<group>"; };
+		ABC948BE176141B400C7810D /* wolfHungryPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfHungryPurpleChat.png; sourceTree = "<group>"; };
+		ABC948BF176141B400C7810D /* wolfHungryWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfHungryWhiteChat.png; sourceTree = "<group>"; };
+		ABC948C0176141B400C7810D /* wolfRaging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfRaging.png; sourceTree = "<group>"; };
+		ABC948C1176141B400C7810D /* wolfRagingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfRagingPurpleChat.png; sourceTree = "<group>"; };
+		ABC948C2176141B400C7810D /* wolfRagingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfRagingWhiteChat.png; sourceTree = "<group>"; };
+		ABC948C3176141B400C7810D /* wolfShopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfShopping.png; sourceTree = "<group>"; };
+		ABC948C4176141B400C7810D /* wolfShoppingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfShoppingPurpleChat.png; sourceTree = "<group>"; };
+		ABC948C5176141B400C7810D /* wolfShoppingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfShoppingWhiteChat.png; sourceTree = "<group>"; };
+		ABC948C6176141B400C7810D /* wolfStudying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudying.png; sourceTree = "<group>"; };
+		ABC948C7176141B400C7810D /* wolfStudyingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudyingPurpleChat.png; sourceTree = "<group>"; };
+		ABC948C8176141B400C7810D /* wolfStudyingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudyingWhiteChat.png; sourceTree = "<group>"; };
 		ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat_Footer_ArrowUp.png; sourceTree = "<group>"; };
 		ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chat_Footer_ArrowUp@2x.png"; sourceTree = "<group>"; };
 		ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat_Footer_ArrowUp_Pressed.png; sourceTree = "<group>"; };
@@ -674,24 +680,27 @@
 		ABC9483A176020E900C7810D /* wolfimages */ = {
 			isa = PBXGroup;
 			children = (
-				ABC948871760354500C7810D /* wolfStudyingPurpleChat.png */,
-				ABC948881760354500C7810D /* wolfShoppingWhiteChat.png */,
-				ABC948891760354500C7810D /* wolfShoppingPurpleChat.png */,
-				ABC9488A1760354500C7810D /* wolfRagingWhiteChat.png */,
-				ABC9488B1760354500C7810D /* wolfExercisingPurpleChat.png */,
-				ABC9488C1760354500C7810D /* wolfExercisingWhiteChat.png */,
-				ABC9488D1760354500C7810D /* wolfCoffeeingPurpleChat.png */,
-				ABC9488E1760354500C7810D /* wolfCoffeeing.png */,
-				ABC9488F1760354500C7810D /* wolfCoffeeingWhiteChat.png */,
-				ABC948901760354500C7810D /* wolfExercising.png */,
-				ABC948911760354500C7810D /* wolfHungryNew.png */,
-				ABC948921760354500C7810D /* wolfHungryNewPurpleChat.png */,
-				ABC948931760354500C7810D /* wolfHungryNewWhiteChat.png */,
-				ABC948941760354500C7810D /* wolfRaging.png */,
-				ABC948951760354500C7810D /* wolfRagingPurpleChat.png */,
-				ABC948961760354500C7810D /* wolfShopping.png */,
-				ABC948971760354500C7810D /* wolfStudying.png */,
-				ABC948981760354500C7810D /* wolfStudyingWhiteChat.png */,
+				ABC948B4176141B400C7810D /* wolfBored.png */,
+				ABC948B5176141B400C7810D /* wolfBoredPurpleChat.png */,
+				ABC948B6176141B400C7810D /* wolfBoredWhiteChat.png */,
+				ABC948B7176141B400C7810D /* wolfCoffeeing.png */,
+				ABC948B8176141B400C7810D /* wolfCoffeeingPurpleChat.png */,
+				ABC948B9176141B400C7810D /* wolfCoffeeingWhiteChat.png */,
+				ABC948BA176141B400C7810D /* wolfExercising.png */,
+				ABC948BB176141B400C7810D /* wolfExercisingPurpleChat.png */,
+				ABC948BC176141B400C7810D /* wolfExercisingWhiteChat.png */,
+				ABC948BD176141B400C7810D /* wolfHungry.png */,
+				ABC948BE176141B400C7810D /* wolfHungryPurpleChat.png */,
+				ABC948BF176141B400C7810D /* wolfHungryWhiteChat.png */,
+				ABC948C0176141B400C7810D /* wolfRaging.png */,
+				ABC948C1176141B400C7810D /* wolfRagingPurpleChat.png */,
+				ABC948C2176141B400C7810D /* wolfRagingWhiteChat.png */,
+				ABC948C3176141B400C7810D /* wolfShopping.png */,
+				ABC948C4176141B400C7810D /* wolfShoppingPurpleChat.png */,
+				ABC948C5176141B400C7810D /* wolfShoppingWhiteChat.png */,
+				ABC948C6176141B400C7810D /* wolfStudying.png */,
+				ABC948C7176141B400C7810D /* wolfStudyingPurpleChat.png */,
+				ABC948C8176141B400C7810D /* wolfStudyingWhiteChat.png */,
 			);
 			name = wolfimages;
 			sourceTree = "<group>";
@@ -822,24 +831,27 @@
 				AB2B783A175C3BAD00A9E2D4 /* image5.png in Resources */,
 				AB2B783B175C3BAD00A9E2D4 /* image6.png in Resources */,
 				AB2B7841175D768600A9E2D4 /* wolfPackBackground.png in Resources */,
-				ABC948991760354500C7810D /* wolfStudyingPurpleChat.png in Resources */,
-				ABC9489A1760354500C7810D /* wolfShoppingWhiteChat.png in Resources */,
-				ABC9489B1760354500C7810D /* wolfShoppingPurpleChat.png in Resources */,
-				ABC9489C1760354500C7810D /* wolfRagingWhiteChat.png in Resources */,
-				ABC9489D1760354500C7810D /* wolfExercisingPurpleChat.png in Resources */,
-				ABC9489E1760354500C7810D /* wolfExercisingWhiteChat.png in Resources */,
-				ABC9489F1760354500C7810D /* wolfCoffeeingPurpleChat.png in Resources */,
-				ABC948A01760354500C7810D /* wolfCoffeeing.png in Resources */,
-				ABC948A11760354500C7810D /* wolfCoffeeingWhiteChat.png in Resources */,
-				ABC948A21760354500C7810D /* wolfExercising.png in Resources */,
-				ABC948A31760354500C7810D /* wolfHungryNew.png in Resources */,
-				ABC948A41760354500C7810D /* wolfHungryNewPurpleChat.png in Resources */,
-				ABC948A51760354500C7810D /* wolfHungryNewWhiteChat.png in Resources */,
-				ABC948A61760354500C7810D /* wolfRaging.png in Resources */,
-				ABC948A71760354500C7810D /* wolfRagingPurpleChat.png in Resources */,
-				ABC948A81760354500C7810D /* wolfShopping.png in Resources */,
-				ABC948A91760354500C7810D /* wolfStudying.png in Resources */,
-				ABC948AA1760354500C7810D /* wolfStudyingWhiteChat.png in Resources */,
+				ABC948C9176141B400C7810D /* wolfBored.png in Resources */,
+				ABC948CA176141B400C7810D /* wolfBoredPurpleChat.png in Resources */,
+				ABC948CB176141B400C7810D /* wolfBoredWhiteChat.png in Resources */,
+				ABC948CC176141B400C7810D /* wolfCoffeeing.png in Resources */,
+				ABC948CD176141B400C7810D /* wolfCoffeeingPurpleChat.png in Resources */,
+				ABC948CE176141B400C7810D /* wolfCoffeeingWhiteChat.png in Resources */,
+				ABC948CF176141B400C7810D /* wolfExercising.png in Resources */,
+				ABC948D0176141B400C7810D /* wolfExercisingPurpleChat.png in Resources */,
+				ABC948D1176141B400C7810D /* wolfExercisingWhiteChat.png in Resources */,
+				ABC948D2176141B400C7810D /* wolfHungry.png in Resources */,
+				ABC948D3176141B400C7810D /* wolfHungryPurpleChat.png in Resources */,
+				ABC948D4176141B400C7810D /* wolfHungryWhiteChat.png in Resources */,
+				ABC948D5176141B400C7810D /* wolfRaging.png in Resources */,
+				ABC948D6176141B400C7810D /* wolfRagingPurpleChat.png in Resources */,
+				ABC948D7176141B400C7810D /* wolfRagingWhiteChat.png in Resources */,
+				ABC948D8176141B400C7810D /* wolfShopping.png in Resources */,
+				ABC948D9176141B400C7810D /* wolfShoppingPurpleChat.png in Resources */,
+				ABC948DA176141B400C7810D /* wolfShoppingWhiteChat.png in Resources */,
+				ABC948DB176141B400C7810D /* wolfStudying.png in Resources */,
+				ABC948DC176141B400C7810D /* wolfStudyingPurpleChat.png in Resources */,
+				ABC948DD176141B400C7810D /* wolfStudyingWhiteChat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

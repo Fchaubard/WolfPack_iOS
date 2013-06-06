@@ -271,16 +271,16 @@ static UIManagedDocument * document;
 }
 
 +(NSMutableArray *)possibleAdjectives{ // be careful of off by one issue here...
-    return [[NSMutableArray alloc]  initWithArray:@[@"Hungry",@"Excercising",@"Studying",@"Raging",@"Shopping",@"Coffeeing",@"Bored"]];
+    return [[NSMutableArray alloc]  initWithArray:@[@"Hungry",@"Exercising",@"Studying",@"Raging",@"Shopping",@"Coffeeing",@"Bored"]];
     
 }
 
 +(NSMutableArray *)adjectiveImagesChat{
-    return [[NSMutableArray alloc] initWithArray:@[@"normal_wolf.png",@"wolfHungryNewWhiteChat.png",@"wolfExercisingWhiteChat.png",@"wolfStudyingWhiteChat.png",@"wolfRagingWhiteChat.png",@"wolfShoppingWhiteChat.png",@"wolfCoffeeingWhiteChat.png",@"normal_wolf.png",@"normal_wolf.png"]];
+    return [[NSMutableArray alloc] initWithArray:@[@"normal_wolf.png",@"wolfHungryWhiteChat.png",@"wolfExercisingWhiteChat.png",@"wolfStudyingWhiteChat.png",@"wolfRagingWhiteChat.png",@"wolfShoppingWhiteChat.png",@"wolfCoffeeingWhiteChat.png",@"wolfBoredWhiteChat.png",@"normal_wolf.png"]];
 }
 
 +(NSMutableArray *)adjectiveImages{
-    return [[NSMutableArray alloc] initWithArray:@[@"normal_wolf.png",@"wolfHungryNew.png",@"wolfExercising.png",@"wolfStudying.png",@"wolfRaging.png",@"wolfShopping.png",@"wolfCoffeeing.png",@"normal_wolf.png",@"normal_wolf.png"]];
+    return [[NSMutableArray alloc] initWithArray:@[@"normal_wolf.png",@"wolfHungry.png",@"wolfExercising.png",@"wolfStudying.png",@"wolfRaging.png",@"wolfShopping.png",@"wolfCoffeeing.png",@"wolfBored.png",@"normal_wolf.png"]];
 }
 
 

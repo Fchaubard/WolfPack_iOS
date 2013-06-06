@@ -10,6 +10,7 @@
 
 @interface EditSettingsViewController ()
 //@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UINavigationItem *navBar;
 @property (strong, nonatomic) UILabel *prop1Label, *prop2Label, *prop3Label;
 @property (strong, nonatomic) UITextField *prop1TextField, *prop2TextField, *prop3TextField;
 @property CGFloat submitButtonY, scrnW, spacing;
@@ -75,12 +76,6 @@
 		[self adjustView:self.prop1TextField.tag];
 	}
 	return true;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (IBAction)valueChanged:(id)sender
@@ -219,11 +214,19 @@
 	[self editTools];
 	if([self.editType isEqualToString:@"editName"]) {
 		[self editNameTools];
+		self.title = @"Edit Name";
 	} else if([self.editType isEqualToString:@"resetPassword"]) {
 		[self resetPasswordTools];
+		self.title = @"Reset Password";
 	} else if([self.editType isEqualToString:@"editEmail"]) {
 		[self editEmailTools];
+		self.title = @"Edit Email";
 	}
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning

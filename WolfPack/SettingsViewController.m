@@ -38,30 +38,32 @@ const int TEXT_SPACING = 4;
 
 - (void)switchViews:(BOOL)showSettings
 {
-    if([MyManagedObjectContext isThisUserHungry]) {
-		[self.destHome setEnabled:false];
-		[self.destHome setHidden:true];
-		
-		[self.destSettings setEnabled:false];
-		[self.destSettings setHidden:true];
-        [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:true];
-	} else {
-		[self.destHome setEnabled:true];
-		[self.destHome setHidden:false];
-		
-		[self.destSettings setEnabled:true];
-		[self.destSettings setHidden:false];
-        if(showSettings) {
-            // show settings
-            [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:true];
-        } else {
-            // show home
-            [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
-        }
-	}
-    
-    [self.destHome setNeedsDisplay];
-    [self.destSettings setNeedsDisplay];
+	/*
+     if([MyManagedObjectContext isThisUserHungry]) {
+     [self.destHome setEnabled:false];
+     [self.destHome setHidden:true];
+     
+     [self.destSettings setEnabled:false];
+     [self.destSettings setHidden:true];
+     [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:true];
+     } else {
+     [self.destHome setEnabled:true];
+     [self.destHome setHidden:false];
+     
+     [self.destSettings setEnabled:true];
+     [self.destSettings setHidden:false];
+     if(showSettings) {
+     // show settings
+     [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:true];
+     } else {
+     // show home
+     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
+     }
+     }
+     
+     [self.destHome setNeedsDisplay];
+     [self.destSettings setNeedsDisplay];
+	 */
 }
 
 
@@ -159,8 +161,7 @@ const int TEXT_SPACING = 4;
 	[message show];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue
-				 sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	[self.navigationController setNavigationBarHidden:false
 											 animated:false];
@@ -180,6 +181,12 @@ const int TEXT_SPACING = 4;
 		ULTFriendsList *addFriend = (ULTFriendsList *)(segue.destinationViewController);
 		addFriend.originView = @"settingsPage";
 	}
+	
+	UIBarButtonItem *cancelBut = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+																  style:UIBarButtonSystemItemCancel
+																 target:nil
+																 action:nil];
+	[[self navigationItem] setBackBarButtonItem:cancelBut];
 }
 
 - (void)buttonClicked:(UIButton *)button
@@ -196,17 +203,17 @@ const int TEXT_SPACING = 4;
         
         ULTDataViewController *ult = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginScreen"];
         [self presentViewController:ult animated:YES completion:^(void) {
-           
+            
             [ult unwindFromLogoutButton:nil];
             
         }];
         
 		// not working anymore bc we do not instantiate the login FIRST cant unwind to a place that doesnt exist yet [self performSegueWithIdentifier:@"unwindToHome" sender:self];
-	} else if([button.titleLabel.text isEqualToString:@"switchToSettings"]) {
-		[self switchViews:0];
-	} else if([button.titleLabel.text isEqualToString:@"switchToHome"]) {
-		[self switchViews:1];
-	}
+	} /*else if([button.titleLabel.text isEqualToString:@"switchToSettings"]) {
+       [self switchViews:0];
+       } else if([button.titleLabel.text isEqualToString:@"switchToHome"]) {
+       [self switchViews:1];
+       }*/
 }
 
 - (void)addDetailedSettings
@@ -215,16 +222,17 @@ const int TEXT_SPACING = 4;
 	CGFloat textHeight = 21;
 	CGFloat textWidth = self.view.frame.size.width - 2*INDENT;
 	CGFloat scrnWidth = self.view.frame.size.width;
+	scrnWidth = 0;
 	
 	//add friend button
 	self.addFriendButtonRight = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	
 	self.addFriendButtonRight.frame = CGRectMake(scrnWidth + 106, butSpace, 112, 44);
 	[self.addFriendButtonRight setTitle:@"Add Friends"
-							  forState:UIControlStateNormal];
+                               forState:UIControlStateNormal];
 	[self.addFriendButtonRight addTarget:self
-								 action:@selector(buttonClicked:)
-					   forControlEvents:UIControlEventTouchUpInside];
+                                  action:@selector(buttonClicked:)
+                        forControlEvents:UIControlEventTouchUpInside];
 	
 	[self.scrollView addSubview:self.addFriendButtonRight];
 	//end
@@ -310,7 +318,8 @@ const int TEXT_SPACING = 4;
 	
 	//add terms label
 	textLen =  CHAR_WIDTH*[@"Terms" length];
-	CGFloat policyXPos = 2 * scrnWidth - INDENT - textLen;
+	//CGFloat policyXPos = 2 * scrnWidth - INDENT - textLen;
+	CGFloat policyXPos = self.view.frame.size.width - INDENT - textLen;
 	self.terms = [[UILabel alloc] initWithFrame:CGRectMake(policyXPos, policyYSpace, textLen, textHeight)];
 	self.terms.textColor = [UIColor lightGrayColor];
 	self.terms.backgroundColor = [UIColor clearColor];
@@ -335,25 +344,27 @@ const int TEXT_SPACING = 4;
 	[self.scrollView addSubview:self.logoutButton];
 	//end
 	
-	//add switch to home page button
-	UIImage *rightArrow = [[UIImage alloc] initWithCGImage:[UIImage imageNamed:@"arrow.png"].CGImage
-													 scale:0.85
-											   orientation:UIImageOrientationUp];
-	
-	self.destHome = [UIButton buttonWithType:UIButtonTypeCustom];
-	[self.destHome setImage:rightArrow
-                   forState:UIControlStateNormal];
-	[self.destHome setImage:rightArrow
-                   forState:UIControlEventTouchDown];
-	[self.destHome setTitle:@"switchToHome"
-				   forState:UIControlStateNormal];
-	[self.destHome setFrame:CGRectMake(self.view.frame.size.width - INDENT - 30, INDENT/3, 30, 30)];
-	[self.destHome addTarget:self
-					  action:@selector(buttonClicked:)
-			forControlEvents:UIControlEventTouchUpInside];
-	
-	[self.scrollView addSubview:self.destHome];
-	//end
+	/*
+     //add switch to home page button
+     UIImage *rightArrow = [[UIImage alloc] initWithCGImage:[UIImage imageNamed:@"arrow.png"].CGImage
+     scale:0.85
+     orientation:UIImageOrientationUp];
+     
+     self.destHome = [UIButton buttonWithType:UIButtonTypeCustom];
+     [self.destHome setImage:rightArrow
+     forState:UIControlStateNormal];
+     [self.destHome setImage:rightArrow
+     forState:UIControlEventTouchDown];
+     [self.destHome setTitle:@"switchToHome"
+     forState:UIControlStateNormal];
+     [self.destHome setFrame:CGRectMake(self.view.frame.size.width - INDENT - 30, INDENT/3, 30, 30)];
+     [self.destHome addTarget:self
+     action:@selector(buttonClicked:)
+     forControlEvents:UIControlEventTouchUpInside];
+     
+     [self.scrollView addSubview:self.destHome];
+     //end
+	 */
 	
 	NSString *sessionid =[MyManagedObjectContext token];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getwpuserjson.php?session=%@", sessionid]];
@@ -398,14 +409,14 @@ const int TEXT_SPACING = 4;
 {
 	//add pickerView
 	/*self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(INDENT, 3*INDENT, self.view.frame.size.width - 2*INDENT, 50)];
-	
-	self.pickerView.delegate = self;
-    self.pickerView.dataSource = self;
-    self.pickerView.showsSelectionIndicator = YES;
-	
-    self.adjectiveArray = [[NSMutableArray alloc] initWithObjects:@"Hungry", @"Exercise", @"Shop", @"Party", nil];
-	
-	[self.scrollView addSubview:self.pickerView];
+     
+     self.pickerView.delegate = self;
+     self.pickerView.dataSource = self;
+     self.pickerView.showsSelectionIndicator = YES;
+     
+     self.adjectiveArray = [[NSMutableArray alloc] initWithObjects:@"Hungry", @"Exercise", @"Shop", @"Party", nil];
+     
+     [self.scrollView addSubview:self.pickerView];
      */
 	//end
 	
@@ -413,25 +424,27 @@ const int TEXT_SPACING = 4;
 	
 	//end
 	
-	//add button to switch to detailed settings
-	UIImage *leftArrow = [[UIImage alloc] initWithCGImage:[UIImage imageNamed:@"arrow.png"].CGImage
-                                                    scale:0.85
-                                              orientation:UIImageOrientationDown];
-	
-	self.destSettings = [UIButton buttonWithType:UIButtonTypeCustom];
-	[self.destSettings setImage:leftArrow
-					   forState:UIControlStateNormal];
-	[self.destSettings setImage:leftArrow
-					   forState:UIControlEventTouchDown];
-	[self.destSettings setTitle:@"switchToSettings"
-					   forState:UIControlStateNormal];
-	[self.destSettings setFrame:CGRectMake(self.view.frame.size.width + INDENT, INDENT/3, 30, 30)];
-	[self.destSettings addTarget:self
-						  action:@selector(buttonClicked:)
-				forControlEvents:UIControlEventTouchUpInside];
-	
-	[self.scrollView addSubview:self.destSettings];
-	//end
+	/*
+     //add button to switch to detailed settings
+     UIImage *leftArrow = [[UIImage alloc] initWithCGImage:[UIImage imageNamed:@"arrow.png"].CGImage
+     scale:0.85
+     orientation:UIImageOrientationDown];
+     
+     self.destSettings = [UIButton buttonWithType:UIButtonTypeCustom];
+     [self.destSettings setImage:leftArrow
+     forState:UIControlStateNormal];
+     [self.destSettings setImage:leftArrow
+     forState:UIControlEventTouchDown];
+     [self.destSettings setTitle:@"switchToSettings"
+     forState:UIControlStateNormal];
+     [self.destSettings setFrame:CGRectMake(self.view.frame.size.width + INDENT, INDENT/3, 30, 30)];
+     [self.destSettings addTarget:self
+     action:@selector(buttonClicked:)
+     forControlEvents:UIControlEventTouchUpInside];
+     
+     [self.scrollView addSubview:self.destSettings];
+     //end
+	 */
 }
 
 //find actual height
@@ -442,11 +455,13 @@ const int TEXT_SPACING = 4;
 	
 	self.scrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, scrollHeight);
 	
-	self.scrollView.contentSize = CGSizeMake(2*self.view.frame.size.width, scrollHeight);
+	self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, scrollHeight);
+	//self.scrollView.contentSize = CGSizeMake(2*self.view.frame.size.width, scrollHeight);
     
 	self.scrollView.backgroundColor = [UIColor blackColor];
     
-	[self.scrollView setScrollEnabled:false];
+	[self.scrollView setScrollEnabled:true];
+	//[self.scrollView setScrollEnabled:false];
 	
 	[self.view addSubview:self.scrollView];
 }
@@ -454,29 +469,29 @@ const int TEXT_SPACING = 4;
 /*
  //Populates self.pickerView
  
-- (NSString*)pickerView:(UIPickerView *)pickerView
-			titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return [self.adjectiveArray objectAtIndex:row];
-}
-
-
-// Returns the number of items in self.pickerView
+ - (NSString*)pickerView:(UIPickerView *)pickerView
+ titleForRow:(NSInteger)row forComponent:(NSInteger)component
+ {
+ return [self.adjectiveArray objectAtIndex:row];
+ }
  
-- (NSInteger)pickerView:(UIPickerView *)pickerView
-numberOfRowsInComponent:(NSInteger)component
-{
-    return self.adjectiveArray.count;
-}
-
-
-// Returns the numbers of columns in the self.pickerView
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-	return 1;
-}
-*/
+ 
+ // Returns the number of items in self.pickerView
+ 
+ - (NSInteger)pickerView:(UIPickerView *)pickerView
+ numberOfRowsInComponent:(NSInteger)component
+ {
+ return self.adjectiveArray.count;
+ }
+ 
+ 
+ // Returns the numbers of columns in the self.pickerView
+ 
+ - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+ {
+ return 1;
+ }
+ */
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
@@ -488,8 +503,8 @@ numberOfRowsInComponent:(NSInteger)component
     [super viewDidLoad];
 	[self addScrollView];
     [self addDetailedSettings];
-	[self addHomepage];
-    [self switchViews:0];
+	//[self addHomepage];
+    //[self switchViews:0];
 }
 
 - (void)didReceiveMemoryWarning
