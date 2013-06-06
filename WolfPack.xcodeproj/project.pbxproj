@@ -135,6 +135,14 @@
 		ABC948DB176141B400C7810D /* wolfStudying.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C6176141B400C7810D /* wolfStudying.png */; };
 		ABC948DC176141B400C7810D /* wolfStudyingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C7176141B400C7810D /* wolfStudyingPurpleChat.png */; };
 		ABC948DD176141B400C7810D /* wolfStudyingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948C8176141B400C7810D /* wolfStudyingWhiteChat.png */; };
+		ABC948E117614CEA00C7810D /* NewsfeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948E017614CEA00C7810D /* NewsfeedViewController.m */; };
+		ABC948EE17614D0500C7810D /* MGBox.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948E417614D0500C7810D /* MGBox.m */; };
+		ABC948EF17614D0500C7810D /* MGBoxLine.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948E617614D0500C7810D /* MGBoxLine.m */; };
+		ABC948F017614D0500C7810D /* MGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948E917614D0500C7810D /* MGButton.m */; };
+		ABC948F117614D0500C7810D /* MGScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948EB17614D0500C7810D /* MGScrollView.m */; };
+		ABC948F217614D0500C7810D /* MGStyledBox.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948ED17614D0500C7810D /* MGStyledBox.m */; };
+		ABC948F417614D4700C7810D /* chatBubbleSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948F317614D4700C7810D /* chatBubbleSmall.png */; };
+		ABC948F617614F6000C7810D /* 166-newspaper.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948F517614F6000C7810D /* 166-newspaper.png */; };
 		ABF06A911742E4FA00544BB0 /* Chat_Footer_ArrowUp.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */; };
 		ABF06A921742E4FA00544BB0 /* Chat_Footer_ArrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */; };
 		ABF06A931742E4FA00544BB0 /* Chat_Footer_ArrowUp_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */; };
@@ -334,6 +342,21 @@
 		ABC948C6176141B400C7810D /* wolfStudying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudying.png; sourceTree = "<group>"; };
 		ABC948C7176141B400C7810D /* wolfStudyingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudyingPurpleChat.png; sourceTree = "<group>"; };
 		ABC948C8176141B400C7810D /* wolfStudyingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudyingWhiteChat.png; sourceTree = "<group>"; };
+		ABC948DF17614CEA00C7810D /* NewsfeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsfeedViewController.h; sourceTree = "<group>"; };
+		ABC948E017614CEA00C7810D /* NewsfeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsfeedViewController.m; sourceTree = "<group>"; };
+		ABC948E317614D0500C7810D /* MGBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBox.h; sourceTree = "<group>"; };
+		ABC948E417614D0500C7810D /* MGBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGBox.m; sourceTree = "<group>"; };
+		ABC948E517614D0500C7810D /* MGBoxLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBoxLine.h; sourceTree = "<group>"; };
+		ABC948E617614D0500C7810D /* MGBoxLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGBoxLine.m; sourceTree = "<group>"; };
+		ABC948E717614D0500C7810D /* MGBoxProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBoxProtocol.h; sourceTree = "<group>"; };
+		ABC948E817614D0500C7810D /* MGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGButton.h; sourceTree = "<group>"; };
+		ABC948E917614D0500C7810D /* MGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGButton.m; sourceTree = "<group>"; };
+		ABC948EA17614D0500C7810D /* MGScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGScrollView.h; sourceTree = "<group>"; };
+		ABC948EB17614D0500C7810D /* MGScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGScrollView.m; sourceTree = "<group>"; };
+		ABC948EC17614D0500C7810D /* MGStyledBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGStyledBox.h; sourceTree = "<group>"; };
+		ABC948ED17614D0500C7810D /* MGStyledBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGStyledBox.m; sourceTree = "<group>"; };
+		ABC948F317614D4700C7810D /* chatBubbleSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatBubbleSmall.png; sourceTree = "<group>"; };
+		ABC948F517614F6000C7810D /* 166-newspaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "166-newspaper.png"; sourceTree = "<group>"; };
 		ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat_Footer_ArrowUp.png; sourceTree = "<group>"; };
 		ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chat_Footer_ArrowUp@2x.png"; sourceTree = "<group>"; };
 		ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat_Footer_ArrowUp_Pressed.png; sourceTree = "<group>"; };
@@ -439,6 +462,7 @@
 				ABB4286F172A065C00F338B5 /* Login */,
 				AB6CD1ED16F39BD700C82052 /* Chat */,
 				AB461EAE16E161FC009FDC9A /* Container */,
+				ABC948DE17614CA800C7810D /* Newsfeed */,
 				AB461EB016E1622D009FDC9A /* List */,
 				AB461EAF16E16213009FDC9A /* Map */,
 				AB461E7D16E15B47009FDC9A /* Supporting Files */,
@@ -705,6 +729,36 @@
 			name = wolfimages;
 			sourceTree = "<group>";
 		};
+		ABC948DE17614CA800C7810D /* Newsfeed */ = {
+			isa = PBXGroup;
+			children = (
+				ABC948E217614CEF00C7810D /* MGBox */,
+				ABC948DF17614CEA00C7810D /* NewsfeedViewController.h */,
+				ABC948E017614CEA00C7810D /* NewsfeedViewController.m */,
+				ABC948F517614F6000C7810D /* 166-newspaper.png */,
+				ABC948F317614D4700C7810D /* chatBubbleSmall.png */,
+			);
+			name = Newsfeed;
+			sourceTree = "<group>";
+		};
+		ABC948E217614CEF00C7810D /* MGBox */ = {
+			isa = PBXGroup;
+			children = (
+				ABC948E317614D0500C7810D /* MGBox.h */,
+				ABC948E417614D0500C7810D /* MGBox.m */,
+				ABC948E517614D0500C7810D /* MGBoxLine.h */,
+				ABC948E617614D0500C7810D /* MGBoxLine.m */,
+				ABC948E717614D0500C7810D /* MGBoxProtocol.h */,
+				ABC948E817614D0500C7810D /* MGButton.h */,
+				ABC948E917614D0500C7810D /* MGButton.m */,
+				ABC948EA17614D0500C7810D /* MGScrollView.h */,
+				ABC948EB17614D0500C7810D /* MGScrollView.m */,
+				ABC948EC17614D0500C7810D /* MGStyledBox.h */,
+				ABC948ED17614D0500C7810D /* MGStyledBox.m */,
+			);
+			name = MGBox;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -852,6 +906,8 @@
 				ABC948DB176141B400C7810D /* wolfStudying.png in Resources */,
 				ABC948DC176141B400C7810D /* wolfStudyingPurpleChat.png in Resources */,
 				ABC948DD176141B400C7810D /* wolfStudyingWhiteChat.png in Resources */,
+				ABC948F417614D4700C7810D /* chatBubbleSmall.png in Resources */,
+				ABC948F617614F6000C7810D /* 166-newspaper.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,6 +962,12 @@
 				AB2B782F175C37DF00A9E2D4 /* UserTurtorialViewController.m in Sources */,
 				ABC948621760286000C7810D /* UserObject.m in Sources */,
 				ABC948B3176123B200C7810D /* Friend.m in Sources */,
+				ABC948E117614CEA00C7810D /* NewsfeedViewController.m in Sources */,
+				ABC948EE17614D0500C7810D /* MGBox.m in Sources */,
+				ABC948EF17614D0500C7810D /* MGBoxLine.m in Sources */,
+				ABC948F017614D0500C7810D /* MGButton.m in Sources */,
+				ABC948F117614D0500C7810D /* MGScrollView.m in Sources */,
+				ABC948F217614D0500C7810D /* MGStyledBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
