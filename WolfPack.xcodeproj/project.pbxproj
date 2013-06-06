@@ -19,7 +19,6 @@
 		AB2B783A175C3BAD00A9E2D4 /* image5.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7834175C3BAD00A9E2D4 /* image5.png */; };
 		AB2B783B175C3BAD00A9E2D4 /* image6.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7835175C3BAD00A9E2D4 /* image6.png */; };
 		AB2B7841175D768600A9E2D4 /* wolfPackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7840175D768600A9E2D4 /* wolfPackBackground.png */; };
-		AB2B7843175D76A200A9E2D4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2B7842175D76A100A9E2D4 /* Default.png */; };
 		AB461E7716E15B47009FDC9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7616E15B47009FDC9A /* UIKit.framework */; };
 		AB461E7916E15B47009FDC9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7816E15B47009FDC9A /* Foundation.framework */; };
 		AB461E7B16E15B47009FDC9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB461E7A16E15B47009FDC9A /* CoreGraphics.framework */; };
@@ -85,7 +84,6 @@
 		ABB3733D16F470F200CF7C36 /* hidden_wolf.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB3733A16F470F200CF7C36 /* hidden_wolf.png */; };
 		ABB3733E16F470F200CF7C36 /* friend_wolf.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB3733B16F470F200CF7C36 /* friend_wolf.png */; };
 		ABB3733F16F470F200CF7C36 /* normal_wolf.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB3733C16F470F200CF7C36 /* normal_wolf.png */; };
-		ABB428691729F61F00F338B5 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB428681729F61F00F338B5 /* Friend.m */; };
 		ABB4287E172A06A200F338B5 /* ULTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB42872172A06A200F338B5 /* ULTAppDelegate.m */; };
 		ABB4287F172A06A200F338B5 /* ULTRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB42874172A06A200F338B5 /* ULTRootViewController.m */; };
 		ABB42880172A06A200F338B5 /* ULTDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB42876172A06A200F338B5 /* ULTDataViewController.m */; };
@@ -114,6 +112,26 @@
 		ABC8E4751751551B00EC8EF5 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC8E4721751551B00EC8EF5 /* FPTouchView.m */; };
 		ABC8E478175159EA00EC8EF5 /* PopoverTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC8E477175159EA00EC8EF5 /* PopoverTVC.m */; };
 		ABC8E47F1755436B00EC8EF5 /* UIView+Glow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC8E47E1755436B00EC8EF5 /* UIView+Glow.m */; };
+		ABC948621760286000C7810D /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948611760286000C7810D /* UserObject.m */; };
+		ABC948991760354500C7810D /* wolfStudyingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948871760354500C7810D /* wolfStudyingPurpleChat.png */; };
+		ABC9489A1760354500C7810D /* wolfShoppingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948881760354500C7810D /* wolfShoppingWhiteChat.png */; };
+		ABC9489B1760354500C7810D /* wolfShoppingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948891760354500C7810D /* wolfShoppingPurpleChat.png */; };
+		ABC9489C1760354500C7810D /* wolfRagingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488A1760354500C7810D /* wolfRagingWhiteChat.png */; };
+		ABC9489D1760354500C7810D /* wolfExercisingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488B1760354500C7810D /* wolfExercisingPurpleChat.png */; };
+		ABC9489E1760354500C7810D /* wolfExercisingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488C1760354500C7810D /* wolfExercisingWhiteChat.png */; };
+		ABC9489F1760354500C7810D /* wolfCoffeeingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488D1760354500C7810D /* wolfCoffeeingPurpleChat.png */; };
+		ABC948A01760354500C7810D /* wolfCoffeeing.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488E1760354500C7810D /* wolfCoffeeing.png */; };
+		ABC948A11760354500C7810D /* wolfCoffeeingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC9488F1760354500C7810D /* wolfCoffeeingWhiteChat.png */; };
+		ABC948A21760354500C7810D /* wolfExercising.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948901760354500C7810D /* wolfExercising.png */; };
+		ABC948A31760354500C7810D /* wolfHungryNew.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948911760354500C7810D /* wolfHungryNew.png */; };
+		ABC948A41760354500C7810D /* wolfHungryNewPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948921760354500C7810D /* wolfHungryNewPurpleChat.png */; };
+		ABC948A51760354500C7810D /* wolfHungryNewWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948931760354500C7810D /* wolfHungryNewWhiteChat.png */; };
+		ABC948A61760354500C7810D /* wolfRaging.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948941760354500C7810D /* wolfRaging.png */; };
+		ABC948A71760354500C7810D /* wolfRagingPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948951760354500C7810D /* wolfRagingPurpleChat.png */; };
+		ABC948A81760354500C7810D /* wolfShopping.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948961760354500C7810D /* wolfShopping.png */; };
+		ABC948A91760354500C7810D /* wolfStudying.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948971760354500C7810D /* wolfStudying.png */; };
+		ABC948AA1760354500C7810D /* wolfStudyingWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948981760354500C7810D /* wolfStudyingWhiteChat.png */; };
+		ABC948B3176123B200C7810D /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948B2176123B200C7810D /* Friend.m */; };
 		ABF06A911742E4FA00544BB0 /* Chat_Footer_ArrowUp.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */; };
 		ABF06A921742E4FA00544BB0 /* Chat_Footer_ArrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */; };
 		ABF06A931742E4FA00544BB0 /* Chat_Footer_ArrowUp_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */; };
@@ -243,8 +261,6 @@
 		ABB3733A16F470F200CF7C36 /* hidden_wolf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hidden_wolf.png; sourceTree = "<group>"; };
 		ABB3733B16F470F200CF7C36 /* friend_wolf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friend_wolf.png; sourceTree = "<group>"; };
 		ABB3733C16F470F200CF7C36 /* normal_wolf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal_wolf.png; sourceTree = "<group>"; };
-		ABB428671729F61F00F338B5 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
-		ABB428681729F61F00F338B5 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		ABB42871172A06A200F338B5 /* ULTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULTAppDelegate.h; sourceTree = "<group>"; };
 		ABB42872172A06A200F338B5 /* ULTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULTAppDelegate.m; sourceTree = "<group>"; };
 		ABB42873172A06A200F338B5 /* ULTRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULTRootViewController.h; sourceTree = "<group>"; };
@@ -290,6 +306,28 @@
 		ABC8E477175159EA00EC8EF5 /* PopoverTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverTVC.m; sourceTree = "<group>"; };
 		ABC8E47D1755436B00EC8EF5 /* UIView+Glow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Glow.h"; sourceTree = "<group>"; };
 		ABC8E47E1755436B00EC8EF5 /* UIView+Glow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Glow.m"; sourceTree = "<group>"; };
+		ABC948601760286000C7810D /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
+		ABC948611760286000C7810D /* UserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
+		ABC948871760354500C7810D /* wolfStudyingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudyingPurpleChat.png; sourceTree = "<group>"; };
+		ABC948881760354500C7810D /* wolfShoppingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfShoppingWhiteChat.png; sourceTree = "<group>"; };
+		ABC948891760354500C7810D /* wolfShoppingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfShoppingPurpleChat.png; sourceTree = "<group>"; };
+		ABC9488A1760354500C7810D /* wolfRagingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfRagingWhiteChat.png; sourceTree = "<group>"; };
+		ABC9488B1760354500C7810D /* wolfExercisingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfExercisingPurpleChat.png; sourceTree = "<group>"; };
+		ABC9488C1760354500C7810D /* wolfExercisingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfExercisingWhiteChat.png; sourceTree = "<group>"; };
+		ABC9488D1760354500C7810D /* wolfCoffeeingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfCoffeeingPurpleChat.png; sourceTree = "<group>"; };
+		ABC9488E1760354500C7810D /* wolfCoffeeing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfCoffeeing.png; sourceTree = "<group>"; };
+		ABC9488F1760354500C7810D /* wolfCoffeeingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfCoffeeingWhiteChat.png; sourceTree = "<group>"; };
+		ABC948901760354500C7810D /* wolfExercising.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfExercising.png; sourceTree = "<group>"; };
+		ABC948911760354500C7810D /* wolfHungryNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfHungryNew.png; sourceTree = "<group>"; };
+		ABC948921760354500C7810D /* wolfHungryNewPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfHungryNewPurpleChat.png; sourceTree = "<group>"; };
+		ABC948931760354500C7810D /* wolfHungryNewWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfHungryNewWhiteChat.png; sourceTree = "<group>"; };
+		ABC948941760354500C7810D /* wolfRaging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfRaging.png; sourceTree = "<group>"; };
+		ABC948951760354500C7810D /* wolfRagingPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfRagingPurpleChat.png; sourceTree = "<group>"; };
+		ABC948961760354500C7810D /* wolfShopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfShopping.png; sourceTree = "<group>"; };
+		ABC948971760354500C7810D /* wolfStudying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudying.png; sourceTree = "<group>"; };
+		ABC948981760354500C7810D /* wolfStudyingWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfStudyingWhiteChat.png; sourceTree = "<group>"; };
+		ABC948B1176123B100C7810D /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		ABC948B2176123B200C7810D /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat_Footer_ArrowUp.png; sourceTree = "<group>"; };
 		ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chat_Footer_ArrowUp@2x.png"; sourceTree = "<group>"; };
 		ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat_Footer_ArrowUp_Pressed.png; sourceTree = "<group>"; };
@@ -406,6 +444,7 @@
 			isa = PBXGroup;
 			children = (
 				ABF06AB717436E0F00544BB0 /* wolfpack_icon_ios.png */,
+				ABC9483A176020E900C7810D /* wolfimages */,
 				AB2B7842175D76A100A9E2D4 /* Default.png */,
 				ABF06AAD1743132A00544BB0 /* arrow.png */,
 				AB981EF6173CBF6B00FB0FAF /* appicon.png */,
@@ -428,8 +467,8 @@
 				ABB4289D172A174D00F338B5 /* 19-gear@2x.png */,
 				ABB4289E172A174D00F338B5 /* 07-map-marker@2x.png */,
 				AB461ECC16E1999F009FDC9A /* Model.xcdatamodeld */,
-				ABB428671729F61F00F338B5 /* Friend.h */,
-				ABB428681729F61F00F338B5 /* Friend.m */,
+				ABC948B1176123B100C7810D /* Friend.h */,
+				ABC948B2176123B200C7810D /* Friend.m */,
 				AB1F572F16ED1CCF0019B8CD /* Icon-Small.png */,
 				AB461EDE16E19C6D009FDC9A /* fficon.png */,
 				AB461EDB16E19B8A009FDC9A /* Friend+MKAnnotation.h */,
@@ -464,6 +503,8 @@
 				AB461EB716E1666E009FDC9A /* HungrySlider.m */,
 				AB4771121724B59D003B1357 /* MyCLLocationManager.h */,
 				AB4771131724B59D003B1357 /* MyCLLocationManager.m */,
+				ABC948601760286000C7810D /* UserObject.h */,
+				ABC948611760286000C7810D /* UserObject.m */,
 				AB461ECF16E19AD4009FDC9A /* MyManagedObjectContext.h */,
 				AB461ED016E19AD5009FDC9A /* MyManagedObjectContext.m */,
 				AB6CD1E116F39A2900C82052 /* MyConversation.h */,
@@ -630,6 +671,31 @@
 			name = popover;
 			sourceTree = "<group>";
 		};
+		ABC9483A176020E900C7810D /* wolfimages */ = {
+			isa = PBXGroup;
+			children = (
+				ABC948871760354500C7810D /* wolfStudyingPurpleChat.png */,
+				ABC948881760354500C7810D /* wolfShoppingWhiteChat.png */,
+				ABC948891760354500C7810D /* wolfShoppingPurpleChat.png */,
+				ABC9488A1760354500C7810D /* wolfRagingWhiteChat.png */,
+				ABC9488B1760354500C7810D /* wolfExercisingPurpleChat.png */,
+				ABC9488C1760354500C7810D /* wolfExercisingWhiteChat.png */,
+				ABC9488D1760354500C7810D /* wolfCoffeeingPurpleChat.png */,
+				ABC9488E1760354500C7810D /* wolfCoffeeing.png */,
+				ABC9488F1760354500C7810D /* wolfCoffeeingWhiteChat.png */,
+				ABC948901760354500C7810D /* wolfExercising.png */,
+				ABC948911760354500C7810D /* wolfHungryNew.png */,
+				ABC948921760354500C7810D /* wolfHungryNewPurpleChat.png */,
+				ABC948931760354500C7810D /* wolfHungryNewWhiteChat.png */,
+				ABC948941760354500C7810D /* wolfRaging.png */,
+				ABC948951760354500C7810D /* wolfRagingPurpleChat.png */,
+				ABC948961760354500C7810D /* wolfShopping.png */,
+				ABC948971760354500C7810D /* wolfStudying.png */,
+				ABC948981760354500C7810D /* wolfStudyingWhiteChat.png */,
+			);
+			name = wolfimages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -756,7 +822,24 @@
 				AB2B783A175C3BAD00A9E2D4 /* image5.png in Resources */,
 				AB2B783B175C3BAD00A9E2D4 /* image6.png in Resources */,
 				AB2B7841175D768600A9E2D4 /* wolfPackBackground.png in Resources */,
-				AB2B7843175D76A200A9E2D4 /* Default.png in Resources */,
+				ABC948991760354500C7810D /* wolfStudyingPurpleChat.png in Resources */,
+				ABC9489A1760354500C7810D /* wolfShoppingWhiteChat.png in Resources */,
+				ABC9489B1760354500C7810D /* wolfShoppingPurpleChat.png in Resources */,
+				ABC9489C1760354500C7810D /* wolfRagingWhiteChat.png in Resources */,
+				ABC9489D1760354500C7810D /* wolfExercisingPurpleChat.png in Resources */,
+				ABC9489E1760354500C7810D /* wolfExercisingWhiteChat.png in Resources */,
+				ABC9489F1760354500C7810D /* wolfCoffeeingPurpleChat.png in Resources */,
+				ABC948A01760354500C7810D /* wolfCoffeeing.png in Resources */,
+				ABC948A11760354500C7810D /* wolfCoffeeingWhiteChat.png in Resources */,
+				ABC948A21760354500C7810D /* wolfExercising.png in Resources */,
+				ABC948A31760354500C7810D /* wolfHungryNew.png in Resources */,
+				ABC948A41760354500C7810D /* wolfHungryNewPurpleChat.png in Resources */,
+				ABC948A51760354500C7810D /* wolfHungryNewWhiteChat.png in Resources */,
+				ABC948A61760354500C7810D /* wolfRaging.png in Resources */,
+				ABC948A71760354500C7810D /* wolfRagingPurpleChat.png in Resources */,
+				ABC948A81760354500C7810D /* wolfShopping.png in Resources */,
+				ABC948A91760354500C7810D /* wolfStudying.png in Resources */,
+				ABC948AA1760354500C7810D /* wolfStudyingWhiteChat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,7 +871,6 @@
 				AB6CD1FC16F39BEF00C82052 /* UIBubbleHeaderTableViewCell.m in Sources */,
 				AB6CD1FD16F39BEF00C82052 /* UIBubbleTypingTableViewCell.m in Sources */,
 				AB4771141724B59D003B1357 /* MyCLLocationManager.m in Sources */,
-				ABB428691729F61F00F338B5 /* Friend.m in Sources */,
 				ABB4287E172A06A200F338B5 /* ULTAppDelegate.m in Sources */,
 				ABB4287F172A06A200F338B5 /* ULTRootViewController.m in Sources */,
 				ABB42880172A06A200F338B5 /* ULTDataViewController.m in Sources */,
@@ -810,6 +892,8 @@
 				ABC8E478175159EA00EC8EF5 /* PopoverTVC.m in Sources */,
 				ABC8E47F1755436B00EC8EF5 /* UIView+Glow.m in Sources */,
 				AB2B782F175C37DF00A9E2D4 /* UserTurtorialViewController.m in Sources */,
+				ABC948621760286000C7810D /* UserObject.m in Sources */,
+				ABC948B3176123B200C7810D /* Friend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

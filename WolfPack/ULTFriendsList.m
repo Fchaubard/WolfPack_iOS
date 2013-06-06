@@ -87,7 +87,7 @@
 
 -(void)deleteWolf:(NSString *)wolfToDelete
 {
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    //NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
     // getting an NSString
     NSString *token = [MyManagedObjectContext token];
@@ -184,7 +184,7 @@
 
 -(void)getWolfpackFriendMapping
 {
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	//NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	NSString *token = [MyManagedObjectContext token];
 	
 	if(self.jsonArray == NULL) {
@@ -595,7 +595,7 @@
     if(editingStyle == UITableViewCellEditingStyleDelete) {
 		NSString *number = [[self.pendingArray objectAtIndex:[indexPath row]] valueForKey:@"friendphone"];
 		
-		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+		//NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 		NSString *token = [MyManagedObjectContext token];
 		
 		NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/respondtowprequestjson.php?session=%@&response=1&friendid=%@", token, number];

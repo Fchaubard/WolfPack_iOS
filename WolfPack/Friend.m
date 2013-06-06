@@ -2,7 +2,7 @@
 //  Friend.m
 //  WolfPack
 //
-//  Created by Francois Chaubard on 4/25/13.
+//  Created by Francois Chaubard on 6/6/13.
 //  Copyright (c) 2013 Francois Chaubard. All rights reserved.
 //
 
@@ -23,5 +23,6 @@
 @dynamic subtitle;
 @dynamic title;
 @dynamic userID;
+@dynamic friendStatus;
 
 @end

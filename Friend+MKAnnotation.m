@@ -41,7 +41,7 @@
     // Execute the fetch
     
     NSError *error = nil;
-    NSArray *matches = [context executeFetchRequest:request error:&error];
+    //NSArray *matches = [context executeFetchRequest:request error:&error];
     
     friend = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:context];
         
@@ -58,16 +58,15 @@
             //need to change this
             friend.lastUpdated = [friendDictionary valueForKey:@"lastUpdated"];
     
+            friend.blocked = [f numberFromString:[friendDictionary valueForKey:@"hidden"]];
+            friend.friendStatus = [f numberFromString:[friendDictionary valueForKey:@"friendstatus"]];
+    
             if ([friend.eventID isEqualToNumber:@([MyManagedObjectContext eventID])]) { //literals are awesome!!!!!!!!
-                friend.added = @0;
-            }else{
                 friend.added = @1;
+            }else{
+                friend.added = @0;
             }
     
-            //[f numberFromString:[friendDictionary valueForKey:@"added"]];
-
-    
-            friend.blocked = @0;//[f numberFromString:[friendDictionary valueForKey:@"hidden"]];
 
             friend.title = friend.name;
             friend.subtitle = friend.status;

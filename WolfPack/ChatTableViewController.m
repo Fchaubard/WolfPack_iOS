@@ -25,7 +25,7 @@
 @implementation ChatTableViewController
 
 -(void)loadChat{
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    //NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
         if(bubbleData == NULL){
             bubbleData = [[NSMutableArray alloc] init];

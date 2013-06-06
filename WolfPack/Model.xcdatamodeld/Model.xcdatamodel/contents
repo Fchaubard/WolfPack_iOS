@@ -4,6 +4,7 @@
         <attribute name="added" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="blocked" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="eventID" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="friendStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="hungry" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
         <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
@@ -15,6 +16,6 @@
         <attribute name="userID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Friend" positionX="160" positionY="192" width="128" height="225"/>
+        <element name="Friend" positionX="160" positionY="192" width="128" height="240"/>
     </elements>
 </model>

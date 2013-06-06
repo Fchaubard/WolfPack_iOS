@@ -41,7 +41,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (bool)checkSignUpRequest:(NSString *)fname lastName:(NSString *)lname email:(NSString *)uname withPassword:(NSString *)pword andConfirmation:(NSString *)cpword pn:(NSString *)pNumber{
+- (bool)checkSignUpRequest:(NSString *)fname lastName:(NSString *)lname email:(NSString *)uname withPassword:(NSString *)pword andConfirmation:(NSString *)cpword pn:(NSString *)pNumber_this{
     
     if(![pword isEqualToString:cpword]){ //Immediate Failure if Password and Confirmation Password do not match.
         UIAlertView *alertsuccess = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Passwords do not match.  Please Try Again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -49,7 +49,7 @@
         return false;
     }
     NSString *token = [MyManagedObjectContext deviceToken];
-    NSString *urlString = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/signupjson.php?fname=%@&lname=%@&email=%@&password=%@&phoneNumber=%@&pushtoken=%@", fname, lname, uname, pword,pNumber, token];
+    NSString *urlString = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/signupjson.php?fname=%@&lname=%@&email=%@&password=%@&phoneNumber=%@&pushtoken=%@", fname, lname, uname, pword,pNumber_this, token];
     
      urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
     NSLog(@"URLSTRING: %@",urlString);

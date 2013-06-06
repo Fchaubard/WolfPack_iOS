@@ -34,8 +34,6 @@
 
 - (void)viewDidLoad
 {
-    
-    
     [self.refreshControl addTarget:self
                             action:@selector(loadLatestFriendsData)
                   forControlEvents:UIControlEventValueChanged];
@@ -224,7 +222,8 @@
         // call server
         // fake for now
         //NSArray *friends = [FlickrFetcher stanfordPhotos];
-        NSArray *friends = [PhonyFriendDictionary returnPhonyFriendDictionary];
+        //NSArray *friends = [PhonyFriendDictionary returnPhonyFriendDictionary];
+        NSArray *friends = [MyManagedObjectContext pullWolfData];
         
         // when we have the results, use main queue to display them
         dispatch_async(dispatch_get_main_queue(), ^{

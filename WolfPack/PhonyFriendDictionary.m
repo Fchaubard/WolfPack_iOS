@@ -146,7 +146,7 @@
      //[request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
      //[request addValue:[NSString stringWithFormat:@"%i", [data length]] forHTTPHeaderField:@"Content-Length"];
      //[request setHTTPBody:data];
-     NSError *error = [[NSError alloc] init];
+     //NSError *error = [[NSError alloc] init];
      NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
      
     

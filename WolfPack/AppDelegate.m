@@ -65,6 +65,12 @@ NSPersistentStoreCoordinator *persistentStoreCoordinator;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]) {
+        [MyManagedObjectContext setUserObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    }else{
+        UserObject *uo = [MyManagedObjectContext userObject];
+        [[NSUserDefaults standardUserDefaults] setObject:uo forKey:@"user"];
+    }
     [MyManagedObjectContext hungryFalse];
     // Let the device know we want to receive push notifications
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
@@ -101,6 +107,13 @@ NSPersistentStoreCoordinator *persistentStoreCoordinator;
     NSString *newToken = [deviceToken description];
     newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
 	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]) {
+        [MyManagedObjectContext setUserObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    }else{
+        UserObject *uo = [MyManagedObjectContext userObject];
+        [[NSUserDefaults standardUserDefaults] setObject:uo forKey:@"user"];
+    }
     [MyManagedObjectContext setDeviceToken:newToken];
     [[NSUserDefaults standardUserDefaults] setObject:newToken forKey:@"deviceToken"];
     
@@ -126,6 +139,14 @@ NSPersistentStoreCoordinator *persistentStoreCoordinator;
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]) {
+        [MyManagedObjectContext setUserObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    }else{
+        UserObject *uo = [MyManagedObjectContext userObject];
+        [[NSUserDefaults standardUserDefaults] setObject:uo forKey:@"user"];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

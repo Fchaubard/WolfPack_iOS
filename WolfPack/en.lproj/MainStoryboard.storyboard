@@ -153,6 +153,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MKE-qb-12e"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="adjectiveButton" destination="Dnr-pA-Q8E" id="T0B-bU-p9g"/>
                         <outlet property="chatButton" destination="3p2-MY-bTD" id="97a-Xi-ZAj"/>
@@ -175,7 +177,7 @@
             <objects>
                 <viewController id="sOi-AY-ByT" customClass="WolfMapViewController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aMw-7d-64N">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="wolfPackBackground.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="VTb-0A-Znu"/>
@@ -299,13 +301,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ZQu-n2-CgJ"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="beQ-2L-lMb">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AKm-T2-Q6m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2277" y="723"/>
+            <point key="canvasLocation" x="2373" y="697"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Ghn-8f-b30">
@@ -346,6 +349,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BYp-Sy-n8t"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="bubbleTable" destination="1FU-lz-Xk0" id="AXT-aG-Jph"/>
                         <outlet property="containerView" destination="mNv-P7-unV" id="ZXR-lP-iQB"/>
@@ -361,6 +365,7 @@
             <objects>
                 <tabBarController id="fla-gi-ktw" customClass="ContainerTabBarController" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="YiX-A7-8fA">
                         <autoresizingMask key="autoresizingMask"/>
@@ -456,6 +461,7 @@
                             <constraint firstItem="Gwy-vF-wGZ" firstAttribute="top" secondItem="Y2X-sm-OPT" secondAttribute="top" constant="62" id="qI6-h3-CkX"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="Password" destination="rNY-WE-PEY" id="qox-45-5gL"/>
                         <outlet property="UserName" destination="N20-XF-VCM" id="nl5-Ke-UT8"/>
@@ -472,7 +478,10 @@
         <scene sceneID="P2a-fn-Oqj">
             <objects>
                 <navigationController definesPresentationContext="YES" id="8Jk-vS-zv0" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cfs-9m-lbP">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="Cfs-9m-lbP">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -499,6 +508,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="barButton" destination="i2u-hj-DeC" id="2B0-PR-Hhv"/>
                     </connections>
@@ -512,7 +522,7 @@
             <objects>
                 <tableViewController id="dsZ-CZ-vYv" customClass="ULTFriendsList" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ZaY-63-pwg">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -550,6 +560,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <connections>
                         <outlet property="myTableView" destination="ZaY-63-pwg" id="tEu-Wx-lBR"/>
                     </connections>
@@ -682,6 +694,7 @@
                             <constraint firstItem="oeN-A3-rNd" firstAttribute="leading" secondItem="VTx-uk-eDG" secondAttribute="leading" type="default" id="zJM-Fp-ZIu"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="firstname" destination="VTx-uk-eDG" id="FQZ-yP-f6R"/>
                         <outlet property="lastname" destination="oeN-A3-rNd" id="atP-Nm-OWu"/>
@@ -700,10 +713,12 @@
         <!--Navigation Controller-->
         <scene sceneID="pEH-Ip-ekT">
             <objects>
-                <navigationController navigationBarHidden="YES" id="5Tc-3e-gqg" sceneMemberID="viewController">
+                <navigationController id="5Tc-3e-gqg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="9Vz-I7-dMK"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jL3-GY-E5d">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="jL3-GY-E5d">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -726,6 +741,8 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="bEg-v8-hpu"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <connections>
                         <segue destination="Odr-Rm-ZjX" kind="push" identifier="editName" id="tVN-nW-tBh"/>
                         <segue destination="Odr-Rm-ZjX" kind="push" identifier="resetPassword" id="K8q-QW-wbi"/>
@@ -749,12 +766,15 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Wau-7U-BgO">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="yf6-gl-Z66"/>
                         <barButtonItem key="rightBarButtonItem" title="Submit" id="Njs-xa-b1Z">
                             <connections>
                                 <segue destination="cH0-Hh-3ns" kind="unwind" unwindAction="unwindFromEditScreen:" id="fp3-6W-YCB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDA-ly-9wg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cH0-Hh-3ns" userLabel="Exit" sceneMemberID="exit"/>
@@ -767,7 +787,9 @@
                 <navigationController id="mdo-qt-xwx" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="WolfPack" image="117-todo.png" id="6hR-RZ-F8K"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nzT-l4-z8K">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="nzT-l4-z8K">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -785,7 +807,7 @@
             <objects>
                 <tableViewController id="eYT-l4-DV2" customClass="ULTFriendsList" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="oz4-Ai-qec">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -819,6 +841,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add some friends" id="D26-ma-nde"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <connections>
                         <outlet property="myTableView" destination="oz4-Ai-qec" id="Vtd-qg-xjY"/>
                     </connections>
@@ -833,7 +857,9 @@
                 <navigationController id="cwa-z7-VxU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="19-gear.png" id="LJ0-7i-34E"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tB8-LP-ags">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="tB8-LP-ags">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -956,6 +982,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTSignUpViewController.h"/>
             <relationships>
                 <relationship kind="action" name="loginNeeded:"/>
+                <relationship kind="action" name="signUpRequested:"/>
                 <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="pNumber" candidateClass="UITextField"/>
@@ -999,8 +1026,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Hxa-0I-Pzv"/>
-        <segue reference="GGB-aF-OCU"/>
+        <segue reference="R0Q-9k-vQ2"/>
+        <segue reference="h6U-D2-m23"/>
         <segue reference="bS0-5h-dIi"/>
         <segue reference="LCu-aa-76W"/>
     </inferredMetricsTieBreakers>

@@ -70,7 +70,7 @@
     
     
     // set the initial adjective to be "Hungry"
-    if([[MyManagedObjectContext currentAdjective] isEqualToString:@""]){
+    if([[MyManagedObjectContext currentAdjective] isEqualToString:@""] || [[MyManagedObjectContext currentAdjective] isEqualToString:nil]){
         // check NSUserDefaults
         
         
@@ -93,18 +93,18 @@
             NSLog(@"%@",[MyManagedObjectContext token]);
             
             
-        }else{
+        } else {
             NSLog(@"no device token");
             NSLog(@"%@",[MyManagedObjectContext deviceToken]);
             
             
-            ULTDataViewController *ult = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginScreen"];
-            [self presentViewController:ult animated:NO completion:^(void) {
+            //ULTDataViewController *ult = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginScreen"];
+            //[self presentViewController:ult animated:NO completion:^(void) {
                 
                 //[ult unwindFromLogoutButton:nil];
                 
                 
-            }];
+            //}];
             
         }
     }else{
@@ -205,13 +205,13 @@
 }
 
 #pragma mark - popover
-
+// this is selected on return from popover
 -(void)selectedTableRow:(NSUInteger)rowNum
 {
-    [MyManagedObjectContext setCurrentAdjective:[self.possibleAdjectives objectAtIndex:rowNum]];
+    rowNum=rowNum+1;//to get rid of off by one issue
+    [MyManagedObjectContext setCurrentAdjective:[self.possibleAdjectives objectAtIndex:(rowNum-1)]];
     [MyManagedObjectContext setCurrentAdjectiveNumber:rowNum];
-    MyManagedObjectContext *moc = [[MyManagedObjectContext alloc] init];
-    
+        
     if (![MyManagedObjectContext isThisUserHungry]) {
         
         [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",[MyManagedObjectContext currentAdjective]] forState:UIControlStateNormal];
@@ -253,7 +253,7 @@
     [self.adjectiveButton.titleLabel sizeToFit];
     [self.popover dismissPopoverAnimated:YES];
     
-    if (self.statusInputView.hidden && [[self hungrySlider] value]==1)
+    if (self.statusInputView.hidden && [[self hungrySlider] value]>0.5)
     {
         [self.mapViewController hideMode];
         [self userTappedToChangeStatus:@1]; // the sender in this isnt used so no worries with the @1...
@@ -362,7 +362,7 @@
    
     [self.mapViewController getOutOfHideMode];
     
-    int adjectiveNumber = [self.possibleAdjectives indexOfObject:[MyManagedObjectContext currentAdjective]];
+    int adjectiveNumber = [MyManagedObjectContext currentAdjectiveNumber];
     NSLog(@"%d",adjectiveNumber);
 
     

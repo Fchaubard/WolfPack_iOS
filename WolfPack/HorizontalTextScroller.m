@@ -260,10 +260,10 @@
 {
     
     NSMutableArray *cgRects = [[NSMutableArray alloc] init];
-    int h = self.buttonHeight; //35;  // height of buttons
+    //int h = self.buttonHeight; //35;  // height of buttons
     int x = self.spacing;// 20;  // space between buttons
     int d = self.distanceFromTopOfScroller; //10; // distance buttons are from the top of the scrollview
-    int labelSpacing =20;
+    //int labelSpacing =20;
     //    int hideButton = 35; // width of the hideButton
     
     // Insert hideButton
@@ -295,7 +295,7 @@
         CGSize stringsize = [[self.text objectAtIndex:j] sizeWithFont:[UIFont systemFontOfSize:20]];
         int h = 1.4*stringsize.height; // for the + button to be consistent
         // Start Populating the btn
-        CGSize status_stringsize = [[self.statuses objectAtIndex:j] sizeWithFont:[UIFont systemFontOfSize:20]];
+        //CGSize status_stringsize = [[self.statuses objectAtIndex:j] sizeWithFont:[UIFont systemFontOfSize:20]];
         int hstat = 1.4*stringsize.height;
         [cgRects addObject:[NSValue valueWithCGRect:CGRectMake(5,contentSizeVert,stringsize.width, h)]];
         contentSizeVert += h + d + hstat;

@@ -11,154 +11,145 @@
 
 @implementation MyManagedObjectContext
 
+static UserObject *userObject;
 
 static UIManagedDocument * document;
 
-// User setting vars
-static bool hungry;
-static NSString *token;
-static NSString *deviceToken;
-static NSString *fname;
-static NSString *lname;
-static NSString *email;
-static NSString *currentAdjective;
-static int currentAdjectiveNumber;
-static NSString *phoneNumber;
-static NSString *status;
-static NSMutableArray *newsfeed;
-static int chatid;
-static int foodicon;
-// friends list stuff
-static NSMutableArray *pendingFriends;
-static NSMutableArray *potentialFriends;
-static NSMutableArray *inviteFriends;
-/// Chat Vars
-static NSMutableArray *friendsInChat;
-static NSMutableArray *friendsInChatStatus;
 
-static NSMutableArray *chats;
+
++(UserObject *)userObject{
+    
+    if (userObject == nil)
+    {
+        userObject = [[UserObject alloc] init];
+    }
+    
+    return userObject;
+}
+
 
 +(NSString *)token{
-    if (token == nil)
+    
+    if (userObject.token == nil)
     {
-        token = [[NSString alloc] init];
+        userObject.token = [[NSString alloc] init];
     }
     
-    return token;
+    return userObject.token;
 }
 +(NSString *)deviceToken{
-    if (deviceToken == nil)
+    if (userObject.deviceToken == nil)
     {
-        deviceToken = [[NSString alloc] init];
+        userObject.deviceToken = [[NSString alloc] init];
     }
     
-    return deviceToken;
+    return userObject.deviceToken;
 }
 +(NSString *)status{
-    if (status == nil)
+    if (userObject.status == nil)
     {
-        status = [[NSString alloc] init];
+        userObject.status = [[NSString alloc] init];
     }
     
-    return status;
+    return userObject.status;
 }
 
 +(NSString *)fname{
-    if (fname == nil)
+    if (userObject.fname == nil)
     {
-        fname = [[NSString alloc] init];
+        userObject.fname = [[NSString alloc] init];
     }
     
-    return fname;
+    return userObject.fname;
 }
 
 +(NSString *)lname{
-    if (lname == nil)
+    if (userObject.lname == nil)
     {
-        lname = [[NSString alloc] init];
+        userObject.lname = [[NSString alloc] init];
     }
     
-    return lname;
+    return userObject.lname;
 }
 +(NSString *)email{
-    if (email == nil)
+    if (userObject.email == nil)
     {
-        email = [[NSString alloc] init];
+        userObject.email = [[NSString alloc] init];
     }
     
-    return email;
+    return userObject.email;
 }
 
 +(NSString *)currentAdjective{
-    if (currentAdjective == nil)
+    if (userObject.currentAdjective == nil)
     {
-        currentAdjective = [[NSString alloc] init];
+        userObject.currentAdjective = [[NSString alloc] init];
     }
     
-    return currentAdjective;
+    return userObject.currentAdjective;
 }
 
 +(int)currentAdjectiveNumber{
     
     
     
-    return currentAdjectiveNumber;
+    return userObject.currentAdjectiveNumber;
     
 }
 
 +(NSString *)phoneNumber{
-    if (phoneNumber == nil)
+    if (userObject.phoneNumber == nil)
     {
-        phoneNumber = [[NSString alloc] init];
+        userObject.phoneNumber = [[NSString alloc] init];
     }
     
-    return phoneNumber;
+    return userObject.phoneNumber;
 }
 
 +(NSMutableArray *)friendsInChat{
-    if (friendsInChat == nil)
+    if (userObject.friendsInChat == nil)
     {
-        friendsInChat = [[NSMutableArray alloc] init];
+        userObject.friendsInChat = [[NSMutableArray alloc] init];
     }
     
-    return friendsInChat;
+    return userObject.friendsInChat;
 }
 +(NSMutableArray *)friendsInChatStatus{
-    if (friendsInChatStatus == nil)
+    if (userObject.friendsInChatStatus == nil)
     {
-        friendsInChatStatus = [[NSMutableArray alloc] init];
+        userObject.friendsInChatStatus = [[NSMutableArray alloc] init];
     }
     
-    return friendsInChatStatus;
+    return userObject.friendsInChatStatus;
 }
 
 +(NSMutableArray *)chats{
     
     
-    if (chats == nil)
+    if (userObject.chats == nil)
     {
-       chats = [[NSMutableArray alloc] init];
+       userObject.chats = [[NSMutableArray alloc] init];
     }
     
-    return chats;
+    return userObject.chats;
 }
 
 +(NSMutableArray *)newsfeed{
     
     
-    if (newsfeed == nil)
+    if (userObject.newsfeed == nil)
     {
-        newsfeed = [[NSMutableArray alloc] init];
+        userObject.newsfeed = [[NSMutableArray alloc] init];
     }
     
-    return newsfeed;
+    return userObject.newsfeed;
 }
 
 +(int)eventID{
     
     
     
-    return chatid;
+    return userObject.eventID;
     
 }
 
@@ -166,117 +157,130 @@ static NSMutableArray *chats;
     
     
     
-    return foodicon;
+    return userObject.foodicon;
     
 }
 +(NSMutableArray *)pendingFriends{
     
     
-    if (pendingFriends == nil)
+    if (userObject.pendingFriends == nil)
     {
-        pendingFriends = [[NSMutableArray alloc] init];
+        userObject.pendingFriends = [[NSMutableArray alloc] init];
     }
     
-    return pendingFriends;
+    return userObject.pendingFriends;
 }
 +(NSMutableArray *)potentialFriends{
     
     
-    if (potentialFriends == nil)
+    if (userObject.potentialFriends == nil)
     {
-        potentialFriends = [[NSMutableArray alloc] init];
+        userObject.potentialFriends = [[NSMutableArray alloc] init];
     }
     
-    return potentialFriends;
+    return userObject.potentialFriends;
 }
 +(NSMutableArray *)inviteFriends{
     
     
-    if (inviteFriends == nil)
+    if (userObject.inviteFriends == nil)
     {
-        inviteFriends = [[NSMutableArray alloc] init];
+        userObject.inviteFriends = [[NSMutableArray alloc] init];
     }
     
-    return inviteFriends;
+    return userObject.inviteFriends;
 }
 
 
+
++(void)setUserObject:(UserObject *)userObject1
+{
+    userObject = userObject1;
+}
 
 
 +(void)setToken:(NSString *)string{
-    token = string;
+    userObject.token = string;
 }
 +(void)setDeviceToken:(NSString *)string{
-    deviceToken = string;
+    userObject.deviceToken = string;
 }
 +(void)setStatus:(NSString *)string{
-    status = string;
+    userObject.status = string;
 }
 +(void)setFname:(NSString *)string{
-    fname = string;
+    userObject.fname = string;
 }
 +(void)setLname:(NSString *)string{
-    lname = string;
+    userObject.lname = string;
 }
 +(void)setEmail:(NSString *)string{
-    email=string;
+    userObject.email=string;
 }
 
 +(void)setCurrentAdjective:(NSString *)string{
-    currentAdjective = string;
+    userObject.currentAdjective = string;
 }
 +(void)setCurrentAdjectiveNumber:(int)num{
-    currentAdjectiveNumber = num;
+    userObject.currentAdjectiveNumber = num;
 }
 +(void)setPhoneNumber:(NSString *)string{
-    phoneNumber = string;
+    userObject.phoneNumber = string;
 }
 +(void)setFriendsInChat:(NSMutableArray *)array{
-    friendsInChat = array;
+    userObject.friendsInChat = array;
 }
 +(void)setFriendsInChatStatus:(NSMutableArray *)array{
-    friendsInChatStatus = array;
+    userObject.friendsInChatStatus = array;
 }
 
 +(void)setChats:(NSMutableArray *)array{
-    chats = array;
+    userObject.chats = array;
 }
 +(void)setNewsfeed:(NSMutableArray *)array{
-    newsfeed = array;
+    userObject.newsfeed = array;
 }
 +(void)setEventID:(int)num{
-    chatid = num;
+    userObject.eventID = num;
 }
 +(void)setFoodIcon:(int)num{
-    foodicon = num;
+    userObject.foodicon = num;
 }
 +(void)setPendingFriends:(NSMutableArray *)array{
-    pendingFriends = array;
+    userObject.pendingFriends = array;
 }
 +(void)setPotentialFriends:(NSMutableArray *)array{
-    potentialFriends = array;
+    userObject.potentialFriends = array;
 }
 +(void)setInviteFriends:(NSMutableArray *)array{
-    inviteFriends = array;
+    userObject.inviteFriends = array;
 }
 
 
 +(BOOL)isThisUserHungry{
    
-    return hungry;
+    return userObject.hungry;
 }
 +(void)hungryTrue
 {
-    hungry = true;
+    userObject.hungry = true;
 }
 +(void)hungryFalse
 {
-    hungry = false;
+    userObject.hungry = false;
 }
 
-+(NSMutableArray *)possibleAdjectives{
-    return [[NSMutableArray alloc] initWithArray:@[@"Hungry",@"Excercising",@"Studying",@"Raging",@"Shopping",@"Coffeeing",@"Bored"]];
++(NSMutableArray *)possibleAdjectives{ // be careful of off by one issue here...
+    return [[NSMutableArray alloc]  initWithArray:@[@"Hungry",@"Excercising",@"Studying",@"Raging",@"Shopping",@"Coffeeing",@"Bored"]];
     
+}
+
++(NSMutableArray *)adjectiveImagesChat{
+    return [[NSMutableArray alloc] initWithArray:@[@"normal_wolf.png",@"wolfHungryNewWhiteChat.png",@"wolfExercisingWhiteChat.png",@"wolfStudyingWhiteChat.png",@"wolfRagingWhiteChat.png",@"wolfShoppingWhiteChat.png",@"wolfCoffeeingWhiteChat.png",@"normal_wolf.png",@"normal_wolf.png"]];
+}
+
++(NSMutableArray *)adjectiveImages{
+    return [[NSMutableArray alloc] initWithArray:@[@"normal_wolf.png",@"wolfHungryNew.png",@"wolfExercising.png",@"wolfStudying.png",@"wolfRaging.png",@"wolfShopping.png",@"wolfCoffeeing.png",@"normal_wolf.png",@"normal_wolf.png"]];
 }
 
 
@@ -348,9 +352,9 @@ static NSMutableArray *chats;
     
     
     
-    NSError *e = nil;
+    //NSError *e = nil;
     
-    NSString *urlText1 = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmembersofchatjson.php?session=%@",token];
+    NSString *urlText1 = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmembersofchatjson.php?session=%@",userObject.token];
     
     
     
@@ -374,8 +378,8 @@ static NSMutableArray *chats;
                 
                 
             }
-            friendsInChatStatus = textStatus;
-            friendsInChat = text;
+            userObject.friendsInChatStatus = textStatus;
+            userObject.friendsInChat = text;
             //self->scrollerText = text;
             //self->scrollerStatuses = textStatus;
             
@@ -387,12 +391,12 @@ static NSMutableArray *chats;
     
     
     // pull the freinds
-    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",token];
+    NSString *urlText = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getchatjson.php?session=%@",userObject.token];
     
     [self pullDataWithURL:[NSURL URLWithString:urlText] andBlock:^(NSData *data){
        
     
-        chats = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: nil];
+        userObject.chats = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: nil];
         
     }];
    
@@ -422,12 +426,12 @@ static NSMutableArray *chats;
          [MyManagedObjectContext setEventID:[[userData valueForKey:@"chatid"] intValue]];
          [MyManagedObjectContext setFoodIcon:[[userData valueForKey:@"foodicon"] intValue]];
          */
-        fname = [userData valueForKey:@"fname"];
-        lname = [userData valueForKey:@"lname"];
-        email = [userData valueForKey:@"email"];
-        phoneNumber = [userData valueForKey:@"phone"];
-        chatid = [[userData valueForKey:@"chatid"] intValue];
-        foodicon = [[userData valueForKey:@"foodicon"] intValue];
+        userObject.fname = [userData valueForKey:@"fname"];
+        userObject.lname = [userData valueForKey:@"lname"];
+        userObject.email = [userData valueForKey:@"email"];
+        userObject.phoneNumber = [userData valueForKey:@"phone"];
+        userObject.eventID = [[userData valueForKey:@"chatid"] intValue];
+        userObject.foodicon = [[userData valueForKey:@"foodicon"] intValue];
         
         
     }];
@@ -435,6 +439,53 @@ static NSMutableArray *chats;
     return;
     
 }
+
+
+#pragma mark - helper functions
++(NSArray *)pullWolfData{
+    
+    NSString *sessionid =[MyManagedObjectContext token];
+    NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/getmywolfpackjson.php?session=%@",sessionid];
+    NSURL *URL = [NSURL URLWithString:str];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    //request.HTTPMethod = @"POST";
+    
+    //NSString *params = @"access_token=asdf&action_name=get_apptracker_info";
+    
+    //NSData *data = [params dataUsingEncoding:NSUTF8StringEncoding];
+    //[request addValue:@"8bit" forHTTPHeaderField:@"Content-Transfer-Encoding"];
+    //[request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    //[request addValue:[NSString stringWithFormat:@"%i", [data length]] forHTTPHeaderField:@"Content-Length"];
+    //[request setHTTPBody:data];
+    //NSError *error = [[NSError alloc] init];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    
+    NSArray *jsonArray;
+    // if ([NSJSONSerialization isValidJSONObject:responseData]) {
+    if ([responseData length]>1){
+        jsonArray = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
+        for (NSMutableDictionary *dict in jsonArray) {
+            NSLog(@"%@", [dict allKeys]);
+            NSLog(@"%@", [dict allValues]);
+            
+        }
+        return jsonArray;
+    }
+    else{
+        return nil;
+    }
+}
+
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 
 
 @end

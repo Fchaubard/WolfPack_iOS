@@ -8,6 +8,7 @@
 
 #import "PopoverTVC.h"
 #import "ContainerViewController.h"
+#import "MyManagedObjectContext.h"
 @interface PopoverTVC ()
 
 @end
@@ -71,12 +72,17 @@
     
     if(cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
     }
     
-
-    [cell.textLabel setText:[self.adjectives objectAtIndex:[indexPath row]]];
+    UIImageView *imageV= [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[MyManagedObjectContext adjectiveImages] objectAtIndex:([indexPath row]+1)] ]];
+    imageV.image = [MyManagedObjectContext imageWithImage:imageV.image scaledToSize:CGSizeMake(30, 30)];
+    cell.imageView.image = imageV.image;
     
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    [cell.textLabel setText:[self.adjectives objectAtIndex:[indexPath row]]];
+    [cell.textLabel setFont:[UIFont boldSystemFontOfSize:15]];
     return cell;
 }
 

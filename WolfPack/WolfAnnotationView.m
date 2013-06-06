@@ -37,6 +37,9 @@ typedef enum {
 
 UserTouchState touchState;
 
+
+
+
 - (id)initWithFrame:(CGRect)frame
       andAnnotation:(id<MKAnnotation>)thisAnnotation withReuseId:(NSString *)string
 {
@@ -143,42 +146,20 @@ UserTouchState touchState;
         [self.smallView setAlpha:1.0];
         [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"hidden_wolf.png"] waitUntilDone:YES];
     }else{
-        if ([(Friend *)self.annotation added]==@1) {
+        if ([(Friend *)self.annotation added]==@1) { // you are chatting with this person
             [self.smallView setFrame:CGRectMake(self.smallView.frame.origin.x, self.smallView.frame.origin.y, 30, 30)];
-            [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"friend_wolf.png"] waitUntilDone:YES];
+             UIImage *img = [UIImage imageNamed:[[MyManagedObjectContext adjectiveImagesChat] objectAtIndex:([(Friend *)self.annotation hungry].integerValue)]];
+            //img = [MyManagedObjectContext imageWithImage:img scaledToSize:CGSizeMake(30, 30)];
+              [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject:img  waitUntilDone:YES];
             
-        }else{
+        }else{ // you are not chatting with this person
             [self.smallView setAlpha:1.0];
             [self.smallView setFrame:CGRectMake(self.smallView.frame.origin.x, self.smallView.frame.origin.y, 30, 30)];
+            UIImage *img = [UIImage imageNamed:[[MyManagedObjectContext adjectiveImages] objectAtIndex:([(Friend *)self.annotation hungry].integerValue)]];
+            //img = [MyManagedObjectContext imageWithImage:img scaledToSize:CGSizeMake(30, 30)];
+            [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject:img  waitUntilDone:YES];
+
             
-            // pick which image to show based what what the persons hungry number is
-            switch ([(Friend *)self.annotation hungry].integerValue) {
-                case 1: // hungry
-                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
-                    break;
-                case 2:// excercise
-                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
-                    break;
-                case 3://studying
-                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
-                    break;
-                case 4://raging
-                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
-                    break;
-                case 5://shopping
-                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
-                    break;
-                case 6://coffee
-                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
-                    break;
-                case 7://bored
-                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
-                    break;
-                default:
-                    [self.smallView performSelectorOnMainThread:@selector(setImage:) withObject: [UIImage imageNamed:@"normal_wolf.png"] waitUntilDone:YES];
-                    break;
-            }
-        
         }
     }
     
@@ -197,6 +178,15 @@ UserTouchState touchState;
     
     [self setNeedsDisplay];
 }
+
+
+
+
+
+
+
+
+
 
 
 // Touch began on view so save the start point
@@ -238,7 +228,7 @@ UserTouchState touchState;
         
         
         // Get the current and previous touch locations
-        CGPoint newPoint    = [[touches anyObject] locationInView:self];
+        //CGPoint newPoint    = [[touches anyObject] locationInView:self];
         //CGPoint prevPoint   = [[touches anyObject] previousLocationInView:self];
         
         /*
@@ -549,7 +539,7 @@ UserTouchState touchState;
         
         NSURL *URL = [NSURL URLWithString:str];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-        NSError *error = [[NSError alloc] init];
+        //NSError *error = [[NSError alloc] init];
         NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         
         NSString * string = [[NSString alloc] initWithData:responseData encoding:

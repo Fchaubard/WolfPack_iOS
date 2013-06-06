@@ -20,6 +20,32 @@
 
 // if we are visible and our Model is (re)set, refetch from Core Data
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    if ([MyManagedObjectContext isThisUserHungry]) {
+        [self getOutOfHideMode];
+    }
+    else{
+        [self hideMode];
+        
+    }
+    
+    if (!self.managedObjectContext) [MyManagedObjectContext returnMyManagedObjectContext:^(UIManagedDocument *doc, BOOL created) {
+        self.managedObjectContext = [doc managedObjectContext];
+        dispatch_async(dispatch_get_main_queue(), ^ {
+            [self refresh];
+            [SVProgressHUD dismiss];
+        });
+
+        
+        
+    }];
+    
+}
+
+
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     _managedObjectContext = managedObjectContext;
@@ -79,9 +105,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (!self.managedObjectContext) [MyManagedObjectContext returnMyManagedObjectContext:^(UIManagedDocument *doc, BOOL created) {
-        self.managedObjectContext = [doc managedObjectContext];
-    }];
+    
     
     [self refreshWithoutHUD];
 }
@@ -91,7 +115,8 @@
     dispatch_queue_t fetchQ = dispatch_queue_create("Flickr Fetch", NULL);
     dispatch_async(fetchQ, ^{
         
-        NSArray *friends = [PhonyFriendDictionary returnPhonyFriendDictionary];
+        //NSArray *friends = [PhonyFriendDictionary returnPhonyFriendDictionary];
+        NSArray *friends = [MyManagedObjectContext pullWolfData];
         // put the photos in Core Data
         [self.managedObjectContext performBlock:^{
             //delete old friends from core data

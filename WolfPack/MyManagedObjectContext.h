@@ -7,8 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "UserObject.h"
 @interface MyManagedObjectContext : NSObject
+
+
+
+
++(UserObject *)userObject;
+
+
+
 // admin stuff
 +(NSString *)token;
 +(NSString *)deviceToken;
@@ -34,6 +42,7 @@
 
 
 
++(void)setUserObject:(UserObject *)userObject;
 
 
 
@@ -59,6 +68,8 @@
 +(void)setInviteFriends:(NSMutableArray *)array;
 
 +(NSMutableArray *)possibleAdjectives;
++(NSMutableArray *)adjectiveImages;
++(NSMutableArray *)adjectiveImagesChat;
 
 +(BOOL)isThisUserHungry;
 +(void)hungryTrue;
@@ -71,6 +82,9 @@
 +(void)pullUserData;
 +(void)pullChatData;
 
++(NSArray *)pullWolfData;
+
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 
 
 @end

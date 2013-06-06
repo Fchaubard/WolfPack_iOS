@@ -51,7 +51,7 @@
 
     
     
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    //NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSString *token = [MyManagedObjectContext token];
     if (!jsonArray) {
         NSLog(@"Error parsing JSON for CHAT:");
@@ -133,7 +133,7 @@
 */
 -(void)loadChat{
     
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    //NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSString *token =[MyManagedObjectContext token];
     if(bubbleData == NULL){
         bubbleData = [[NSMutableArray alloc] init];
@@ -485,7 +485,7 @@
         NSString *dateString = [DateFormatter stringFromDate:[NSDate date]];
         NSLog(@"Calculated Current Date: %@",dateString);
         
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        //NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         // getting an NSString
         NSString *token = [MyManagedObjectContext token]; //token
         NSString *strippedMessage = [message stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];

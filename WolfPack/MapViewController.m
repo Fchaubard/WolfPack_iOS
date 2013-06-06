@@ -21,9 +21,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.mapView.delegate = self;
     self.needUpdateRegion = YES;
     self.mapView.showsUserLocation=false;
+  
     
 }
 
