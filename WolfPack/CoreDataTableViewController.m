@@ -6,6 +6,7 @@
 //
 
 #import "CoreDataTableViewController.h"
+#import "MyManagedObjectContext.h"
 
 @interface CoreDataTableViewController()
 @property (nonatomic) BOOL beganUpdates;
@@ -82,42 +83,22 @@
     
     NSString *sectionName = [[[self.fetchedResultsController sections] objectAtIndex:section] name];
     
-    if([sectionName isEqualToString:@"1"]){
-        
-        return @"Hungry";
-        
-    }
-    
-    else if ([sectionName isEqualToString:@"2"]){
-        
-        return @"Exercising";
-        
-    }
-    
-    else if ([sectionName isEqualToString:@"3"]){
-        
-        return @"Shopping";
-        
-    }
-    
-    else if ([sectionName isEqualToString:@"4"]){
-        
-        return @"Partying";
-        
-    }
-    
-    else if ([sectionName isEqualToString:@"0"]){
+    if([sectionName isEqualToString:@"0"]){
         
         return @"Inactive";
         
+    }else{
+        int sect = [[[[self.fetchedResultsController sections] objectAtIndex:section] name] intValue];
+        
+        NSLog(@"%d",sect);
+        if (sect!=0) {
+            return [[MyManagedObjectContext possibleAdjectives] objectAtIndex:([sectionName intValue]-1)];
+        }
+        else{
+            return @"error";
+        }
     }
-    
-    else{
-        return sectionName;
-    }
-    
-    
-    
+      
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index

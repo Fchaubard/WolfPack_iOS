@@ -32,16 +32,7 @@
         
     }
     
-    if (!self.managedObjectContext) [MyManagedObjectContext returnMyManagedObjectContext:^(UIManagedDocument *doc, BOOL created) {
-        self.managedObjectContext = [doc managedObjectContext];
-        dispatch_async(dispatch_get_main_queue(), ^ {
-            [self refresh];
-            [SVProgressHUD dismiss];
-        });
-
-        
-        
-    }];
+    
     
 }
 
@@ -107,10 +98,13 @@
     [super viewWillAppear:animated];
     
     
-    [self refreshWithoutHUD];
 }
 
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self reload];
+}
 -(void)refreshWithoutHUD{
     dispatch_queue_t fetchQ = dispatch_queue_create("Flickr Fetch", NULL);
     dispatch_async(fetchQ, ^{

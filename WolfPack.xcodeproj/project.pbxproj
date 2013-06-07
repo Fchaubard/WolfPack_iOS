@@ -113,7 +113,6 @@
 		ABC8E478175159EA00EC8EF5 /* PopoverTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC8E477175159EA00EC8EF5 /* PopoverTVC.m */; };
 		ABC8E47F1755436B00EC8EF5 /* UIView+Glow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC8E47E1755436B00EC8EF5 /* UIView+Glow.m */; };
 		ABC948621760286000C7810D /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948611760286000C7810D /* UserObject.m */; };
-		ABC948B3176123B200C7810D /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948B2176123B200C7810D /* Friend.m */; };
 		ABC948C9176141B400C7810D /* wolfBored.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948B4176141B400C7810D /* wolfBored.png */; };
 		ABC948CA176141B400C7810D /* wolfBoredPurpleChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948B5176141B400C7810D /* wolfBoredPurpleChat.png */; };
 		ABC948CB176141B400C7810D /* wolfBoredWhiteChat.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948B6176141B400C7810D /* wolfBoredWhiteChat.png */; };
@@ -143,6 +142,7 @@
 		ABC948F217614D0500C7810D /* MGStyledBox.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948ED17614D0500C7810D /* MGStyledBox.m */; };
 		ABC948F417614D4700C7810D /* chatBubbleSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948F317614D4700C7810D /* chatBubbleSmall.png */; };
 		ABC948F617614F6000C7810D /* 166-newspaper.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC948F517614F6000C7810D /* 166-newspaper.png */; };
+		ABC948FC176151DD00C7810D /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC948FB176151DC00C7810D /* Friend.m */; };
 		ABF06A911742E4FA00544BB0 /* Chat_Footer_ArrowUp.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */; };
 		ABF06A921742E4FA00544BB0 /* Chat_Footer_ArrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */; };
 		ABF06A931742E4FA00544BB0 /* Chat_Footer_ArrowUp_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */; };
@@ -319,8 +319,6 @@
 		ABC8E47E1755436B00EC8EF5 /* UIView+Glow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Glow.m"; sourceTree = "<group>"; };
 		ABC948601760286000C7810D /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
 		ABC948611760286000C7810D /* UserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
-		ABC948B1176123B100C7810D /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
-		ABC948B2176123B200C7810D /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		ABC948B4176141B400C7810D /* wolfBored.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfBored.png; sourceTree = "<group>"; };
 		ABC948B5176141B400C7810D /* wolfBoredPurpleChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfBoredPurpleChat.png; sourceTree = "<group>"; };
 		ABC948B6176141B400C7810D /* wolfBoredWhiteChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfBoredWhiteChat.png; sourceTree = "<group>"; };
@@ -357,6 +355,8 @@
 		ABC948ED17614D0500C7810D /* MGStyledBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGStyledBox.m; sourceTree = "<group>"; };
 		ABC948F317614D4700C7810D /* chatBubbleSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatBubbleSmall.png; sourceTree = "<group>"; };
 		ABC948F517614F6000C7810D /* 166-newspaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "166-newspaper.png"; sourceTree = "<group>"; };
+		ABC948FA176151DB00C7810D /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		ABC948FB176151DC00C7810D /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		ABF06A831742E4F900544BB0 /* Chat_Footer_ArrowUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat_Footer_ArrowUp.png; sourceTree = "<group>"; };
 		ABF06A841742E4F900544BB0 /* Chat_Footer_ArrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chat_Footer_ArrowUp@2x.png"; sourceTree = "<group>"; };
 		ABF06A851742E4F900544BB0 /* Chat_Footer_ArrowUp_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat_Footer_ArrowUp_Pressed.png; sourceTree = "<group>"; };
@@ -473,6 +473,8 @@
 		AB461E7D16E15B47009FDC9A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABC948FA176151DB00C7810D /* Friend.h */,
+				ABC948FB176151DC00C7810D /* Friend.m */,
 				ABF06AB717436E0F00544BB0 /* wolfpack_icon_ios.png */,
 				ABC9483A176020E900C7810D /* wolfimages */,
 				AB2B7842175D76A100A9E2D4 /* Default.png */,
@@ -497,8 +499,6 @@
 				ABB4289D172A174D00F338B5 /* 19-gear@2x.png */,
 				ABB4289E172A174D00F338B5 /* 07-map-marker@2x.png */,
 				AB461ECC16E1999F009FDC9A /* Model.xcdatamodeld */,
-				ABC948B1176123B100C7810D /* Friend.h */,
-				ABC948B2176123B200C7810D /* Friend.m */,
 				AB1F572F16ED1CCF0019B8CD /* Icon-Small.png */,
 				AB461EDE16E19C6D009FDC9A /* fficon.png */,
 				AB461EDB16E19B8A009FDC9A /* Friend+MKAnnotation.h */,
@@ -961,13 +961,13 @@
 				ABC8E47F1755436B00EC8EF5 /* UIView+Glow.m in Sources */,
 				AB2B782F175C37DF00A9E2D4 /* UserTurtorialViewController.m in Sources */,
 				ABC948621760286000C7810D /* UserObject.m in Sources */,
-				ABC948B3176123B200C7810D /* Friend.m in Sources */,
 				ABC948E117614CEA00C7810D /* NewsfeedViewController.m in Sources */,
 				ABC948EE17614D0500C7810D /* MGBox.m in Sources */,
 				ABC948EF17614D0500C7810D /* MGBoxLine.m in Sources */,
 				ABC948F017614D0500C7810D /* MGButton.m in Sources */,
 				ABC948F117614D0500C7810D /* MGScrollView.m in Sources */,
 				ABC948F217614D0500C7810D /* MGStyledBox.m in Sources */,
+				ABC948FC176151DD00C7810D /* Friend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,7 +5,7 @@
         <attribute name="blocked" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="eventID" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="friendStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="hungry" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
+        <attribute name="hungry" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>

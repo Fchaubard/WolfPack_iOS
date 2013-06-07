@@ -30,7 +30,7 @@
 @property (strong, nonatomic) NSMutableArray *possibleAdjectives;
 @property (strong, nonatomic) FPPopoverController *popover;
 @property (strong, nonatomic) NSString* currentAdjective;
-
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic) CGFloat originHeight;
 
@@ -61,8 +61,8 @@
                                                object:nil];
     
     
-    [MyManagedObjectContext pullUserData];
-    [MyManagedObjectContext pullChatData];
+    //[MyManagedObjectContext pullUserData];
+    //[MyManagedObjectContext pullChatData];
     
     
     _possibleAdjectives = [MyManagedObjectContext possibleAdjectives];
@@ -157,7 +157,13 @@
             }
         }
     }
-    
+    [MyManagedObjectContext returnMyManagedObjectContext:^(UIManagedDocument *doc, BOOL created) {
+        self.managedObjectContext = [doc managedObjectContext];
+        [self.listViewController setManagedObjectContext:self.managedObjectContext];
+        [self.mapViewController setManagedObjectContext:self.managedObjectContext];
+        
+    }];
+
     
     if (![MyManagedObjectContext isThisUserHungry]) {
         //user is not hungry

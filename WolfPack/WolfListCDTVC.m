@@ -44,7 +44,11 @@
 }
 
 
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self loadLatestFriendsData];
+    
+}
 
 
 // original
@@ -188,9 +192,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (!self.managedObjectContext) [MyManagedObjectContext returnMyManagedObjectContext:^(UIManagedDocument *doc, BOOL created) {
-        self.managedObjectContext = [doc managedObjectContext];
-    }];
+   
 }
 
 
@@ -223,10 +225,13 @@
         // fake for now
         //NSArray *friends = [FlickrFetcher stanfordPhotos];
         //NSArray *friends = [PhonyFriendDictionary returnPhonyFriendDictionary];
+        
+        
         NSArray *friends = [MyManagedObjectContext pullWolfData];
         
         // when we have the results, use main queue to display them
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             
             
             // populate the database
