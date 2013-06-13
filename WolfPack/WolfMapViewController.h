@@ -15,7 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *viewWolfPackButton;
 @property (strong, nonatomic) IBOutlet UIButton *viewCurrentLocationButton;
 
-
+-(void)refreshWithoutHUD;
 -(void)reload;
 -(void)hideMode;
 -(void)getOutOfHideMode;

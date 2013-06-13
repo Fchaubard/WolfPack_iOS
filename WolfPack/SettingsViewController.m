@@ -182,11 +182,21 @@ const int TEXT_SPACING = 4;
 		addFriend.originView = @"settingsPage";
 	}
 	
-	UIBarButtonItem *cancelBut = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
-																  style:UIBarButtonSystemItemCancel
-																 target:nil
-																 action:nil];
-	[[self navigationItem] setBackBarButtonItem:cancelBut];
+	if([segue.identifier isEqualToString:@"addFriends"]) {
+		UIBarButtonItem *cancelBut = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+																	  style:UIBarButtonSystemItemCancel
+																	 target:nil
+																	 action:nil];
+		[[self navigationItem] setBackBarButtonItem:cancelBut];
+        
+	} else {
+		UIBarButtonItem *cancelBut = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+																	  style:UIBarButtonSystemItemCancel
+																	 target:nil
+																	 action:nil];
+		[[self navigationItem] setBackBarButtonItem:cancelBut];
+        
+	}
 }
 
 - (void)buttonClicked:(UIButton *)button

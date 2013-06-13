@@ -998,6 +998,7 @@
         <class className="ULTFriendsList" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ULTFriendsList.h"/>
             <relationships>
+                <relationship kind="action" name="dismissModal:"/>
                 <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
             </relationships>
         </class>

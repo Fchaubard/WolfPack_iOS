@@ -14,6 +14,7 @@
 @dynamic added;
 @dynamic blocked;
 @dynamic eventID;
+@dynamic friendStatus;
 @dynamic hungry;
 @dynamic lastUpdated;
 @dynamic latitude;
@@ -23,6 +24,5 @@
 @dynamic subtitle;
 @dynamic title;
 @dynamic userID;
-@dynamic friendStatus;
 
 @end

@@ -10,6 +10,7 @@
 
 @interface CoreDataTableViewController()
 @property (nonatomic) BOOL beganUpdates;
+
 @end
 
 @implementation CoreDataTableViewController
@@ -54,7 +55,7 @@
         if ((!self.title || [self.title isEqualToString:oldfrc.fetchRequest.entity.name]) && (!self.navigationController || !self.navigationItem.title)) {
             self.title = newfrc.fetchRequest.entity.name;
         }
-        self.title = @"Your Wolfpack";
+        self.title = @"Wolfpack";
         if (newfrc) {
             if (self.debug) NSLog(@"[%@ %@] %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), oldfrc ? @"updated" : @"set");
             [self performFetch]; 
@@ -91,14 +92,14 @@
         int sect = [[[[self.fetchedResultsController sections] objectAtIndex:section] name] intValue];
         
         NSLog(@"%d",sect);
-        if (sect!=0) {
+        if(sect!=0){
             return [[MyManagedObjectContext possibleAdjectives] objectAtIndex:([sectionName intValue]-1)];
         }
         else{
-            return @"error";
+            return @"";//this probably is an error
         }
     }
-      
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index

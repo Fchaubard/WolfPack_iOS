@@ -30,7 +30,7 @@
 @property (strong, nonatomic) NSMutableArray *possibleAdjectives;
 @property (strong, nonatomic) FPPopoverController *popover;
 @property (strong, nonatomic) NSString* currentAdjective;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 
 @property (nonatomic) CGFloat originHeight;
 
@@ -61,8 +61,8 @@
                                                object:nil];
     
     
-    //[MyManagedObjectContext pullUserData];
-    //[MyManagedObjectContext pullChatData];
+    [MyManagedObjectContext pullUserData];
+    [MyManagedObjectContext pullChatData];
     
     
     _possibleAdjectives = [MyManagedObjectContext possibleAdjectives];
@@ -157,13 +157,7 @@
             }
         }
     }
-    [MyManagedObjectContext returnMyManagedObjectContext:^(UIManagedDocument *doc, BOOL created) {
-        self.managedObjectContext = [doc managedObjectContext];
-        [self.listViewController setManagedObjectContext:self.managedObjectContext];
-        [self.mapViewController setManagedObjectContext:self.managedObjectContext];
-        
-    }];
-
+    
     
     if (![MyManagedObjectContext isThisUserHungry]) {
         //user is not hungry
@@ -190,6 +184,7 @@
         
         [self.statusInputView setHidden:true];
         //[self showTabBar:self.containerTBC];
+        [self.containerTBC setSelectedIndex:1];
         
         
     }
@@ -372,7 +367,7 @@
     NSLog(@"%d",adjectiveNumber);
 
     
-    [self updateStatusWithStatus:[self.statusTextField text] andAdjective:[NSNumber numberWithInt:adjectiveNumber]];
+    [self updateStatusWithStatus:[self.statusTextField text] andAdjective:[NSNumber numberWithInt:adjectiveNumber] statusUpdated:@"yes"];
     [self.view endEditing:YES];
     
     
@@ -392,7 +387,8 @@
 }
 
 -(void)updateStatusWithStatus:(NSString *)status
-                 andAdjective:(NSNumber *)adjective{
+                 andAdjective:(NSNumber *)adjective
+                statusUpdated:(NSString *)statUpdate {
     
        
     dispatch_queue_t fetchQ = dispatch_queue_create("Update Status", NULL);
@@ -402,7 +398,7 @@
         
         NSString *sessionid =[MyManagedObjectContext token];
         NSString *strippedStatus = [status stringByReplacingOccurrencesOfString:@" " withString:@"!!_____!_____!!"];
-        NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/updatemystatusjson.php?session=%@&adjective=%d&lat=%f&long=%f&status=%@",sessionid,[adjective intValue],loc.coordinate.latitude,loc.coordinate.longitude,strippedStatus];
+        NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/updatemystatusjson.php?session=%@&adjective=%d&lat=%f&long=%f&status=%@&statusUpdate=%@",sessionid,[adjective intValue],loc.coordinate.latitude,loc.coordinate.longitude,strippedStatus,statUpdate];
         NSURL *URL = [NSURL URLWithString:str];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
         //NSError *error = [[NSError alloc] init];
@@ -418,11 +414,18 @@
         } else {
             NSLog(@"asdfa");
         }
-        sleep(2.8);
+        
         dispatch_async(dispatch_get_main_queue(), ^ {
             
             [SVProgressHUD dismiss];
-            //[self.mapViewController updateRegion:@2]; // slinky thing happens if you do this
+            int64_t delayInSeconds = 0.6;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                
+                [self.mapViewController refreshWithoutHUD];
+                [self.mapViewController updateRegion:@2]; // slinky thing 
+                    });
+            
         });
         
         
@@ -438,6 +441,10 @@
     
     //  if (self.hungrySlider.valueChanged) {
     //make sure we have the most current VC's
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd*HH:mm:ss"];
+    NSString *dateString = [DateFormatter stringFromDate:[NSDate date]];
+    NSLog(@"Date String: %@",dateString);
     
     if (self.hungrySlider.value > 0.5 && ![self.adjectiveButton.titleLabel.text isEqual:[MyManagedObjectContext currentAdjective]]) {
         // user is hungry
@@ -448,13 +455,13 @@
         [self fadeOutLabel];
         [self slideInStatus];
         
-        [self updateStatusWithStatus:[MyManagedObjectContext currentAdjective] andAdjective:[NSNumber numberWithInt:[MyManagedObjectContext currentAdjectiveNumber]]];
+        [self updateStatusWithStatus:[MyManagedObjectContext currentAdjective] andAdjective:[NSNumber numberWithInt:[MyManagedObjectContext currentAdjectiveNumber]] statusUpdated:@"no"];
         [self.adjectiveButton setTitle:[MyManagedObjectContext currentAdjective] forState:UIControlStateNormal];
         //[self.chatButton setEnabled:TRUE];
         //[self.chatButton setAlpha:1.0];
-        
-        
-        [self.containerTBC setSelectedIndex:0];
+        [self.listViewController changeMode:1];
+        [self.listViewController setManagedObjectContext:self.listViewController.managedObjectContext];
+        [self.containerTBC setSelectedIndex:1];
         [self.adjectiveButton setNeedsDisplay];
         [self fadeInLabel];
         
@@ -468,12 +475,13 @@
         [MyManagedObjectContext hungryFalse];
         [self fadeOutLabel];
         [self slideOutStatus];
-        
-        [self updateStatusWithStatus:@"" andAdjective:[NSNumber numberWithInt:[MyManagedObjectContext currentAdjectiveNumber]]];
+        [self.listViewController changeMode:0];
+        [self.listViewController setManagedObjectContext:self.listViewController.managedObjectContext];
+        [self updateStatusWithStatus:@"" andAdjective:[NSNumber numberWithInt:[MyManagedObjectContext currentAdjectiveNumber]] statusUpdated:@"no"];
         [self.adjectiveButton setTitle:[NSString stringWithFormat:@"Not %@",[MyManagedObjectContext currentAdjective]] forState:UIControlStateNormal];
         [self.chatButton setEnabled:FALSE];
         [self.chatButton setAlpha:0.5];
-        [self.containerTBC setSelectedIndex:2];
+        [self.containerTBC setSelectedIndex:0];
         [self.adjectiveButton setNeedsDisplay];
         [self fadeInLabel];
         [self.settingsController switchViews:0]; // send them home

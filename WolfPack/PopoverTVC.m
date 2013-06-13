@@ -83,6 +83,8 @@
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     [cell.textLabel setText:[self.adjectives objectAtIndex:[indexPath row]]];
     [cell.textLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    cell.accessoryType =UITableViewCellAccessoryNone;
+    
     return cell;
 }
 

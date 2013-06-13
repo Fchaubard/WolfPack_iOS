@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSNumber * added;
 @property (nonatomic, retain) NSNumber * blocked;
 @property (nonatomic, retain) NSNumber * eventID;
+@property (nonatomic, retain) NSNumber * friendStatus;
 @property (nonatomic, retain) NSNumber * hungry;
 @property (nonatomic, retain) NSDate * lastUpdated;
 @property (nonatomic, retain) NSNumber * latitude;
@@ -24,6 +25,5 @@
 @property (nonatomic, retain) NSString * subtitle;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * userID;
-@property (nonatomic, retain) NSNumber * friendStatus;
 
 @end

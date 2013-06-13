@@ -13,7 +13,8 @@
 
 @interface WolfListCDTVC ()
 
-@property (nonatomic) BOOL adjMode;
+@property (nonatomic) BOOL adjMode;// not active == 0   active =1
+
 
 @end
 
@@ -38,17 +39,30 @@
                             action:@selector(loadLatestFriendsData)
                   forControlEvents:UIControlEventValueChanged];
     [super viewDidLoad];
-    self.adjMode = TRUE;
+    UIEdgeInsets inset = UIEdgeInsetsMake(0, 0, 55, 0);
+    self.tableView.contentInset = inset;
+    if ([MyManagedObjectContext isThisUserHungry]) {
+        self.adjMode = TRUE;//  active
+    }else{
+        self.adjMode = FALSE;// not active
+    }
+    
     [self reload];
+    
     
 }
 
 
 -(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self loadLatestFriendsData];
-    
+    if([MyManagedObjectContext isThisUserHungry]){
+        self.adjMode=true;
+    }else{
+        self.adjMode =false;
+    }
 }
+
+
+
 
 
 // original
@@ -78,7 +92,7 @@
         
         if(self.adjMode){
             
-            NSSortDescriptor *statusDescriptor = [[NSSortDescriptor alloc] initWithKey:@"hungry" ascending:YES];
+            NSSortDescriptor *statusDescriptor = [[NSSortDescriptor alloc] initWithKey:@"hungry" ascending:NO];
             
             //NSSortDescriptor *statusDescriptor = [[NSSortDescriptor alloc] initWithKey:@"hungry" ascending:YES selector:@selector(compareHungry:)];
             
@@ -164,7 +178,7 @@
     
     if(mode==0){
         
-        self.adjMode = FALSE;
+        self.adjMode = FALSE; // not active
         
     }
     
@@ -192,7 +206,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-   
+    if (!self.managedObjectContext) [MyManagedObjectContext returnMyManagedObjectContext:^(UIManagedDocument *doc, BOOL created) {
+        self.managedObjectContext = [doc managedObjectContext];
+    }];
 }
 
 
@@ -225,13 +241,10 @@
         // fake for now
         //NSArray *friends = [FlickrFetcher stanfordPhotos];
         //NSArray *friends = [PhonyFriendDictionary returnPhonyFriendDictionary];
-        
-        
         NSArray *friends = [MyManagedObjectContext pullWolfData];
         
         // when we have the results, use main queue to display them
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             
             
             // populate the database
@@ -264,11 +277,54 @@
     
     Friend *friend = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = friend.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f latitude %f longitude %@ status", friend.latitude.doubleValue, friend.longitude.doubleValue, friend.status];
+    
+    if (self.adjMode) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", friend.status];
+    }else{
+        cell.detailTextLabel.text = @"";
+    }
     
     return cell;
 }
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
 
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    Friend *friend = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        dispatch_queue_t loaderQ = dispatch_queue_create("delete friend from WP", NULL);
+        dispatch_async(loaderQ, ^{
+            
+            NSString *sessionid =[MyManagedObjectContext token];
+            NSString *str = [NSString stringWithFormat:@"http://hungrylikethewolves.com/serverlets/unfriendjson.php?session=%@&phone=%@",sessionid,friend.userID];
+            
+            NSURL *URL = [NSURL URLWithString:str];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+            
+            NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+            
+            
+            NSArray *jsonArray;
+             jsonArray = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
+            
+            // when we have the results, use main queue to display them
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setManagedObjectContext:self.managedObjectContext];
+                [self.tableView reloadData];
+                
+            });
+        });
+
+        
+    }
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return 0;//(interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);

@@ -671,7 +671,7 @@ UserTouchState touchState;
         // place the status at the top
         
         
-        self.status.text = [self.annotation subtitle];
+        self.status.text = [NSString stringWithFormat:@"%@: '%@'",[(Friend *)self.annotation name],[self.annotation subtitle]];
         CGSize status_stringsize = [self.status.text sizeWithFont:[UIFont systemFontOfSize:20]];
         
         

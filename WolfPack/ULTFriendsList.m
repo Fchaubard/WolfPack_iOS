@@ -67,6 +67,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIEdgeInsets inset = UIEdgeInsetsMake(0, 0, 55, 0);
+    self.tableView.contentInset = inset;
     _buttonDictionary = [[NSMutableDictionary alloc] init];
     
 	if([self.originView isEqualToString:@"tutorial"]) {
